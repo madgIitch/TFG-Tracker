@@ -17,7 +17,7 @@ Comparar cuatro duplas modelo–entorno (Escenarios A–D) replicando el tramo f
 
 | ID | Dupla IA–IDE | Modelo | Entorno | Rol |
 |----|-------------|--------|---------|-----|
-| **A** | Codex (+Claude Code) en VS Code | GPT-4 / Claude Sonnet | Visual Studio Code | Baseline |
+| **A** | Codex (+Claude Code) en VS Code | GPT-4 / Claude Sonnet | Visual Studio Code | Replicación |
 | **B** | Gemini Code Assist en VS Code | Gemini 1.5 Pro | Visual Studio Code | Replicación |
 | **C** | Codex en Cursor | GPT-4o (Codex) | Cursor | Replicación |
 | **D** | Gemini en Antigravity | Gemini 1.5 Pro | Antigravity | Replicación |
@@ -387,7 +387,7 @@ npx jest --ci --json 2>/dev/null | jq '{total: .numTotalTests, passed: .numPasse
 
 Al completar los 4 escenarios, consolidar:
 
-| Dimensión | Indicador clave | A (Baseline) | B | C | D |
+| Dimensión | Indicador clave | A | B | C | D |
 |-----------|----------------|---|---|---|---|
 | **D5 Eficiencia** | TTS total (h) | ? | ? | ? | ? |
 | | Iteraciones (commits) | ? | ? | ? | ? |
