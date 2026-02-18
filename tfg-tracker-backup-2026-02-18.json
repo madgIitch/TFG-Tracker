@@ -1,0 +1,459 @@
+{
+  "sprints": [
+    {
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "status": "in_progress",
+      "dateStart": "2026-02-18",
+      "dateEnd": null,
+      "tts": 0.02,
+      "description": "",
+      "commits": null,
+      "filesCreated": null,
+      "filesModified": null,
+      "testsTotal": null,
+      "testsPass": null,
+      "testsFail": null,
+      "verificationTime": null,
+      "manualEdits": null,
+      "correctivePrompts": null,
+      "rejectedProposals": null,
+      "filesReadByAI": null,
+      "filesTotalRepo": null,
+      "retrievalMechanism": null,
+      "autonomousActions": null,
+      "controlCheckpoints": null,
+      "architecturalCoherence": null,
+      "buildsOk": null,
+      "buildsTotal": null,
+      "envFailures": null,
+      "tsWarnings": null,
+      "linterWarnings": null,
+      "styleConsistency": null,
+      "incidences": [],
+      "observations": "",
+      "createdAt": "2026-02-18T00:20:43.127Z",
+      "updatedAt": "2026-02-18T13:18:49.018Z",
+      "id": 1,
+      "autoCorrectivePrompts": null,
+      "autoRejectedProposals": null
+    },
+    {
+      "scenarioId": "B",
+      "sprintNumber": 7,
+      "status": "pending",
+      "dateStart": null,
+      "dateEnd": null,
+      "tts": null,
+      "description": "",
+      "commits": null,
+      "filesCreated": null,
+      "filesModified": null,
+      "testsTotal": null,
+      "testsPass": null,
+      "testsFail": null,
+      "verificationTime": null,
+      "manualEdits": null,
+      "correctivePrompts": null,
+      "rejectedProposals": null,
+      "filesReadByAI": null,
+      "filesTotalRepo": null,
+      "retrievalMechanism": null,
+      "autonomousActions": null,
+      "controlCheckpoints": null,
+      "architecturalCoherence": null,
+      "buildsOk": null,
+      "buildsTotal": null,
+      "envFailures": null,
+      "tsWarnings": null,
+      "linterWarnings": null,
+      "styleConsistency": null,
+      "incidences": [],
+      "observations": "",
+      "createdAt": "2026-02-18T00:23:35.772Z",
+      "updatedAt": "2026-02-18T00:23:37.281Z",
+      "id": 2
+    }
+  ],
+  "scenarios": [
+    {
+      "scenarioId": "A",
+      "acceptanceChecklist": {
+        "sprint7": false,
+        "sprint8": false,
+        "sprint9": false,
+        "sprint10": false,
+        "sprint11": false,
+        "sprint12": false,
+        "sprint13": false,
+        "sprint14": false,
+        "sprint15": false,
+        "sprint16": false,
+        "sprint17": false,
+        "sprint18": false,
+        "sprint19": false,
+        "sprint20": false,
+        "sprint21": false,
+        "sprint22": false,
+        "sprint23": false,
+        "functionalParity": false
+      },
+      "narrative": {
+        "strengths": "",
+        "weaknesses": "",
+        "generalExperience": ""
+      },
+      "updatedAt": "2026-02-18T02:28:14.675Z",
+      "id": 1
+    },
+    {
+      "scenarioId": "B",
+      "acceptanceChecklist": {
+        "sprint7": false,
+        "sprint8": false,
+        "sprint9": false,
+        "sprint10": false,
+        "sprint11": false,
+        "sprint12": false,
+        "sprint13": false,
+        "sprint14": false,
+        "sprint15": false,
+        "sprint16": false,
+        "sprint17": false,
+        "sprint18": false,
+        "sprint19": false,
+        "sprint20": false,
+        "sprint21": false,
+        "sprint22": false,
+        "sprint23": false,
+        "functionalParity": false
+      },
+      "narrative": {
+        "strengths": "",
+        "weaknesses": "",
+        "generalExperience": ""
+      },
+      "updatedAt": "2026-02-18T00:23:35.768Z",
+      "id": 2
+    },
+    {
+      "scenarioId": "C",
+      "acceptanceChecklist": {
+        "sprint7": false,
+        "sprint8": false,
+        "sprint9": false,
+        "sprint10": false,
+        "sprint11": false,
+        "sprint12": false,
+        "sprint13": false,
+        "sprint14": false,
+        "sprint15": false,
+        "sprint16": false,
+        "sprint17": false,
+        "sprint18": false,
+        "sprint19": false,
+        "sprint20": false,
+        "sprint21": false,
+        "sprint22": false,
+        "sprint23": false,
+        "functionalParity": false
+      },
+      "narrative": {
+        "strengths": "",
+        "weaknesses": "",
+        "generalExperience": ""
+      },
+      "updatedAt": "2026-02-18T00:14:44.745Z",
+      "id": 3
+    },
+    {
+      "scenarioId": "D",
+      "acceptanceChecklist": {
+        "sprint7": false,
+        "sprint8": false,
+        "sprint9": false,
+        "sprint10": false,
+        "sprint11": false,
+        "sprint12": false,
+        "sprint13": false,
+        "sprint14": false,
+        "sprint15": false,
+        "sprint16": false,
+        "sprint17": false,
+        "sprint18": false,
+        "sprint19": false,
+        "sprint20": false,
+        "sprint21": false,
+        "sprint22": false,
+        "sprint23": false,
+        "functionalParity": false
+      },
+      "narrative": {
+        "strengths": "",
+        "weaknesses": "",
+        "generalExperience": ""
+      },
+      "updatedAt": "2026-02-18T00:23:40.988Z",
+      "id": 4
+    }
+  ],
+  "prompts": [
+    {
+      "title": "Sprint 7 — Sistema de Gestión de Gastos",
+      "content": "Implementa un sistema completo de gestión de gastos compartidos para pisos en HomiMatchApp.\n\nLo que debes crear:\n\nPantalla FlatExpensesScreen: lista de gastos del piso con creación de nuevos gastos. Cada gasto tiene: descripción, importe total, pagador (uno de los compañeros del piso), y distribución entre los miembros del piso. Usa el estilo glassmorphism existente.\n\nPantalla FlatSettlementScreen: resumen de liquidaciones entre compañeros. Calcula automáticamente quién le debe cuánto a quién y permite marcar deudas como saldadas.\n\nServicio flatExpenseService: funciones CRUD para gastos. Un gasto tiene campos: id, flat_id, description, amount, paid_by (user_id), split_between (array de user_ids), created_at. Los splits pueden ser iguales o personalizados.\n\nServicio flatSettlementService: lógica para calcular el balance neto de cada miembro y generar las liquidaciones mínimas necesarias (algoritmo greedy: el que más debe paga al que más se le debe primero).\n\nEdge Functions de Supabase:\n\nflat-expenses: GET (listar gastos del piso) y POST (crear gasto nuevo)\nflat-settlements: GET (calcular liquidaciones pendientes) y POST (marcar como saldado)\nTablas en Supabase:\n\nflat_expenses: id, flat_id, description, amount, paid_by, created_at\nflat_expense_splits: id, expense_id, user_id, amount\nflat_settlements: id, flat_id, from_user, to_user, amount, settled_at\nIntegración en navegación: añade acceso a estas pantallas desde el tab de gestión del piso (RoomManagementScreen).\n\nRestricciones técnicas:\n\nSolo los miembros del piso pueden ver y crear gastos\nEl cálculo de deudas debe actualizarse automáticamente al añadir un gasto o liquidar\nLos imports de Supabase usan el cliente configurado globalmente en src/lib/supabase.ts\nSigue el patrón de los servicios existentes (async/await, tipado con interfaces TypeScript)",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:22:38.558Z",
+      "updatedAt": "2026-02-18T13:23:11.183Z",
+      "id": 2
+    },
+    {
+      "title": "Sprint 8 — Correcciones UI/UX",
+      "content": "Corrige los problemas visuales y de experiencia detectados en la v0 de HomiMatchApp.\n\nFixes a realizar:\n\nLoginScreen: ajusta el layout para que funcione correctamente cuando el teclado está visible. El botón de login no debe quedar tapado. Revisa el padding inferior y usa KeyboardAvoidingView si es necesario.\n\nRegisterScreen (todas las fases del registro multi-fase): verifica que los inputs no queden ocultos bajo el teclado en ninguna fase. Añade scroll si el contenido supera la pantalla.\n\nProfileDetailScreen: corrige los márgenes y espaciados inconsistentes. Las secciones de intereses (chips) deben verse completas sin cortes. Las fotos de perfil deben tener la relación de aspecto correcta.\n\nSwipeScreen: corrige el comportamiento de las cards durante el swipe. Si hay renders dobles o flickering al pasar cards, identifica la causa en el estado y corrígela. Asegúrate de que el gesto de swipe no interfiere con los botones de acción.\n\nOptimización de renders: revisa los componentes que se re-renderizan innecesariamente. Aplica React.memo, useCallback o useMemo donde corresponda para evitar renders en cascada.\n\nErrores visuales generales: repasa todas las pantallas en modo claro buscando textos cortados, overlaps de elementos, o elementos fuera de los límites de pantalla. Corrígelos con estilos correctos (evita valores hardcodeados en px; usa porcentajes o Dimensions cuando sea necesario).\n\nCriterio de éxito: la app no debe tener ningún error visual obvio en LoginScreen, RegisterScreen, ProfileDetailScreen ni SwipeScreen al hacer scroll, abrir el teclado, o interactuar con los gestos de swipe.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:23:35.556Z",
+      "updatedAt": "2026-02-18T13:23:35.556Z",
+      "id": 3
+    },
+    {
+      "title": "Sprint 9 — Refactorización v1: Separación de Estilos",
+      "content": "Refactoriza la capa de estilos de HomiMatchApp separando los estilos inline de los componentes a archivos dedicados, y establece un sistema de tokens de diseño.\n\nLo que debes hacer:\n\nCrea la carpeta src/styles/ con la siguiente estructura:\n\nsrc/styles/\n├── tokens/\n│   ├── colors.ts       # paleta de colores y semántica (primary, surface, text, etc.)\n│   ├── spacing.ts      # escala de spacing (xs, sm, md, lg, xl, xxl)\n│   └── fonts.ts        # tamaños de fuente y pesos\n├── screens/            # estilos de cada pantalla\n│   ├── LoginScreen.styles.ts\n│   ├── RegisterScreen.styles.ts\n│   ├── SwipeScreen.styles.ts\n│   ├── ProfileDetailScreen.styles.ts\n│   ├── ChatScreen.styles.ts\n│   ├── MatchesScreen.styles.ts\n│   ├── FiltersScreen.styles.ts\n│   ├── EditProfileScreen.styles.ts\n│   ├── FlatExpensesScreen.styles.ts\n│   ├── FlatSettlementScreen.styles.ts\n│   └── ... (una por cada pantalla existente)\n└── common.ts           # estilos reutilizables: containers, cards, inputs, headers\nExtrae los StyleSheets: cada pantalla actualmente tiene su StyleSheet.create inline al final del archivo. Muévelo a su archivo .styles.ts correspondiente y haz el import en la pantalla. El archivo de estilos exporta un único objeto styles por defecto.\n\nAplica tokens: sustituye los valores hardcodeados de colores, spacings y tamaños de fuente por referencias a los tokens. Ejemplo: en lugar de color: '#FFFFFF' usa colors.white; en lugar de padding: 16 usa spacing.md.\n\ncommon.ts: extrae los estilos repetidos en múltiples pantallas (por ejemplo, el contenedor base con fondo gradiente, el estilo de botón primario, el estilo de input) a este archivo y reutilízalos importándolos.\n\nNo cambies la lógica: esta refactorización es puramente estructural. El comportamiento visual debe quedar idéntico antes y después.\n\nResultado esperado: ~50 archivos modificados/creados. El código queda más limpio y los estilos son fáciles de modificar globalmente cambiando un token.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:24:13.153Z",
+      "updatedAt": "2026-02-18T13:24:13.153Z",
+      "id": 4
+    },
+    {
+      "title": "Sprint 10 — Recuperación de Contraseñas",
+      "content": "Implementa el flujo completo de recuperación de contraseña por email en HomiMatchApp.\n\nLo que debes crear:\n\nForgotPasswordScreen: pantalla accesible desde LoginScreen (enlace \"¿Olvidaste tu contraseña?\"). Tiene un campo de email y un botón de enviar. Al enviarlo, llama al servicio de recuperación y muestra un mensaje de confirmación (\"Te hemos enviado un email con las instrucciones\").\n\nResetPasswordScreen: pantalla que se abre cuando el usuario toca el enlace del email de recuperación. Tiene dos campos (nueva contraseña y confirmación) y un botón de guardar. Valida que ambas contraseñas coincidan y cumplan los requisitos mínimos.\n\nServicio de recuperación (en authService o archivo propio):\n\nsendPasswordResetEmail(email: string): llama a supabase.auth.resetPasswordForEmail() con la URL de redirect correcta\nupdatePassword(newPassword: string): llama a supabase.auth.updateUser({ password: newPassword })\nDeep linking: configura el deep link homimatch://reset-password para que Android e iOS abran ResetPasswordScreen cuando el usuario toca el enlace del email. Configura:\n\nEn Android: AndroidManifest.xml con el intent filter correspondiente\nEn iOS: Info.plist con el URL scheme\nEn el navegador: maneja el parámetro de sesión que devuelve Supabase en la URL de reset\nIntegración en AppNavigator: añade ForgotPasswordScreen y ResetPasswordScreen al stack de navegación de autenticación (fuera del flujo autenticado).\n\nTesting del flujo: verifica que el flujo completo funciona: usuario en LoginScreen → toca \"¿Olvidaste tu contraseña?\" → introduce email → recibe email → toca enlace → abre ResetPasswordScreen → introduce nueva contraseña → vuelve a LoginScreen.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:24:31.144Z",
+      "updatedAt": "2026-02-18T13:24:31.144Z",
+      "id": 5
+    },
+    {
+      "title": "Sprint 11 — Mejoras UI de Detalles",
+      "content": "Mejora la interfaz de las pantallas de detalle de perfiles y pisos en HomiMatchApp.\n\nLo que debes hacer:\n\nProfileDetailScreen: rediseña el layout siguiendo el estilo glassmorphism del resto de la app. La pantalla debe:\n\nMostrar las fotos del perfil en un carrusel con paginación (bullets o números)\nMostrar el nombre, edad, género y ciudad en un header flotante sobre la última foto\nOrganizar la información en secciones con tarjetas glassmorphism: \"Sobre mí\", \"Mis intereses\" (chips), \"Lo que busco\", \"Mi situación\" (tiene piso / busca piso)\nLos botones de like/dislike deben estar visibles en la parte inferior sin tapar el contenido\nAsegúrate de que el scroll funciona correctamente\nRoomDetailScreen: mejora la presentación del piso con:\n\nCarrusel de fotos del piso\nInformación clara del piso: dirección, precio, habitaciones disponibles, servicios incluidos\nSección de roommates actuales con sus avatares\nReglas del piso en formato legible\nBotón de contactar / solicitar unirse (según el estado del match)\nActualización del tema global: si durante el rediseño detectas valores de color o spacing que deberían estar en los tokens pero no están, añádelos a los archivos de tokens de src/styles/tokens/.\n\nFlatExpensesScreen (fix menor): corrige cualquier problema visual que exista en la pantalla de gastos (padding, alineación, overflow de texto).\n\nRestricción: no cambies la lógica de negocio ni las llamadas a servicios. Solo modifica la capa de presentación.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:24:50.799Z",
+      "updatedAt": "2026-02-18T13:24:50.799Z",
+      "id": 6
+    },
+    {
+      "title": "Sprint 12 — Sistema de Invitaciones",
+      "content": "Implementa un sistema de códigos de invitación para que los propietarios puedan invitar a compañeros a unirse a su piso.\n\nLo que debes crear:\n\nFase 4 del registro (Phase4Invitation): nueva pantalla en el flujo de registro multi-fase. Aparece después de la fase de género y pregunta al usuario si tiene un código de invitación. Dos opciones: \"Tengo un código\" (muestra input para introducirlo) y \"No tengo código\" (continúa al flujo normal). Si introduce un código válido, el usuario queda asociado al piso.\n\nServicio roomInvitationService:\n\ngenerateInviteCode(flatId: string): genera un código único (6-8 caracteres alfanuméricos) y lo guarda en Supabase\nvalidateInviteCode(code: string): verifica que el código existe, no ha expirado y el piso tiene habitaciones disponibles\njoinFlatWithCode(code: string, userId: string): asocia al usuario al piso, asigna habitación disponible, y devuelve los datos del piso\nEdge Function room-invitations:\n\nPOST /generate: genera y devuelve un nuevo código para el piso del propietario autenticado\nPOST /join: valida el código y une al usuario al piso\nGET /validate/:code: verifica si un código es válido sin unirse aún\nTabla room_invitation_codes: id, flat_id, code (único), created_by, created_at, expires_at (nullable), used_by (nullable), used_at (nullable)\n\nUI en RoomManagementScreen: botón \"Generar código de invitación\" que muestra el código generado con opción de copiarlo al portapapeles y compartirlo.\n\nMatches automáticos: cuando un usuario se une a un piso mediante código de invitación, crea automáticamente registros de match entre él y todos los compañeros existentes del piso con estado accepted (son compañeros, ya se conocen).\n\nRoomDetailScreen: muestra la lista de roommates actuales del piso (nombre + foto).\n\n",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:25:30.894Z",
+      "updatedAt": "2026-02-18T13:25:30.894Z",
+      "id": 7
+    },
+    {
+      "title": "Sprint 13 — Push Notifications",
+      "content": "Implementa el sistema completo de notificaciones push en HomiMatchApp usando Firebase Cloud Messaging.\n\nLo que debes crear:\n\nConfiguración de Firebase:\n\nIntegra @react-native-firebase/app y @react-native-firebase/messaging\nConfigura google-services.json en Android y GoogleService-Info.plist en iOS\nSolicita permisos de notificaciones al usuario al abrir la app\nServicio pushTokenService:\n\nregisterToken(): obtiene el FCM token del dispositivo y lo guarda en Supabase vinculado al usuario autenticado (push_tokens table: user_id, token, platform, updated_at)\nremoveToken(): elimina el token al hacer logout\nServicio notificationService:\n\nManeja notificaciones en foreground (muestra una notificación local si la app está abierta)\nManeja notificaciones en background (el handler de FCM se encarga)\nManeja el tap en notificación (navegación por deep link al contenido relevante)\nExcepción: si el usuario ya está en el chat del que llega la notificación, no la muestra\nEdge Functions de Supabase (se llaman desde los triggers de Supabase o desde otras edge functions):\n\npush-new-message: envía push al destinatario cuando llega un mensaje nuevo en el chat\npush-match-status: envía push cuando cambia el estado de un match (nuevo match, rechazo)\npush-flat-expense: envía push a todos los compañeros cuando se crea un nuevo gasto\npush-flat-settlement: envía push cuando alguien liquida una deuda\npush-room-assignment: envía push cuando el propietario asigna una habitación a un compañero\nDeep linking desde notificaciones: configurar el payload de cada tipo de notificación con datos suficientes para navegar directamente al contenido:\n\nMensaje → abre ChatScreen del chat correspondiente\nMatch → abre MatchesScreen\nGasto → abre FlatExpensesScreen\nPermisos Android: configura en AndroidManifest.xml los permisos necesarios para notificaciones y el canal de notificaciones por defecto.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:25:49.912Z",
+      "updatedAt": "2026-02-18T13:25:49.912Z",
+      "id": 8
+    },
+    {
+      "title": "Sprint 14 — Chats en Tiempo Real",
+      "content": "Implementa mensajería en tiempo real y rediseña la UI del sistema de chat en HomiMatchApp.\n\nLo que debes implementar:\n\nSupabase Realtime en ChatScreen:\n\nSuscríbete al canal de mensajes del chat actual usando supabase.channel() con filtros por chat_id\nCuando llega un mensaje nuevo, añádelo al estado local sin recargar todos los mensajes\nImplementa autoscroll automático al recibir un mensaje nuevo (si el usuario está en el fondo del scroll) o al enviar un mensaje propio\nAl desmontar el componente, cancela la suscripción\nOrden de chats en MatchesScreen:\n\nLa lista de chats debe ordenarse por el timestamp del último mensaje (más reciente primero)\nMuestra un indicador de mensajes no leídos (punto o número) en los chats con mensajes no leídos\nSuscríbete en tiempo real a los cambios en los chats del usuario para que el orden se actualice automáticamente\nRediseño de ChatScreen con glassmorphism:\n\nHeader con foto y nombre del contacto, con botón de volver\nBurbujas de mensaje diferenciadas: las tuyas a la derecha (color primario), las del otro a la izquierda (glassmorphism)\nTimestamps en los mensajes, agrupados por día (\"Hoy\", \"Ayer\", fecha completa)\nInput de texto en la parte inferior con botón de enviar, que no tape los mensajes cuando el teclado está abierto\nRediseño de MatchesScreen:\n\nLista de matches con foto, nombre y último mensaje (preview truncado)\nIndicador de tiempo del último mensaje (hace X min, hace X horas, etc.)\nSección separada para nuevos matches sin mensajes aún\nActualización UI de formularios: con el nuevo sistema de estilos y glassmorphism, actualiza la UI de:\n\nEditProfileScreen, CreateFlatScreen, RoomEditScreen, RoomManagementScreen\nFlatExpensesScreen, FlatSettlementScreen\nAsegúrate de que todos siguen el mismo lenguaje visual",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:26:08.559Z",
+      "updatedAt": "2026-02-18T13:26:08.559Z",
+      "id": 9
+    },
+    {
+      "title": "Sprint 15 — UI Fix Global",
+      "content": "Realiza una corrección masiva de problemas de UX en todas las pantallas de HomiMatchApp, con foco especial en el comportamiento del teclado y la adaptación a distintos tamaños de pantalla.\n\nLo que debes corregir:\n\nAutoscroll con teclado: en todas las pantallas con formularios, el contenido debe hacer scroll automáticamente para que el campo de input activo no quede tapado por el teclado. Implementa esto de forma consistente en:\n\nTodas las fases del registro (Phase1Email, Phase2Name, Phase3BirthDate, Phase3Gender)\nEditProfileScreen\nCreateFlatScreen y RoomEditScreen\nForgotPasswordScreen y ResetPasswordScreen\nUsa KeyboardAwareScrollView o una solución propia con KeyboardAvoidingView + ScrollView\nPantallas de registro: revisa el flujo completo de registro en un dispositivo pequeño (320pt de ancho). Asegúrate de que todos los elementos caben y son accesibles.\n\nProfileDetailScreen y RoomDetailScreen: verifica en múltiples tamaños de pantalla que el layout es correcto, los carruseles de fotos funcionan, y los botones de acción no quedan cortados.\n\nForgotPasswordScreen y ResetPasswordScreen: corrige cualquier problema de layout. El formulario debe estar centrado verticalmente cuando no hay teclado y subir cuando el teclado aparece.\n\nSwipeScreen con estilos relativos: reemplaza todos los valores de posición y tamaño hardcodeados en px por valores relativos (porcentajes de Dimensions.get('window')) para que las cards de swipe se vean bien en pantallas de distintos tamaños.\n\nTabBar: verifica que la barra de navegación inferior no queda cortada en dispositivos con notch inferior (iPhone con home indicator). Aplica paddingBottom con useSafeAreaInsets() si es necesario.\n\nMatchesScreen: ajusta el padding y spacing para que la lista de matches no tenga espacio excesivo ni insuficiente.\n\nPorcentajes de compatibilidad: si el porcentaje calculado puede salir de rango (< 0 o > 100), añade un clamp para asegurar que siempre está entre 0 y 100.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:26:29.929Z",
+      "updatedAt": "2026-02-18T13:26:29.929Z",
+      "id": 10
+    },
+    {
+      "title": "Sprint 16 — Swipe Porcentual",
+      "content": "Implementa un sistema de compatibilidad porcentual visible en las cards de swipe de HomiMatchApp.\n\nLo que debes implementar:\n\nCálculo de porcentaje de compatibilidad: crea una función calculateCompatibility(userProfile, candidateProfile, userFilters) que devuelva un número de 0 a 100. Factores a considerar (con pesos configurables):\n\nCoincidencia en rango de precio buscado\nCoincidencia de ciudad/zona\nCoincidencia de intereses (porcentaje de intereses en común)\nCompatibilidad de estilos de vida\nCoincidencia en tipo de usuario (tiene piso / busca piso)\nPreferencias de género del compañero\nVisualización en cards de swipe: en cada card del SwipeScreen, añade un badge o indicador visual que muestre el porcentaje de compatibilidad. Puede ser:\n\nUn badge circular en la esquina superior derecha con el número y color (verde > 70%, amarillo 40-70%, rojo < 40%)\nUna barra de progreso en la parte inferior de la card\nSwipeScreenV2: crea una nueva versión del SwipeScreen que incorpore este sistema. Mantén la funcionalidad de swipe existente (gestos, botones de like/dislike) y añade la compatibilidad. Usa el nombre SwipeScreenV2 o actualiza el existente si prefieres.\n\nMejoras en el algoritmo de recomendaciones (backend): ordena los candidatos devueltos por la Edge Function de recomendaciones por porcentaje de compatibilidad descendente, para que los más compatibles aparezcan primero en el stack de swipe.\n\nCorrecciones en backend de matches: verifica que la lógica de matches funciona correctamente con el nuevo sistema. Cuando ambos usuarios se dan like mutuamente, el match debe crearse correctamente y aparecer en MatchesScreen.\n\nOptimización de queries: si la query de perfiles candidatos hace demasiadas llamadas o es lenta, optimízala con una query única que traiga todos los datos necesarios para calcular la compatibilidad.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:26:55.367Z",
+      "updatedAt": "2026-02-18T13:26:55.367Z",
+      "id": 11
+    },
+    {
+      "title": "Sprint 17 — Hotfixes",
+      "content": "Corrige los errores críticos detectados inmediatamente después del sprint de swipe porcentual.\n\nHotfixes a realizar:\n\nHotfix principal: identifica y corrige el error crítico que impide el funcionamiento correcto de alguna funcionalidad core. Revisa los logs de error y el comportamiento en los commits a2ec3d6 y 964a01a. Los síntomas más probables son:\n\nEl porcentaje de compatibilidad no se calcula o muestra incorrectamente\nLas cards de swipe no cargan o se quedan en estado de carga infinita\nEl match no se crea cuando ambos usuarios se dan like\nLa navegación falla después de un swipe\nVerifica regresiones: después de los cambios del Sprint 16, comprueba que las funcionalidades anteriores siguen funcionando:\n\nEl flujo de registro completo (4 fases)\nEl chat en tiempo real\nLas push notifications\nLa gestión de gastos\nCorrecciones de estabilidad: si hay crashes o comportamientos inesperados en producción derivados de los últimos sprints, corrígelos con el menor impacto posible en el código.\n\nNota: este sprint es de hotfixes urgentes. Mantén los cambios mínimos y enfocados. No añadas funcionalidades nuevas.\n\n",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:27:10.877Z",
+      "updatedAt": "2026-02-18T13:27:10.877Z",
+      "id": 12
+    },
+    {
+      "title": "Sprint 18 — Filtros Mejorados y Google Auth",
+      "content": "Mejora el sistema de filtros de búsqueda y completa la integración con Google Sign-In en HomiMatchApp.\n\nLo que debes implementar:\n\nActualización completa de FiltersScreen:\n\nAñade todos los filtros relevantes que puedan faltar: rango de precio, número de habitaciones, tipo de usuario (busca piso / tiene piso / ambos), ciudad, zona, rango de edad, género del compañero\nMejora la UX de los filtros: usa sliders para rangos numéricos, chips para selección múltiple, y toggles para opciones binarias\nAñade un botón \"Restablecer filtros\" que vuelva a los valores por defecto\nMuestra un contador de cuántos filtros están activos\nGuarda los filtros aplicados en AsyncStorage para que persistan entre sesiones\nPremiumContext: crea un contexto que gestione el estado premium del usuario. Por ahora, con lógica básica:\n\nisPremium: boolean (leer de Supabase, tabla profiles, campo is_premium)\npremiumFeatures: lista de features disponibles según el plan\ncheckPremiumStatus(): refresca el estado desde el backend\nAlgunos filtros avanzados estarán marcados como premium (bloqueados para usuarios free, con un icono de candado y prompt de upgrade)\nMainNavigator anclado: corrige el problema de que el MainNavigator (con los tabs) se reinicia o \"salta\" en ciertas transiciones de navegación. El navigator debe mantenerse montado y el estado de los tabs debe persistir correctamente.\n\nGoogle Authentication finalizada:\n\nCompleta el flujo de registro con Google: si el usuario se registra con Google y es la primera vez, llévalo al flujo de registro multi-fase para completar su perfil (nombre, fecha de nacimiento, género, ciudad)\nSi ya tiene cuenta con Google, haz login directo\nManeja el caso de que el email de Google ya esté registrado con contraseña (muéstrale un mensaje apropiado)\nCorrige cualquier error en GoogleSignInButton o en el servicio de auth de Google\nCorrección en TabBarIcon: si los iconos de la barra de tabs tienen algún problema visual (tamaño incorrecto, color que no respeta el tema, etc.), corrígelo.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:27:27.266Z",
+      "updatedAt": "2026-02-18T13:27:27.266Z",
+      "id": 13
+    },
+    {
+      "title": "Sprint 19 — Realtime y Estilos de Vida",
+      "content": "Extiende el sistema de tiempo real a todas las pantallas relevantes y añade el campo de estilos de vida en los perfiles.\n\nLo que debes implementar:\n\nSupabase Realtime en todas las pantallas:\n\nFlatExpensesScreen: suscríbete a cambios en flat_expenses del piso actual. Cuando se añada o modifique un gasto, actualiza la lista automáticamente sin recargar.\n\nFlatSettlementScreen: suscríbete a cambios en flat_settlements. Cuando alguien salda una deuda, actualiza el resumen.\n\nMatchesScreen: ya tiene realtime para el orden de chats. Añade también suscripción a nuevos matches para que aparezcan sin recargar la pantalla.\n\nRoomDetailScreen: suscríbete a cambios en los miembros del piso (cuando alguien se une o sale).\n\nRoomManagementScreen: suscríbete a cambios en las habitaciones y asignaciones.\n\nEn todos los casos: gestiona correctamente los canales (usar nombres únicos por pantalla + ID de recurso) y cancela las suscripciones en el useEffect cleanup.\n\nCampo \"Estilos de vida\" en perfiles:\n\nAñade un campo lifestyle_habits (array de strings) a la tabla profiles en Supabase\nDefine un conjunto predeterminado de opciones: \"Madrugador\", \"Noctámbulo\", \"No fumador\", \"Fumador\", \"Deportista\", \"Tranquilo\", \"Sociable\", \"Trabajador desde casa\", \"Mascota\", etc.\nEn EditProfileScreen: añade una sección de selección de estilos de vida con chips (selección múltiple, máximo 5)\nEn ProfileDetailScreen: muestra los estilos de vida del usuario con iconos o emojis representativos\nIncluye los estilos de vida en el cálculo de compatibilidad del Sprint 16\nInicio de Dark Mode: prepara el terreno para el dark mode (Sprint 20):\n\nAsegúrate de que ThemeContext existe y tiene la estructura correcta para soportar dos temas\nIdentifica qué colores hardcodeados hay en los componentes que dificultarán el dark mode y apúntalos (no los arregles aún, solo identifícalos)",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:27:42.877Z",
+      "updatedAt": "2026-02-18T13:27:42.877Z",
+      "id": 14
+    },
+    {
+      "title": "Sprint 20 — Dark Mode",
+      "content": "Implementa el modo oscuro completo en toda la aplicación HomiMatchApp.\n\nLo que debes implementar:\n\nSistema de temas en ThemeContext:\n\nDefine dos temas completos: lightTheme y darkTheme, cada uno con todas las variables de color necesarias: background, surface, surfaceVariant, primary, onPrimary, text, textSecondary, border, inputBackground, cardBackground, tabBar, etc.\nEl contexto expone: theme (objeto con los colores actuales), isDark (boolean), toggleTheme() (función para cambiar)\nLa preferencia se persiste con AsyncStorage\nAl iniciar la app, carga la preferencia guardada (o detecta la preferencia del sistema con Appearance.getColorScheme())\nActualización de todos los estilos: recorre todas las pantallas y componentes. En lugar de usar colores hardcodeados, usa theme.background, theme.text, etc. desde el contexto:\n\nUsa const { theme } = useTheme() en cada pantalla\nLos archivos .styles.ts deben convertirse en funciones que reciben theme como parámetro: const styles = (theme: Theme) => StyleSheet.create({...})\nAsegúrate de que el efecto glassmorphism funciona bien en ambos modos (ajusta la opacidad del blur según el modo)\nPantallas prioritarias (empieza por estas):\n\nSwipeScreen: las cards deben verse bien en modo oscuro\nChatScreen y MatchesScreen: burbujas de chat y lista de matches\nProfileDetailScreen y RoomDetailScreen: fondos y textos\nLoginScreen y RegisterScreen: formularios de autenticación\nPersistencia y transición:\n\nLa transición entre modos debe ser suave (no hay animación requerida, pero el cambio no debe causar un flash blanco)\nEl tema seleccionado debe mantenerse al cerrar y reabrir la app\nToggle en la UI: añade un switch de modo oscuro/claro en EditProfileScreen o en una pantalla de configuración, accesible desde el tab de perfil.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:28:02.923Z",
+      "updatedAt": "2026-02-18T13:28:02.923Z",
+      "id": 15
+    },
+    {
+      "title": "Sprint 21 — Premium Features",
+      "content": "Implementa la lógica inicial de características premium con limitaciones para usuarios free.\n\nLo que debes implementar:\n\nPremiumContext completado (basado en el inicio del Sprint 18):\n\nCampo is_premium en tabla profiles de Supabase (boolean, default false)\nEl contexto se inicializa leyendo este campo al hacer login\nExpone: isPremium, swipesRemaining (para usuarios free), canUseFeature(featureName: string)\nLimitaciones para usuarios free:\n\nLímite de swipes diarios: los usuarios free tienen un límite de, por ejemplo, 20 swipes al día. Al llegar al límite, el SwipeScreen muestra un mensaje \"Has alcanzado tu límite diario\" con un prompt de upgrade\nFiltros avanzados bloqueados: algunos filtros en FiltersScreen están reservados para premium. Muéstralos con un icono de candado 🔒 y al intentar usarlos, muestra un modal de upgrade\nSin anuncios: (placeholder para monetización futura)\nValidación de email mejorada (edge function auth-check-email):\n\nAntes de enviar el email de verificación en el registro, verifica que el formato es válido y que el dominio existe (DNS check básico)\nSi el email parece inválido, devuelve un error descriptivo antes de intentar crear el usuario en Supabase\nUI para features premium:\n\nCrea un componente PremiumBadge que se muestra junto a las features de pago\nCrea un modal o bottom sheet PremiumUpgradeModal con: descripción de los beneficios premium, botón \"Obtener Premium\" (que de momento puede navegar a una pantalla placeholder), y botón \"Cerrar\"\nEl modal se puede invocar desde cualquier parte de la app",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:28:18.345Z",
+      "updatedAt": "2026-02-18T13:28:18.345Z",
+      "id": 16
+    },
+    {
+      "title": "Sprint 22 — UI Dark Mode Refinamiento",
+      "content": "Refina los detalles del modo oscuro y corrige problemas detectados tras la implementación inicial.\n\nLo que debes corregir y mejorar:\n\nFormSection para ambos modos: el componente FormSection (usado en formularios de edición) debe adaptar sus colores al tema actual. Corrige el background del contenedor, el color del título de sección, y los bordes para que se vean bien tanto en claro como en oscuro.\n\nCorrecciones en múltiples pantallas: revisa en modo oscuro cada pantalla y corrige los elementos que no se adaptan correctamente:\n\nTextos blancos sobre fondo blanco (o negros sobre negro)\nInputs con fondo hardcodeado que no respeta el tema\nIconos con color fijo que no cambia con el tema\nBordes con colores hardcodeados\nModales y bottom sheets con fondo incorrecto\nOwner puede buscar owner: corrige el bug por el cual un usuario con tipo \"owner\" (tiene piso) no podía ver en sus recomendaciones a otros owners. La lógica de recomendaciones debe permitir que un owner busque otro owner para intercambios o colaboraciones. Actualiza la Edge Function de recomendaciones para eliminar esta restricción incorrecta.\n\nSistema de perfil activo/inactivo:\n\nAñade campo is_active (boolean, default true) a la tabla profiles\nEn EditProfileScreen o en la configuración, añade un toggle \"Perfil activo\" que permita al usuario pausar su visibilidad en el swipe\nLos perfiles inactivos no aparecen en las recomendaciones de swipe\nCuando el perfil está inactivo, muestra un banner informativo en la app\nMerge y limpieza: después de las correcciones, asegúrate de que no hay ramas de feature sin mergear y que el código está limpio (sin console.logs de debug, sin código comentado innecesario).",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:28:41.524Z",
+      "updatedAt": "2026-02-18T13:28:41.524Z",
+      "id": 17
+    },
+    {
+      "title": "Sprint 23 — Ciudades y Zonas",
+      "content": "Implementa un sistema completo de ubicaciones geográficas con ciudades españolas y zonas en HomiMatchApp.\n\nLo que debes crear:\n\nPoblación de la base de datos con datos geográficos de España:\n\nCrea scripts Python para extraer y normalizar datos de OpenStreetMap o fuentes públicas:\nextract_geojson.py: extrae ciudades/municipios de un archivo GeoJSON\nextract_places.py: extrae barrios/distritos de cada ciudad\nnormalize_areas.py: normaliza y limpia los nombres de zonas\nfilter_cities_by_places.py: filtra ciudades por número mínimo de barrios\nGenera SQLs de inserción masiva para las tablas cities y areas\nFoco en las ciudades más grandes (Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia, Palma, Las Palmas, Bilbao...)\nTablas en Supabase:\n\ncities: id, name, province, autonomous_community, population, latitude, longitude\nareas: id, city_id, name, type (district/neighborhood)\nEdge Function locations:\n\nGET /cities: lista de ciudades (con búsqueda por nombre)\nGET /cities/:cityId/areas: zonas de una ciudad\nGET /cities/nearby: ciudades cercanas a una coordenada (para el boost por proximidad)\nServicio locationService:\n\nsearchCities(query: string): busca ciudades por nombre\ngetAreasForCity(cityId: string): obtiene las zonas de una ciudad\ngetNearbyCities(cityId: string, radiusKm: number): ciudades cercanas\nIntegración en perfiles:\n\nEn EditProfileScreen: sustituye el campo de ciudad libre por un selector de ciudad con búsqueda autocomplete, y un selector de zona/barrio dependiente de la ciudad elegida\nCampo preferred_city_id y preferred_area_id en profiles\nIntegración en pisos:\n\nEn CreateFlatScreen y RoomEditScreen: selector de ciudad y zona para el piso\nCampo city_id y area_id en la tabla de pisos\nFiltros por ubicación:\n\nEn FiltersScreen: selector de ciudad y zona\nLa Edge Function de recomendaciones filtra por ciudad (y opcionalmente por zona)\nLas ciudades cercanas reciben una penalización menor en lugar de excluirse completamente\nFunción \"Borrar perfil\": añade opción en la configuración del perfil para eliminar permanentemente la cuenta. Muestra un diálogo de confirmación con texto de advertencia. Al confirmar, elimina los datos del usuario de Supabase Auth y de la tabla profiles (y en cascada sus datos relacionados).\n\nKeyboardAwareContainer (componente reutilizable): crea un componente wrapper que gestione automáticamente el comportamiento del teclado en cualquier pantalla. Úsalo en todas las pantallas con formularios como sustituto de las soluciones individuales de sprints anteriores.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:29:12.682Z",
+      "updatedAt": "2026-02-18T13:29:12.682Z",
+      "id": 18
+    }
+  ],
+  "promptEvaluations": [],
+  "exportedAt": "2026-02-18T13:29:50.391Z"
+}
