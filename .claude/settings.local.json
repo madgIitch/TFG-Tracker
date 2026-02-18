@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"/c/Users/peorr/Desktop/TFG Tracker\" log --oneline)",
+      "Bash(git -C \"/c/Users/peorr/Desktop/TFG Tracker\" show --stat HEAD)",
+      "Bash(git -C \"c:\\\\\\\\Users\\\\\\\\peorr\\\\\\\\Desktop\\\\\\\\TFG Tracker\" show --name-only:*)",
+      "Bash(npm install:*)"
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 # Protocolo del Experimento Comparativo — Escenarios A–D
 
 **Proyecto:** Análisis comparativo de duplas IA–IDE en desarrollo móvil
-**Caso práctico:** Replicación del MVP v0 de HomiMatchApp
+**Caso práctico:** Replicación de las características avanzadas post-v0 de HomiMatchApp (Sprints 7–23)
 **Fecha de creación:** 5 febrero 2026
 **Última actualización:** 18 febrero 2026
 
@@ -9,7 +9,7 @@
 
 ## 1. Objetivo
 
-Comparar cuatro duplas modelo–entorno (Escenarios A–D) replicando el mismo tramo funcional del proyecto, manteniendo constantes requisitos, arquitectura y desarrollador. La evaluación se rige por las seis dimensiones del marco definido en el capítulo de materias relacionadas.
+Comparar cuatro duplas modelo–entorno (Escenarios A–D) replicando el tramo funcional de los Sprints 7–23 del proyecto (características avanzadas post-v0, commits #32–#155), manteniendo constantes requisitos, arquitectura y desarrollador. Cada escenario parte del mismo punto de partida (v0 completado) y debe implementar las 17 funcionalidades descritas en los sprints. La evaluación se rige por las seis dimensiones del marco definido en el capítulo de materias relacionadas.
 
 ---
 
@@ -28,7 +28,8 @@ Comparar cuatro duplas modelo–entorno (Escenarios A–D) replicando el mismo t
 
 ### 3.1 Factores constantes
 - **Desarrollador**: Pepe Ortiz Roldán (mismo para los 4 escenarios).
-- **Requisitos funcionales**: MVP v0 — Sprints 1-6 (autenticación, navegación, perfiles con fotos, matching swipe, habitaciones, filtros, UI glassmorphism).
+- **Punto de partida**: v0 del proyecto ya completada (Sprints 0–6: autenticación, navegación, perfiles, matching, habitaciones, filtros, UI glassmorphism). Todos los escenarios arrancan desde el mismo código base v0.
+- **Requisitos funcionales**: Sprints 7–23 — características avanzadas post-v0 (gastos compartidos, correcciones UI/UX, refactorización, recuperación de contraseñas, mejoras UI detalle, invitaciones, push notifications, chats en tiempo real, UI fix global, swipe porcentual, hotfixes, filtros mejorados + Google Auth, realtime + estilos de vida, dark mode, premium features, dark mode refinamiento, ciudades y zonas).
 - **Stack**: React Native + Expo + TypeScript + Supabase (PostgreSQL, Auth, Storage).
 - **Arquitectura**: Estructura de carpetas y patrones idénticos.
 - **Esquema de BD**: Mismo esquema PostgreSQL en Supabase.
@@ -126,13 +127,24 @@ Se mantiene una **suite mínima de tests unitarios** (Jest / React Testing Libra
 
 ### Checklist de aceptación por sprint
 
-- [ ] **Sprint 1**: Autenticación (login, registro, Google Sign-In) + navegación básica funcional
-- [ ] **Sprint 2**: Navegación por tabs + registro multi-fase
-- [ ] **Sprint 3**: Edición de perfiles + subida de múltiples fotos
-- [ ] **Sprint 4**: Sistema de swipe + habitaciones/pisos + chat básico
-- [ ] **Sprint 5**: Filtros de género y preferencias funcionales
-- [ ] **Sprint 6**: UI glassmorphism aplicado de forma consistente
-- [ ] **Paridad funcional**: Todas las funcionalidades del baseline están presentes
+- [ ] **Sprint 7**: Sistema de gestión de gastos compartidos (FlatExpensesScreen, liquidaciones, cálculo automático de deudas)
+- [ ] **Sprint 8**: Correcciones UI/UX (fixes en Login, Register, ProfileDetail, SwipeScreen)
+- [ ] **Sprint 9**: Refactorización v1 (separación de estilos en *.styles.ts, tokenización de colores/spacing/fonts)
+- [ ] **Sprint 10**: Recuperación de contraseñas (ForgotPassword, ResetPassword, deep linking desde email)
+- [ ] **Sprint 11**: Mejoras UI de detalles (rediseño ProfileDetail, RoomDetail, tema global)
+- [ ] **Sprint 12**: Sistema de invitaciones (Phase4Invitation, códigos de invitación, matches automáticos entre roommates)
+- [ ] **Sprint 13**: Push notifications (Firebase Cloud Messaging, deep linking, notificaciones por tipo)
+- [ ] **Sprint 14**: Chats en tiempo real (Supabase Realtime, autoscroll, orden por último mensaje, UI glass chat)
+- [ ] **Sprint 15**: UI fix global (autoscroll en inputs con teclado, fixes en todas las pantallas, porcentajes de compatibilidad)
+- [ ] **Sprint 16**: Swipe porcentual (cálculo de compatibilidad, SwipeScreenV2, mejoras en algoritmo de recomendaciones)
+- [ ] **Sprint 17**: Hotfixes (correcciones urgentes de errores críticos)
+- [ ] **Sprint 18**: Filtros mejorados + Google Auth (actualización de filtros, lógica premium inicial, MainNavigator anclado)
+- [ ] **Sprint 19**: Realtime y estilos de vida (subscripción realtime en todas las pantallas, campo estilos de vida, inicio dark mode)
+- [ ] **Sprint 20**: Dark mode (sistema de temas claro/oscuro completo, persistencia de preferencia, transiciones suaves)
+- [ ] **Sprint 21**: Premium features (contexto Premium, limitaciones free, validación de email)
+- [ ] **Sprint 22**: Dark mode refinamiento (FormSection ambos modos, owner busca owner, perfil activo/inactivo)
+- [ ] **Sprint 23**: Ciudades y zonas (scripts de datos geográficos, backend ubicaciones, filtros por ciudad/zona, capacidad del piso, borrar perfil)
+- [ ] **Paridad funcional**: Todas las funcionalidades del baseline (Sprints 7–23) están presentes
 
 ---
 
@@ -253,12 +265,23 @@ Archivo `resumen-escenario-[A/B/C/D].md`:
 | Verificación (tiempo debug+tests) | X.Xh |
 
 ## Checklist de aceptación
-- Sprint 1: ✅/❌
-- Sprint 2: ✅/❌
-- Sprint 3: ✅/❌
-- Sprint 4: ✅/❌
-- Sprint 5: ✅/❌
-- Sprint 6: ✅/❌
+- Sprint 7 (Gastos): ✅/❌
+- Sprint 8 (UI/UX fixes): ✅/❌
+- Sprint 9 (Refactorización): ✅/❌
+- Sprint 10 (Recuperación contraseñas): ✅/❌
+- Sprint 11 (UI detalles): ✅/❌
+- Sprint 12 (Invitaciones): ✅/❌
+- Sprint 13 (Push notifications): ✅/❌
+- Sprint 14 (Chats realtime): ✅/❌
+- Sprint 15 (UI fix global): ✅/❌
+- Sprint 16 (Swipe porcentual): ✅/❌
+- Sprint 17 (Hotfixes): ✅/❌
+- Sprint 18 (Filtros + Google Auth): ✅/❌
+- Sprint 19 (Realtime + estilos de vida): ✅/❌
+- Sprint 20 (Dark mode): ✅/❌
+- Sprint 21 (Premium features): ✅/❌
+- Sprint 22 (Dark mode refinamiento): ✅/❌
+- Sprint 23 (Ciudades y zonas): ✅/❌
 - Paridad funcional: ✅/❌
 
 ## Observaciones narrativas
@@ -344,19 +367,19 @@ npx jest --ci --json 2>/dev/null | jq '{total: .numTotalTests, passed: .numPasse
 ## 9. Criterios de éxito de un escenario
 
 **Exitoso:**
-1. Se implementan todas las funcionalidades (Sprints 1–6)
+1. Se implementan todas las funcionalidades (Sprints 7–23)
 2. Paridad funcional con el baseline
 3. El código compila sin errores de TypeScript
 4. Se registran todas las métricas de las 6 dimensiones
 5. TTS ≤ 150% del baseline
 
 **Parcialmente exitoso:**
-- Al menos 4 de 6 sprints completados
+- Al menos 13 de 17 sprints completados
 - Métricas registradas para lo implementado
 - Documentado qué faltó y por qué
 
 **Fallido:**
-- Menos de 4 sprints completados, o métricas no registradas, o reglas violadas
+- Menos de 13 sprints completados, o métricas no registradas, o reglas violadas
 
 ---
 
@@ -366,8 +389,8 @@ Al completar los 4 escenarios, consolidar:
 
 | Dimensión | Indicador clave | A (Baseline) | B | C | D |
 |-----------|----------------|---|---|---|---|
-| **D5 Eficiencia** | TTS total (h) | 70.7 | ? | ? | ? |
-| | Iteraciones (commits) | 15 | ? | ? | ? |
+| **D5 Eficiencia** | TTS total (h) | ? | ? | ? | ? |
+| | Iteraciones (commits) | ? | ? | ? | ? |
 | | Retrabajo (commits) | ? | ? | ? | ? |
 | **D4 Éxito operac.** | Builds ok (%) | ? | ? | ? | ? |
 | | Tests pass (%) | ? | ? | ? | ? |
@@ -382,7 +405,7 @@ Al completar los 4 escenarios, consolidar:
 | | Prompts correctivos | ? | ? | ? | ? |
 | | Propuestas rechazadas | ? | ? | ? | ? |
 | | Verificación (h) | ? | ? | ? | ? |
-| **Aceptación** | Sprints completados | 6/6 | ?/6 | ?/6 | ?/6 |
+| **Aceptación** | Sprints completados | ?/17 | ?/17 | ?/17 | ?/17 |
 
 ---
 
