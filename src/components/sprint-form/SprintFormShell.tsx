@@ -10,6 +10,7 @@ import { D4OperationalTab } from './tabs/D4OperationalTab'
 import { D6QualityTab } from './tabs/D6QualityTab'
 import { IncidencesTab } from './tabs/IncidencesTab'
 import { ObservationsTab } from './tabs/ObservationsTab'
+import { PromptEvaluationsTab } from './tabs/PromptEvaluationsTab'
 import { useSprintForm } from '../../hooks/useSprintForm'
 import { useAutoSave } from '../../hooks/useAutoSave'
 import { upsertSprint } from '../../db/hooks/useSprints'
@@ -24,6 +25,7 @@ const TABS = [
   { id: 'd3',         label: 'D3 Multiarchivo' },
   { id: 'd4',         label: 'D4 Operacional' },
   { id: 'd6',         label: 'D6 Calidad' },
+  { id: 'prompts',    label: 'Prompts' },
   { id: 'incidences', label: 'Incidencias' },
   { id: 'notes',      label: 'Notas' },
 ]
@@ -95,6 +97,12 @@ export function SprintFormShell({ scenarioId, sprintNumber, initialRecord }: Spr
               )}
               {activeTab === 'd6' && (
                 <D6QualityTab data={formData} onChange={updateField} />
+              )}
+              {activeTab === 'prompts' && (
+                <PromptEvaluationsTab
+                  scenarioId={scenarioId}
+                  sprintNumber={sprintNumber}
+                />
               )}
               {activeTab === 'incidences' && (
                 <IncidencesTab

@@ -14,3 +14,10 @@ export type RetrievalMechanism =
   | 'RAG'
   | 'manual'
   | 'context window'
+
+export type PromptCategory =
+  | 'feature'
+  | 'corrective'
+  | 'debug'
+  | 'refactor'
+  | 'context'

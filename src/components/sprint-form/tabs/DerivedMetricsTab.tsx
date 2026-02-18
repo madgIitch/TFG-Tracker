@@ -7,6 +7,21 @@ interface Props {
 }
 
 export function DerivedMetricsTab({ data, onChange }: Props) {
+  const autoCorrective = data.autoCorrectivePrompts ?? 0
+  const autoRejected = data.autoRejectedProposals ?? 0
+  const manualCorrective = Math.max((data.correctivePrompts ?? 0) - autoCorrective, 0)
+  const manualRejected = Math.max((data.rejectedProposals ?? 0) - autoRejected, 0)
+
+  function handleCorrectiveChange(value: number | null) {
+    const next = value == null ? (autoCorrective > 0 ? autoCorrective : null) : Math.max(value, autoCorrective)
+    onChange('correctivePrompts', next)
+  }
+
+  function handleRejectedChange(value: number | null) {
+    const next = value == null ? (autoRejected > 0 ? autoRejected : null) : Math.max(value, autoRejected)
+    onChange('rejectedProposals', next)
+  }
+
   return (
     <div className="flex flex-col gap-6 p-5">
       <section>
@@ -53,18 +68,18 @@ export function DerivedMetricsTab({ data, onChange }: Props) {
           <NumericInput
             label="Prompts correctivos"
             value={data.correctivePrompts}
-            onChange={(v) => onChange('correctivePrompts', v)}
+            onChange={handleCorrectiveChange}
             min={0}
             placeholder="0"
-            hint="Prompts enviados para corregir propuestas incorrectas"
+            hint={`Auto: ${autoCorrective} (categoria corrective). Manual extra: ${manualCorrective}`}
           />
           <NumericInput
             label="Propuestas rechazadas"
             value={data.rejectedProposals}
-            onChange={(v) => onChange('rejectedProposals', v)}
+            onChange={handleRejectedChange}
             min={0}
             placeholder="0"
-            hint="Propuestas de la IA descartadas completamente"
+            hint={`Auto: ${autoRejected} (rechazadas o fallidas). Manual extra: ${manualRejected}`}
           />
         </div>
       </section>

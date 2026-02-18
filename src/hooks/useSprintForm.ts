@@ -22,6 +22,8 @@ function defaultRecord(scenarioId: ScenarioId, sprintNumber: number): SprintReco
     manualEdits: null,
     correctivePrompts: null,
     rejectedProposals: null,
+    autoCorrectivePrompts: null,
+    autoRejectedProposals: null,
     filesReadByAI: null,
     filesTotalRepo: null,
     retrievalMechanism: null,

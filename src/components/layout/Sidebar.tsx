@@ -58,6 +58,15 @@ export function Sidebar() {
         </span>
       </NavLink>
 
+      <NavLink
+        to="/prompts"
+        className={({ isActive }) => `${navBase} ${isActive ? navActive : navInactive}`}
+      >
+        <span className="flex items-center gap-2">
+          <span>Prompts</span>
+        </span>
+      </NavLink>
+
       <div className="mt-4 mb-1 px-2">
         <span className="text-xs font-semibold uppercase tracking-widest text-slate-500">
           Escenarios

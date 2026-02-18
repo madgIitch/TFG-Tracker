@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, type ChangeEvent } from 'react'
 import { TopBar } from '../components/layout/TopBar'
 import { CompareTable } from '../components/compare/CompareTable'
 import { Button } from '../components/ui/Button'
@@ -26,7 +26,15 @@ export default function ComparePage() {
   async function handleExport() {
     const sprints = await db.sprints.toArray()
     const scenarios = await db.scenarios.toArray()
-    const data = { sprints, scenarios, exportedAt: new Date().toISOString() }
+    const prompts = await db.prompts.toArray()
+    const promptEvaluations = await db.promptEvaluations.toArray()
+    const data = {
+      sprints,
+      scenarios,
+      prompts,
+      promptEvaluations,
+      exportedAt: new Date().toISOString(),
+    }
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
@@ -36,7 +44,7 @@ export default function ComparePage() {
     URL.revokeObjectURL(url)
   }
 
-  async function handleImport(e: React.ChangeEvent<HTMLInputElement>) {
+  async function handleImport(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
     if (!file) return
 
@@ -57,12 +65,21 @@ export default function ComparePage() {
         return
       }
 
-      await db.transaction('rw', db.sprints, db.scenarios, async () => {
+      const prompts = Array.isArray(data.prompts) ? data.prompts : []
+      const promptEvaluations = Array.isArray(data.promptEvaluations) ? data.promptEvaluations : []
+
+      await db.transaction('rw', db.sprints, db.scenarios, db.prompts, db.promptEvaluations, async () => {
         await db.sprints.clear()
         await db.scenarios.clear()
+        await db.prompts.clear()
+        await db.promptEvaluations.clear()
         // Eliminar los ids para que Dexie los reasigne
         await db.sprints.bulkAdd(data.sprints.map(({ id: _id, ...rest }: any) => rest))
         await db.scenarios.bulkAdd(data.scenarios.map(({ id: _id, ...rest }: any) => rest))
+        await db.prompts.bulkAdd(prompts.map(({ id: _id, ...rest }: any) => rest))
+        await db.promptEvaluations.bulkAdd(
+          promptEvaluations.map(({ id: _id, ...rest }: any) => rest)
+        )
       })
 
       alert('Datos importados correctamente.')

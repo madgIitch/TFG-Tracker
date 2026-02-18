@@ -3,6 +3,7 @@ import { TopBar } from '../components/layout/TopBar'
 import { SprintTable } from '../components/scenario/SprintTable'
 import { AcceptanceChecklistComponent } from '../components/scenario/AcceptanceChecklist'
 import { NarrativeForm } from '../components/scenario/NarrativeForm'
+import { PromptEvaluationsSummary } from '../components/scenario/PromptEvaluationsSummary'
 import { LoadingScreen } from '../components/ui/Spinner'
 import { ProgressBar } from '../components/ui/ProgressBar'
 import { useSprints } from '../db/hooks/useSprints'
@@ -62,6 +63,13 @@ export default function ScenarioPage() {
         <section>
           <h3 className="text-sm font-semibold text-slate-300 mb-3">Sprints</h3>
           <SprintTable scenarioId={scenarioId} sprints={sprints} />
+        </section>
+
+        <section className="bg-[#1a1f2e] border border-[#2e3650] rounded-lg p-5">
+          <h3 className="text-sm font-semibold text-slate-300 mb-3">
+            Evaluaciones de prompts en este escenario
+          </h3>
+          <PromptEvaluationsSummary scenarioId={scenarioId} />
         </section>
 
         {/* Checklist */}

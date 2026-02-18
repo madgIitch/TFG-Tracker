@@ -32,6 +32,8 @@ export interface SprintRecord {
   manualEdits: number | null
   correctivePrompts: number | null
   rejectedProposals: number | null
+  autoCorrectivePrompts: number | null
+  autoRejectedProposals: number | null
 
   // D1 Contexto efectivo
   filesReadByAI: number | null
