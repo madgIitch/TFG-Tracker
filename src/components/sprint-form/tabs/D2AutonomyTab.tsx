@@ -1,4 +1,4 @@
-import { NumericInput } from '../../ui/Input'
+import { CounterInput } from '../../ui/Input'
 import type { SprintRecord } from '../../../types'
 import { computeAutonomyRatio } from '../../../utils/metrics'
 import { formatPercent } from '../../../utils/formatting'
@@ -20,20 +20,16 @@ export function D2AutonomyTab({ data, onChange }: Props) {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <NumericInput
+        <CounterInput
           label="Acciones autónomas"
           value={data.autonomousActions}
           onChange={(v) => onChange('autonomousActions', v)}
-          min={0}
-          placeholder="0"
           hint="Ejecuciones de terminal, ediciones y planes sin aprobación previa"
         />
-        <NumericInput
+        <CounterInput
           label="Puntos de control (review/approval)"
           value={data.controlCheckpoints}
           onChange={(v) => onChange('controlCheckpoints', v)}
-          min={0}
-          placeholder="0"
           hint="Veces que el desarrollador revisó/aprobó antes de que se aplicara un cambio"
         />
       </div>

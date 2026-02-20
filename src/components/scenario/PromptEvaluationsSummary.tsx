@@ -28,6 +28,7 @@ export function PromptEvaluationsSummary({ scenarioId }: PromptEvaluationsSummar
     avgQualityValues.length > 0
       ? avgQualityValues.reduce((a, b) => a + b, 0) / avgQualityValues.length
       : null
+  const totalHumanRevisions = evaluations.reduce((sum, e) => sum + (e.humanRevisions ?? 0), 0)
 
   return (
     <div className="flex flex-col gap-4">
@@ -38,6 +39,10 @@ export function PromptEvaluationsSummary({ scenarioId }: PromptEvaluationsSummar
         <Stat
           label="Aceptadas"
           value={String(evaluations.filter((e) => e.wasAccepted === true).length)}
+        />
+        <Stat
+          label="Revisiones de diff"
+          value={totalHumanRevisions > 0 ? String(totalHumanRevisions) : '—'}
         />
       </div>
 
@@ -62,6 +67,9 @@ export function PromptEvaluationsSummary({ scenarioId }: PromptEvaluationsSummar
                 <th className="px-4 py-2.5 text-xs font-semibold text-slate-400 uppercase tracking-wide">
                   Resultado
                 </th>
+                <th className="px-4 py-2.5 text-xs font-semibold text-slate-400 uppercase tracking-wide">
+                  Rev. diff
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -80,6 +88,9 @@ export function PromptEvaluationsSummary({ scenarioId }: PromptEvaluationsSummar
                   </td>
                   <td className="px-4 py-3 text-xs font-mono text-slate-300">
                     {acceptedLabel(item.wasAccepted)}
+                  </td>
+                  <td className="px-4 py-3 text-xs font-mono text-slate-300">
+                    {item.humanRevisions != null ? item.humanRevisions : '-'}
                   </td>
                 </tr>
               ))}

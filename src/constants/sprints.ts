@@ -19,3 +19,23 @@ export const SPRINT_NAMES: Record<number, string> = {
   22: 'Dark mode refinamiento',
   23: 'Ciudades y zonas',
 }
+
+export const SPRINT_SUMMARIES: Record<number, string> = {
+  7: 'Implementar sistema completo de gestión de gastos compartidos: FlatExpensesScreen, FlatSettlementScreen, servicios flatExpenseService y flatSettlementService, gastos por persona, histórico y cálculo automático de deudas entre compañeros.',
+  8: 'Corregir problemas detectados en la interfaz: fixes en LoginScreen, RegisterScreen, ProfileDetailScreen y SwipeScreen. Optimización de renders y corrección de errores visuales.',
+  9: 'Refactorizar el código separando estilos en archivos independientes (*.styles.ts), crear carpeta src/styles/screens/, tokenizar estilos (colors, spacing, fonts) y archivo común de estilos compartidos (common.ts).',
+  10: 'Implementar sistema completo de recuperación de contraseñas: ForgotPasswordScreen, ResetPasswordScreen, servicio de recuperación en backend, deep linking para reseteo desde email y configuración de permisos para manejar URLs.',
+  11: 'Mejorar la UI de pantallas de detalle: rediseño de ProfileDetailScreen, mejoras visuales en RoomDetailScreen, actualización del tema global y fixes menores en FlatExpensesScreen.',
+  12: 'Implementar sistema de invitaciones para unirse a pisos: Phase4Invitation en el registro, roomInvitationService, backend de invitaciones, validación de códigos, matches automáticos entre compañeros de piso y visualización de roommates en RoomDetailScreen.',
+  13: 'Implementar sistema completo de notificaciones push con Firebase Cloud Messaging: notificaciones para nuevos mensajes, cambios en matches, gastos, liquidaciones y asignaciones de habitación. Deep linking para navegar desde notificaciones y configuración de permisos Android.',
+  14: 'Implementar mensajería en tiempo real con Supabase Realtime: suscripción a cambios, autoscroll en mensajes nuevos, orden de chats por último mensaje. Rediseño con glassmorphism de ChatScreen, MatchesScreen y múltiples pantallas de formulario.',
+  15: 'Correcciones masivas de UI/UX: autoscroll en inputs cuando aparece el teclado, mejoras en todas las pantallas de registro, fixes en SwipeScreen con estilos relativos, correcciones en TabBar, MatchesScreen y optimización de porcentajes de compatibilidad.',
+  16: 'Implementar sistema de compatibilidad porcentual: cálculo y visualización de porcentaje en las cards de swipe, nueva SwipeScreenV2, mejoras en el algoritmo de recomendaciones y correcciones en el backend de matches.',
+  17: 'Correcciones urgentes de errores críticos detectados tras el sprint anterior (hotfixes).',
+  18: 'Actualización completa del sistema de filtros, añadir lógica básica de funcionalidades premium (PremiumContext), mejorar navegación principal y finalizar la integración de Google Authentication.',
+  19: 'Añadir suscripción realtime en FlatExpensesScreen, FlatSettlementScreen, MatchesScreen, RoomDetailScreen y RoomManagementScreen. Implementar nuevo campo de estilos de vida en perfiles e iniciar Dark Mode.',
+  20: 'Implementar modo oscuro completo: ThemeContext mejorado con toggle claro/oscuro, actualización de todos los estilos, persistencia de preferencia de tema, transiciones suaves y adaptación de colores para mejor legibilidad.',
+  21: 'Implementar lógica inicial de características premium: PremiumContext con lógica de suscripción, limitaciones para usuarios free, validación de email mejorada (auth-check-email) y UI para mostrar features premium.',
+  22: 'Refinar el modo oscuro: mejoras en FormSection para ambos modos, correcciones en múltiples pantallas, permitir que owner pueda buscar owner e implementar sistema de perfil activo/inactivo.',
+  23: 'Implementar sistema completo de ubicaciones: poblar BBDD con ciudades españolas mediante scripts de extracción geográfica, backend locationService, filtros por ciudad y zona, proximidad de ciudades y sistema de zonas para pisos. Añadir función de borrar perfil y capacidad del piso.',
+}

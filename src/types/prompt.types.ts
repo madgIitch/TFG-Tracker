@@ -18,6 +18,7 @@ export interface PromptEvaluation {
   sprintNumber: number | null    // sprint asociado (7–23) o null
   quality: number | null         // 1–5
   wasAccepted: boolean | null    // ¿se usó la respuesta?
+  humanRevisions: number | null  // nº de revisiones humanas necesarias para aceptar la respuesta
   notes: string
   createdAt: string
   updatedAt: string

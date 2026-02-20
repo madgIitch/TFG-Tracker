@@ -9,8 +9,10 @@ interface Props {
 export function DerivedMetricsTab({ data, onChange }: Props) {
   const autoCorrective = data.autoCorrectivePrompts ?? 0
   const autoRejected = data.autoRejectedProposals ?? 0
+  const autoHumanRevisions = data.autoHumanRevisions ?? 0
   const manualCorrective = Math.max((data.correctivePrompts ?? 0) - autoCorrective, 0)
   const manualRejected = Math.max((data.rejectedProposals ?? 0) - autoRejected, 0)
+  const manualHumanRevisions = Math.max((data.humanRevisions ?? 0) - autoHumanRevisions, 0)
 
   function handleCorrectiveChange(value: number | null) {
     const next = value == null ? (autoCorrective > 0 ? autoCorrective : null) : Math.max(value, autoCorrective)
@@ -20,6 +22,11 @@ export function DerivedMetricsTab({ data, onChange }: Props) {
   function handleRejectedChange(value: number | null) {
     const next = value == null ? (autoRejected > 0 ? autoRejected : null) : Math.max(value, autoRejected)
     onChange('rejectedProposals', next)
+  }
+
+  function handleHumanRevisionsChange(value: number | null) {
+    const next = value == null ? (autoHumanRevisions > 0 ? autoHumanRevisions : null) : Math.max(value, autoHumanRevisions)
+    onChange('humanRevisions', next)
   }
 
   return (
@@ -56,7 +63,7 @@ export function DerivedMetricsTab({ data, onChange }: Props) {
         <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-3">
           Intervención humana
         </h4>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <NumericInput
             label="Ediciones manuales"
             value={data.manualEdits}
@@ -64,6 +71,14 @@ export function DerivedMetricsTab({ data, onChange }: Props) {
             min={0}
             placeholder="0"
             hint="Líneas/bloques editados a mano"
+          />
+          <NumericInput
+            label="Diffs revisados y aceptados"
+            value={data.humanRevisions}
+            onChange={handleHumanRevisionsChange}
+            min={0}
+            placeholder="0"
+            hint={`Diffs que la IA propuso y revisaste. Auto (desde prompts): ${autoHumanRevisions}. Extra manual: ${manualHumanRevisions}`}
           />
           <NumericInput
             label="Prompts correctivos"

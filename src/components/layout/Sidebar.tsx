@@ -3,6 +3,8 @@ import { useAllSprints } from '../../db/hooks/useSprints'
 import { SCENARIO_DEFINITIONS } from '../../constants/scenarios'
 import { getSprintCompletionCount } from '../../utils/metrics'
 import type { ScenarioId } from '../../types'
+import { ExportImportButtons } from './ExportImportButtons'
+import { TimerWidget } from './TimerWidget'
 
 const ACCENT: Record<string, string> = {
   blue:   'text-blue-400',
@@ -94,6 +96,13 @@ export function Sidebar() {
           </span>
         </NavLink>
       ))}
+
+      <div className="mt-auto flex flex-col gap-0">
+        <TimerWidget />
+        <div className="pt-3 border-t border-[#2e3650]">
+          <ExportImportButtons />
+        </div>
+      </div>
     </nav>
   )
 }

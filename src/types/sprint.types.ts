@@ -16,7 +16,9 @@ export interface SprintRecord {
   // Datos generales
   dateStart: string | null
   dateEnd: string | null
-  tts: number | null // horas de trabajo efectivo
+  tts: number | null        // horas totales (legacy / manual override)
+  ttsFeature: number | null // horas dedicadas a features
+  ttsFix: number | null     // horas dedicadas a correcciones/fixes
   description: string
 
   // Fuentes primarias
@@ -32,8 +34,10 @@ export interface SprintRecord {
   manualEdits: number | null
   correctivePrompts: number | null
   rejectedProposals: number | null
+  humanRevisions: number | null      // revisiones humanas aceptadas (total = auto + manual extra)
   autoCorrectivePrompts: number | null
   autoRejectedProposals: number | null
+  autoHumanRevisions: number | null  // sum de humanRevisions de evaluaciones de prompt vinculadas
 
   // D1 Contexto efectivo
   filesReadByAI: number | null
@@ -49,7 +53,8 @@ export interface SprintRecord {
 
   // D4 Éxito operacional
   buildsOk: number | null
-  buildsTotal: number | null
+  buildsFailed: number | null
+  buildsTotal: number | null // calculado: buildsOk + buildsFailed
   envFailures: number | null
 
   // D6 Calidad mantenible

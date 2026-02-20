@@ -1,4 +1,4 @@
-import { NumericInput } from '../../ui/Input'
+import { CounterInput } from '../../ui/Input'
 import { Select } from '../../ui/Select'
 import type { SprintRecord, RetrievalMechanism } from '../../../types'
 import { computeContextRatio } from '../../../utils/metrics'
@@ -27,20 +27,16 @@ export function D1ContextTab({ data, onChange }: Props) {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <NumericInput
+        <CounterInput
           label="Ficheros leídos por la IA"
           value={data.filesReadByAI}
           onChange={(v) => onChange('filesReadByAI', v)}
-          min={0}
-          placeholder="0"
           hint="Ficheros que la IA consultó durante el sprint"
         />
-        <NumericInput
+        <CounterInput
           label="Total de ficheros en el repo"
           value={data.filesTotalRepo}
           onChange={(v) => onChange('filesTotalRepo', v)}
-          min={0}
-          placeholder="0"
           hint="Total de ficheros del repositorio (git ls-files | wc -l)"
         />
       </div>

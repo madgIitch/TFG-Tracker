@@ -2,12 +2,7 @@ import { Tabs } from '../ui/Tabs'
 import { Spinner } from '../ui/Spinner'
 import { GeneralTab } from './tabs/GeneralTab'
 import { PrimarySourcesTab } from './tabs/PrimarySourcesTab'
-import { DerivedMetricsTab } from './tabs/DerivedMetricsTab'
-import { D1ContextTab } from './tabs/D1ContextTab'
-import { D2AutonomyTab } from './tabs/D2AutonomyTab'
-import { D3MultifileTab } from './tabs/D3MultifileTab'
-import { D4OperationalTab } from './tabs/D4OperationalTab'
-import { D6QualityTab } from './tabs/D6QualityTab'
+import { DimensionsTab } from './tabs/DimensionsTab'
 import { IncidencesTab } from './tabs/IncidencesTab'
 import { ObservationsTab } from './tabs/ObservationsTab'
 import { PromptEvaluationsTab } from './tabs/PromptEvaluationsTab'
@@ -17,17 +12,12 @@ import { upsertSprint } from '../../db/hooks/useSprints'
 import type { SprintRecord, ScenarioId } from '../../types'
 
 const TABS = [
-  { id: 'general',    label: 'General' },
-  { id: 'sources',    label: 'Fuentes' },
-  { id: 'derived',    label: 'Derivadas' },
-  { id: 'd1',         label: 'D1 Contexto' },
-  { id: 'd2',         label: 'D2 Autonomía' },
-  { id: 'd3',         label: 'D3 Multiarchivo' },
-  { id: 'd4',         label: 'D4 Operacional' },
-  { id: 'd6',         label: 'D6 Calidad' },
-  { id: 'prompts',    label: 'Prompts' },
-  { id: 'incidences', label: 'Incidencias' },
-  { id: 'notes',      label: 'Notas' },
+  { id: 'general',     label: 'General' },
+  { id: 'sources',     label: 'Fuentes' },
+  { id: 'dimensions',  label: 'Dimensiones' },
+  { id: 'prompts',     label: 'Prompts' },
+  { id: 'incidences',  label: 'Incidencias' },
+  { id: 'notes',       label: 'Notas' },
 ]
 
 interface SprintFormShellProps {
@@ -80,23 +70,8 @@ export function SprintFormShell({ scenarioId, sprintNumber, initialRecord }: Spr
               {activeTab === 'sources' && (
                 <PrimarySourcesTab data={formData} onChange={updateField} />
               )}
-              {activeTab === 'derived' && (
-                <DerivedMetricsTab data={formData} onChange={updateField} />
-              )}
-              {activeTab === 'd1' && (
-                <D1ContextTab data={formData} onChange={updateField} />
-              )}
-              {activeTab === 'd2' && (
-                <D2AutonomyTab data={formData} onChange={updateField} />
-              )}
-              {activeTab === 'd3' && (
-                <D3MultifileTab data={formData} onChange={updateField} />
-              )}
-              {activeTab === 'd4' && (
-                <D4OperationalTab data={formData} onChange={updateField} />
-              )}
-              {activeTab === 'd6' && (
-                <D6QualityTab data={formData} onChange={updateField} />
+              {activeTab === 'dimensions' && (
+                <DimensionsTab data={formData} onChange={updateField} />
               )}
               {activeTab === 'prompts' && (
                 <PromptEvaluationsTab

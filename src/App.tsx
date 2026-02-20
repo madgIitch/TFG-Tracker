@@ -8,6 +8,7 @@ import ComparePage from './pages/ComparePage'
 import PromptsPage from './pages/PromptsPage'
 import PromptDetailPage from './pages/PromptDetailPage'
 import { recomputeAllSprintPromptCounters } from './db/hooks/usePrompts'
+import { TimerProvider } from './context/TimerContext'
 
 const router = createBrowserRouter([
   {
@@ -29,5 +30,9 @@ export default function App() {
     void recomputeAllSprintPromptCounters()
   }, [])
 
-  return <RouterProvider router={router} />
+  return (
+    <TimerProvider>
+      <RouterProvider router={router} />
+    </TimerProvider>
+  )
 }

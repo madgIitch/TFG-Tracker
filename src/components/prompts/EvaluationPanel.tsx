@@ -4,6 +4,7 @@ import { RangeSlider } from '../ui/RangeSlider'
 import { Select } from '../ui/Select'
 import { Textarea } from '../ui/Textarea'
 import { Button } from '../ui/Button'
+import { NumericInput } from '../ui/Input'
 import { usePromptEval, upsertEvaluation, deleteEvaluation } from '../../db/hooks/usePrompts'
 import { SCENARIO_MAP } from '../../constants/scenarios'
 import { SPRINT_NAMES, SPRINT_NUMBERS } from '../../constants/sprints'
@@ -54,9 +55,10 @@ function EvalCard({ promptId, scenarioId }: EvalCardProps) {
             quality: existing.quality,
             wasAccepted: existing.wasAccepted,
             sprintNumber: existing.sprintNumber,
+            humanRevisions: existing.humanRevisions,
             notes: existing.notes,
           }
-        : { quality: null, wasAccepted: null, sprintNumber: null, notes: '' }
+        : { quality: null, wasAccepted: null, sprintNumber: null, humanRevisions: null, notes: '' }
     )
     setEditing(true)
   }
@@ -69,6 +71,7 @@ function EvalCard({ promptId, scenarioId }: EvalCardProps) {
       quality: form.quality ?? null,
       wasAccepted: form.wasAccepted ?? null,
       sprintNumber: form.sprintNumber ?? null,
+      humanRevisions: form.humanRevisions ?? null,
       notes: form.notes ?? '',
       createdAt: existing?.createdAt ?? new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -114,6 +117,10 @@ function EvalCard({ promptId, scenarioId }: EvalCardProps) {
                       ? 'No'
                       : '-'
                 }
+              />
+              <Row
+                label="Diffs revisados"
+                value={existing.humanRevisions != null ? String(existing.humanRevisions) : '-'}
               />
               <Row
                 label="Sprint"
@@ -177,6 +184,15 @@ function EvalCard({ promptId, scenarioId }: EvalCardProps) {
               }))
             }
             options={SPRINT_OPTIONS}
+          />
+
+          <NumericInput
+            label="Diffs revisados y aceptados"
+            value={form.humanRevisions ?? null}
+            onChange={(v) => setForm((f) => ({ ...f, humanRevisions: v }))}
+            min={0}
+            placeholder="0"
+            hint="Nº de diffs/sugerencias que la IA propuso y tuviste que revisar para aceptar o rechazar"
           />
 
           <Textarea

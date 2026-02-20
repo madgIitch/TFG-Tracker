@@ -62,14 +62,22 @@ async function syncSprintPromptCounters(scenarioId: ScenarioId, sprintNumber: nu
       (evaluation.quality != null && evaluation.quality <= 2)
   ).length
 
+  const autoHumanRevisions = evaluations.reduce(
+    (sum, evaluation) => sum + (evaluation.humanRevisions ?? 0),
+    0
+  )
+
   const currentCorrective = sprint.correctivePrompts ?? 0
   const currentRejected = sprint.rejectedProposals ?? 0
+  const currentHumanRevisions = sprint.humanRevisions ?? 0
 
   const prevAutoCorrective = sprint.autoCorrectivePrompts ?? 0
   const prevAutoRejected = sprint.autoRejectedProposals ?? 0
+  const prevAutoHumanRevisions = sprint.autoHumanRevisions ?? 0
 
   const hasCorrectiveMeta = sprint.autoCorrectivePrompts != null
   const hasRejectedMeta = sprint.autoRejectedProposals != null
+  const hasHumanRevisionsMeta = sprint.autoHumanRevisions != null
 
   const manualCorrective = hasCorrectiveMeta
     ? Math.max(currentCorrective - prevAutoCorrective, 0)
@@ -79,27 +87,38 @@ async function syncSprintPromptCounters(scenarioId: ScenarioId, sprintNumber: nu
     ? Math.max(currentRejected - prevAutoRejected, 0)
     : Math.max(currentRejected - autoRejected, 0)
 
+  const manualHumanRevisions = hasHumanRevisionsMeta
+    ? Math.max(currentHumanRevisions - prevAutoHumanRevisions, 0)
+    : Math.max(currentHumanRevisions - autoHumanRevisions, 0)
+
   const nextCorrectiveTotal = manualCorrective + autoCorrective
   const nextRejectedTotal = manualRejected + autoRejected
+  const nextHumanRevisionsTotal = manualHumanRevisions + autoHumanRevisions
 
   const correctiveValue = nextCorrectiveTotal > 0 ? nextCorrectiveTotal : null
   const rejectedValue = nextRejectedTotal > 0 ? nextRejectedTotal : null
+  const humanRevisionsValue = nextHumanRevisionsTotal > 0 ? nextHumanRevisionsTotal : null
   const autoCorrectiveValue = autoCorrective > 0 ? autoCorrective : null
   const autoRejectedValue = autoRejected > 0 ? autoRejected : null
+  const autoHumanRevisionsValue = autoHumanRevisions > 0 ? autoHumanRevisions : null
 
   const changed =
     sprint.correctivePrompts !== correctiveValue ||
     sprint.rejectedProposals !== rejectedValue ||
+    sprint.humanRevisions !== humanRevisionsValue ||
     sprint.autoCorrectivePrompts !== autoCorrectiveValue ||
-    sprint.autoRejectedProposals !== autoRejectedValue
+    sprint.autoRejectedProposals !== autoRejectedValue ||
+    sprint.autoHumanRevisions !== autoHumanRevisionsValue
 
   if (!changed) return
 
   await db.sprints.update(sprint.id, {
     correctivePrompts: correctiveValue,
     rejectedProposals: rejectedValue,
+    humanRevisions: humanRevisionsValue,
     autoCorrectivePrompts: autoCorrectiveValue,
     autoRejectedProposals: autoRejectedValue,
+    autoHumanRevisions: autoHumanRevisionsValue,
     updatedAt: new Date().toISOString(),
   })
 }
@@ -119,7 +138,9 @@ export async function recomputeAllSprintPromptCounters(): Promise<void> {
     .toCollection()
     .filter(
       (sprint) =>
-        (sprint.autoCorrectivePrompts ?? 0) > 0 || (sprint.autoRejectedProposals ?? 0) > 0
+        (sprint.autoCorrectivePrompts ?? 0) > 0 ||
+        (sprint.autoRejectedProposals ?? 0) > 0 ||
+        (sprint.autoHumanRevisions ?? 0) > 0
     )
     .toArray()
 
@@ -188,7 +209,7 @@ export function usePromptEvaluationsBySprint(scenarioId: ScenarioId, sprintNumbe
           ...evaluation,
           prompt: promptMap.get(evaluation.promptId) ?? null,
         }))
-        .sort((a, b) => (a.prompt?.title ?? '').localeCompare(b.prompt?.title ?? ''))
+        .sort((a, b) => (a.promptId ?? 0) - (b.promptId ?? 0))
     },
     [scenarioId, sprintNumber]
   )

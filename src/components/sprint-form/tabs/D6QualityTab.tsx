@@ -1,4 +1,4 @@
-import { NumericInput } from '../../ui/Input'
+import { CounterInput } from '../../ui/Input'
 import { RangeSlider } from '../../ui/RangeSlider'
 import type { SprintRecord } from '../../../types'
 
@@ -30,20 +30,16 @@ export function D6QualityTab({ data, onChange }: Props) {
           Análisis estático al cierre del sprint
         </h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <NumericInput
+          <CounterInput
             label="TypeScript warnings / errors"
             value={data.tsWarnings}
             onChange={(v) => onChange('tsWarnings', v)}
-            min={0}
-            placeholder="0"
             hint="tsc --noEmit 2>&1 | grep -c 'error TS'"
           />
-          <NumericInput
+          <CounterInput
             label="Linter warnings"
             value={data.linterWarnings}
             onChange={(v) => onChange('linterWarnings', v)}
-            min={0}
-            placeholder="0"
             hint="eslint src/ --format json | jq '[.[].messages | length] | add'"
           />
         </div>

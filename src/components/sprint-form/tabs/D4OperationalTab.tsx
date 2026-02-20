@@ -1,4 +1,4 @@
-import { NumericInput } from '../../ui/Input'
+import { CounterInput } from '../../ui/Input'
 import type { SprintRecord } from '../../../types'
 import { computeBuildSuccessRate } from '../../../utils/metrics'
 import { formatPercent } from '../../../utils/formatting'
@@ -9,7 +9,23 @@ interface Props {
 }
 
 export function D4OperationalTab({ data, onChange }: Props) {
-  const buildRate = computeBuildSuccessRate(data.buildsOk, data.buildsTotal)
+  const computedTotal =
+    data.buildsOk != null || data.buildsFailed != null
+      ? (data.buildsOk ?? 0) + (data.buildsFailed ?? 0)
+      : null
+  const buildRate = computeBuildSuccessRate(data.buildsOk, computedTotal)
+
+  function handleBuildsOkChange(v: number | null) {
+    onChange('buildsOk', v)
+    const total = (v ?? 0) + (data.buildsFailed ?? 0)
+    onChange('buildsTotal', v != null || data.buildsFailed != null ? total : null)
+  }
+
+  function handleBuildsFailedChange(v: number | null) {
+    onChange('buildsFailed', v)
+    const total = (data.buildsOk ?? 0) + (v ?? 0)
+    onChange('buildsTotal', data.buildsOk != null || v != null ? total : null)
+  }
 
   return (
     <div className="flex flex-col gap-6 p-5">
@@ -23,35 +39,41 @@ export function D4OperationalTab({ data, onChange }: Props) {
           Builds
         </h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <NumericInput
+          <CounterInput
             label="Builds exitosos"
             value={data.buildsOk}
-            onChange={(v) => onChange('buildsOk', v)}
-            min={0}
-            placeholder="0"
+            onChange={handleBuildsOkChange}
             hint="expo start / tsc --noEmit sin errores"
           />
-          <NumericInput
-            label="Builds totales"
-            value={data.buildsTotal}
-            onChange={(v) => onChange('buildsTotal', v)}
-            min={0}
-            placeholder="0"
+          <CounterInput
+            label="Builds fallidos"
+            value={data.buildsFailed}
+            onChange={handleBuildsFailedChange}
+            hint="Intentos que terminaron con error"
           />
         </div>
 
-        {buildRate != null && (
-          <div className="mt-3 p-4 bg-[#252b3b] rounded-lg flex flex-col gap-2">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-slate-300">Tasa de builds exitosos</span>
-              <span className="text-lg font-mono font-bold text-orange-400">{formatPercent(buildRate)}</span>
+        {computedTotal != null && (
+          <div className="mt-3 flex flex-col gap-2">
+            <div className="flex items-center gap-2 text-xs text-slate-500">
+              <span>Total builds:</span>
+              <span className="font-mono text-slate-300">{computedTotal}</span>
             </div>
-            <div className="h-2 bg-[#2e3650] rounded-full overflow-hidden">
-              <div
-                className="h-full rounded-full bg-orange-500 transition-all"
-                style={{ width: `${buildRate * 100}%` }}
-              />
-            </div>
+
+            {buildRate != null && (
+              <div className="p-4 bg-[#252b3b] rounded-lg flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-slate-300">Tasa de builds exitosos</span>
+                  <span className="text-lg font-mono font-bold text-orange-400">{formatPercent(buildRate)}</span>
+                </div>
+                <div className="h-2 bg-[#2e3650] rounded-full overflow-hidden">
+                  <div
+                    className="h-full rounded-full bg-orange-500 transition-all"
+                    style={{ width: `${buildRate * 100}%` }}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         )}
       </section>
@@ -60,12 +82,10 @@ export function D4OperationalTab({ data, onChange }: Props) {
         <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-3">
           Fallos de entorno
         </h4>
-        <NumericInput
+        <CounterInput
           label="Fallos de entorno"
           value={data.envFailures}
           onChange={(v) => onChange('envFailures', v)}
-          min={0}
-          placeholder="0"
           hint="Errores no atribuibles al código: dependencias rotas, configs, permisos, etc."
         />
       </section>
