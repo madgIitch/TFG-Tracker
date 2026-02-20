@@ -14,6 +14,7 @@ export type RetrievalMechanism =
   | 'RAG'
   | 'manual'
   | 'context window'
+  | 'mixto'
 
 export type PromptCategory =
   | 'feature'

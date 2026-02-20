@@ -96,6 +96,12 @@ const ROWS: { section: string; rows: MetricRow[] }[] = [
         format: formatScore,
         higherIsBetter: true,
       },
+      {
+        label: 'Calidad UI/UX (avg)',
+        getValue: (m) => m.avgUiUxQuality,
+        format: formatScore,
+        higherIsBetter: true,
+      },
     ],
   },
   {

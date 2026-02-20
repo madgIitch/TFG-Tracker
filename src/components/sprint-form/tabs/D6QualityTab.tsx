@@ -15,6 +15,14 @@ const CONSISTENCY_LABELS: Record<number, string> = {
   5: 'Muy consistente — Naming, estructura y patrones perfectamente uniformes',
 }
 
+const UIUX_LABELS: Record<number, string> = {
+  1: 'Muy deficiente — Componentes rotos, layout inutilizable',
+  2: 'Deficiente — Varios problemas visibles de layout o accesibilidad',
+  3: 'Aceptable — Funcional pero con inconsistencias de diseño',
+  4: 'Buena — UI coherente y usable, pequeños detalles mejorables',
+  5: 'Excelente — UI pulida, accesible y coherente con el resto del proyecto',
+}
+
 export function D6QualityTab({ data, onChange }: Props) {
   return (
     <div className="flex flex-col gap-6 p-5">
@@ -57,6 +65,22 @@ export function D6QualityTab({ data, onChange }: Props) {
         {data.styleConsistency != null && (
           <p className="text-xs text-slate-400 mt-2 ml-1">
             {CONSISTENCY_LABELS[data.styleConsistency]}
+          </p>
+        )}
+      </section>
+
+      <section>
+        <RangeSlider
+          label="Calidad UI/UX (1–5)"
+          value={data.uiUxQuality}
+          onChange={(v) => onChange('uiUxQuality', v)}
+          lowLabel="Deficiente"
+          highLabel="Excelente"
+          hint="Valoración subjetiva del resultado visual y de usabilidad del sprint"
+        />
+        {data.uiUxQuality != null && (
+          <p className="text-xs text-slate-400 mt-2 ml-1">
+            {UIUX_LABELS[data.uiUxQuality]}
           </p>
         )}
       </section>

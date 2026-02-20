@@ -1,8 +1,17 @@
+import { useState } from 'react'
 import type { SprintRecord, RetrievalMechanism } from '../../../types'
 import { CounterInput, NumericInput } from '../../ui/Input'
 import { Select } from '../../ui/Select'
 import { formatPercent } from '../../../utils/formatting'
 import { computeContextRatio, computeAutonomyRatio, computeBuildSuccessRate } from '../../../utils/metrics'
+
+const BASE_REPO_PATH_KEY = 'tfg-git-repo-path'
+const DEFAULT_BASE_PATH  = 'C:\\Users\\peorr\\Desktop\\HomiTFG'
+
+function getScenarioRepoPath(scenarioId: string): string {
+  const base = localStorage.getItem(BASE_REPO_PATH_KEY) ?? DEFAULT_BASE_PATH
+  return `${base}\\Escenario-${scenarioId}`
+}
 
 interface Props {
   data: SprintRecord
@@ -14,13 +23,25 @@ const RETRIEVAL_OPTIONS = [
   { value: 'RAG',            label: 'RAG' },
   { value: 'manual',         label: 'Manual' },
   { value: 'context window', label: 'Context window' },
+  { value: 'mixto',          label: 'Mixto' },
 ]
+
+const RETRIEVAL_HINTS: Record<string, string> = {
+  indexado:         'La IA usa un índice precomputado (embeddings, BM25) para localizar fragmentos relevantes sin leer el repositorio completo.',
+  RAG:              'Retrieval-Augmented Generation: recupera chunks del repo en tiempo real y los inyecta en el contexto antes de generar.',
+  manual:           'El desarrollador selecciona y pega manualmente los ficheros o fragmentos relevantes en el prompt.',
+  'context window': 'El repositorio completo (o grandes porciones) se incluye directamente en la ventana de contexto de la IA.',
+  mixto:            'Combinación de varios mecanismos en el mismo sprint (p. ej. context window + selección manual).',
+}
 
 const COHERENCE_LABELS: Record<number, string> = {
   1: 'Incoherente', 2: 'Bajo', 3: 'Aceptable', 4: 'Bueno', 5: 'Excelente',
 }
 const CONSISTENCY_LABELS: Record<number, string> = {
   1: 'Muy inconsistente', 2: 'Inconsistente', 3: 'Aceptable', 4: 'Consistente', 5: 'Muy consistente',
+}
+const UIUX_LABELS: Record<number, string> = {
+  1: 'Muy deficiente — Layout inutilizable', 2: 'Deficiente — Problemas visibles', 3: 'Aceptable — Funcional', 4: 'Buena — Coherente y usable', 5: 'Excelente — UI pulida',
 }
 
 function DimCard({ badge, badgeColor, title, description, children }: {
@@ -91,6 +112,28 @@ function ScaleButtons({ value, onChange, labels }: {
 }
 
 export function DimensionsTab({ data, onChange }: Props) {
+  const [repoFilesLoading, setRepoFilesLoading] = useState(false)
+  const [repoFilesError,   setRepoFilesError]   = useState<string | null>(null)
+
+  async function handleFetchRepoFiles() {
+    setRepoFilesLoading(true)
+    setRepoFilesError(null)
+    try {
+      const res  = await fetch('/api/repo-files', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ repoPath: getScenarioRepoPath(data.scenarioId) }),
+      })
+      const json = await res.json() as { count?: number; error?: string }
+      if (!res.ok || json.error) { setRepoFilesError(json.error ?? 'Error'); return }
+      onChange('filesTotalRepo', json.count ?? null)
+    } catch (e) {
+      setRepoFilesError(String(e))
+    } finally {
+      setRepoFilesLoading(false)
+    }
+  }
+
   const contextRatio  = computeContextRatio(data.filesReadByAI, data.filesTotalRepo)
   const autonomyRatio = computeAutonomyRatio(data.autonomousActions, data.controlCheckpoints)
   const buildsTotal   =
@@ -147,12 +190,22 @@ export function DimensionsTab({ data, onChange }: Props) {
             onChange={(v) => onChange('filesReadByAI', v)}
             hint="Ficheros que la IA abrió o consultó durante el sprint"
           />
-          <CounterInput
-            label="Total ficheros repo"
-            value={data.filesTotalRepo}
-            onChange={(v) => onChange('filesTotalRepo', v)}
-            hint="git ls-files | wc -l"
-          />
+          <div className="flex flex-col gap-1">
+            <CounterInput
+              label="Total ficheros repo"
+              value={data.filesTotalRepo}
+              onChange={(v) => onChange('filesTotalRepo', v)}
+              hint={repoFilesError ? `✗ ${repoFilesError}` : `src/ + supabase/ de Escenario-${data.scenarioId}`}
+            />
+            <button
+              type="button"
+              onClick={handleFetchRepoFiles}
+              disabled={repoFilesLoading}
+              className="w-full py-1 rounded text-[10px] font-semibold bg-[#1a1f2e] border border-[#2e3650] text-slate-400 hover:border-blue-700 hover:text-blue-400 disabled:opacity-40 transition-colors"
+            >
+              {repoFilesLoading ? 'Contando…' : '⚡ Contar ficheros'}
+            </button>
+          </div>
         </div>
         <Select
           label="Mecanismo de retrieval"
@@ -160,6 +213,7 @@ export function DimensionsTab({ data, onChange }: Props) {
           onChange={(e) => onChange('retrievalMechanism', (e.target.value || null) as RetrievalMechanism | null)}
           options={RETRIEVAL_OPTIONS}
           placeholder="— Seleccionar —"
+          hint={data.retrievalMechanism ? RETRIEVAL_HINTS[data.retrievalMechanism] : undefined}
         />
         {contextRatio != null && <MiniBar value={contextRatio} color="bg-blue-500" />}
       </DimCard>
@@ -232,6 +286,12 @@ export function DimensionsTab({ data, onChange }: Props) {
           value={data.styleConsistency}
           onChange={(v) => onChange('styleConsistency', v)}
           labels={CONSISTENCY_LABELS}
+        />
+        <p className="text-[11px] text-slate-500 mt-1">Calidad UI/UX — resultado visual y usabilidad del sprint</p>
+        <ScaleButtons
+          value={data.uiUxQuality}
+          onChange={(v) => onChange('uiUxQuality', v)}
+          labels={UIUX_LABELS}
         />
       </DimCard>
 

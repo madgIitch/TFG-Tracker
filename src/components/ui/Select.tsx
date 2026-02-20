@@ -9,12 +9,13 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: string
   options: SelectOption[]
   placeholder?: string
+  hint?: string
 }
 
 const BASE =
   'w-full bg-[#252b3b] border border-[#2e3650] rounded-md px-3 py-2 text-sm text-slate-200 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50'
 
-export function Select({ label, options, placeholder, className = '', id, ...rest }: SelectProps) {
+export function Select({ label, options, placeholder, hint, className = '', id, ...rest }: SelectProps) {
   const selectId = id ?? label?.toLowerCase().replace(/\s+/g, '-')
   return (
     <div className="flex flex-col gap-1">
@@ -35,6 +36,7 @@ export function Select({ label, options, placeholder, className = '', id, ...res
           </option>
         ))}
       </select>
+      {hint && <p className="text-[11px] text-slate-500 leading-snug">{hint}</p>}
     </div>
   )
 }

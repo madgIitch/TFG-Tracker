@@ -3,40 +3,54 @@
     {
       "scenarioId": "A",
       "sprintNumber": 7,
-      "status": "in_progress",
+      "status": "completed",
       "dateStart": "2026-02-18",
-      "dateEnd": null,
-      "tts": 0.02,
+      "dateEnd": "2026-02-20",
+      "tts": 3.37,
       "description": "",
-      "commits": null,
-      "filesCreated": null,
-      "filesModified": null,
-      "testsTotal": null,
-      "testsPass": null,
-      "testsFail": null,
+      "commits": 5,
+      "filesCreated": 6,
+      "filesModified": 17,
+      "testsTotal": 7,
+      "testsPass": 7,
+      "testsFail": 0,
       "verificationTime": null,
       "manualEdits": null,
-      "correctivePrompts": null,
-      "rejectedProposals": null,
-      "filesReadByAI": null,
-      "filesTotalRepo": null,
-      "retrievalMechanism": null,
-      "autonomousActions": null,
-      "controlCheckpoints": null,
-      "architecturalCoherence": null,
-      "buildsOk": null,
-      "buildsTotal": null,
-      "envFailures": null,
-      "tsWarnings": null,
-      "linterWarnings": null,
-      "styleConsistency": null,
-      "incidences": [],
+      "correctivePrompts": 7,
+      "rejectedProposals": 4,
+      "filesReadByAI": 169,
+      "filesTotalRepo": 106,
+      "retrievalMechanism": "mixto",
+      "autonomousActions": 51,
+      "controlCheckpoints": 44,
+      "architecturalCoherence": 4,
+      "buildsOk": 1,
+      "buildsTotal": 1,
+      "envFailures": 4,
+      "tsWarnings": 12,
+      "linterWarnings": 26,
+      "styleConsistency": 4,
+      "incidences": [
+        {
+          "id": "4682e442-d9f8-40ae-bfa8-19a16188eda1",
+          "description": "problemas asociados al punto de inicio y a fallos en la configuración",
+          "type": "entorno",
+          "resolutionTime": 75
+        }
+      ],
       "observations": "",
       "createdAt": "2026-02-18T00:20:43.127Z",
-      "updatedAt": "2026-02-18T13:18:49.018Z",
-      "id": 1,
+      "updatedAt": "2026-02-20T14:18:04.783Z",
       "autoCorrectivePrompts": null,
-      "autoRejectedProposals": null
+      "autoRejectedProposals": 4,
+      "humanRevisions": 118,
+      "autoHumanRevisions": 118,
+      "buildsFailed": 0,
+      "ttsFeature": 0.4,
+      "ttsFix": 2.97,
+      "linesAdded": 887,
+      "linesRemoved": 547,
+      "id": 3
     },
     {
       "scenarioId": "B",
@@ -72,14 +86,14 @@
       "observations": "",
       "createdAt": "2026-02-18T00:23:35.772Z",
       "updatedAt": "2026-02-18T00:23:37.281Z",
-      "id": 2
+      "id": 4
     }
   ],
   "scenarios": [
     {
       "scenarioId": "A",
       "acceptanceChecklist": {
-        "sprint7": false,
+        "sprint7": true,
         "sprint8": false,
         "sprint9": false,
         "sprint10": false,
@@ -103,8 +117,8 @@
         "weaknesses": "",
         "generalExperience": ""
       },
-      "updatedAt": "2026-02-18T02:28:14.675Z",
-      "id": 1
+      "updatedAt": "2026-02-20T14:17:06.744Z",
+      "id": 5
     },
     {
       "scenarioId": "B",
@@ -134,7 +148,7 @@
         "generalExperience": ""
       },
       "updatedAt": "2026-02-18T00:23:35.768Z",
-      "id": 2
+      "id": 6
     },
     {
       "scenarioId": "C",
@@ -164,7 +178,7 @@
         "generalExperience": ""
       },
       "updatedAt": "2026-02-18T00:14:44.745Z",
-      "id": 3
+      "id": 7
     },
     {
       "scenarioId": "D",
@@ -194,13 +208,13 @@
         "generalExperience": ""
       },
       "updatedAt": "2026-02-18T00:23:40.988Z",
-      "id": 4
+      "id": 8
     }
   ],
   "prompts": [
     {
       "title": "Sprint 7 — Sistema de Gestión de Gastos",
-      "content": "Implementa un sistema completo de gestión de gastos compartidos para pisos en HomiMatchApp.\n\nLo que debes crear:\n\nPantalla FlatExpensesScreen: lista de gastos del piso con creación de nuevos gastos. Cada gasto tiene: descripción, importe total, pagador (uno de los compañeros del piso), y distribución entre los miembros del piso. Usa el estilo glassmorphism existente.\n\nPantalla FlatSettlementScreen: resumen de liquidaciones entre compañeros. Calcula automáticamente quién le debe cuánto a quién y permite marcar deudas como saldadas.\n\nServicio flatExpenseService: funciones CRUD para gastos. Un gasto tiene campos: id, flat_id, description, amount, paid_by (user_id), split_between (array de user_ids), created_at. Los splits pueden ser iguales o personalizados.\n\nServicio flatSettlementService: lógica para calcular el balance neto de cada miembro y generar las liquidaciones mínimas necesarias (algoritmo greedy: el que más debe paga al que más se le debe primero).\n\nEdge Functions de Supabase:\n\nflat-expenses: GET (listar gastos del piso) y POST (crear gasto nuevo)\nflat-settlements: GET (calcular liquidaciones pendientes) y POST (marcar como saldado)\nTablas en Supabase:\n\nflat_expenses: id, flat_id, description, amount, paid_by, created_at\nflat_expense_splits: id, expense_id, user_id, amount\nflat_settlements: id, flat_id, from_user, to_user, amount, settled_at\nIntegración en navegación: añade acceso a estas pantallas desde el tab de gestión del piso (RoomManagementScreen).\n\nRestricciones técnicas:\n\nSolo los miembros del piso pueden ver y crear gastos\nEl cálculo de deudas debe actualizarse automáticamente al añadir un gasto o liquidar\nLos imports de Supabase usan el cliente configurado globalmente en src/lib/supabase.ts\nSigue el patrón de los servicios existentes (async/await, tipado con interfaces TypeScript)",
+      "content": "Vale, todo esto se puede estar debiendo a que estamos replicando un proyecto ya hecho para un experimento; con lo cual a lo mejor ves cosas que aun no están 100% conectadas; C:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\config\\api.ts este archivo si que ha sido ya configurado de acuerdo al nuevo backend\n\nImplementa un sistema completo de gestión de gastos compartidos para pisos en HomiMatchApp.\n\nLo que debes crear:\n\nPantalla FlatExpensesScreen: lista de gastos del piso con creación de nuevos gastos. Cada gasto tiene: descripción, importe total, pagador (uno de los compañeros del piso), y distribución entre los miembros del piso. Usa el estilo glassmorphism existente.\n\nPantalla FlatSettlementScreen: resumen de liquidaciones entre compañeros. Calcula automáticamente quién le debe cuánto a quién y permite marcar deudas como saldadas.\n\nServicio flatExpenseService: funciones CRUD para gastos. Un gasto tiene campos: id, flat_id, description, amount, paid_by (user_id), split_between (array de user_ids), created_at. Los splits pueden ser iguales o personalizados.\n\nServicio flatSettlementService: lógica para calcular el balance neto de cada miembro y generar las liquidaciones mínimas necesarias (algoritmo greedy: el que más debe paga al que más se le debe primero).\n\nEdge Functions de Supabase:\n\nflat-expenses: GET (listar gastos del piso) y POST (crear gasto nuevo)\nflat-settlements: GET (calcular liquidaciones pendientes) y POST (marcar como saldado)\nTablas en Supabase:\n\nflat_expenses: id, flat_id, description, amount, paid_by, created_at\nflat_expense_splits: id, expense_id, user_id, amount\nflat_settlements: id, flat_id, from_user, to_user, amount, settled_at\nIntegración en navegación: añade acceso a estas pantallas desde el tab de gestión del piso (RoomManagementScreen).\n\nRestricciones técnicas:\n\nSolo los miembros del piso pueden ver y crear gastos\nEl cálculo de deudas debe actualizarse automáticamente al añadir un gasto o liquidar\nLos imports de Supabase usan el cliente configurado globalmente en src/lib/supabase.ts\nSigue el patrón de los servicios existentes (async/await, tipado con interfaces TypeScript)\n\n\n-- WARNING: This schema is for context only and is not meant to be run.\n-- Table order and constraints may not be valid for execution.\n\nCREATE TABLE public.chats (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  match_id uuid NOT NULL UNIQUE,\n  created_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  updated_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  CONSTRAINT chats_pkey PRIMARY KEY (id),\n  CONSTRAINT chats_match_id_fkey FOREIGN KEY (match_id) REFERENCES public.matches(id)\n);\nCREATE TABLE public.flats (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  owner_id uuid NOT NULL,\n  address text NOT NULL,\n  city text NOT NULL,\n  district text,\n  created_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  rules text,\n  services jsonb DEFAULT '[]'::jsonb,\n  gender_policy text NOT NULL DEFAULT 'mixed'::text CHECK (gender_policy = ANY (ARRAY['mixed'::text, 'men_only'::text, 'flinta'::text])),\n  CONSTRAINT flats_pkey PRIMARY KEY (id),\n  CONSTRAINT flats_owner_id_fkey FOREIGN KEY (owner_id) REFERENCES public.users(id)\n);\nCREATE TABLE public.matches (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  user_a_id uuid NOT NULL,\n  user_b_id uuid NOT NULL,\n  status text DEFAULT 'pending'::text CHECK (status = ANY (ARRAY['pending'::text, 'accepted'::text, 'rejected'::text, 'room_offer'::text, 'room_assigned'::text, 'room_declined'::text])),\n  matched_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  CONSTRAINT matches_pkey PRIMARY KEY (id),\n  CONSTRAINT matches_user_a_id_fkey FOREIGN KEY (user_a_id) REFERENCES public.profiles(id),\n  CONSTRAINT matches_user_b_id_fkey FOREIGN KEY (user_b_id) REFERENCES public.profiles(id)\n);\nCREATE TABLE public.messages (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  chat_id uuid NOT NULL,\n  sender_id uuid NOT NULL,\n  body text NOT NULL CHECK (length(body) <= 1000),\n  created_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  read_at timestamp with time zone,\n  CONSTRAINT messages_pkey PRIMARY KEY (id),\n  CONSTRAINT messages_chat_id_fkey FOREIGN KEY (chat_id) REFERENCES public.chats(id),\n  CONSTRAINT messages_sender_id_fkey FOREIGN KEY (sender_id) REFERENCES public.profiles(id)\n);\nCREATE TABLE public.profile_photos (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  profile_id uuid NOT NULL,\n  path text NOT NULL,\n  position integer NOT NULL CHECK (\"position\" >= 1 AND \"position\" <= 10),\n  is_primary boolean NOT NULL DEFAULT false,\n  created_at timestamp with time zone NOT NULL DEFAULT now(),\n  CONSTRAINT profile_photos_pkey PRIMARY KEY (id),\n  CONSTRAINT profile_photos_profile_id_fkey FOREIGN KEY (profile_id) REFERENCES public.profiles(id)\n);\nCREATE TABLE public.profiles (\n  id uuid NOT NULL,\n  display_name text,\n  avatar_url text,\n  bio text,\n  gender text NOT NULL CHECK (gender = ANY (ARRAY['male'::text, 'female'::text, 'non_binary'::text, 'other'::text, 'undisclosed'::text])),\n  occupation text,\n  smoker boolean DEFAULT false,\n  has_pets boolean DEFAULT false,\n  social_links jsonb,\n  updated_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  university text,\n  field_of_study text,\n  interests jsonb,\n  lifestyle_preferences jsonb,\n  housing_situation text,\n  preferred_zones jsonb,\n  budget_min numeric,\n  budget_max numeric,\n  CONSTRAINT profiles_pkey PRIMARY KEY (id),\n  CONSTRAINT profiles_id_fkey FOREIGN KEY (id) REFERENCES public.users(id)\n);\nCREATE TABLE public.room_assignments (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  match_id uuid UNIQUE,\n  room_id uuid NOT NULL,\n  assignee_id uuid NOT NULL,\n  status text NOT NULL DEFAULT 'offered'::text,\n  created_at timestamp with time zone NOT NULL DEFAULT now(),\n  updated_at timestamp with time zone NOT NULL DEFAULT now(),\n  CONSTRAINT room_assignments_pkey PRIMARY KEY (id),\n  CONSTRAINT room_assignments_room_id_fkey FOREIGN KEY (room_id) REFERENCES public.rooms(id),\n  CONSTRAINT room_assignments_assignee_id_fkey FOREIGN KEY (assignee_id) REFERENCES public.profiles(id),\n  CONSTRAINT room_assignments_match_id_fkey FOREIGN KEY (match_id) REFERENCES public.matches(id)\n);\nCREATE TABLE public.room_extras (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  room_id uuid NOT NULL,\n  category text,\n  room_type text,\n  common_area_type text,\n  common_area_custom text,\n  photos ARRAY NOT NULL DEFAULT '{}'::text[],\n  created_at timestamp with time zone NOT NULL DEFAULT now(),\n  updated_at timestamp with time zone NOT NULL DEFAULT now(),\n  capacity integer,\n  CONSTRAINT room_extras_pkey PRIMARY KEY (id),\n  CONSTRAINT room_extras_room_id_fkey FOREIGN KEY (room_id) REFERENCES public.rooms(id)\n);\nCREATE TABLE public.room_interests (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  user_id uuid NOT NULL,\n  room_id uuid NOT NULL,\n  message text,\n  created_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  CONSTRAINT room_interests_pkey PRIMARY KEY (id),\n  CONSTRAINT room_interests_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id),\n  CONSTRAINT room_interests_room_id_fkey FOREIGN KEY (room_id) REFERENCES public.rooms(id)\n);\nCREATE TABLE public.rooms (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  flat_id uuid NOT NULL,\n  owner_id uuid NOT NULL,\n  title text NOT NULL,\n  description text,\n  price_per_month numeric NOT NULL,\n  size_m2 numeric,\n  is_available boolean DEFAULT true,\n  available_from date DEFAULT CURRENT_DATE,\n  created_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  CONSTRAINT rooms_pkey PRIMARY KEY (id),\n  CONSTRAINT rooms_flat_id_fkey FOREIGN KEY (flat_id) REFERENCES public.flats(id),\n  CONSTRAINT rooms_owner_id_fkey FOREIGN KEY (owner_id) REFERENCES public.users(id)\n);\nCREATE TABLE public.swipe_rejections (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  user_id uuid NOT NULL,\n  rejected_profile_id uuid NOT NULL,\n  created_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  CONSTRAINT swipe_rejections_pkey PRIMARY KEY (id),\n  CONSTRAINT swipe_rejections_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.profiles(id),\n  CONSTRAINT swipe_rejections_rejected_profile_id_fkey FOREIGN KEY (rejected_profile_id) REFERENCES public.profiles(id)\n);\nCREATE TABLE public.temp_registrations (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  temp_token text NOT NULL UNIQUE,\n  email text NOT NULL,\n  password text,\n  is_google_user boolean DEFAULT false,\n  first_name text,\n  last_name text,\n  expires_at timestamp with time zone NOT NULL,\n  created_at timestamp with time zone DEFAULT now(),\n  gender text CHECK ((gender = ANY (ARRAY['male'::text, 'female'::text, 'non_binary'::text, 'other'::text, 'undisclosed'::text])) OR gender IS NULL),\n  CONSTRAINT temp_registrations_pkey PRIMARY KEY (id)\n);\nCREATE TABLE public.users (\n  id uuid NOT NULL,\n  email text NOT NULL UNIQUE,\n  first_name text,\n  last_name text,\n  identity_document text UNIQUE,\n  birth_date date,\n  created_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  gender text NOT NULL CHECK (gender = ANY (ARRAY['male'::text, 'female'::text, 'non_binary'::text, 'other'::text, 'undisclosed'::text])),\n  CONSTRAINT users_pkey PRIMARY KEY (id),\n  CONSTRAINT users_id_fkey FOREIGN KEY (id) REFERENCES auth.users(id)\n);\n\n\neste es nuestro backend actual",
       "category": "feature",
       "targetScenarios": [
         "A",
@@ -210,8 +224,8 @@
       ],
       "notes": "",
       "createdAt": "2026-02-18T13:22:38.558Z",
-      "updatedAt": "2026-02-18T13:23:11.183Z",
-      "id": 2
+      "updatedAt": "2026-02-19T15:19:58.383Z",
+      "id": 31
     },
     {
       "title": "Sprint 8 — Correcciones UI/UX",
@@ -226,7 +240,7 @@
       "notes": "",
       "createdAt": "2026-02-18T13:23:35.556Z",
       "updatedAt": "2026-02-18T13:23:35.556Z",
-      "id": 3
+      "id": 32
     },
     {
       "title": "Sprint 9 — Refactorización v1: Separación de Estilos",
@@ -241,7 +255,7 @@
       "notes": "",
       "createdAt": "2026-02-18T13:24:13.153Z",
       "updatedAt": "2026-02-18T13:24:13.153Z",
-      "id": 4
+      "id": 33
     },
     {
       "title": "Sprint 10 — Recuperación de Contraseñas",
@@ -256,7 +270,7 @@
       "notes": "",
       "createdAt": "2026-02-18T13:24:31.144Z",
       "updatedAt": "2026-02-18T13:24:31.144Z",
-      "id": 5
+      "id": 34
     },
     {
       "title": "Sprint 11 — Mejoras UI de Detalles",
@@ -271,7 +285,7 @@
       "notes": "",
       "createdAt": "2026-02-18T13:24:50.799Z",
       "updatedAt": "2026-02-18T13:24:50.799Z",
-      "id": 6
+      "id": 35
     },
     {
       "title": "Sprint 12 — Sistema de Invitaciones",
@@ -286,7 +300,7 @@
       "notes": "",
       "createdAt": "2026-02-18T13:25:30.894Z",
       "updatedAt": "2026-02-18T13:25:30.894Z",
-      "id": 7
+      "id": 36
     },
     {
       "title": "Sprint 13 — Push Notifications",
@@ -301,7 +315,7 @@
       "notes": "",
       "createdAt": "2026-02-18T13:25:49.912Z",
       "updatedAt": "2026-02-18T13:25:49.912Z",
-      "id": 8
+      "id": 37
     },
     {
       "title": "Sprint 14 — Chats en Tiempo Real",
@@ -316,7 +330,7 @@
       "notes": "",
       "createdAt": "2026-02-18T13:26:08.559Z",
       "updatedAt": "2026-02-18T13:26:08.559Z",
-      "id": 9
+      "id": 38
     },
     {
       "title": "Sprint 15 — UI Fix Global",
@@ -331,7 +345,7 @@
       "notes": "",
       "createdAt": "2026-02-18T13:26:29.929Z",
       "updatedAt": "2026-02-18T13:26:29.929Z",
-      "id": 10
+      "id": 39
     },
     {
       "title": "Sprint 16 — Swipe Porcentual",
@@ -346,7 +360,7 @@
       "notes": "",
       "createdAt": "2026-02-18T13:26:55.367Z",
       "updatedAt": "2026-02-18T13:26:55.367Z",
-      "id": 11
+      "id": 40
     },
     {
       "title": "Sprint 17 — Hotfixes",
@@ -361,7 +375,7 @@
       "notes": "",
       "createdAt": "2026-02-18T13:27:10.877Z",
       "updatedAt": "2026-02-18T13:27:10.877Z",
-      "id": 12
+      "id": 41
     },
     {
       "title": "Sprint 18 — Filtros Mejorados y Google Auth",
@@ -376,7 +390,7 @@
       "notes": "",
       "createdAt": "2026-02-18T13:27:27.266Z",
       "updatedAt": "2026-02-18T13:27:27.266Z",
-      "id": 13
+      "id": 42
     },
     {
       "title": "Sprint 19 — Realtime y Estilos de Vida",
@@ -391,7 +405,7 @@
       "notes": "",
       "createdAt": "2026-02-18T13:27:42.877Z",
       "updatedAt": "2026-02-18T13:27:42.877Z",
-      "id": 14
+      "id": 43
     },
     {
       "title": "Sprint 20 — Dark Mode",
@@ -406,7 +420,7 @@
       "notes": "",
       "createdAt": "2026-02-18T13:28:02.923Z",
       "updatedAt": "2026-02-18T13:28:02.923Z",
-      "id": 15
+      "id": 44
     },
     {
       "title": "Sprint 21 — Premium Features",
@@ -421,7 +435,7 @@
       "notes": "",
       "createdAt": "2026-02-18T13:28:18.345Z",
       "updatedAt": "2026-02-18T13:28:18.345Z",
-      "id": 16
+      "id": 45
     },
     {
       "title": "Sprint 22 — UI Dark Mode Refinamiento",
@@ -436,7 +450,7 @@
       "notes": "",
       "createdAt": "2026-02-18T13:28:41.524Z",
       "updatedAt": "2026-02-18T13:28:41.524Z",
-      "id": 17
+      "id": 46
     },
     {
       "title": "Sprint 23 — Ciudades y Zonas",
@@ -451,9 +465,322 @@
       "notes": "",
       "createdAt": "2026-02-18T13:29:12.682Z",
       "updatedAt": "2026-02-18T13:29:12.682Z",
-      "id": 18
+      "id": 47
+    },
+    {
+      "title": "Ajuste safearea view y status bar",
+      "content": "pon la pantalla de detailprofile entre el safearea view y el staus bar",
+      "category": "feature",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T11:46:48.372Z",
+      "updatedAt": "2026-02-20T11:46:48.372Z",
+      "id": 48
+    },
+    {
+      "title": "no has hecho nada, sigue estando a la altura del status bar la pantalla, sin respetar su espacio",
+      "content": "no has hecho nada, sigue estando a la altura del status bar la pantalla, sin respetar su espacio",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T11:54:43.455Z",
+      "updatedAt": "2026-02-20T12:15:13.358Z",
+      "id": 49
+    },
+    {
+      "title": "Subida de fotos arreglando",
+      "content": "026-02-20 13:25:17.008   748-885   ImeTracker              system_server                        I  com.homimatchapp:b16118aa: onRequestHide at ORIGIN_SERVER reason HIDE_SAME_WINDOW_FOCUSED_WITHOUT_EDITOR fromUser false\n2026-02-20 13:25:17.009 11653-11653 InsetsController        com.homimatchapp                     D  hide(ime(), fromIme=false)\n2026-02-20 13:25:17.009 11653-11653 ImeTracker              com.homimatchapp                     I  com.homimatchapp:b16118aa: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN\n2026-02-20 13:25:17.030  2357-2357  GoogleInpu...hodService com...gle.android.inputmethod.latin  I  GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.homimatchapp, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)\n2026-02-20 13:25:17.033   748-1897  PackageConfigPersister  system_server                        W  App-specific configuration not found for packageName: com.homimatchapp and userId: 0\n2026-02-20 13:29:09.840  1107-1174  WindowManagerShell      com.android.systemui                 V  Transition requested (#70): android.os.BinderProxy@5d8bc65 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=67 effectiveUid=10222 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.homimatchapp/.MainActivity } baseActivity=ComponentInfo{com.homimatchapp/com.homimatchapp.MainActivity} topActivity=ComponentInfo{com.google.android.photopicker/com.android.photopicker.MainActivity} origActivity=null realActivity=ComponentInfo{com.homimatchapp/com.homimatchapp.MainActivity} numActivities=2 lastActiveTime=14277144 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@1cd2d3a} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 0 - 0, 0) topActivityInfo=ActivityInfo{d001deb com.android.photopicker.MainActivity} launchCookies=[android.os.BinderProxy@f99946c] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=true isActivityStackTransparent=false lastNonFullscreenBounds=Rect(329, 830 - 952, 2110) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1280, 2856) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 70 }\n2026-02-20 13:29:10.085  3885-3885  Photopicke...ureManager com.google.android.photopicker       D  Beginning feature initialization with config: PhotopickerConfiguration(runtimeEnv=ACTIVITY, action=android.provider.action.PICK_IMAGES, callingPackage=com.homimatchapp, callingPackageUid=10222, callingPackageLabel=HomiMatchApp, callingPackageMediaCapabilities=null, accentColor=null, mimeTypes=[image/*], pickImagesInOrder=false, selectionLimit=1, startDestination=DEFAULT, preSelectedUris=null, deviceIsDebuggable=false, flags=PhotopickerFlags(CLOUD_ALLOWED_PROVIDERS=[com.google.android.apps.photos], CLOUD_ENFORCE_PROVIDER_ALLOWLIST=true, CLOUD_MEDIA_ENABLED=true, PRIVATE_SPACE_ENABLED=true, MANAGED_SELECTION_ENABLED=true, PICKER_SEARCH_ENABLED=false, PICKER_DATESCRUBBER_ENABLED=false, PICKER_TRANSCODING_ENABLED=true, OWNED_PHOTOS_ENABLED=true, EXPRESSIVE_THEME_ENABLED=false), sessionId=139626, intent=Intent { act=android.provider.action.PICK_IMAGES typ=image/* flg=0x800000 xflg=0x4 cmp=com.google.android.photopicker/com.android.photopicker.MainActivity })\n2026-02-20 13:29:10.693   748-779   WindowManager           system_server                        V  Sent Transition (#70) createdAt=02-20 12:29:09.824 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=67 effectiveUid=10222 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.homimatchapp/.MainActivity } baseActivity=ComponentInfo{com.homimatchapp/com.homimatchapp.MainActivity} topActivity=ComponentInfo{com.google.android.photopicker/com.android.photopicker.MainActivity} origActivity=null realActivity=ComponentInfo{com.homimatchapp/com.homimatchapp.MainActivity} numActivities=2 lastActiveTime=14277144 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{77073d4 Task{2c71309 #67 type=standard A=10222:com.homimatchapp}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 0 - 0, 0) topActivityInfo=ActivityInfo{f9b9e1 com.android.photopicker.MainActivity} launchCookies=[android.os.BinderProxy@ad12072] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=true isActivityStackTransparent=false lastNonFullscreenBounds=Rect(329, 830 - 952, 2110) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1280, 2856) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 70 }\n2026-02-20 13:29:12.796   748-885   ImeTracker              system_server                        I  com.homimatchapp:c6f49559: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false\n2026-02-20 13:29:12.812 11653-11653 InsetsController        com.homimatchapp                     D  hide(ime(), fromIme=false)\n2026-02-20 13:29:12.812 11653-11653 ImeTracker              com.homimatchapp                     I  com.homimatchapp:c6f49559: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN\n2026-02-20 13:29:12.870  2357-2357  GoogleInpu...hodService com...gle.android.inputmethod.latin  I  GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.homimatchapp, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)\n2026-02-20 13:29:12.876   748-2400  PackageConfigPersister  system_server                        W  App-specific configuration not found for packageName: com.homimatchapp and userId: 0\n2026-02-20 13:29:13.528 11653-13023 HWUI                    com.homimatchapp                     W  Image decoding logging dropped!\n2026-02-20 13:29:14.012 11653-11985 ReactNativeJS           com.homimatchapp                     I  '[ProfilePhotoService.uploadPhoto] Token diagnostics:', { iss: 'https://hqfkboqmdaafyjtqjxre.supabase.co/auth/v1',\n                                                                                                      aud: 'authenticated',\n                                                                                                      exp: 1771593130,\n                                                                                                      ref: 'hqfkboqmdaafyjtqjxre',\n                                                                                                      now: 1771590554 }\n2026-02-20 13:29:21.074 11653-11985 ReactNativeJS           com.homimatchapp                     E  'Error subiendo foto:', [Error: {\"error\":\"Error uploading file\",\"details\":\"Bucket not found\"}]\n2026-02-20 13:29:21.252   748-994   CoreBackPreview         system_server                        D  Window{bf52b9c u0 com.homimatchapp/com.homimatchapp.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@3788b46, mPriority=-1, mIsAnimationCallback=false, mOverrideBehavior=0}\n2026-02-20 13:29:23.189 11653-11653 WindowOnBackDispatcher  com.homimatchapp                     W  sendCancelIfRunning: isInProgress=false callback=android.app.Dialog$$ExternalSyntheticLambda2@808f4e6\n2026-02-20 13:29:23.192   748-1892  CoreBackPreview         system_server                        D  Window{bf52b9c u0 com.homimatchapp/com.homimatchapp.MainActivity}: Setting back callback null\n2026-02-20 13:29:23.241 11653-11668 HWUI                    com.homimatchapp                     D  endAllActiveAnimators on 0x6ffd5cb65f80 (RippleDrawable) with handle 0x6ffbcc9e9fd0\n2026-02-20 13:29:23.331   748-885   ImeTracker              system_server                        I  com.homimatchapp:f190aab3: onRequestHide at ORIGIN_SERVER reason HIDE_SAME_WINDOW_FOCUSED_WITHOUT_EDITOR fromUser false\n2026-02-20 13:29:23.404 11653-11653 InsetsController        com.homimatchapp                     D  hide(ime(), fromIme=false)\n2026-02-20 13:29:23.404 11653-11653 ImeTracker              com.homimatchapp                     I  com.homimatchapp:f190aab3: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN\n2026-02-20 13:29:23.408  2357-2357  GoogleInpu...hodService com...gle.android.inputmethod.latin  I  GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.homimatchapp, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)\n2026-02-20 13:29:23.413   748-1897  PackageConfigPersister  system_server                        W  App-specific configuration not found for packageName: com.homimatchapp and userId: 0",
+      "category": "debug",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T12:30:42.583Z",
+      "updatedAt": "2026-02-20T12:30:42.583Z",
+      "id": 50
+    },
+    {
+      "title": "Subida de habitacion arreglando",
+      "content": "Subida de habitacion arreglando",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T12:40:30.157Z",
+      "updatedAt": "2026-02-20T12:40:30.157Z",
+      "id": 51
+    },
+    {
+      "title": "añademe la pestaña de gestion de gastos al mainnavigation",
+      "content": "añademe la pestaña de gestion de gastos al mainnavigation",
+      "category": "feature",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T12:54:08.753Z",
+      "updatedAt": "2026-02-20T12:54:08.753Z",
+      "id": 52
+    },
+    {
+      "title": "si ya estamos en un piso por qué no me deja añadir gastos??",
+      "content": "si ya estamos en un piso por qué no me deja añadir gastos??",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T13:00:01.024Z",
+      "updatedAt": "2026-02-20T13:00:01.024Z",
+      "id": 53
+    },
+    {
+      "title": "corrigiendo flat expenses",
+      "content": "corrigiendo flat expenses",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T13:03:47.792Z",
+      "updatedAt": "2026-02-20T13:04:30.676Z",
+      "id": 54
+    },
+    {
+      "title": "corrigiendo flat expenses 2",
+      "content": "corrigiendo flat expenses 2",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T13:10:57.367Z",
+      "updatedAt": "2026-02-20T13:10:57.367Z",
+      "id": 55
+    },
+    {
+      "title": "ponme un boton para viajar a flatsettlement screen",
+      "content": "ponme un boton para viajar a flatsettlement screen",
+      "category": "feature",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T13:15:28.486Z",
+      "updatedAt": "2026-02-20T13:15:28.486Z",
+      "id": 56
+    },
+    {
+      "title": "cualquier miembro de un piso puede gestionar las liquidaciones",
+      "content": "cualquier miembro de un piso puede gestionar las liquidaciones",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T13:17:48.105Z",
+      "updatedAt": "2026-02-20T13:17:48.105Z",
+      "id": 57
+    },
+    {
+      "title": "que se quede el historial de cuentas saldadas",
+      "content": "que se quede el historial de cuentas saldadas",
+      "category": "feature",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T13:19:07.045Z",
+      "updatedAt": "2026-02-20T13:19:07.045Z",
+      "id": 58
+    },
+    {
+      "title": "ChatScreen",
+      "content": "ChatScreen",
+      "category": "refactor",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T13:33:12.692Z",
+      "updatedAt": "2026-02-20T13:33:12.692Z",
+      "id": 59
     }
   ],
-  "promptEvaluations": [],
-  "exportedAt": "2026-02-18T13:29:50.391Z"
+  "promptEvaluations": [
+    {
+      "promptId": 2,
+      "scenarioId": "A",
+      "quality": 3,
+      "wasAccepted": true,
+      "sprintNumber": 7,
+      "notes": "Se ha tenido que hacer una aclaración previa de contexto",
+      "createdAt": "2026-02-19T15:32:30.862Z",
+      "updatedAt": "2026-02-20T08:55:25.725Z",
+      "humanRevisions": 12,
+      "id": 15
+    },
+    {
+      "promptId": 19,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 1,
+      "wasAccepted": true,
+      "humanRevisions": null,
+      "notes": "No hizo nada",
+      "createdAt": "2026-02-20T11:46:48.380Z",
+      "updatedAt": "2026-02-20T12:05:52.318Z",
+      "id": 16
+    },
+    {
+      "promptId": 20,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 5,
+      "wasAccepted": true,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-20T11:54:43.462Z",
+      "updatedAt": "2026-02-20T12:15:22.691Z",
+      "id": 17
+    },
+    {
+      "promptId": 21,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 5,
+      "wasAccepted": true,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-20T12:30:42.590Z",
+      "updatedAt": "2026-02-20T12:33:34.149Z",
+      "id": 18
+    },
+    {
+      "promptId": 22,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 2,
+      "wasAccepted": false,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-20T12:40:30.162Z",
+      "updatedAt": "2026-02-20T12:42:29.692Z",
+      "id": 19
+    },
+    {
+      "promptId": 23,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 3,
+      "wasAccepted": true,
+      "humanRevisions": 1,
+      "notes": "Se ha añadido pero falla la lógica de la arquitectura",
+      "createdAt": "2026-02-20T12:54:08.759Z",
+      "updatedAt": "2026-02-20T12:55:35.474Z",
+      "id": 20
+    },
+    {
+      "promptId": 24,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 2,
+      "wasAccepted": false,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-20T13:00:01.031Z",
+      "updatedAt": "2026-02-20T13:02:40.907Z",
+      "id": 21
+    },
+    {
+      "promptId": 25,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 3,
+      "wasAccepted": false,
+      "humanRevisions": 25,
+      "notes": "",
+      "createdAt": "2026-02-20T13:03:47.800Z",
+      "updatedAt": "2026-02-20T13:08:44.078Z",
+      "id": 22
+    },
+    {
+      "promptId": 26,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 5,
+      "wasAccepted": true,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-20T13:10:57.373Z",
+      "updatedAt": "2026-02-20T13:15:15.741Z",
+      "id": 23
+    },
+    {
+      "promptId": 27,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 4,
+      "wasAccepted": true,
+      "humanRevisions": 29,
+      "notes": "",
+      "createdAt": "2026-02-20T13:15:28.492Z",
+      "updatedAt": "2026-02-20T13:17:21.407Z",
+      "id": 24
+    },
+    {
+      "promptId": 28,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 5,
+      "wasAccepted": true,
+      "humanRevisions": 9,
+      "notes": "",
+      "createdAt": "2026-02-20T13:17:48.111Z",
+      "updatedAt": "2026-02-20T13:18:53.741Z",
+      "id": 25
+    },
+    {
+      "promptId": 29,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 5,
+      "wasAccepted": true,
+      "humanRevisions": 42,
+      "notes": "",
+      "createdAt": "2026-02-20T13:19:07.051Z",
+      "updatedAt": "2026-02-20T13:19:55.440Z",
+      "id": 26
+    },
+    {
+      "promptId": 30,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": null,
+      "wasAccepted": null,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-20T13:33:12.696Z",
+      "updatedAt": "2026-02-20T13:33:12.696Z",
+      "id": 27
+    },
+    {
+      "promptId": 59,
+      "scenarioId": "A",
+      "quality": 5,
+      "wasAccepted": true,
+      "sprintNumber": 7,
+      "humanRevisions": null,
+      "notes": "refactor general para lint",
+      "createdAt": "2026-02-20T14:21:11.144Z",
+      "updatedAt": "2026-02-20T14:21:11.144Z",
+      "id": 28
+    }
+  ],
+  "exportedAt": "2026-02-20T14:21:13.839Z"
 }

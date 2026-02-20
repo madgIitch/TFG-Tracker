@@ -47,15 +47,15 @@ export function DerivedMetricsTab({ data, onChange }: Props) {
             <p className="text-xs text-slate-500">Derivado del campo Commits</p>
           </div>
 
-          <NumericInput
-            label="Tiempo de verificación (horas)"
-            value={data.verificationTime}
-            onChange={(v) => onChange('verificationTime', v)}
-            step={0.1}
-            min={0}
-            placeholder="ej. 1.5"
-            hint="Tiempo dedicado a ejecutar tests y depurar fallos"
-          />
+          <div className="flex flex-col gap-1">
+            <label className="text-xs font-medium text-slate-400 uppercase tracking-wide">
+              Tiempo de verificación (h)
+            </label>
+            <p className="bg-[#252b3b] border border-[#2e3650] rounded-md px-3 py-2 text-sm font-mono text-slate-300">
+              {data.ttsFix != null ? `${data.ttsFix}h` : '—'}
+            </p>
+            <p className="text-xs text-slate-500">Derivado de TTS Fix (tiempo en correcciones)</p>
+          </div>
         </div>
       </section>
 

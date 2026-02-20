@@ -10,17 +10,25 @@ export function useSprintTTSTimer(
   initialFixSeconds: number,
 ) {
   const {
-    initTimer, startTimer, pauseTimer, resetTimer, getElapsed, isRunning, hasTimer,
-    initSegment, getSegment, setSegmentMode, flushSegment, resetSegment,
+    initTimer, startTimer, pauseTimer, resetTimer, setTimerElapsed, getElapsed, isRunning, hasTimer,
+    initSegment, forceInitSegment, getSegment, setSegmentMode, flushSegment, resetSegment,
   } = useTimerContext()
 
   const [, setTick] = useState(0)
   const running = isRunning(timerKey)
 
-  // Initialize timer and segments on mount
+  // Initialize timer and segments on mount.
+  // If the timer is paused (not running), sync it to the DB-stored values so the
+  // timer display and segment breakdown always match what was last saved.
   useEffect(() => {
+    const dbTotalSeconds = initialFeatureSeconds + initialFixSeconds
     if (!hasTimer(timerKey)) {
-      initTimer(timerKey, initialFeatureSeconds + initialFixSeconds)
+      initTimer(timerKey, dbTotalSeconds)
+    } else if (!isRunning(timerKey)) {
+      // Timer exists but is paused — force-sync elapsed and segments to DB values.
+      setTimerElapsed(timerKey, dbTotalSeconds)
+      forceInitSegment(timerKey, initialFeatureSeconds, initialFixSeconds)
+      return
     }
     initSegment(timerKey, initialFeatureSeconds, initialFixSeconds)
   // eslint-disable-next-line react-hooks/exhaustive-deps

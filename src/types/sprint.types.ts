@@ -49,6 +49,8 @@ export interface SprintRecord {
   controlCheckpoints: number | null
 
   // D3 Edición multiarchivo
+  linesAdded: number | null   // git diff --shortstat: insertions
+  linesRemoved: number | null // git diff --shortstat: deletions
   architecturalCoherence: number | null // 1–5
 
   // D4 Éxito operacional
@@ -61,6 +63,7 @@ export interface SprintRecord {
   tsWarnings: number | null
   linterWarnings: number | null
   styleConsistency: number | null // 1–5
+  uiUxQuality: number | null      // 1–5
 
   // Incidencias (JSON embebido)
   incidences: Incidence[]

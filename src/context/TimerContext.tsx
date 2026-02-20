@@ -35,6 +35,7 @@ interface TimerContextValue {
 
   // Segment (per-mode) controls
   initSegment: (key: string, featureSeconds: number, fixSeconds: number) => void
+  forceInitSegment: (key: string, featureSeconds: number, fixSeconds: number) => void
   getSegment: (key: string) => SegmentState | null
   setSegmentMode: (key: string, newMode: TimerMode | null, currentElapsed: number) => void
   flushSegment: (key: string, currentElapsed: number) => { featureSeconds: number; fixSeconds: number }
@@ -165,6 +166,23 @@ export function TimerProvider({ children }: { children: ReactNode }) {
     })
   }, [])
 
+  const forceInitSegment = useCallback((key: string, featureSeconds: number, fixSeconds: number) => {
+    setSegments((prev) => {
+      const total = featureSeconds + fixSeconds
+      const next = {
+        ...prev,
+        [key]: {
+          featureSeconds,
+          fixSeconds,
+          currentMode: prev[key]?.currentMode ?? null,
+          modeStartElapsed: total,
+        } as SegmentState,
+      }
+      persistSegments(next)
+      return next
+    })
+  }, [])
+
   const getSegment = useCallback(
     (key: string): SegmentState | null => segments[key] ?? null,
     [segments],
@@ -229,7 +247,7 @@ export function TimerProvider({ children }: { children: ReactNode }) {
       value={{
         initTimer, startTimer, pauseTimer, resetTimer, setTimerElapsed,
         getElapsed, isRunning, hasTimer, runningKeys,
-        initSegment, getSegment, setSegmentMode, flushSegment, resetSegment,
+        initSegment, forceInitSegment, getSegment, setSegmentMode, flushSegment, resetSegment,
       }}
     >
       {children}

@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { TopBar } from '../components/layout/TopBar'
 import { CompareTable } from '../components/compare/CompareTable'
+import { CompareCharts } from '../components/compare/CompareCharts'
 import { LoadingScreen } from '../components/ui/Spinner'
 import { useAllSprints } from '../db/hooks/useSprints'
 import { useAllScenarios } from '../db/hooks/useScenarios'
@@ -8,9 +10,12 @@ import type { ScenarioId } from '../types'
 
 const SCENARIO_IDS: ScenarioId[] = ['A', 'B', 'C', 'D']
 
+type ViewMode = 'table' | 'charts'
+
 export default function ComparePage() {
   const allSprints = useAllSprints()
   const allScenarios = useAllScenarios()
+  const [view, setView] = useState<ViewMode>('charts')
 
   if (allSprints === undefined || allScenarios === undefined) return <LoadingScreen />
 
@@ -24,19 +29,46 @@ export default function ComparePage() {
       <TopBar crumbs={[{ label: 'Dashboard', to: '/' }, { label: 'Comparativa' }]} />
 
       <div className="p-6 flex flex-col gap-6 flex-1">
-        <div>
-          <h2 className="text-xl font-bold text-slate-100 mb-1">
-            Tabla comparativa — Escenarios A–D
-          </h2>
-          <p className="text-sm text-slate-400">
-            Métricas agregadas de los 6 dimensiones del marco de evaluación.
-            <span className="ml-3 text-green-400">■ Mejor</span>
-            <span className="ml-2 text-red-400">■ Peor</span>
-            <span className="ml-2 text-slate-500">(solo cuando hay ≥2 valores)</span>
-          </p>
+        {/* Header + tab toggle */}
+        <div className="flex items-start justify-between gap-4 flex-wrap">
+          <div>
+            <h2 className="text-xl font-bold text-slate-100 mb-1">
+              Comparativa — Escenarios A–D
+            </h2>
+            <p className="text-sm text-slate-400">
+              Métricas agregadas de las 6 dimensiones del marco de evaluación.
+            </p>
+          </div>
+
+          <div className="flex items-center bg-[#0f1117] border border-[#2e3650] rounded-lg p-1 gap-1">
+            {(['charts', 'table'] as ViewMode[]).map((mode) => (
+              <button
+                key={mode}
+                onClick={() => setView(mode)}
+                className={`px-4 py-1.5 rounded-md text-xs font-semibold transition-colors ${
+                  view === mode
+                    ? 'bg-[#252b3b] text-slate-100'
+                    : 'text-slate-500 hover:text-slate-300'
+                }`}
+              >
+                {mode === 'charts' ? '📊 Gráficas' : '📋 Tabla'}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <CompareTable metrics={metrics} />
+        {view === 'charts' ? (
+          <CompareCharts metrics={metrics} />
+        ) : (
+          <>
+            <div className="text-xs text-slate-500">
+              <span className="text-green-400">■ Mejor</span>
+              <span className="ml-3 text-red-400">■ Peor</span>
+              <span className="ml-2">(solo cuando hay ≥2 valores)</span>
+            </div>
+            <CompareTable metrics={metrics} />
+          </>
+        )}
       </div>
     </div>
   )

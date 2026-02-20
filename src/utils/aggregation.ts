@@ -28,6 +28,7 @@ export interface AggregatedScenarioMetrics {
   totalTsWarnings: number | null
   totalLinterWarnings: number | null
   avgStyleConsistency: number | null
+  avgUiUxQuality: number | null
 
   // D1 Contexto
   avgContextRatio: number | null
@@ -105,7 +106,7 @@ export function aggregateScenario(
     totalManualEdits: sumNullable(sprints.map((s) => s.manualEdits)),
     totalCorrectivePrompts: sumNullable(sprints.map((s) => s.correctivePrompts)),
     totalRejectedProposals: sumNullable(sprints.map((s) => s.rejectedProposals)),
-    totalVerificationTime: sumNullable(sprints.map((s) => s.verificationTime)),
+    totalVerificationTime: sumNullable(sprints.map((s) => s.ttsFix)),
 
     // D4
     buildSuccessRate,
@@ -116,6 +117,7 @@ export function aggregateScenario(
     totalTsWarnings: sumNullable(sprints.map((s) => s.tsWarnings)),
     totalLinterWarnings: sumNullable(sprints.map((s) => s.linterWarnings)),
     avgStyleConsistency: avgNullable(sprints.map((s) => s.styleConsistency)),
+    avgUiUxQuality: avgNullable(sprints.map((s) => s.uiUxQuality)),
 
     // D1
     avgContextRatio,

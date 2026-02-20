@@ -10,13 +10,20 @@ export function ExportImportButtons() {
     const prompts = await db.prompts.toArray()
     const promptEvaluations = await db.promptEvaluations.toArray()
     const data = { sprints, scenarios, prompts, promptEvaluations, exportedAt: new Date().toISOString() }
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `tfg-tracker-backup-${new Date().toISOString().slice(0, 10)}.json`
-    a.click()
-    URL.revokeObjectURL(url)
+    const filename = `tfg-tracker-backup-${new Date().toISOString().slice(0, 10)}.json`
+    const content = JSON.stringify(data, null, 2)
+    try {
+      const res = await fetch('/api/save-backup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filename, content }),
+      })
+      const json = await res.json() as { ok?: boolean; path?: string; error?: string }
+      if (!res.ok || json.error) throw new Error(json.error ?? 'Error desconocido')
+      alert(`Backup guardado en:\n${json.path}`)
+    } catch (e) {
+      alert('Error al guardar el backup: ' + String(e))
+    }
   }
 
   async function handleImport(e: ChangeEvent<HTMLInputElement>) {

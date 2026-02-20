@@ -17,10 +17,18 @@ function loadRepoPath(): string {
   return localStorage.getItem(REPO_PATH_KEY) ?? DEFAULT_REPO_PATH
 }
 
+interface GitFileEntry {
+  status: string
+  path: string
+}
+
 interface GitDiffResult {
   created: number
   modified: number
   total: number
+  linesAdded: number
+  linesRemoved: number
+  files: GitFileEntry[]
 }
 
 export function PrimarySourcesTab({ data, onChange }: Props) {
@@ -50,6 +58,7 @@ export function PrimarySourcesTab({ data, onChange }: Props) {
   const [gitLoading,  setGitLoading]  = useState(false)
   const [gitResult,   setGitResult]   = useState<GitDiffResult | null>(null)
   const [gitError,    setGitError]    = useState<string | null>(null)
+  const [showFiles,   setShowFiles]   = useState(false)
 
   async function handleGitCalc() {
     setGitLoading(true)
@@ -71,6 +80,8 @@ export function PrimarySourcesTab({ data, onChange }: Props) {
         setGitResult(result)
         onChange('filesCreated',  result.created)
         onChange('filesModified', result.modified)
+        onChange('linesAdded',    result.linesAdded)
+        onChange('linesRemoved',  result.linesRemoved)
       }
     } catch (e) {
       setGitError(String(e))
@@ -87,7 +98,7 @@ export function PrimarySourcesTab({ data, onChange }: Props) {
         <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-3">
           Git — Commits y ficheros
         </h4>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
           <NumericInput
             label="Commits realizados"
             value={data.commits}
@@ -108,6 +119,22 @@ export function PrimarySourcesTab({ data, onChange }: Props) {
             onChange={(v) => onChange('filesModified', v)}
             min={0}
             placeholder="0"
+          />
+          <NumericInput
+            label="Líneas añadidas"
+            value={data.linesAdded}
+            onChange={(v) => onChange('linesAdded', v)}
+            min={0}
+            placeholder="0"
+            hint="git diff --shortstat (+)"
+          />
+          <NumericInput
+            label="Líneas eliminadas"
+            value={data.linesRemoved}
+            onChange={(v) => onChange('linesRemoved', v)}
+            min={0}
+            placeholder="0"
+            hint="git diff --shortstat (-)"
           />
         </div>
 
@@ -154,7 +181,7 @@ export function PrimarySourcesTab({ data, onChange }: Props) {
           </div>
 
           {/* Action + result */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
             <button
               type="button"
               onClick={handleGitCalc}
@@ -165,9 +192,18 @@ export function PrimarySourcesTab({ data, onChange }: Props) {
             </button>
 
             {gitResult && (
-              <span className="text-xs font-mono text-green-400">
-                ✓ Creados: {gitResult.created} · Modificados: {gitResult.modified} · Total diff: {gitResult.total}
-              </span>
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-xs font-mono text-green-400">
+                  ✓ Creados: {gitResult.created} · Modificados: {gitResult.modified} · +{gitResult.linesAdded} / -{gitResult.linesRemoved} líneas
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setShowFiles(v => !v)}
+                  className="text-xs text-slate-400 hover:text-slate-200 underline underline-offset-2 transition-colors"
+                >
+                  {showFiles ? 'Ocultar archivos' : `Ver ${gitResult.files.length} archivos`}
+                </button>
+              </div>
             )}
             {gitError && (
               <span className="text-xs text-red-400 truncate max-w-xs" title={gitError}>
@@ -176,8 +212,32 @@ export function PrimarySourcesTab({ data, onChange }: Props) {
             )}
           </div>
 
+          {/* File list */}
+          {gitResult && showFiles && gitResult.files.length > 0 && (
+            <div className="max-h-56 overflow-y-auto rounded-md border border-[#2e3650] bg-[#0a0d14]">
+              {gitResult.files.map((f, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-2 px-3 py-1.5 border-b border-[#1a1f2e] last:border-0 hover:bg-[#131720] transition-colors"
+                >
+                  <span className={`shrink-0 w-4 text-[10px] font-bold text-center rounded
+                    ${f.status === 'A' ? 'text-green-400' : ''}
+                    ${f.status === 'M' ? 'text-blue-400' : ''}
+                    ${f.status === 'D' ? 'text-red-400' : ''}
+                    ${f.status === 'R' ? 'text-yellow-400' : ''}
+                    ${f.status === 'C' ? 'text-purple-400' : ''}
+                    ${!['A','M','D','R','C'].includes(f.status) ? 'text-slate-400' : ''}
+                  `}>
+                    {f.status}
+                  </span>
+                  <span className="text-xs font-mono text-slate-300 break-all">{f.path}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
           <p className="text-[10px] text-slate-600 leading-relaxed">
-            Usa <code className="text-slate-500">git diff --name-status &lt;inicio&gt; &lt;fin&gt;</code>.
+            Usa <code className="text-slate-500">git diff --name-status</code> (ficheros) y <code className="text-slate-500">--shortstat</code> (líneas).
             Para incluir el commit de inicio usa <code className="text-slate-500">&lt;sha&gt;~1</code> como inicio.
             La ruta del repo se guarda en el navegador.
           </p>
