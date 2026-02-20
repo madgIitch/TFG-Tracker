@@ -49,8 +49,10 @@ export function ExportImportButtons() {
         await db.promptEvaluations.clear()
         await db.sprints.bulkAdd(data.sprints.map(({ id: _id, ...rest }: any) => rest))
         await db.scenarios.bulkAdd(data.scenarios.map(({ id: _id, ...rest }: any) => rest))
-        await db.prompts.bulkAdd(prompts.map(({ id: _id, ...rest }: any) => rest))
-        await db.promptEvaluations.bulkAdd(promptEvaluations.map(({ id: _id, ...rest }: any) => rest))
+        // Prompts y evaluaciones deben preservar sus IDs originales para que
+        // la referencia promptId en promptEvaluations siga siendo válida.
+        await db.prompts.bulkPut(prompts)
+        await db.promptEvaluations.bulkPut(promptEvaluations)
       })
       alert('Datos importados correctamente.')
     } catch (err) {

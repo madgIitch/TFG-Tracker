@@ -193,9 +193,13 @@ export function PromptEvaluationsTab({ scenarioId, sprintNumber }: PromptEvaluat
               {evaluations.map((item) => (
                 <tr key={`${item.promptId}-${item.scenarioId}`} className="border-b border-[#2e3650] last:border-0">
                   <td className="px-4 py-3 text-slate-200">
-                    <Link to={`/prompts/${item.promptId}`} className="text-blue-400 hover:text-blue-300">
-                      {item.prompt?.title ?? `Prompt #${item.promptId}`}
-                    </Link>
+                    {item.prompt != null ? (
+                      <Link to={`/prompts/${item.promptId}`} className="text-blue-400 hover:text-blue-300">
+                        {item.prompt.title}
+                      </Link>
+                    ) : (
+                      <span className="text-slate-500 italic">Prompt #{item.promptId} (eliminado)</span>
+                    )}
                   </td>
                   <td className="px-4 py-3">
                     {item.prompt?.category && (

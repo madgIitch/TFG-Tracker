@@ -79,9 +79,13 @@ export function PromptEvaluationsSummary({ scenarioId }: PromptEvaluationsSummar
                     {item.sprintNumber != null ? `Sprint ${item.sprintNumber}` : '-'}
                   </td>
                   <td className="px-4 py-3 text-slate-200">
-                    <Link to={`/prompts/${item.promptId}`} className="text-blue-400 hover:text-blue-300">
-                      {item.prompt?.title ?? `Prompt #${item.promptId}`}
-                    </Link>
+                    {item.prompt != null ? (
+                      <Link to={`/prompts/${item.promptId}`} className="text-blue-400 hover:text-blue-300">
+                        {item.prompt.title}
+                      </Link>
+                    ) : (
+                      <span className="text-slate-500 italic">Prompt #{item.promptId} (eliminado)</span>
+                    )}
                   </td>
                   <td className="px-4 py-3 text-xs font-mono text-slate-300">
                     {formatScore(item.quality)}

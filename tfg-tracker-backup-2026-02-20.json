@@ -10,7 +10,7 @@
       "description": "",
       "commits": 5,
       "filesCreated": 6,
-      "filesModified": 17,
+      "filesModified": 22,
       "testsTotal": 7,
       "testsPass": 7,
       "testsFail": 0,
@@ -23,13 +23,13 @@
       "retrievalMechanism": "mixto",
       "autonomousActions": 51,
       "controlCheckpoints": 44,
-      "architecturalCoherence": 4,
+      "architecturalCoherence": 5,
       "buildsOk": 1,
       "buildsTotal": 1,
       "envFailures": 4,
       "tsWarnings": 12,
       "linterWarnings": 26,
-      "styleConsistency": 4,
+      "styleConsistency": 5,
       "incidences": [
         {
           "id": "4682e442-d9f8-40ae-bfa8-19a16188eda1",
@@ -40,7 +40,7 @@
       ],
       "observations": "",
       "createdAt": "2026-02-18T00:20:43.127Z",
-      "updatedAt": "2026-02-20T14:18:04.783Z",
+      "updatedAt": "2026-02-20T16:13:12.942Z",
       "autoCorrectivePrompts": null,
       "autoRejectedProposals": 4,
       "humanRevisions": 118,
@@ -48,9 +48,10 @@
       "buildsFailed": 0,
       "ttsFeature": 0.4,
       "ttsFix": 2.97,
-      "linesAdded": 887,
-      "linesRemoved": 547,
-      "id": 3
+      "linesAdded": 1049,
+      "linesRemoved": 706,
+      "id": 3,
+      "uiUxQuality": 3
     },
     {
       "scenarioId": "B",
@@ -87,6 +88,52 @@
       "createdAt": "2026-02-18T00:23:35.772Z",
       "updatedAt": "2026-02-18T00:23:37.281Z",
       "id": 4
+    },
+    {
+      "scenarioId": "A",
+      "sprintNumber": 8,
+      "status": "completed",
+      "dateStart": null,
+      "dateEnd": null,
+      "tts": null,
+      "ttsFeature": 0.55,
+      "ttsFix": 0.13,
+      "description": "",
+      "commits": 2,
+      "filesCreated": 0,
+      "filesModified": 20,
+      "testsTotal": 7,
+      "testsPass": 7,
+      "testsFail": null,
+      "verificationTime": null,
+      "manualEdits": null,
+      "correctivePrompts": 3,
+      "rejectedProposals": 2,
+      "humanRevisions": 680,
+      "autoCorrectivePrompts": 3,
+      "autoRejectedProposals": 2,
+      "autoHumanRevisions": 680,
+      "filesReadByAI": 111,
+      "filesTotalRepo": 106,
+      "retrievalMechanism": "mixto",
+      "autonomousActions": 31,
+      "controlCheckpoints": 32,
+      "linesAdded": 679,
+      "linesRemoved": 421,
+      "architecturalCoherence": 5,
+      "buildsOk": 3,
+      "buildsFailed": 1,
+      "buildsTotal": 4,
+      "envFailures": null,
+      "tsWarnings": 4,
+      "linterWarnings": 10,
+      "styleConsistency": 5,
+      "uiUxQuality": 4,
+      "incidences": [],
+      "observations": "",
+      "createdAt": "2026-02-20T14:33:19.705Z",
+      "updatedAt": "2026-02-20T16:10:47.818Z",
+      "id": 5
     }
   ],
   "scenarios": [
@@ -94,7 +141,7 @@
       "scenarioId": "A",
       "acceptanceChecklist": {
         "sprint7": true,
-        "sprint8": false,
+        "sprint8": true,
         "sprint9": false,
         "sprint10": false,
         "sprint11": false,
@@ -117,7 +164,7 @@
         "weaknesses": "",
         "generalExperience": ""
       },
-      "updatedAt": "2026-02-20T14:17:06.744Z",
+      "updatedAt": "2026-02-20T16:18:03.679Z",
       "id": 5
     },
     {
@@ -147,7 +194,7 @@
         "weaknesses": "",
         "generalExperience": ""
       },
-      "updatedAt": "2026-02-18T00:23:35.768Z",
+      "updatedAt": "2026-02-20T16:11:43.162Z",
       "id": 6
     },
     {
@@ -610,11 +657,74 @@
       "createdAt": "2026-02-20T13:33:12.692Z",
       "updatedAt": "2026-02-20T13:33:12.692Z",
       "id": 59
+    },
+    {
+      "title": "haz que se respete el safeaarea view en todas la pantallas, seguimos ocupando su espacio",
+      "content": "haz que se respete el safeaarea view en todas la pantallas, seguimos ocupando su espacio",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T15:39:55.483Z",
+      "updatedAt": "2026-02-20T15:39:55.483Z",
+      "id": 60
+    },
+    {
+      "title": "Keyboard Activity padding",
+      "content": "en las pantallas con TextInput Revisa el padding inferior y usa KeyboardAvoidingView si es necesario",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T15:48:31.534Z",
+      "updatedAt": "2026-02-20T15:48:31.534Z",
+      "id": 61
+    },
+    {
+      "title": "en chatscreen sigue sin hacerse padding para subir el input text por encima de keyboardactivity",
+      "content": "en chatscreen sigue sin hacerse padding para subir el input text por encima de keyboardactivity",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T15:52:15.937Z",
+      "updatedAt": "2026-02-20T15:52:15.937Z",
+      "id": 62
+    },
+    {
+      "title": "sigue sin subir",
+      "content": "sigue sin subir",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T15:53:55.015Z",
+      "updatedAt": "2026-02-20T15:53:55.015Z",
+      "id": 63
+    },
+    {
+      "title": "Linting",
+      "content": ">> \n\n> HomiMatchApp@0.0.1 lint\n> eslint .\n\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\components\\Input.tsx\n  44:11  warning  Inline style: { paddingVertical: 12 }  react-native/no-inline-styles\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\context\\SwipeFiltersContext.tsx\n  53:5  warning  Expected 'undefined' and instead saw 'void'  no-void\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\screens\\ChatScreen.tsx\n  600:11  warning  Inline style: { bottom: \"Platform.OS === 'android' ? keyboardHeight : 0\" }  react-native/no-inline-styles\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\screens\\RoomEditScreen.tsx\n  151:23  warning  'room' is already declared in the upper scope on line 81 column 10  @typescript-eslint/no-shadow       \n  259:42  warning  'room' is already declared in the upper scope on line 81 column 10  @typescript-eslint/no-shadow       \n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\screens\\SwipeScreen.tsx\n  284:5  error  React Hook useCallback has missing dependencies: 'advanceCard' and 'sendLike'. Either include them or remove the dependency array  react-hooks/exhaustive-deps\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\screens\\register\\Phase1Email.tsx\n  107:19  warning  Inline style: { backgroundColor: \"isActive ? theme.colors.primary : '#E5E7EB'\" }  react-native/no-inline-styles\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\screens\\register\\Phase2Name.tsx\n  58:19  warning  Inline style: { backgroundColor: \"isActive ? theme.colors.primary : '#E5E7EB'\" }  react-native/no-inline-styles\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\screens\\register\\Phase3BirthDate.tsx\n  64:19  warning  Inline style: { backgroundColor: \"isActive ? theme.colors.primary : '#E5E7EB'\" }  react-native/no-inline-styles\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\screens\\register\\Phase3Gender.tsx\n  50:19  warning  Inline style: { backgroundColor: \"isActive ? theme.colors.primary : '#E5E7EB'\" }  react-native/no-inline-styles\n  84:33  warning  Inline style: { color: '#FFFFFF' }                                                react-native/no-inline-styles\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\services\\authService.ts\n  7:3  error  'Phase2Data' is defined but never used  @typescript-eslint/no-unused-vars\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\services\\profileService.ts\n  149:9  error  'errorMessage' is assigned a value but never used  @typescript-eslint/no-unused-vars\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\supabase\\functions\\profiles-recommendations\\index.ts\n  215:22  error  'label' is assigned a value but never used. Allowed unused elements of array destructuring must match /^_/u  @typescript-eslint/no-unused-vars\n\n✖ 14 problems (4 errors, 10 warnings)\n\nPS C:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A>",
+      "category": "refactor",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T16:01:17.109Z",
+      "updatedAt": "2026-02-20T16:01:17.109Z",
+      "id": 64
     }
   ],
   "promptEvaluations": [
     {
-      "promptId": 2,
+      "promptId": 31,
       "scenarioId": "A",
       "quality": 3,
       "wasAccepted": true,
@@ -626,7 +736,7 @@
       "id": 15
     },
     {
-      "promptId": 19,
+      "promptId": 48,
       "scenarioId": "A",
       "sprintNumber": 7,
       "quality": 1,
@@ -638,7 +748,7 @@
       "id": 16
     },
     {
-      "promptId": 20,
+      "promptId": 49,
       "scenarioId": "A",
       "sprintNumber": 7,
       "quality": 5,
@@ -650,7 +760,7 @@
       "id": 17
     },
     {
-      "promptId": 21,
+      "promptId": 50,
       "scenarioId": "A",
       "sprintNumber": 7,
       "quality": 5,
@@ -662,7 +772,7 @@
       "id": 18
     },
     {
-      "promptId": 22,
+      "promptId": 51,
       "scenarioId": "A",
       "sprintNumber": 7,
       "quality": 2,
@@ -674,7 +784,7 @@
       "id": 19
     },
     {
-      "promptId": 23,
+      "promptId": 52,
       "scenarioId": "A",
       "sprintNumber": 7,
       "quality": 3,
@@ -686,7 +796,7 @@
       "id": 20
     },
     {
-      "promptId": 24,
+      "promptId": 53,
       "scenarioId": "A",
       "sprintNumber": 7,
       "quality": 2,
@@ -698,7 +808,7 @@
       "id": 21
     },
     {
-      "promptId": 25,
+      "promptId": 54,
       "scenarioId": "A",
       "sprintNumber": 7,
       "quality": 3,
@@ -710,7 +820,7 @@
       "id": 22
     },
     {
-      "promptId": 26,
+      "promptId": 55,
       "scenarioId": "A",
       "sprintNumber": 7,
       "quality": 5,
@@ -722,7 +832,7 @@
       "id": 23
     },
     {
-      "promptId": 27,
+      "promptId": 56,
       "scenarioId": "A",
       "sprintNumber": 7,
       "quality": 4,
@@ -734,7 +844,7 @@
       "id": 24
     },
     {
-      "promptId": 28,
+      "promptId": 57,
       "scenarioId": "A",
       "sprintNumber": 7,
       "quality": 5,
@@ -746,7 +856,7 @@
       "id": 25
     },
     {
-      "promptId": 29,
+      "promptId": 58,
       "scenarioId": "A",
       "sprintNumber": 7,
       "quality": 5,
@@ -756,18 +866,6 @@
       "createdAt": "2026-02-20T13:19:07.051Z",
       "updatedAt": "2026-02-20T13:19:55.440Z",
       "id": 26
-    },
-    {
-      "promptId": 30,
-      "scenarioId": "A",
-      "sprintNumber": 7,
-      "quality": null,
-      "wasAccepted": null,
-      "humanRevisions": null,
-      "notes": "",
-      "createdAt": "2026-02-20T13:33:12.696Z",
-      "updatedAt": "2026-02-20T13:33:12.696Z",
-      "id": 27
     },
     {
       "promptId": 59,
@@ -780,7 +878,91 @@
       "createdAt": "2026-02-20T14:21:11.144Z",
       "updatedAt": "2026-02-20T14:21:11.144Z",
       "id": 28
+    },
+    {
+      "promptId": 32,
+      "scenarioId": "A",
+      "quality": 4,
+      "wasAccepted": true,
+      "sprintNumber": 8,
+      "humanRevisions": 306,
+      "notes": "",
+      "createdAt": "2026-02-20T14:35:14.193Z",
+      "updatedAt": "2026-02-20T15:39:39.572Z",
+      "id": 29
+    },
+    {
+      "promptId": 60,
+      "scenarioId": "A",
+      "sprintNumber": 8,
+      "quality": 5,
+      "wasAccepted": true,
+      "humanRevisions": 43,
+      "notes": "",
+      "createdAt": "2026-02-20T15:39:55.491Z",
+      "updatedAt": "2026-02-20T15:45:16.064Z",
+      "id": 30
+    },
+    {
+      "promptId": 61,
+      "scenarioId": "A",
+      "quality": 3,
+      "wasAccepted": false,
+      "sprintNumber": 8,
+      "humanRevisions": 91,
+      "notes": "",
+      "createdAt": "2026-02-20T15:48:44.417Z",
+      "updatedAt": "2026-02-20T15:51:17.156Z",
+      "id": 31
+    },
+    {
+      "promptId": 61,
+      "scenarioId": "B",
+      "quality": null,
+      "wasAccepted": null,
+      "sprintNumber": 8,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-20T15:48:45.185Z",
+      "updatedAt": "2026-02-20T15:48:45.185Z",
+      "id": 32
+    },
+    {
+      "promptId": 62,
+      "scenarioId": "A",
+      "sprintNumber": 8,
+      "quality": 1,
+      "wasAccepted": false,
+      "humanRevisions": 91,
+      "notes": "",
+      "createdAt": "2026-02-20T15:52:15.942Z",
+      "updatedAt": "2026-02-20T15:56:30.052Z",
+      "id": 33
+    },
+    {
+      "promptId": 63,
+      "scenarioId": "A",
+      "sprintNumber": 8,
+      "quality": 4,
+      "wasAccepted": true,
+      "humanRevisions": 25,
+      "notes": "",
+      "createdAt": "2026-02-20T15:53:55.025Z",
+      "updatedAt": "2026-02-20T15:56:48.363Z",
+      "id": 34
+    },
+    {
+      "promptId": 64,
+      "scenarioId": "A",
+      "sprintNumber": 8,
+      "quality": 5,
+      "wasAccepted": true,
+      "humanRevisions": 124,
+      "notes": "",
+      "createdAt": "2026-02-20T16:01:17.119Z",
+      "updatedAt": "2026-02-20T16:08:29.320Z",
+      "id": 35
     }
   ],
-  "exportedAt": "2026-02-20T14:21:13.839Z"
+  "exportedAt": "2026-02-20T16:18:04.923Z"
 }
