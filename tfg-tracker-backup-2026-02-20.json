@@ -50,13 +50,13 @@
       "ttsFix": 2.97,
       "linesAdded": 1049,
       "linesRemoved": 706,
-      "id": 3,
-      "uiUxQuality": 3
+      "uiUxQuality": 3,
+      "id": 9
     },
     {
       "scenarioId": "B",
       "sprintNumber": 7,
-      "status": "pending",
+      "status": "in_progress",
       "dateStart": null,
       "dateEnd": null,
       "tts": null,
@@ -86,8 +86,8 @@
       "incidences": [],
       "observations": "",
       "createdAt": "2026-02-18T00:23:35.772Z",
-      "updatedAt": "2026-02-18T00:23:37.281Z",
-      "id": 4
+      "updatedAt": "2026-02-20T16:29:14.044Z",
+      "id": 10
     },
     {
       "scenarioId": "A",
@@ -133,7 +133,7 @@
       "observations": "",
       "createdAt": "2026-02-20T14:33:19.705Z",
       "updatedAt": "2026-02-20T16:10:47.818Z",
-      "id": 5
+      "id": 11
     }
   ],
   "scenarios": [
@@ -164,8 +164,8 @@
         "weaknesses": "",
         "generalExperience": ""
       },
-      "updatedAt": "2026-02-20T16:18:03.679Z",
-      "id": 5
+      "updatedAt": "2026-02-20T16:29:08.000Z",
+      "id": 13
     },
     {
       "scenarioId": "B",
@@ -194,8 +194,8 @@
         "weaknesses": "",
         "generalExperience": ""
       },
-      "updatedAt": "2026-02-20T16:11:43.162Z",
-      "id": 6
+      "updatedAt": "2026-02-20T16:29:09.975Z",
+      "id": 14
     },
     {
       "scenarioId": "C",
@@ -225,7 +225,7 @@
         "generalExperience": ""
       },
       "updatedAt": "2026-02-18T00:14:44.745Z",
-      "id": 7
+      "id": 15
     },
     {
       "scenarioId": "D",
@@ -255,7 +255,7 @@
         "generalExperience": ""
       },
       "updatedAt": "2026-02-18T00:23:40.988Z",
-      "id": 8
+      "id": 16
     }
   ],
   "prompts": [
@@ -964,5 +964,5 @@
       "id": 35
     }
   ],
-  "exportedAt": "2026-02-20T16:18:04.923Z"
+  "exportedAt": "2026-02-20T16:29:41.566Z"
 }
