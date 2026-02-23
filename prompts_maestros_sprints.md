@@ -1,533 +1,241 @@
 # Prompts Maestros por Sprint — HomiMatchApp
 **Sprints 7 al 23** | Fase 2: Características Avanzadas (Post-v0)
 
-> Contexto base: La aplicación HomiMatchApp es una app de React Native + TypeScript que conecta personas buscando piso o compañeros de habitación. Usa Supabase (DB + Auth + Storage + Realtime), Firebase Cloud Messaging para push, y React Navigation. El stack de estilos sigue un sistema de glassmorphism con tokens centralizados. En este punto ya existe la v0 funcional con: autenticación, perfiles con fotos, sistema de swipe/matching, gestión de pisos, chat básico, filtros de búsqueda por género, y un rediseño visual completo.
+> Contexto base: Tengo una app de React Native con TypeScript que se llama HomiMatchApp, sirve para encontrar piso o compañeros de habitación. El backend es Supabase (base de datos, auth, storage y realtime), las notificaciones push van con Firebase, y la navegación con React Navigation. Visualmente tiene un estilo glassmorphism con una paleta de colores y espaciados centralizados en tokens. Ya hay una versión funcional con login, registro, perfiles con fotos, swipe para hacer match, gestión de pisos, chat básico y filtros por género.
 
 ---
 
 ## Sprint 7 — Sistema de Gestión de Gastos
 
-Implementa un sistema completo de gestión de gastos compartidos para pisos en HomiMatchApp.
+Quiero añadir a la app una sección para gestionar los gastos compartidos del piso. La idea es que los compañeros puedan apuntar quién pagó qué, cuánto, y que la app calcule sola quién le debe dinero a quién para que sea fácil saldar las cuentas.
 
-**Lo que debes crear:**
+Necesitaría básicamente dos pantallas: una donde se listen y creen los gastos del piso, y otra donde se vea el resumen de quién debe qué a quién y se pueda marcar como saldado. Cada gasto debería tener una descripción, el importe, quién lo pagó, y entre quién se reparte.
 
-1. **Pantalla `FlatExpensesScreen`**: lista de gastos del piso con creación de nuevos gastos. Cada gasto tiene: descripción, importe total, pagador (uno de los compañeros del piso), y distribución entre los miembros del piso. Usa el estilo glassmorphism existente.
+Para el cálculo de las deudas, busca algo eficiente, lo típico es que el que más debe le pague al que más se le debe primero, para minimizar el número de transferencias.
 
-2. **Pantalla `FlatSettlementScreen`**: resumen de liquidaciones entre compañeros. Calcula automáticamente quién le debe cuánto a quién y permite marcar deudas como saldadas.
+Necesitas crear las tablas correspondientes en Supabase y las edge functions para leer y crear gastos y liquidaciones. Todo accesible desde la pantalla de gestión del piso que ya existe.
 
-3. **Servicio `flatExpenseService`**: funciones CRUD para gastos. Un gasto tiene campos: `id`, `flat_id`, `description`, `amount`, `paid_by` (user_id), `split_between` (array de user_ids), `created_at`. Los splits pueden ser iguales o personalizados.
-
-4. **Servicio `flatSettlementService`**: lógica para calcular el balance neto de cada miembro y generar las liquidaciones mínimas necesarias (algoritmo greedy: el que más debe paga al que más se le debe primero).
-
-5. **Edge Functions de Supabase**:
-   - `flat-expenses`: GET (listar gastos del piso) y POST (crear gasto nuevo)
-   - `flat-settlements`: GET (calcular liquidaciones pendientes) y POST (marcar como saldado)
-
-6. **Tablas en Supabase**:
-   - `flat_expenses`: `id`, `flat_id`, `description`, `amount`, `paid_by`, `created_at`
-   - `flat_expense_splits`: `id`, `expense_id`, `user_id`, `amount`
-   - `flat_settlements`: `id`, `flat_id`, `from_user`, `to_user`, `amount`, `settled_at`
-
-7. **Integración en navegación**: añade acceso a estas pantallas desde el tab de gestión del piso (`RoomManagementScreen`).
-
-**Restricciones técnicas:**
-- Solo los miembros del piso pueden ver y crear gastos
-- El cálculo de deudas debe actualizarse automáticamente al añadir un gasto o liquidar
-- Los imports de Supabase usan el cliente configurado globalmente en `src/lib/supabase.ts`
-- Sigue el patrón de los servicios existentes (async/await, tipado con interfaces TypeScript)
+Usa el mismo estilo visual que el resto de la app. Solo los miembros del piso deberían poder ver y tocar esto.
 
 ---
 
 ## Sprint 8 — Correcciones UI/UX
 
-Corrige los problemas visuales y de experiencia detectados en la v0 de HomiMatchApp.
+Hay varios problemas visuales en la app que quiero corregir antes de seguir añadiendo cosas.
 
-**Fixes a realizar:**
+El principal es que en el login y en las distintas fases del registro, cuando aparece el teclado los inputs quedan tapados y no se puede escribir bien. Hay que arreglarlo para que el contenido suba o haga scroll cuando el teclado está visible.
 
-1. **`LoginScreen`**: ajusta el layout para que funcione correctamente cuando el teclado está visible. El botón de login no debe quedar tapado. Revisa el padding inferior y usa `KeyboardAvoidingView` si es necesario.
+En la pantalla de detalle de perfil hay márgenes raros y los chips de intereses a veces se cortan. Las fotos tampoco tienen la proporción correcta.
 
-2. **`RegisterScreen`** (todas las fases del registro multi-fase): verifica que los inputs no queden ocultos bajo el teclado en ninguna fase. Añade scroll si el contenido supera la pantalla.
+En el swipe a veces hay un parpadeo raro al cambiar de card, hay que investigar qué lo causa y arreglarlo. También revisar que los gestos de swipe no interfieran con los botones de like/dislike.
 
-3. **`ProfileDetailScreen`**: corrige los márgenes y espaciados inconsistentes. Las secciones de intereses (chips) deben verse completas sin cortes. Las fotos de perfil deben tener la relación de aspecto correcta.
-
-4. **`SwipeScreen`**: corrige el comportamiento de las cards durante el swipe. Si hay renders dobles o flickering al pasar cards, identifica la causa en el estado y corrígela. Asegúrate de que el gesto de swipe no interfiere con los botones de acción.
-
-5. **Optimización de renders**: revisa los componentes que se re-renderizan innecesariamente. Aplica `React.memo`, `useCallback` o `useMemo` donde corresponda para evitar renders en cascada.
-
-6. **Errores visuales generales**: repasa todas las pantallas en modo claro buscando textos cortados, overlaps de elementos, o elementos fuera de los límites de pantalla. Corrígelos con estilos correctos (evita valores hardcodeados en px; usa porcentajes o Dimensions cuando sea necesario).
-
-**Criterio de éxito**: la app no debe tener ningún error visual obvio en LoginScreen, RegisterScreen, ProfileDetailScreen ni SwipeScreen al hacer scroll, abrir el teclado, o interactuar con los gestos de swipe.
+En general, dale un repaso a todas las pantallas buscando textos cortados, elementos que se monten unos encima de otros, cosas que se salgan de la pantalla... e intenta usar medidas relativas en lugar de píxeles fijos donde sea posible.
 
 ---
 
 ## Sprint 9 — Refactorización v1: Separación de Estilos
 
-Refactoriza la capa de estilos de HomiMatchApp separando los estilos inline de los componentes a archivos dedicados, y establece un sistema de tokens de diseño.
+El código tiene los estilos mezclados con la lógica en cada pantalla y empieza a ser difícil de mantener. Quiero separarlo.
 
-**Lo que debes hacer:**
+La idea es mover los `StyleSheet.create` de cada pantalla a su propio archivo de estilos (algo como `LoginScreen.styles.ts`), y crear una carpeta `src/styles/` con eso ordenado. Además, unificar los colores, espaciados y tamaños de fuente en archivos de tokens para poder cambiarlos desde un sitio central.
 
-1. **Crea la carpeta `src/styles/`** con la siguiente estructura:
-   ```
-   src/styles/
-   ├── tokens/
-   │   ├── colors.ts       # paleta de colores y semántica (primary, surface, text, etc.)
-   │   ├── spacing.ts      # escala de spacing (xs, sm, md, lg, xl, xxl)
-   │   └── fonts.ts        # tamaños de fuente y pesos
-   ├── screens/            # estilos de cada pantalla
-   │   ├── LoginScreen.styles.ts
-   │   ├── RegisterScreen.styles.ts
-   │   ├── SwipeScreen.styles.ts
-   │   ├── ProfileDetailScreen.styles.ts
-   │   ├── ChatScreen.styles.ts
-   │   ├── MatchesScreen.styles.ts
-   │   ├── FiltersScreen.styles.ts
-   │   ├── EditProfileScreen.styles.ts
-   │   ├── FlatExpensesScreen.styles.ts
-   │   ├── FlatSettlementScreen.styles.ts
-   │   └── ... (una por cada pantalla existente)
-   └── common.ts           # estilos reutilizables: containers, cards, inputs, headers
-   ```
+Los estilos que se repiten en muchas pantallas (el contenedor base, el botón principal, los inputs...) sería ideal moverlos a un archivo común y reutilizarlos.
 
-2. **Extrae los StyleSheets**: cada pantalla actualmente tiene su `StyleSheet.create` inline al final del archivo. Muévelo a su archivo `.styles.ts` correspondiente y haz el import en la pantalla. El archivo de estilos exporta un único objeto `styles` por defecto.
-
-3. **Aplica tokens**: sustituye los valores hardcodeados de colores, spacings y tamaños de fuente por referencias a los tokens. Ejemplo: en lugar de `color: '#FFFFFF'` usa `colors.white`; en lugar de `padding: 16` usa `spacing.md`.
-
-4. **`common.ts`**: extrae los estilos repetidos en múltiples pantallas (por ejemplo, el contenedor base con fondo gradiente, el estilo de botón primario, el estilo de input) a este archivo y reutilízalos importándolos.
-
-5. **No cambies la lógica**: esta refactorización es puramente estructural. El comportamiento visual debe quedar idéntico antes y después.
-
-**Resultado esperado**: ~50 archivos modificados/creados. El código queda más limpio y los estilos son fáciles de modificar globalmente cambiando un token.
+Importante: esto es una refactorización pura, no debe cambiar nada visualmente ni en la lógica. Solo reorganizar el código para que sea más mantenible.
 
 ---
 
 ## Sprint 10 — Recuperación de Contraseñas
 
-Implementa el flujo completo de recuperación de contraseña por email en HomiMatchApp.
+Necesito añadir el flujo típico de "olvidé mi contraseña". Desde el login debería haber un enlace que lleve a una pantalla donde el usuario pone su email y le llegue un correo con un enlace para restablecer la contraseña.
 
-**Lo que debes crear:**
+Al tocar ese enlace desde el email, la app debería abrirse directamente en una pantalla donde pueda introducir la nueva contraseña (con confirmación). Habría que configurar el deep linking para que funcione tanto en Android como en iOS.
 
-1. **`ForgotPasswordScreen`**: pantalla accesible desde `LoginScreen` (enlace "¿Olvidaste tu contraseña?"). Tiene un campo de email y un botón de enviar. Al enviarlo, llama al servicio de recuperación y muestra un mensaje de confirmación ("Te hemos enviado un email con las instrucciones").
+Supabase tiene funciones específicas para esto (`resetPasswordForEmail` y `updateUser`), así que debería ser bastante directo de implementar.
 
-2. **`ResetPasswordScreen`**: pantalla que se abre cuando el usuario toca el enlace del email de recuperación. Tiene dos campos (nueva contraseña y confirmación) y un botón de guardar. Valida que ambas contraseñas coincidan y cumplan los requisitos mínimos.
-
-3. **Servicio de recuperación** (en `authService` o archivo propio):
-   - `sendPasswordResetEmail(email: string)`: llama a `supabase.auth.resetPasswordForEmail()` con la URL de redirect correcta
-   - `updatePassword(newPassword: string)`: llama a `supabase.auth.updateUser({ password: newPassword })`
-
-4. **Deep linking**: configura el deep link `homimatch://reset-password` para que Android e iOS abran `ResetPasswordScreen` cuando el usuario toca el enlace del email. Configura:
-   - En Android: `AndroidManifest.xml` con el intent filter correspondiente
-   - En iOS: `Info.plist` con el URL scheme
-   - En el navegador: maneja el parámetro de sesión que devuelve Supabase en la URL de reset
-
-5. **Integración en `AppNavigator`**: añade `ForgotPasswordScreen` y `ResetPasswordScreen` al stack de navegación de autenticación (fuera del flujo autenticado).
-
-6. **Testing del flujo**: verifica que el flujo completo funciona: usuario en LoginScreen → toca "¿Olvidaste tu contraseña?" → introduce email → recibe email → toca enlace → abre ResetPasswordScreen → introduce nueva contraseña → vuelve a LoginScreen.
+Añade las dos pantallas nuevas al navegador de autenticación, fuera del flujo de usuario autenticado.
 
 ---
 
 ## Sprint 11 — Mejoras UI de Detalles
 
-Mejora la interfaz de las pantallas de detalle de perfiles y pisos en HomiMatchApp.
+Las pantallas de detalle de perfiles y pisos están un poco sosas comparadas con el resto de la app. Quiero rediseñarlas para que tengan el mismo estilo glassmorphism.
 
-**Lo que debes hacer:**
+Para el detalle de perfil: las fotos deberían ir en un carrusel, la info básica (nombre, edad, ciudad) flotando encima de las fotos, y el resto de la información organizada en secciones con tarjetas: intereses, lo que busca, si tiene piso o no... Los botones de like/dislike que se queden abajo visibles sin tapar nada.
 
-1. **`ProfileDetailScreen`**: rediseña el layout siguiendo el estilo glassmorphism del resto de la app. La pantalla debe:
-   - Mostrar las fotos del perfil en un carrusel con paginación (bullets o números)
-   - Mostrar el nombre, edad, género y ciudad en un header flotante sobre la última foto
-   - Organizar la información en secciones con tarjetas glassmorphism: "Sobre mí", "Mis intereses" (chips), "Lo que busco", "Mi situación" (tiene piso / busca piso)
-   - Los botones de like/dislike deben estar visibles en la parte inferior sin tapar el contenido
-   - Asegúrate de que el scroll funciona correctamente
+Para el detalle del piso: también carrusel de fotos, la información del piso clara (precio, habitaciones, servicios), los compañeros actuales con sus fotos, las reglas del piso, y un botón para contactar o pedir unirse según el estado.
 
-2. **`RoomDetailScreen`**: mejora la presentación del piso con:
-   - Carrusel de fotos del piso
-   - Información clara del piso: dirección, precio, habitaciones disponibles, servicios incluidos
-   - Sección de roommates actuales con sus avatares
-   - Reglas del piso en formato legible
-   - Botón de contactar / solicitar unirse (según el estado del match)
+Si mientras tocas esto ves colores o espaciados que no están en los tokens, los añades.
 
-3. **Actualización del tema global**: si durante el rediseño detectas valores de color o spacing que deberían estar en los tokens pero no están, añádelos a los archivos de tokens de `src/styles/tokens/`.
-
-4. **`FlatExpensesScreen`** (fix menor): corrige cualquier problema visual que exista en la pantalla de gastos (padding, alineación, overflow de texto).
-
-**Restricción**: no cambies la lógica de negocio ni las llamadas a servicios. Solo modifica la capa de presentación.
+No toques la lógica ni las llamadas a los servicios, solo la parte visual.
 
 ---
 
 ## Sprint 12 — Sistema de Invitaciones
 
-Implementa un sistema de códigos de invitación para que los propietarios puedan invitar a compañeros a unirse a su piso.
+Quiero que un propietario pueda generar un código para invitar a alguien a su piso, y que ese alguien pueda introducirlo durante el registro para quedar asociado directamente al piso sin tener que pasar por el swipe normal.
 
-**Lo que debes crear:**
+En el registro, después de la fase de género, añade un paso que pregunte si tienes un código de invitación. Si no tienes, sigues normal. Si tienes, lo introduces y te unes al piso.
 
-1. **Fase 4 del registro (`Phase4Invitation`)**: nueva pantalla en el flujo de registro multi-fase. Aparece después de la fase de género y pregunta al usuario si tiene un código de invitación. Dos opciones: "Tengo un código" (muestra input para introducirlo) y "No tengo código" (continúa al flujo normal). Si introduce un código válido, el usuario queda asociado al piso.
+El propietario debería poder generar el código desde la pantalla de gestión del piso, verlo, copiarlo y compartirlo fácilmente.
 
-2. **Servicio `roomInvitationService`**:
-   - `generateInviteCode(flatId: string)`: genera un código único (6-8 caracteres alfanuméricos) y lo guarda en Supabase
-   - `validateInviteCode(code: string)`: verifica que el código existe, no ha expirado y el piso tiene habitaciones disponibles
-   - `joinFlatWithCode(code: string, userId: string)`: asocia al usuario al piso, asigna habitación disponible, y devuelve los datos del piso
-
-3. **Edge Function `room-invitations`**:
-   - POST `/generate`: genera y devuelve un nuevo código para el piso del propietario autenticado
-   - POST `/join`: valida el código y une al usuario al piso
-   - GET `/validate/:code`: verifica si un código es válido sin unirse aún
-
-4. **Tabla `room_invitation_codes`**: `id`, `flat_id`, `code` (único), `created_by`, `created_at`, `expires_at` (nullable), `used_by` (nullable), `used_at` (nullable)
-
-5. **UI en `RoomManagementScreen`**: botón "Generar código de invitación" que muestra el código generado con opción de copiarlo al portapapeles y compartirlo.
-
-6. **Matches automáticos**: cuando un usuario se une a un piso mediante código de invitación, crea automáticamente registros de match entre él y todos los compañeros existentes del piso con estado `accepted` (son compañeros, ya se conocen).
-
-7. **`RoomDetailScreen`**: muestra la lista de roommates actuales del piso (nombre + foto).
+El backend necesita generar y validar estos códigos (que sean únicos, que no estén expirados, que queden habitaciones disponibles). Cuando alguien se une por código, créale automáticamente los matches con los compañeros que ya están en el piso, porque ya se conocen.
 
 ---
 
 ## Sprint 13 — Push Notifications
 
-Implementa el sistema completo de notificaciones push en HomiMatchApp usando Firebase Cloud Messaging.
+Quiero notificaciones push para los eventos principales de la app. El setup es con Firebase Cloud Messaging, que creo que ya está configurado a medias.
 
-**Lo que debes crear:**
+Los casos que me interesan son: mensaje nuevo en el chat, cuando tienes un nuevo match, cuando alguien añade un gasto en el piso, cuando alguien salda una deuda, y cuando te asignan una habitación.
 
-1. **Configuración de Firebase**:
-   - Integra `@react-native-firebase/app` y `@react-native-firebase/messaging`
-   - Configura `google-services.json` en Android y `GoogleService-Info.plist` en iOS
-   - Solicita permisos de notificaciones al usuario al abrir la app
+Al tocar la notificación debería llevarte directamente a la pantalla relevante (el chat, la pantalla de matches, los gastos...).
 
-2. **Servicio `pushTokenService`**:
-   - `registerToken()`: obtiene el FCM token del dispositivo y lo guarda en Supabase vinculado al usuario autenticado (`push_tokens` table: `user_id`, `token`, `platform`, `updated_at`)
-   - `removeToken()`: elimina el token al hacer logout
+Hay que pedir permiso al usuario cuando abre la app, guardar el token del dispositivo vinculado a su cuenta, y eliminarlo cuando hace logout. Si el usuario ya está dentro del chat del que llega la notificación, no le muestres la notificación de ese chat.
 
-3. **Servicio `notificationService`**:
-   - Maneja notificaciones en foreground (muestra una notificación local si la app está abierta)
-   - Maneja notificaciones en background (el handler de FCM se encarga)
-   - Maneja el tap en notificación (navegación por deep link al contenido relevante)
-   - Excepción: si el usuario ya está en el chat del que llega la notificación, no la muestra
-
-4. **Edge Functions de Supabase** (se llaman desde los triggers de Supabase o desde otras edge functions):
-   - `push-new-message`: envía push al destinatario cuando llega un mensaje nuevo en el chat
-   - `push-match-status`: envía push cuando cambia el estado de un match (nuevo match, rechazo)
-   - `push-flat-expense`: envía push a todos los compañeros cuando se crea un nuevo gasto
-   - `push-flat-settlement`: envía push cuando alguien liquida una deuda
-   - `push-room-assignment`: envía push cuando el propietario asigna una habitación a un compañero
-
-5. **Deep linking desde notificaciones**: configurar el payload de cada tipo de notificación con datos suficientes para navegar directamente al contenido:
-   - Mensaje → abre `ChatScreen` del chat correspondiente
-   - Match → abre `MatchesScreen`
-   - Gasto → abre `FlatExpensesScreen`
-
-6. **Permisos Android**: configura en `AndroidManifest.xml` los permisos necesarios para notificaciones y el canal de notificaciones por defecto.
+Las edge functions que disparan las notificaciones van en Supabase, llamadas desde triggers o desde otras funciones.
 
 ---
 
 ## Sprint 14 — Chats en Tiempo Real
 
-Implementa mensajería en tiempo real y rediseña la UI del sistema de chat en HomiMatchApp.
+El chat funciona pero no es en tiempo real, hay que recargar para ver mensajes nuevos. Quiero arreglarlo con Supabase Realtime.
 
-**Lo que debes implementar:**
+Cuando llega un mensaje nuevo, debería aparecer solo sin recargar nada. Si estás al final del scroll que baje automático, si no, muestra algún indicador de que hay mensajes nuevos. Al desmontar la pantalla cancela la suscripción.
 
-1. **Supabase Realtime en `ChatScreen`**:
-   - Suscríbete al canal de mensajes del chat actual usando `supabase.channel()` con filtros por `chat_id`
-   - Cuando llega un mensaje nuevo, añádelo al estado local sin recargar todos los mensajes
-   - Implementa autoscroll automático al recibir un mensaje nuevo (si el usuario está en el fondo del scroll) o al enviar un mensaje propio
-   - Al desmontar el componente, cancela la suscripción
+En la lista de chats (MatchesScreen), que se ordene por el último mensaje y que se actualice solo también. Pon algún indicador de mensajes no leídos.
 
-2. **Orden de chats en `MatchesScreen`**:
-   - La lista de chats debe ordenarse por el timestamp del último mensaje (más reciente primero)
-   - Muestra un indicador de mensajes no leídos (punto o número) en los chats con mensajes no leídos
-   - Suscríbete en tiempo real a los cambios en los chats del usuario para que el orden se actualice automáticamente
+Aprovecha para rediseñar un poco el chat con el estilo glassmorphism: burbujas diferenciadas para tus mensajes y los del otro, timestamps agrupados por día, y que el input de texto no quede tapado por el teclado.
 
-3. **Rediseño de `ChatScreen`** con glassmorphism:
-   - Header con foto y nombre del contacto, con botón de volver
-   - Burbujas de mensaje diferenciadas: las tuyas a la derecha (color primario), las del otro a la izquierda (glassmorphism)
-   - Timestamps en los mensajes, agrupados por día ("Hoy", "Ayer", fecha completa)
-   - Input de texto en la parte inferior con botón de enviar, que no tape los mensajes cuando el teclado está abierto
-
-4. **Rediseño de `MatchesScreen`**:
-   - Lista de matches con foto, nombre y último mensaje (preview truncado)
-   - Indicador de tiempo del último mensaje (hace X min, hace X horas, etc.)
-   - Sección separada para nuevos matches sin mensajes aún
-
-5. **Actualización UI de formularios**: con el nuevo sistema de estilos y glassmorphism, actualiza la UI de:
-   - `EditProfileScreen`, `CreateFlatScreen`, `RoomEditScreen`, `RoomManagementScreen`
-   - `FlatExpensesScreen`, `FlatSettlementScreen`
-   - Asegúrate de que todos siguen el mismo lenguaje visual
+De paso actualiza también la UI de EditProfileScreen, CreateFlatScreen, y las pantallas de gastos para que sigan el mismo lenguaje visual.
 
 ---
 
 ## Sprint 15 — UI Fix Global
 
-Realiza una corrección masiva de problemas de UX en todas las pantallas de HomiMatchApp, con foco especial en el comportamiento del teclado y la adaptación a distintos tamaños de pantalla.
+Hay bastantes problemillas de UX acumulados que quiero limpiar de una vez.
 
-**Lo que debes corregir:**
+El principal: en todas las pantallas con formularios, cuando aparece el teclado los inputs quedan tapados. Hay que hacer que haga scroll automático para mantener el campo activo visible. Afecta al registro completo, EditProfileScreen, CreateFlatScreen, ForgotPasswordScreen y ResetPasswordScreen.
 
-1. **Autoscroll con teclado**: en todas las pantallas con formularios, el contenido debe hacer scroll automáticamente para que el campo de input activo no quede tapado por el teclado. Implementa esto de forma consistente en:
-   - Todas las fases del registro (`Phase1Email`, `Phase2Name`, `Phase3BirthDate`, `Phase3Gender`)
-   - `EditProfileScreen`
-   - `CreateFlatScreen` y `RoomEditScreen`
-   - `ForgotPasswordScreen` y `ResetPasswordScreen`
-   - Usa `KeyboardAwareScrollView` o una solución propia con `KeyboardAvoidingView` + `ScrollView`
+Revisa el registro en pantallas pequeñas (320pt de ancho) para que todo quepa bien.
 
-2. **Pantallas de registro**: revisa el flujo completo de registro en un dispositivo pequeño (320pt de ancho). Asegúrate de que todos los elementos caben y son accesibles.
+En SwipeScreen, cambia los tamaños y posiciones hardcodeados en píxeles por valores relativos (porcentajes o Dimensions), para que las cards se vean bien en cualquier tamaño de pantalla.
 
-3. **`ProfileDetailScreen` y `RoomDetailScreen`**: verifica en múltiples tamaños de pantalla que el layout es correcto, los carruseles de fotos funcionan, y los botones de acción no quedan cortados.
+La TabBar inferior en iPhones con home indicator a veces queda cortada, hay que añadir el padding inferior correspondiente con SafeAreaInsets.
 
-4. **`ForgotPasswordScreen` y `ResetPasswordScreen`**: corrige cualquier problema de layout. El formulario debe estar centrado verticalmente cuando no hay teclado y subir cuando el teclado aparece.
-
-5. **`SwipeScreen` con estilos relativos**: reemplaza todos los valores de posición y tamaño hardcodeados en px por valores relativos (porcentajes de `Dimensions.get('window')`) para que las cards de swipe se vean bien en pantallas de distintos tamaños.
-
-6. **`TabBar`**: verifica que la barra de navegación inferior no queda cortada en dispositivos con notch inferior (iPhone con home indicator). Aplica `paddingBottom` con `useSafeAreaInsets()` si es necesario.
-
-7. **`MatchesScreen`**: ajusta el padding y spacing para que la lista de matches no tenga espacio excesivo ni insuficiente.
-
-8. **Porcentajes de compatibilidad**: si el porcentaje calculado puede salir de rango (< 0 o > 100), añade un clamp para asegurar que siempre está entre 0 y 100.
+Si el porcentaje de compatibilidad puede dar valores por debajo de 0 o por encima de 100, ponle un clamp.
 
 ---
 
 ## Sprint 16 — Swipe Porcentual
 
-Implementa un sistema de compatibilidad porcentual visible en las cards de swipe de HomiMatchApp.
+Quiero que en las cards del swipe aparezca un porcentaje de compatibilidad entre el usuario y el candidato. Algo así como una puntuación de 0 a 100 calculada en base a criterios como: si buscan en la misma ciudad, si los rangos de precio se solapan, cuántos intereses tienen en común, si sus estilos de vida encajan, si uno tiene piso y el otro busca...
 
-**Lo que debes implementar:**
+Muéstralo de forma visual en la card, puede ser un badge con colorcillo (verde si es alta, amarillo si es media, rojo si es baja) o una barra de progreso, lo que veas más limpio.
 
-1. **Cálculo de porcentaje de compatibilidad**: crea una función `calculateCompatibility(userProfile, candidateProfile, userFilters)` que devuelva un número de 0 a 100. Factores a considerar (con pesos configurables):
-   - Coincidencia en rango de precio buscado
-   - Coincidencia de ciudad/zona
-   - Coincidencia de intereses (porcentaje de intereses en común)
-   - Compatibilidad de estilos de vida
-   - Coincidencia en tipo de usuario (tiene piso / busca piso)
-   - Preferencias de género del compañero
+El algoritmo de recomendaciones del backend debería ordenar los candidatos por compatibilidad para que los mejores aparezcan primero.
 
-2. **Visualización en cards de swipe**: en cada card del `SwipeScreen`, añade un badge o indicador visual que muestre el porcentaje de compatibilidad. Puede ser:
-   - Un badge circular en la esquina superior derecha con el número y color (verde > 70%, amarillo 40-70%, rojo < 40%)
-   - Una barra de progreso en la parte inferior de la card
-
-3. **`SwipeScreenV2`**: crea una nueva versión del SwipeScreen que incorpore este sistema. Mantén la funcionalidad de swipe existente (gestos, botones de like/dislike) y añade la compatibilidad. Usa el nombre `SwipeScreenV2` o actualiza el existente si prefieres.
-
-4. **Mejoras en el algoritmo de recomendaciones** (backend): ordena los candidatos devueltos por la Edge Function de recomendaciones por porcentaje de compatibilidad descendente, para que los más compatibles aparezcan primero en el stack de swipe.
-
-5. **Correcciones en backend de matches**: verifica que la lógica de matches funciona correctamente con el nuevo sistema. Cuando ambos usuarios se dan like mutuamente, el match debe crearse correctamente y aparecer en `MatchesScreen`.
-
-6. **Optimización de queries**: si la query de perfiles candidatos hace demasiadas llamadas o es lenta, optimízala con una query única que traiga todos los datos necesarios para calcular la compatibilidad.
+Verifica también que cuando dos usuarios se dan like mutuamente el match se crea correctamente y aparece en la pantalla de matches.
 
 ---
 
 ## Sprint 17 — Hotfixes
 
-Corrige los errores críticos detectados inmediatamente después del sprint de swipe porcentual.
+Después del sprint anterior hay algo roto que hay que arreglar urgente. Los commits a2ec3d6 y 964a01a introdujeron algún bug, revísalos.
 
-**Hotfixes a realizar:**
+Los síntomas que puede tener son: el porcentaje de compatibilidad no se muestra bien o no se calcula, las cards del swipe no cargan o se quedan en carga infinita, los matches no se crean bien, o hay algún problema de navegación después de hacer swipe.
 
-1. **Hotfix principal**: identifica y corrige el error crítico que impide el funcionamiento correcto de alguna funcionalidad core. Revisa los logs de error y el comportamiento en los commits `a2ec3d6` y `964a01a`. Los síntomas más probables son:
-   - El porcentaje de compatibilidad no se calcula o muestra incorrectamente
-   - Las cards de swipe no cargan o se quedan en estado de carga infinita
-   - El match no se crea cuando ambos usuarios se dan like
-   - La navegación falla después de un swipe
+Comprueba también que lo que funcionaba antes sigue funcionando: el registro completo, el chat en tiempo real, las notificaciones y la gestión de gastos.
 
-2. **Verifica regresiones**: después de los cambios del Sprint 16, comprueba que las funcionalidades anteriores siguen funcionando:
-   - El flujo de registro completo (4 fases)
-   - El chat en tiempo real
-   - Las push notifications
-   - La gestión de gastos
-
-3. **Correcciones de estabilidad**: si hay crashes o comportamientos inesperados en producción derivados de los últimos sprints, corrígelos con el menor impacto posible en el código.
-
-**Nota**: este sprint es de hotfixes urgentes. Mantén los cambios mínimos y enfocados. No añadas funcionalidades nuevas.
+Cambios mínimos y enfocados, nada de features nuevas.
 
 ---
 
 ## Sprint 18 — Filtros Mejorados y Google Auth
 
-Mejora el sistema de filtros de búsqueda y completa la integración con Google Sign-In en HomiMatchApp.
+La pantalla de filtros se quedó bastante básica, quiero mejorarla. Añade los filtros que falten: rango de precio, número de habitaciones, tipo de usuario, ciudad, zona, rango de edad, género... Usa sliders para los rangos numéricos, chips para las opciones múltiples. Añade un botón para resetear todo y un contador de cuántos filtros tienes activos. Que los filtros persistan entre sesiones guardándolos en AsyncStorage.
 
-**Lo que debes implementar:**
+Algunos filtros más avanzados estarán reservados para usuarios premium (bloqueados con un candado y opción de upgrade). Crea un contexto para gestionar si el usuario es premium o no, leyendo el campo `is_premium` de su perfil en Supabase.
 
-1. **Actualización completa de `FiltersScreen`**:
-   - Añade todos los filtros relevantes que puedan faltar: rango de precio, número de habitaciones, tipo de usuario (busca piso / tiene piso / ambos), ciudad, zona, rango de edad, género del compañero
-   - Mejora la UX de los filtros: usa sliders para rangos numéricos, chips para selección múltiple, y toggles para opciones binarias
-   - Añade un botón "Restablecer filtros" que vuelva a los valores por defecto
-   - Muestra un contador de cuántos filtros están activos
-   - Guarda los filtros aplicados en `AsyncStorage` para que persistan entre sesiones
+El login con Google está a medias: si es la primera vez que alguien se registra con Google, que pase por el flujo normal de registro para completar su perfil. Si ya tiene cuenta, que entre directamente. Arregla lo que haga falta.
 
-2. **`PremiumContext`**: crea un contexto que gestione el estado premium del usuario. Por ahora, con lógica básica:
-   - `isPremium: boolean` (leer de Supabase, tabla `profiles`, campo `is_premium`)
-   - `premiumFeatures`: lista de features disponibles según el plan
-   - `checkPremiumStatus()`: refresca el estado desde el backend
-   - Algunos filtros avanzados estarán marcados como premium (bloqueados para usuarios free, con un icono de candado y prompt de upgrade)
-
-3. **`MainNavigator` anclado**: corrige el problema de que el `MainNavigator` (con los tabs) se reinicia o "salta" en ciertas transiciones de navegación. El navigator debe mantenerse montado y el estado de los tabs debe persistir correctamente.
-
-4. **Google Authentication finalizada**:
-   - Completa el flujo de registro con Google: si el usuario se registra con Google y es la primera vez, llévalo al flujo de registro multi-fase para completar su perfil (nombre, fecha de nacimiento, género, ciudad)
-   - Si ya tiene cuenta con Google, haz login directo
-   - Maneja el caso de que el email de Google ya esté registrado con contraseña (muéstrale un mensaje apropiado)
-   - Corrige cualquier error en `GoogleSignInButton` o en el servicio de auth de Google
-
-5. **Corrección en `TabBarIcon`**: si los iconos de la barra de tabs tienen algún problema visual (tamaño incorrecto, color que no respeta el tema, etc.), corrígelo.
+También hay un bug con el navegador principal que a veces se reinicia o salta al cambiar de tab, arréglalo.
 
 ---
 
 ## Sprint 19 — Realtime y Estilos de Vida
 
-Extiende el sistema de tiempo real a todas las pantallas relevantes y añade el campo de estilos de vida en los perfiles.
+Quiero extender el tiempo real a más sitios. En la pantalla de gastos que se actualice automáticamente cuando alguien añade uno. En las liquidaciones igual. En la lista de matches que también aparezcan los nuevos matches sin recargar. En el detalle del piso que se actualice si alguien entra o sale. En la gestión del piso si hay cambios en habitaciones o asignaciones.
 
-**Lo que debes implementar:**
+En todos los casos gestiona bien los canales de Supabase (nombres únicos por pantalla y recurso) y cancela las suscripciones cuando se desmonta el componente.
 
-1. **Supabase Realtime en todas las pantallas**:
+Aparte, quiero añadir un campo de estilos de vida en los perfiles: cosas como "madrugador", "noctámbulo", "no fumador", "deportista", "tiene mascota"... El usuario puede elegir varios (máximo 5 o así) con chips en su perfil, y se muestran en el detalle de otros perfiles. Incorpóralos también al cálculo de compatibilidad.
 
-   - **`FlatExpensesScreen`**: suscríbete a cambios en `flat_expenses` del piso actual. Cuando se añada o modifique un gasto, actualiza la lista automáticamente sin recargar.
-
-   - **`FlatSettlementScreen`**: suscríbete a cambios en `flat_settlements`. Cuando alguien salda una deuda, actualiza el resumen.
-
-   - **`MatchesScreen`**: ya tiene realtime para el orden de chats. Añade también suscripción a nuevos matches para que aparezcan sin recargar la pantalla.
-
-   - **`RoomDetailScreen`**: suscríbete a cambios en los miembros del piso (cuando alguien se une o sale).
-
-   - **`RoomManagementScreen`**: suscríbete a cambios en las habitaciones y asignaciones.
-
-   En todos los casos: gestiona correctamente los canales (usar nombres únicos por pantalla + ID de recurso) y cancela las suscripciones en el `useEffect` cleanup.
-
-2. **Campo "Estilos de vida" en perfiles**:
-   - Añade un campo `lifestyle_habits` (array de strings) a la tabla `profiles` en Supabase
-   - Define un conjunto predeterminado de opciones: "Madrugador", "Noctámbulo", "No fumador", "Fumador", "Deportista", "Tranquilo", "Sociable", "Trabajador desde casa", "Mascota", etc.
-   - En `EditProfileScreen`: añade una sección de selección de estilos de vida con chips (selección múltiple, máximo 5)
-   - En `ProfileDetailScreen`: muestra los estilos de vida del usuario con iconos o emojis representativos
-   - Incluye los estilos de vida en el cálculo de compatibilidad del Sprint 16
-
-3. **Inicio de Dark Mode**: prepara el terreno para el dark mode (Sprint 20):
-   - Asegúrate de que `ThemeContext` existe y tiene la estructura correcta para soportar dos temas
-   - Identifica qué colores hardcodeados hay en los componentes que dificultarán el dark mode y apúntalos (no los arregles aún, solo identifícalos)
+Por último, prepara el ThemeContext para que soporte dos temas (claro y oscuro) de cara al sprint siguiente, aunque no hace falta implementarlo todavía.
 
 ---
 
 ## Sprint 20 — Dark Mode
 
-Implementa el modo oscuro completo en toda la aplicación HomiMatchApp.
+Quiero implementar el modo oscuro completo en toda la app.
 
-**Lo que debes implementar:**
+Necesito un ThemeContext que gestione dos temas: claro y oscuro. Que guarde la preferencia en AsyncStorage y que al arrancar cargue la que tenía o detecte la preferencia del sistema. Expone el tema actual, un booleano isDark, y una función para cambiar.
 
-1. **Sistema de temas en `ThemeContext`**:
-   - Define dos temas completos: `lightTheme` y `darkTheme`, cada uno con todas las variables de color necesarias: `background`, `surface`, `surfaceVariant`, `primary`, `onPrimary`, `text`, `textSecondary`, `border`, `inputBackground`, `cardBackground`, `tabBar`, etc.
-   - El contexto expone: `theme` (objeto con los colores actuales), `isDark` (boolean), `toggleTheme()` (función para cambiar)
-   - La preferencia se persiste con `AsyncStorage`
-   - Al iniciar la app, carga la preferencia guardada (o detecta la preferencia del sistema con `Appearance.getColorScheme()`)
+Hay que recorrer todas las pantallas y cambiar los colores hardcodeados por referencias al tema actual. Los archivos de estilos tendrán que convertirse en funciones que reciben el tema como parámetro.
 
-2. **Actualización de todos los estilos**: recorre todas las pantallas y componentes. En lugar de usar colores hardcodeados, usa `theme.background`, `theme.text`, etc. desde el contexto:
-   - Usa `const { theme } = useTheme()` en cada pantalla
-   - Los archivos `.styles.ts` deben convertirse en funciones que reciben `theme` como parámetro: `const styles = (theme: Theme) => StyleSheet.create({...})`
-   - Asegúrate de que el efecto glassmorphism funciona bien en ambos modos (ajusta la opacidad del blur según el modo)
+Empieza por las pantallas más importantes: SwipeScreen, el chat, la lista de matches, el detalle de perfil y piso, y el login/registro.
 
-3. **Pantallas prioritarias** (empieza por estas):
-   - `SwipeScreen`: las cards deben verse bien en modo oscuro
-   - `ChatScreen` y `MatchesScreen`: burbujas de chat y lista de matches
-   - `ProfileDetailScreen` y `RoomDetailScreen`: fondos y textos
-   - `LoginScreen` y `RegisterScreen`: formularios de autenticación
-
-4. **Persistencia y transición**:
-   - La transición entre modos debe ser suave (no hay animación requerida, pero el cambio no debe causar un flash blanco)
-   - El tema seleccionado debe mantenerse al cerrar y reabrir la app
-
-5. **Toggle en la UI**: añade un switch de modo oscuro/claro en `EditProfileScreen` o en una pantalla de configuración, accesible desde el tab de perfil.
+El cambio entre modos que no cause un flash blanco. Añade el toggle en algún sitio accesible del perfil o ajustes.
 
 ---
 
 ## Sprint 21 — Premium Features
 
-Implementa la lógica inicial de características premium con limitaciones para usuarios free.
+Quiero implementar las primeras limitaciones de la cuenta free.
 
-**Lo que debes implementar:**
+Los usuarios free tienen un límite de swipes diarios (unos 20 o así). Cuando lleguen al límite que aparezca un mensaje explicándolo con opción de upgrade. Los filtros avanzados también van a estar bloqueados para free, muéstralos con un candadito y al intentar usarlos muestra un modal de upgrade con los beneficios.
 
-1. **`PremiumContext` completado** (basado en el inicio del Sprint 18):
-   - Campo `is_premium` en tabla `profiles` de Supabase (boolean, default false)
-   - El contexto se inicializa leyendo este campo al hacer login
-   - Expone: `isPremium`, `swipesRemaining` (para usuarios free), `canUseFeature(featureName: string)`
+El contexto de premium que se creó en el sprint 18 hay que completarlo: que lea el campo `is_premium` de Supabase al hacer login, y que exponga funciones para saber si puedes usar una feature concreta.
 
-2. **Limitaciones para usuarios free**:
-   - **Límite de swipes diarios**: los usuarios free tienen un límite de, por ejemplo, 20 swipes al día. Al llegar al límite, el `SwipeScreen` muestra un mensaje "Has alcanzado tu límite diario" con un prompt de upgrade
-   - **Filtros avanzados bloqueados**: algunos filtros en `FiltersScreen` están reservados para premium. Muéstralos con un icono de candado 🔒 y al intentar usarlos, muestra un modal de upgrade
-   - **Sin anuncios**: (placeholder para monetización futura)
+Crea un componente badge para las features premium, y el modal de upgrade con los beneficios y un botón de "Obtener Premium" (puede llevar a una pantalla placeholder por ahora).
 
-3. **Validación de email mejorada** (edge function `auth-check-email`):
-   - Antes de enviar el email de verificación en el registro, verifica que el formato es válido y que el dominio existe (DNS check básico)
-   - Si el email parece inválido, devuelve un error descriptivo antes de intentar crear el usuario en Supabase
-
-4. **UI para features premium**:
-   - Crea un componente `PremiumBadge` que se muestra junto a las features de pago
-   - Crea un modal o bottom sheet `PremiumUpgradeModal` con: descripción de los beneficios premium, botón "Obtener Premium" (que de momento puede navegar a una pantalla placeholder), y botón "Cerrar"
-   - El modal se puede invocar desde cualquier parte de la app
+De paso, antes de enviar el email de verificación en el registro, valida que el email tenga un formato correcto y que el dominio exista (check de DNS básico).
 
 ---
 
 ## Sprint 22 — UI Dark Mode Refinamiento
 
-Refina los detalles del modo oscuro y corrige problemas detectados tras la implementación inicial.
+El modo oscuro tiene bastantes cosas que no se ven bien, hay que hacer una pasada de correcciones.
 
-**Lo que debes corregir y mejorar:**
+El componente FormSection (el que agrupa los campos en los formularios de edición) no se adapta al tema, los fondos y colores están hardcodeados.
 
-1. **`FormSection` para ambos modos**: el componente `FormSection` (usado en formularios de edición) debe adaptar sus colores al tema actual. Corrige el background del contenedor, el color del título de sección, y los bordes para que se vean bien tanto en claro como en oscuro.
+En general, revisa todas las pantallas en modo oscuro buscando: textos que no se ven por el fondo, inputs con fondo incorrecto, iconos que no cambian de color, bordes que no respetan el tema, modales con fondo blanco en oscuro...
 
-2. **Correcciones en múltiples pantallas**: revisa en modo oscuro cada pantalla y corrige los elementos que no se adaptan correctamente:
-   - Textos blancos sobre fondo blanco (o negros sobre negro)
-   - Inputs con fondo hardcodeado que no respeta el tema
-   - Iconos con color fijo que no cambia con el tema
-   - Bordes con colores hardcodeados
-   - Modales y bottom sheets con fondo incorrecto
+Hay un bug: los usuarios que tienen piso (owners) no pueden ver otros owners en sus recomendaciones. Arréglalo en la edge function de recomendaciones.
 
-3. **Owner puede buscar owner**: corrige el bug por el cual un usuario con tipo "owner" (tiene piso) no podía ver en sus recomendaciones a otros owners. La lógica de recomendaciones debe permitir que un owner busque otro owner para intercambios o colaboraciones. Actualiza la Edge Function de recomendaciones para eliminar esta restricción incorrecta.
+Añade también un toggle en el perfil para que el usuario pueda "pausar" su visibilidad en el swipe. Si lo desactiva no aparece en las recomendaciones de nadie. Cuando esté inactivo muéstrale algún banner avisándole.
 
-4. **Sistema de perfil activo/inactivo**:
-   - Añade campo `is_active` (boolean, default true) a la tabla `profiles`
-   - En `EditProfileScreen` o en la configuración, añade un toggle "Perfil activo" que permita al usuario pausar su visibilidad en el swipe
-   - Los perfiles inactivos no aparecen en las recomendaciones de swipe
-   - Cuando el perfil está inactivo, muestra un banner informativo en la app
-
-5. **Merge y limpieza**: después de las correcciones, asegúrate de que no hay ramas de feature sin mergear y que el código está limpio (sin console.logs de debug, sin código comentado innecesario).
+Limpia console.logs de debug y código comentado que ya no sirva.
 
 ---
 
 ## Sprint 23 — Ciudades y Zonas
 
-Implementa un sistema completo de ubicaciones geográficas con ciudades españolas y zonas en HomiMatchApp.
+Quiero que la app tenga ciudades y barrios/zonas reales de España en lugar de texto libre.
 
-**Lo que debes crear:**
+Necesito poblar la base de datos con ciudades españolas y sus barrios. Puedes usar datos de OpenStreetMap o alguna fuente pública similar. Crea los scripts de Python necesarios para extraer, limpiar y generar los SQLs de inserción. Foco en las ciudades grandes: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Bilbao...
 
-1. **Población de la base de datos** con datos geográficos de España:
-   - Crea scripts Python para extraer y normalizar datos de OpenStreetMap o fuentes públicas:
-     - `extract_geojson.py`: extrae ciudades/municipios de un archivo GeoJSON
-     - `extract_places.py`: extrae barrios/distritos de cada ciudad
-     - `normalize_areas.py`: normaliza y limpia los nombres de zonas
-     - `filter_cities_by_places.py`: filtra ciudades por número mínimo de barrios
-   - Genera SQLs de inserción masiva para las tablas `cities` y `areas`
-   - Foco en las ciudades más grandes (Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia, Palma, Las Palmas, Bilbao...)
+Las tablas serían algo como `cities` (con nombre, provincia, comunidad, coordenadas...) y `areas` (barrios/distritos de cada ciudad).
 
-2. **Tablas en Supabase**:
-   - `cities`: `id`, `name`, `province`, `autonomous_community`, `population`, `latitude`, `longitude`
-   - `areas`: `id`, `city_id`, `name`, `type` (district/neighborhood)
+Una edge function que permita buscar ciudades por nombre y obtener los barrios de una ciudad concreta.
 
-3. **Edge Function `locations`**:
-   - GET `/cities`: lista de ciudades (con búsqueda por nombre)
-   - GET `/cities/:cityId/areas`: zonas de una ciudad
-   - GET `/cities/nearby`: ciudades cercanas a una coordenada (para el boost por proximidad)
+En los perfiles, sustituye el campo de texto libre de ciudad por un selector con búsqueda, y dependiendo de la ciudad que elijan un selector de zona. Lo mismo para la creación y edición de pisos.
 
-4. **Servicio `locationService`**:
-   - `searchCities(query: string)`: busca ciudades por nombre
-   - `getAreasForCity(cityId: string)`: obtiene las zonas de una ciudad
-   - `getNearbyCities(cityId: string, radiusKm: number)`: ciudades cercanas
+En los filtros de búsqueda añade también filtros por ciudad y zona. Las ciudades cercanas a la preferida del usuario que no se excluyan del todo, sino que tengan menos peso.
 
-5. **Integración en perfiles**:
-   - En `EditProfileScreen`: sustituye el campo de ciudad libre por un selector de ciudad con búsqueda autocomplete, y un selector de zona/barrio dependiente de la ciudad elegida
-   - Campo `preferred_city_id` y `preferred_area_id` en `profiles`
+Añade la opción de borrar cuenta permanentemente en los ajustes del perfil, con confirmación. Que elimine todo lo del usuario de Supabase.
 
-6. **Integración en pisos**:
-   - En `CreateFlatScreen` y `RoomEditScreen`: selector de ciudad y zona para el piso
-   - Campo `city_id` y `area_id` en la tabla de pisos
-
-7. **Filtros por ubicación**:
-   - En `FiltersScreen`: selector de ciudad y zona
-   - La Edge Function de recomendaciones filtra por ciudad (y opcionalmente por zona)
-   - Las ciudades cercanas reciben una penalización menor en lugar de excluirse completamente
-
-8. **Función "Borrar perfil"**: añade opción en la configuración del perfil para eliminar permanentemente la cuenta. Muestra un diálogo de confirmación con texto de advertencia. Al confirmar, elimina los datos del usuario de Supabase Auth y de la tabla `profiles` (y en cascada sus datos relacionados).
-
-9. **`KeyboardAwareContainer`** (componente reutilizable): crea un componente wrapper que gestione automáticamente el comportamiento del teclado en cualquier pantalla. Úsalo en todas las pantallas con formularios como sustituto de las soluciones individuales de sprints anteriores.
+Por último, crea un componente wrapper para gestionar el comportamiento del teclado de forma consistente en todas las pantallas con formularios, que sustituya las soluciones individuales de sprints anteriores.
 
 ---
 

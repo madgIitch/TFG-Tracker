@@ -1,4 +1,5 @@
 import { Textarea } from '../../ui/Textarea'
+import { ImagePasteZone } from '../../ui/ImagePasteZone'
 import type { SprintRecord } from '../../../types'
 
 interface Props {
@@ -25,6 +26,15 @@ export function ObservationsTab({ data, onChange }: Props) {
         onChange={(e) => onChange('observations', e.target.value)}
         placeholder="Escribe aquí tus notas sobre este sprint…"
       />
+      <div className="flex flex-col gap-1.5">
+        <span className="text-xs font-medium text-slate-400 uppercase tracking-wide">
+          Capturas de pantalla
+        </span>
+        <ImagePasteZone
+          entityType="sprint_observation"
+          entityKey={`${data.scenarioId}_${data.sprintNumber}`}
+        />
+      </div>
     </div>
   )
 }

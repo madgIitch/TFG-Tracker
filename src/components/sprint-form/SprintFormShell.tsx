@@ -85,6 +85,7 @@ export function SprintFormShell({ scenarioId, sprintNumber, initialRecord }: Spr
                   onAdd={addIncidence}
                   onUpdate={updateIncidence}
                   onRemove={removeIncidence}
+                  entityKeyPrefix={`${scenarioId}_${sprintNumber}`}
                 />
               )}
               {activeTab === 'notes' && (

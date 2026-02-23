@@ -4,6 +4,7 @@ import { Textarea } from '../../ui/Textarea'
 import { SprintTimer } from '../SprintTimer'
 import type { SprintRecord, SprintStatus } from '../../../types'
 import { SPRINT_NAMES, SPRINT_SUMMARIES } from '../../../constants/sprints'
+import { useTimerContext } from '../../../context/TimerContext'
 
 const STATUS_OPTIONS = [
   { value: 'pending', label: 'Pendiente' },
@@ -18,11 +19,32 @@ interface GeneralTabProps {
 
 export function GeneralTab({ data, onChange }: GeneralTabProps) {
   const timerKey = `${data.scenarioId}-${data.sprintNumber}`
+  const { forceInitSegment, setTimerElapsed, isRunning } = useTimerContext()
 
   const initialFeatureSeconds = data.ttsFeature != null ? Math.round(data.ttsFeature * 3600) : 0
   const initialFixSeconds     = data.ttsFix     != null ? Math.round(data.ttsFix     * 3600) : 0
 
   const totalTTS = (data.ttsFeature ?? 0) + (data.ttsFix ?? 0)
+
+  function handleFeatureChange(v: number | null) {
+    onChange('ttsFeature', v)
+    if (!isRunning(timerKey)) {
+      const fs = v != null ? Math.round(v * 3600) : 0
+      const xs = data.ttsFix != null ? Math.round(data.ttsFix * 3600) : 0
+      setTimerElapsed(timerKey, fs + xs)
+      forceInitSegment(timerKey, fs, xs)
+    }
+  }
+
+  function handleFixChange(v: number | null) {
+    onChange('ttsFix', v)
+    if (!isRunning(timerKey)) {
+      const fs = data.ttsFeature != null ? Math.round(data.ttsFeature * 3600) : 0
+      const xs = v != null ? Math.round(v * 3600) : 0
+      setTimerElapsed(timerKey, fs + xs)
+      forceInitSegment(timerKey, fs, xs)
+    }
+  }
 
   return (
     <div className="flex flex-col gap-5 p-5">
@@ -92,7 +114,7 @@ export function GeneralTab({ data, onChange }: GeneralTabProps) {
           <NumericInput
             label="✦ Feature (h)"
             value={data.ttsFeature}
-            onChange={(v) => onChange('ttsFeature', v)}
+            onChange={handleFeatureChange}
             step={0.1}
             min={0}
             placeholder="0.0"
@@ -100,7 +122,7 @@ export function GeneralTab({ data, onChange }: GeneralTabProps) {
           <NumericInput
             label="⚠ Corrección (h)"
             value={data.ttsFix}
-            onChange={(v) => onChange('ttsFix', v)}
+            onChange={handleFixChange}
             step={0.1}
             min={0}
             placeholder="0.0"

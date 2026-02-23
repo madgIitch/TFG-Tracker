@@ -90,7 +90,7 @@ export function TimerWidget() {
               {MODES.map((m) => (
                 <button
                   key={m.value}
-                  onClick={() => setSegmentMode(key, currentMode === m.value ? null : m.value, getElapsed(key))}
+                  onClick={() => setSegmentMode(key, m.value, getElapsed(key))}
                   className={`flex-1 text-[9px] font-semibold px-1 py-1 rounded transition-colors ${currentMode === m.value ? m.activeStyle : m.idleStyle}`}
                 >
                   {m.label}

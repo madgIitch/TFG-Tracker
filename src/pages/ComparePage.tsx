@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { TopBar } from '../components/layout/TopBar'
 import { CompareTable } from '../components/compare/CompareTable'
 import { CompareCharts } from '../components/compare/CompareCharts'
+import { BudgetPanel } from '../components/compare/BudgetPanel'
+import { SprintTimelineChart } from '../components/compare/SprintTimelineChart'
 import { LoadingScreen } from '../components/ui/Spinner'
 import { useAllSprints } from '../db/hooks/useSprints'
 import { useAllScenarios } from '../db/hooks/useScenarios'
@@ -57,6 +59,11 @@ export default function ComparePage() {
           </div>
         </div>
 
+        {/* Budget + timeline — siempre visibles */}
+        <BudgetPanel allSprints={allSprints} />
+        <SprintTimelineChart allSprints={allSprints} />
+
+        {/* Metrics: charts or table */}
         {view === 'charts' ? (
           <CompareCharts metrics={metrics} />
         ) : (

@@ -1,11 +1,12 @@
 import Dexie, { type Table } from 'dexie'
-import type { SprintRecord, ScenarioRecord, PromptRecord, PromptEvaluation } from '../types'
+import type { SprintRecord, ScenarioRecord, PromptRecord, PromptEvaluation, ImageRecord } from '../types'
 
 export class TFGTrackerDB extends Dexie {
   sprints!: Table<SprintRecord, number>
   scenarios!: Table<ScenarioRecord, number>
   prompts!: Table<PromptRecord, number>
   promptEvaluations!: Table<PromptEvaluation, number>
+  images!: Table<ImageRecord, number>
 
   constructor() {
     super('TFGTrackerDB')
@@ -26,6 +27,17 @@ export class TFGTrackerDB extends Dexie {
       // [promptId+scenarioId] → 1 evaluación por (prompt, escenario)
       promptEvaluations:
         '++id, promptId, scenarioId, [promptId+scenarioId], sprintNumber, updatedAt',
+    })
+
+    // version(3) — añade tabla de imágenes adjuntas (portapapeles / drag-and-drop)
+    this.version(3).stores({
+      sprints:
+        '++id, scenarioId, sprintNumber, [scenarioId+sprintNumber], status, updatedAt',
+      scenarios: '++id, &scenarioId, updatedAt',
+      prompts: '++id, category, updatedAt',
+      promptEvaluations:
+        '++id, promptId, scenarioId, [promptId+scenarioId], sprintNumber, updatedAt',
+      images: '++id, entityType, entityKey, [entityType+entityKey], createdAt',
     })
   }
 }

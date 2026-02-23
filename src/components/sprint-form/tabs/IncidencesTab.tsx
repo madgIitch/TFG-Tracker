@@ -1,6 +1,7 @@
 import { Input, NumericInput } from '../../ui/Input'
 import { Select } from '../../ui/Select'
 import { Button } from '../../ui/Button'
+import { ImagePasteZone } from '../../ui/ImagePasteZone'
 import type { Incidence, IncidenceType } from '../../../types'
 import { formatMinutes } from '../../../utils/formatting'
 
@@ -17,9 +18,10 @@ interface IncidencesTabProps {
   onAdd: () => void
   onUpdate: (id: string, partial: Partial<Incidence>) => void
   onRemove: (id: string) => void
+  entityKeyPrefix: string  // e.g. 'A_7'
 }
 
-export function IncidencesTab({ incidences, onAdd, onUpdate, onRemove }: IncidencesTabProps) {
+export function IncidencesTab({ incidences, onAdd, onUpdate, onRemove, entityKeyPrefix }: IncidencesTabProps) {
   const totalTime = incidences.reduce((a, i) => a + (i.resolutionTime ?? 0), 0)
 
   return (
@@ -83,6 +85,10 @@ export function IncidencesTab({ incidences, onAdd, onUpdate, onRemove }: Inciden
                 placeholder="0"
               />
             </div>
+            <ImagePasteZone
+              entityType="incidence"
+              entityKey={`${entityKeyPrefix}_${inc.id}`}
+            />
           </div>
         ))}
       </div>

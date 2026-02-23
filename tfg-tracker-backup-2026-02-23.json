@@ -1,0 +1,1230 @@
+{
+  "sprints": [
+    {
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "status": "completed",
+      "dateStart": "2026-02-18",
+      "dateEnd": "2026-02-20",
+      "tts": 3.37,
+      "description": "",
+      "commits": 5,
+      "filesCreated": 6,
+      "filesModified": 22,
+      "testsTotal": 7,
+      "testsPass": 7,
+      "testsFail": 0,
+      "verificationTime": null,
+      "manualEdits": null,
+      "correctivePrompts": 7,
+      "rejectedProposals": 4,
+      "filesReadByAI": 169,
+      "filesTotalRepo": 106,
+      "retrievalMechanism": "mixto",
+      "autonomousActions": 51,
+      "controlCheckpoints": 44,
+      "architecturalCoherence": 5,
+      "buildsOk": 1,
+      "buildsTotal": 1,
+      "envFailures": 4,
+      "tsWarnings": 12,
+      "linterWarnings": 26,
+      "styleConsistency": 5,
+      "incidences": [
+        {
+          "id": "4682e442-d9f8-40ae-bfa8-19a16188eda1",
+          "description": "problemas asociados al punto de inicio y a fallos en la configuración",
+          "type": "entorno",
+          "resolutionTime": 75
+        }
+      ],
+      "observations": "",
+      "createdAt": "2026-02-18T00:20:43.127Z",
+      "updatedAt": "2026-02-23T01:36:37.756Z",
+      "autoCorrectivePrompts": 6,
+      "autoRejectedProposals": 4,
+      "humanRevisions": 118,
+      "autoHumanRevisions": 118,
+      "buildsFailed": 0,
+      "ttsFeature": 0.4,
+      "ttsFix": 2.97,
+      "linesAdded": 1049,
+      "linesRemoved": 706,
+      "uiUxQuality": 3,
+      "id": 9
+    },
+    {
+      "scenarioId": "B",
+      "sprintNumber": 7,
+      "status": "in_progress",
+      "dateStart": null,
+      "dateEnd": null,
+      "tts": null,
+      "description": "",
+      "commits": 3,
+      "filesCreated": 3,
+      "filesModified": 8,
+      "testsTotal": null,
+      "testsPass": null,
+      "testsFail": null,
+      "verificationTime": null,
+      "manualEdits": null,
+      "correctivePrompts": 2,
+      "rejectedProposals": 5,
+      "filesReadByAI": 29,
+      "filesTotalRepo": 107,
+      "retrievalMechanism": "mixto",
+      "autonomousActions": null,
+      "controlCheckpoints": 31,
+      "architecturalCoherence": null,
+      "buildsOk": 1,
+      "buildsTotal": 2,
+      "envFailures": null,
+      "tsWarnings": null,
+      "linterWarnings": null,
+      "styleConsistency": null,
+      "incidences": [],
+      "observations": "La integración con VS es pésima, pone en el chat el razonamiento y pone las respuesta en formato echo ",
+      "createdAt": "2026-02-18T00:23:35.772Z",
+      "updatedAt": "2026-02-23T02:01:19.486Z",
+      "id": 10,
+      "humanRevisions": 2508,
+      "autoCorrectivePrompts": 2,
+      "autoRejectedProposals": 5,
+      "autoHumanRevisions": 2508,
+      "ttsFeature": 0.34,
+      "ttsFix": 1.88,
+      "linesAdded": 540,
+      "linesRemoved": 1969,
+      "buildsFailed": 1
+    },
+    {
+      "scenarioId": "A",
+      "sprintNumber": 8,
+      "status": "completed",
+      "dateStart": null,
+      "dateEnd": null,
+      "tts": null,
+      "ttsFeature": 0.55,
+      "ttsFix": 0.13,
+      "description": "",
+      "commits": 2,
+      "filesCreated": 0,
+      "filesModified": 20,
+      "testsTotal": 7,
+      "testsPass": 7,
+      "testsFail": null,
+      "verificationTime": null,
+      "manualEdits": null,
+      "correctivePrompts": 3,
+      "rejectedProposals": 2,
+      "humanRevisions": 680,
+      "autoCorrectivePrompts": 3,
+      "autoRejectedProposals": 2,
+      "autoHumanRevisions": 680,
+      "filesReadByAI": 111,
+      "filesTotalRepo": 106,
+      "retrievalMechanism": "mixto",
+      "autonomousActions": 31,
+      "controlCheckpoints": 32,
+      "linesAdded": 679,
+      "linesRemoved": 421,
+      "architecturalCoherence": 5,
+      "buildsOk": 3,
+      "buildsFailed": 1,
+      "buildsTotal": 4,
+      "envFailures": null,
+      "tsWarnings": 4,
+      "linterWarnings": 10,
+      "styleConsistency": 5,
+      "uiUxQuality": 4,
+      "incidences": [],
+      "observations": "",
+      "createdAt": "2026-02-20T14:33:19.705Z",
+      "updatedAt": "2026-02-23T02:12:23.204Z",
+      "id": 11
+    },
+    {
+      "scenarioId": "A",
+      "sprintNumber": 9,
+      "status": "in_progress",
+      "dateStart": null,
+      "dateEnd": null,
+      "tts": null,
+      "ttsFeature": 0.37,
+      "ttsFix": null,
+      "description": "",
+      "commits": null,
+      "filesCreated": null,
+      "filesModified": null,
+      "testsTotal": null,
+      "testsPass": null,
+      "testsFail": null,
+      "verificationTime": null,
+      "manualEdits": null,
+      "correctivePrompts": null,
+      "rejectedProposals": null,
+      "humanRevisions": null,
+      "autoCorrectivePrompts": null,
+      "autoRejectedProposals": null,
+      "autoHumanRevisions": null,
+      "filesReadByAI": 82,
+      "filesTotalRepo": 106,
+      "retrievalMechanism": null,
+      "autonomousActions": 52,
+      "controlCheckpoints": 11,
+      "linesAdded": null,
+      "linesRemoved": null,
+      "architecturalCoherence": null,
+      "buildsOk": null,
+      "buildsFailed": null,
+      "buildsTotal": null,
+      "envFailures": null,
+      "tsWarnings": null,
+      "linterWarnings": null,
+      "styleConsistency": null,
+      "uiUxQuality": null,
+      "incidences": [],
+      "observations": "",
+      "createdAt": "2026-02-23T10:42:33.519Z",
+      "updatedAt": "2026-02-23T11:09:11.220Z",
+      "id": 12
+    }
+  ],
+  "scenarios": [
+    {
+      "scenarioId": "A",
+      "acceptanceChecklist": {
+        "sprint7": true,
+        "sprint8": true,
+        "sprint9": false,
+        "sprint10": false,
+        "sprint11": false,
+        "sprint12": false,
+        "sprint13": false,
+        "sprint14": false,
+        "sprint15": false,
+        "sprint16": false,
+        "sprint17": false,
+        "sprint18": false,
+        "sprint19": false,
+        "sprint20": false,
+        "sprint21": false,
+        "sprint22": false,
+        "sprint23": false,
+        "functionalParity": false
+      },
+      "narrative": {
+        "strengths": "",
+        "weaknesses": "",
+        "generalExperience": ""
+      },
+      "updatedAt": "2026-02-23T11:08:27.028Z",
+      "id": 13
+    },
+    {
+      "scenarioId": "B",
+      "acceptanceChecklist": {
+        "sprint7": false,
+        "sprint8": false,
+        "sprint9": false,
+        "sprint10": false,
+        "sprint11": false,
+        "sprint12": false,
+        "sprint13": false,
+        "sprint14": false,
+        "sprint15": false,
+        "sprint16": false,
+        "sprint17": false,
+        "sprint18": false,
+        "sprint19": false,
+        "sprint20": false,
+        "sprint21": false,
+        "sprint22": false,
+        "sprint23": false,
+        "functionalParity": false
+      },
+      "narrative": {
+        "strengths": "",
+        "weaknesses": "",
+        "generalExperience": ""
+      },
+      "updatedAt": "2026-02-23T10:55:08.531Z",
+      "id": 14
+    },
+    {
+      "scenarioId": "C",
+      "acceptanceChecklist": {
+        "sprint7": false,
+        "sprint8": false,
+        "sprint9": false,
+        "sprint10": false,
+        "sprint11": false,
+        "sprint12": false,
+        "sprint13": false,
+        "sprint14": false,
+        "sprint15": false,
+        "sprint16": false,
+        "sprint17": false,
+        "sprint18": false,
+        "sprint19": false,
+        "sprint20": false,
+        "sprint21": false,
+        "sprint22": false,
+        "sprint23": false,
+        "functionalParity": false
+      },
+      "narrative": {
+        "strengths": "",
+        "weaknesses": "",
+        "generalExperience": ""
+      },
+      "updatedAt": "2026-02-18T00:14:44.745Z",
+      "id": 15
+    },
+    {
+      "scenarioId": "D",
+      "acceptanceChecklist": {
+        "sprint7": false,
+        "sprint8": false,
+        "sprint9": false,
+        "sprint10": false,
+        "sprint11": false,
+        "sprint12": false,
+        "sprint13": false,
+        "sprint14": false,
+        "sprint15": false,
+        "sprint16": false,
+        "sprint17": false,
+        "sprint18": false,
+        "sprint19": false,
+        "sprint20": false,
+        "sprint21": false,
+        "sprint22": false,
+        "sprint23": false,
+        "functionalParity": false
+      },
+      "narrative": {
+        "strengths": "",
+        "weaknesses": "",
+        "generalExperience": ""
+      },
+      "updatedAt": "2026-02-18T00:23:40.988Z",
+      "id": 16
+    }
+  ],
+  "prompts": [
+    {
+      "title": "Sprint 7 — Sistema de Gestión de Gastos",
+      "content": "Vale, todo esto se puede estar debiendo a que estamos replicando un proyecto ya hecho para un experimento; con lo cual a lo mejor ves cosas que aun no están 100% conectadas; C:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\config\\api.ts este archivo si que ha sido ya configurado de acuerdo al nuevo backend\n\nImplementa un sistema completo de gestión de gastos compartidos para pisos en HomiMatchApp.\n\nLo que debes crear:\n\nPantalla FlatExpensesScreen: lista de gastos del piso con creación de nuevos gastos. Cada gasto tiene: descripción, importe total, pagador (uno de los compañeros del piso), y distribución entre los miembros del piso. Usa el estilo glassmorphism existente.\n\nPantalla FlatSettlementScreen: resumen de liquidaciones entre compañeros. Calcula automáticamente quién le debe cuánto a quién y permite marcar deudas como saldadas.\n\nServicio flatExpenseService: funciones CRUD para gastos. Un gasto tiene campos: id, flat_id, description, amount, paid_by (user_id), split_between (array de user_ids), created_at. Los splits pueden ser iguales o personalizados.\n\nServicio flatSettlementService: lógica para calcular el balance neto de cada miembro y generar las liquidaciones mínimas necesarias (algoritmo greedy: el que más debe paga al que más se le debe primero).\n\nEdge Functions de Supabase:\n\nflat-expenses: GET (listar gastos del piso) y POST (crear gasto nuevo)\nflat-settlements: GET (calcular liquidaciones pendientes) y POST (marcar como saldado)\nTablas en Supabase:\n\nflat_expenses: id, flat_id, description, amount, paid_by, created_at\nflat_expense_splits: id, expense_id, user_id, amount\nflat_settlements: id, flat_id, from_user, to_user, amount, settled_at\nIntegración en navegación: añade acceso a estas pantallas desde el tab de gestión del piso (RoomManagementScreen).\n\nRestricciones técnicas:\n\nSolo los miembros del piso pueden ver y crear gastos\nEl cálculo de deudas debe actualizarse automáticamente al añadir un gasto o liquidar\nLos imports de Supabase usan el cliente configurado globalmente en src/lib/supabase.ts\nSigue el patrón de los servicios existentes (async/await, tipado con interfaces TypeScript)\n\n\n-- WARNING: This schema is for context only and is not meant to be run.\n-- Table order and constraints may not be valid for execution.\n\nCREATE TABLE public.chats (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  match_id uuid NOT NULL UNIQUE,\n  created_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  updated_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  CONSTRAINT chats_pkey PRIMARY KEY (id),\n  CONSTRAINT chats_match_id_fkey FOREIGN KEY (match_id) REFERENCES public.matches(id)\n);\nCREATE TABLE public.flats (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  owner_id uuid NOT NULL,\n  address text NOT NULL,\n  city text NOT NULL,\n  district text,\n  created_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  rules text,\n  services jsonb DEFAULT '[]'::jsonb,\n  gender_policy text NOT NULL DEFAULT 'mixed'::text CHECK (gender_policy = ANY (ARRAY['mixed'::text, 'men_only'::text, 'flinta'::text])),\n  CONSTRAINT flats_pkey PRIMARY KEY (id),\n  CONSTRAINT flats_owner_id_fkey FOREIGN KEY (owner_id) REFERENCES public.users(id)\n);\nCREATE TABLE public.matches (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  user_a_id uuid NOT NULL,\n  user_b_id uuid NOT NULL,\n  status text DEFAULT 'pending'::text CHECK (status = ANY (ARRAY['pending'::text, 'accepted'::text, 'rejected'::text, 'room_offer'::text, 'room_assigned'::text, 'room_declined'::text])),\n  matched_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  CONSTRAINT matches_pkey PRIMARY KEY (id),\n  CONSTRAINT matches_user_a_id_fkey FOREIGN KEY (user_a_id) REFERENCES public.profiles(id),\n  CONSTRAINT matches_user_b_id_fkey FOREIGN KEY (user_b_id) REFERENCES public.profiles(id)\n);\nCREATE TABLE public.messages (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  chat_id uuid NOT NULL,\n  sender_id uuid NOT NULL,\n  body text NOT NULL CHECK (length(body) <= 1000),\n  created_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  read_at timestamp with time zone,\n  CONSTRAINT messages_pkey PRIMARY KEY (id),\n  CONSTRAINT messages_chat_id_fkey FOREIGN KEY (chat_id) REFERENCES public.chats(id),\n  CONSTRAINT messages_sender_id_fkey FOREIGN KEY (sender_id) REFERENCES public.profiles(id)\n);\nCREATE TABLE public.profile_photos (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  profile_id uuid NOT NULL,\n  path text NOT NULL,\n  position integer NOT NULL CHECK (\"position\" >= 1 AND \"position\" <= 10),\n  is_primary boolean NOT NULL DEFAULT false,\n  created_at timestamp with time zone NOT NULL DEFAULT now(),\n  CONSTRAINT profile_photos_pkey PRIMARY KEY (id),\n  CONSTRAINT profile_photos_profile_id_fkey FOREIGN KEY (profile_id) REFERENCES public.profiles(id)\n);\nCREATE TABLE public.profiles (\n  id uuid NOT NULL,\n  display_name text,\n  avatar_url text,\n  bio text,\n  gender text NOT NULL CHECK (gender = ANY (ARRAY['male'::text, 'female'::text, 'non_binary'::text, 'other'::text, 'undisclosed'::text])),\n  occupation text,\n  smoker boolean DEFAULT false,\n  has_pets boolean DEFAULT false,\n  social_links jsonb,\n  updated_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  university text,\n  field_of_study text,\n  interests jsonb,\n  lifestyle_preferences jsonb,\n  housing_situation text,\n  preferred_zones jsonb,\n  budget_min numeric,\n  budget_max numeric,\n  CONSTRAINT profiles_pkey PRIMARY KEY (id),\n  CONSTRAINT profiles_id_fkey FOREIGN KEY (id) REFERENCES public.users(id)\n);\nCREATE TABLE public.room_assignments (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  match_id uuid UNIQUE,\n  room_id uuid NOT NULL,\n  assignee_id uuid NOT NULL,\n  status text NOT NULL DEFAULT 'offered'::text,\n  created_at timestamp with time zone NOT NULL DEFAULT now(),\n  updated_at timestamp with time zone NOT NULL DEFAULT now(),\n  CONSTRAINT room_assignments_pkey PRIMARY KEY (id),\n  CONSTRAINT room_assignments_room_id_fkey FOREIGN KEY (room_id) REFERENCES public.rooms(id),\n  CONSTRAINT room_assignments_assignee_id_fkey FOREIGN KEY (assignee_id) REFERENCES public.profiles(id),\n  CONSTRAINT room_assignments_match_id_fkey FOREIGN KEY (match_id) REFERENCES public.matches(id)\n);\nCREATE TABLE public.room_extras (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  room_id uuid NOT NULL,\n  category text,\n  room_type text,\n  common_area_type text,\n  common_area_custom text,\n  photos ARRAY NOT NULL DEFAULT '{}'::text[],\n  created_at timestamp with time zone NOT NULL DEFAULT now(),\n  updated_at timestamp with time zone NOT NULL DEFAULT now(),\n  capacity integer,\n  CONSTRAINT room_extras_pkey PRIMARY KEY (id),\n  CONSTRAINT room_extras_room_id_fkey FOREIGN KEY (room_id) REFERENCES public.rooms(id)\n);\nCREATE TABLE public.room_interests (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  user_id uuid NOT NULL,\n  room_id uuid NOT NULL,\n  message text,\n  created_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  CONSTRAINT room_interests_pkey PRIMARY KEY (id),\n  CONSTRAINT room_interests_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id),\n  CONSTRAINT room_interests_room_id_fkey FOREIGN KEY (room_id) REFERENCES public.rooms(id)\n);\nCREATE TABLE public.rooms (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  flat_id uuid NOT NULL,\n  owner_id uuid NOT NULL,\n  title text NOT NULL,\n  description text,\n  price_per_month numeric NOT NULL,\n  size_m2 numeric,\n  is_available boolean DEFAULT true,\n  available_from date DEFAULT CURRENT_DATE,\n  created_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  CONSTRAINT rooms_pkey PRIMARY KEY (id),\n  CONSTRAINT rooms_flat_id_fkey FOREIGN KEY (flat_id) REFERENCES public.flats(id),\n  CONSTRAINT rooms_owner_id_fkey FOREIGN KEY (owner_id) REFERENCES public.users(id)\n);\nCREATE TABLE public.swipe_rejections (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  user_id uuid NOT NULL,\n  rejected_profile_id uuid NOT NULL,\n  created_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  CONSTRAINT swipe_rejections_pkey PRIMARY KEY (id),\n  CONSTRAINT swipe_rejections_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.profiles(id),\n  CONSTRAINT swipe_rejections_rejected_profile_id_fkey FOREIGN KEY (rejected_profile_id) REFERENCES public.profiles(id)\n);\nCREATE TABLE public.temp_registrations (\n  id uuid NOT NULL DEFAULT gen_random_uuid(),\n  temp_token text NOT NULL UNIQUE,\n  email text NOT NULL,\n  password text,\n  is_google_user boolean DEFAULT false,\n  first_name text,\n  last_name text,\n  expires_at timestamp with time zone NOT NULL,\n  created_at timestamp with time zone DEFAULT now(),\n  gender text CHECK ((gender = ANY (ARRAY['male'::text, 'female'::text, 'non_binary'::text, 'other'::text, 'undisclosed'::text])) OR gender IS NULL),\n  CONSTRAINT temp_registrations_pkey PRIMARY KEY (id)\n);\nCREATE TABLE public.users (\n  id uuid NOT NULL,\n  email text NOT NULL UNIQUE,\n  first_name text,\n  last_name text,\n  identity_document text UNIQUE,\n  birth_date date,\n  created_at timestamp with time zone NOT NULL DEFAULT timezone('utc'::text, now()),\n  gender text NOT NULL CHECK (gender = ANY (ARRAY['male'::text, 'female'::text, 'non_binary'::text, 'other'::text, 'undisclosed'::text])),\n  CONSTRAINT users_pkey PRIMARY KEY (id),\n  CONSTRAINT users_id_fkey FOREIGN KEY (id) REFERENCES auth.users(id)\n);\n\n\neste es nuestro backend actual",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:22:38.558Z",
+      "updatedAt": "2026-02-19T15:19:58.383Z",
+      "id": 31
+    },
+    {
+      "title": "Sprint 8 — Correcciones UI/UX",
+      "content": "Hay varios problemas visuales en la app que quiero corregir antes de seguir añadiendo cosas.\n\nEl principal es que en el login y en las distintas fases del registro, cuando aparece el teclado los inputs quedan tapados y no se puede escribir bien. Hay que arreglarlo para que el contenido suba o haga scroll cuando el teclado está visible.\n\nEn la pantalla de detalle de perfil hay márgenes raros y los chips de intereses a veces se cortan. Las fotos tampoco tienen la proporción correcta.\n\nEn el swipe a veces hay un parpadeo raro al cambiar de card, hay que investigar qué lo causa y arreglarlo. También revisar que los gestos de swipe no interfieran con los botones de like/dislike.\n\nEn general, dale un repaso a todas las pantallas buscando textos cortados, elementos que se monten unos encima de otros, cosas que se salgan de la pantalla... e intenta usar medidas relativas en lugar de píxeles fijos donde sea posible.\n\n",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:23:35.556Z",
+      "updatedAt": "2026-02-23T10:45:38.231Z",
+      "id": 32
+    },
+    {
+      "title": "Sprint 9 — Refactorización v1: Separación de Estilos",
+      "content": "El código tiene los estilos mezclados con la lógica en cada pantalla y empieza a ser difícil de mantener. Quiero separarlo.\n\nLa idea es mover los StyleSheet.create de cada pantalla a su propio archivo de estilos (algo como LoginScreen.styles.ts), y crear una carpeta src/styles/ con eso ordenado. Además, unificar los colores, espaciados y tamaños de fuente en archivos de tokens para poder cambiarlos desde un sitio central.\n\nLos estilos que se repiten en muchas pantallas (el contenedor base, el botón principal, los inputs...) sería ideal moverlos a un archivo común y reutilizarlos.\n\nImportante: esto es una refactorización pura, no debe cambiar nada visualmente ni en la lógica. Solo reorganizar el código para que sea más mantenible.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:24:13.153Z",
+      "updatedAt": "2026-02-23T10:45:56.528Z",
+      "id": 33
+    },
+    {
+      "title": "Sprint 10 — Recuperación de Contraseñas",
+      "content": "Necesito añadir el flujo típico de \"olvidé mi contraseña\". Desde el login debería haber un enlace que lleve a una pantalla donde el usuario pone su email y le llegue un correo con un enlace para restablecer la contraseña.\n\nAl tocar ese enlace desde el email, la app debería abrirse directamente en una pantalla donde pueda introducir la nueva contraseña (con confirmación). Habría que configurar el deep linking para que funcione tanto en Android como en iOS.\n\nSupabase tiene funciones específicas para esto (resetPasswordForEmail y updateUser), así que debería ser bastante directo de implementar.\n\nAñade las dos pantallas nuevas al navegador de autenticación, fuera del flujo de usuario autenticado.\n\n",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:24:31.144Z",
+      "updatedAt": "2026-02-23T10:46:31.112Z",
+      "id": 34
+    },
+    {
+      "title": "Sprint 11 — Mejoras UI de Detalles",
+      "content": "Las pantallas de detalle de perfiles y pisos están un poco sosas comparadas con el resto de la app. Quiero rediseñarlas para que tengan el mismo estilo glassmorphism.\n\nPara el detalle de perfil: las fotos deberían ir en un carrusel, la info básica (nombre, edad, ciudad) flotando encima de las fotos, y el resto de la información organizada en secciones con tarjetas: intereses, lo que busca, si tiene piso o no... Los botones de like/dislike que se queden abajo visibles sin tapar nada.\n\nPara el detalle del piso: también carrusel de fotos, la información del piso clara (precio, habitaciones, servicios), los compañeros actuales con sus fotos, las reglas del piso, y un botón para contactar o pedir unirse según el estado.\n\nSi mientras tocas esto ves colores o espaciados que no están en los tokens, los añades.\n\nNo toques la lógica ni las llamadas a los servicios, solo la parte visual.\n\n",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:24:50.799Z",
+      "updatedAt": "2026-02-23T10:47:57.489Z",
+      "id": 35
+    },
+    {
+      "title": "Sprint 12 — Sistema de Invitaciones",
+      "content": "Quiero que un propietario pueda generar un código para invitar a alguien a su piso, y que ese alguien pueda introducirlo durante el registro para quedar asociado directamente al piso sin tener que pasar por el swipe normal.\n\nEn el registro, después de la fase de género, añade un paso que pregunte si tienes un código de invitación. Si no tienes, sigues normal. Si tienes, lo introduces y te unes al piso.\n\nEl propietario debería poder generar el código desde la pantalla de gestión del piso, verlo, copiarlo y compartirlo fácilmente.\n\nEl backend necesita generar y validar estos códigos (que sean únicos, que no estén expirados, que queden habitaciones disponibles). Cuando alguien se une por código, créale automáticamente los matches con los compañeros que ya están en el piso, porque ya se conocen.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:25:30.894Z",
+      "updatedAt": "2026-02-23T10:48:11.765Z",
+      "id": 36
+    },
+    {
+      "title": "Sprint 13 — Push Notifications",
+      "content": "Quiero notificaciones push para los eventos principales de la app. El setup es con Firebase Cloud Messaging, que creo que ya está configurado a medias.\n\nLos casos que me interesan son: mensaje nuevo en el chat, cuando tienes un nuevo match, cuando alguien añade un gasto en el piso, cuando alguien salda una deuda, y cuando te asignan una habitación.\n\nAl tocar la notificación debería llevarte directamente a la pantalla relevante (el chat, la pantalla de matches, los gastos...).\n\nHay que pedir permiso al usuario cuando abre la app, guardar el token del dispositivo vinculado a su cuenta, y eliminarlo cuando hace logout. Si el usuario ya está dentro del chat del que llega la notificación, no le muestres la notificación de ese chat.\n\nLas edge functions que disparan las notificaciones van en Supabase, llamadas desde triggers o desde otras funciones.\n\n",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:25:49.912Z",
+      "updatedAt": "2026-02-23T10:48:27.709Z",
+      "id": 37
+    },
+    {
+      "title": "Sprint 14 — Chats en Tiempo Real",
+      "content": "El chat funciona pero no es en tiempo real, hay que recargar para ver mensajes nuevos. Quiero arreglarlo con Supabase Realtime.\n\nCuando llega un mensaje nuevo, debería aparecer solo sin recargar nada. Si estás al final del scroll que baje automático, si no, muestra algún indicador de que hay mensajes nuevos. Al desmontar la pantalla cancela la suscripción.\n\nEn la lista de chats (MatchesScreen), que se ordene por el último mensaje y que se actualice solo también. Pon algún indicador de mensajes no leídos.\n\nAprovecha para rediseñar un poco el chat con el estilo glassmorphism: burbujas diferenciadas para tus mensajes y los del otro, timestamps agrupados por día, y que el input de texto no quede tapado por el teclado.\n\nDe paso actualiza también la UI de EditProfileScreen, CreateFlatScreen, y las pantallas de gastos para que sigan el mismo lenguaje visual.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:26:08.559Z",
+      "updatedAt": "2026-02-23T10:49:16.903Z",
+      "id": 38
+    },
+    {
+      "title": "Sprint 15 — UI Fix Global",
+      "content": "Hay bastantes problemillas de UX acumulados que quiero limpiar de una vez.\n\nEl principal: en todas las pantallas con formularios, cuando aparece el teclado los inputs quedan tapados. Hay que hacer que haga scroll automático para mantener el campo activo visible. Afecta al registro completo, EditProfileScreen, CreateFlatScreen, ForgotPasswordScreen y ResetPasswordScreen.\n\nRevisa el registro en pantallas pequeñas (320pt de ancho) para que todo quepa bien.\n\nEn SwipeScreen, cambia los tamaños y posiciones hardcodeados en píxeles por valores relativos (porcentajes o Dimensions), para que las cards se vean bien en cualquier tamaño de pantalla.\n\nLa TabBar inferior en iPhones con home indicator a veces queda cortada, hay que añadir el padding inferior correspondiente con SafeAreaInsets.\n\nSi el porcentaje de compatibilidad puede dar valores por debajo de 0 o por encima de 100, ponle un clamp.\n\n",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:26:29.929Z",
+      "updatedAt": "2026-02-23T10:49:29.519Z",
+      "id": 39
+    },
+    {
+      "title": "Sprint 16 — Swipe Porcentual",
+      "content": "Quiero que en las cards del swipe aparezca un porcentaje de compatibilidad entre el usuario y el candidato. Algo así como una puntuación de 0 a 100 calculada en base a criterios como: si buscan en la misma ciudad, si los rangos de precio se solapan, cuántos intereses tienen en común, si sus estilos de vida encajan, si uno tiene piso y el otro busca...\n\nMuéstralo de forma visual en la card, puede ser un badge con colorcillo (verde si es alta, amarillo si es media, rojo si es baja) o una barra de progreso, lo que veas más limpio.\n\nEl algoritmo de recomendaciones del backend debería ordenar los candidatos por compatibilidad para que los mejores aparezcan primero.\n\nVerifica también que cuando dos usuarios se dan like mutuamente el match se crea correctamente y aparece en la pantalla de matches.\n\n",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:26:55.367Z",
+      "updatedAt": "2026-02-23T10:49:42.315Z",
+      "id": 40
+    },
+    {
+      "title": "Sprint 17 — Hotfixes",
+      "content": "Después del sprint anterior hay algo roto que hay que arreglar urgente. Los commits a2ec3d6 y 964a01a introdujeron algún bug, revísalos.\n\nLos síntomas que puede tener son: el porcentaje de compatibilidad no se muestra bien o no se calcula, las cards del swipe no cargan o se quedan en carga infinita, los matches no se crean bien, o hay algún problema de navegación después de hacer swipe.\n\nComprueba también que lo que funcionaba antes sigue funcionando: el registro completo, el chat en tiempo real, las notificaciones y la gestión de gastos.\n\nCambios mínimos y enfocados, nada de features nuevas.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:27:10.877Z",
+      "updatedAt": "2026-02-23T10:49:53.926Z",
+      "id": 41
+    },
+    {
+      "title": "Sprint 18 — Filtros Mejorados y Google Auth",
+      "content": "La pantalla de filtros se quedó bastante básica, quiero mejorarla. Añade los filtros que falten: rango de precio, número de habitaciones, tipo de usuario, ciudad, zona, rango de edad, género... Usa sliders para los rangos numéricos, chips para las opciones múltiples. Añade un botón para resetear todo y un contador de cuántos filtros tienes activos. Que los filtros persistan entre sesiones guardándolos en AsyncStorage.\n\nAlgunos filtros más avanzados estarán reservados para usuarios premium (bloqueados con un candado y opción de upgrade). Crea un contexto para gestionar si el usuario es premium o no, leyendo el campo is_premium de su perfil en Supabase.\n\nEl login con Google está a medias: si es la primera vez que alguien se registra con Google, que pase por el flujo normal de registro para completar su perfil. Si ya tiene cuenta, que entre directamente. Arregla lo que haga falta.\n\nTambién hay un bug con el navegador principal que a veces se reinicia o salta al cambiar de tab, arréglalo.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:27:27.266Z",
+      "updatedAt": "2026-02-23T10:50:05.918Z",
+      "id": 42
+    },
+    {
+      "title": "Sprint 19 — Realtime y Estilos de Vida",
+      "content": "Quiero extender el tiempo real a más sitios. En la pantalla de gastos que se actualice automáticamente cuando alguien añade uno. En las liquidaciones igual. En la lista de matches que también aparezcan los nuevos matches sin recargar. En el detalle del piso que se actualice si alguien entra o sale. En la gestión del piso si hay cambios en habitaciones o asignaciones.\n\nEn todos los casos gestiona bien los canales de Supabase (nombres únicos por pantalla y recurso) y cancela las suscripciones cuando se desmonta el componente.\n\nAparte, quiero añadir un campo de estilos de vida en los perfiles: cosas como \"madrugador\", \"noctámbulo\", \"no fumador\", \"deportista\", \"tiene mascota\"... El usuario puede elegir varios (máximo 5 o así) con chips en su perfil, y se muestran en el detalle de otros perfiles. Incorpóralos también al cálculo de compatibilidad.\n\nPor último, prepara el ThemeContext para que soporte dos temas (claro y oscuro) de cara al sprint siguiente, aunque no hace falta implementarlo todavía.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:27:42.877Z",
+      "updatedAt": "2026-02-23T10:50:17.611Z",
+      "id": 43
+    },
+    {
+      "title": "Sprint 20 — Dark Mode",
+      "content": "Quiero implementar el modo oscuro completo en toda la app.\n\nNecesito un ThemeContext que gestione dos temas: claro y oscuro. Que guarde la preferencia en AsyncStorage y que al arrancar cargue la que tenía o detecte la preferencia del sistema. Expone el tema actual, un booleano isDark, y una función para cambiar.\n\nHay que recorrer todas las pantallas y cambiar los colores hardcodeados por referencias al tema actual. Los archivos de estilos tendrán que convertirse en funciones que reciben el tema como parámetro.\n\nEmpieza por las pantallas más importantes: SwipeScreen, el chat, la lista de matches, el detalle de perfil y piso, y el login/registro.\n\nEl cambio entre modos que no cause un flash blanco. Añade el toggle en algún sitio accesible del perfil o ajustes.\n\n",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:28:02.923Z",
+      "updatedAt": "2026-02-23T10:50:30.746Z",
+      "id": 44
+    },
+    {
+      "title": "Sprint 21 — Premium Features",
+      "content": "Quiero implementar las primeras limitaciones de la cuenta free.\n\nLos usuarios free tienen un límite de swipes diarios (unos 20 o así). Cuando lleguen al límite que aparezca un mensaje explicándolo con opción de upgrade. Los filtros avanzados también van a estar bloqueados para free, muéstralos con un candadito y al intentar usarlos muestra un modal de upgrade con los beneficios.\n\nEl contexto de premium que se creó en el sprint 18 hay que completarlo: que lea el campo is_premium de Supabase al hacer login, y que exponga funciones para saber si puedes usar una feature concreta.\n\nCrea un componente badge para las features premium, y el modal de upgrade con los beneficios y un botón de \"Obtener Premium\" (puede llevar a una pantalla placeholder por ahora).\n\nDe paso, antes de enviar el email de verificación en el registro, valida que el email tenga un formato correcto y que el dominio exista (check de DNS básico).",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:28:18.345Z",
+      "updatedAt": "2026-02-23T10:50:45.234Z",
+      "id": 45
+    },
+    {
+      "title": "Sprint 22 — UI Dark Mode Refinamiento",
+      "content": "El modo oscuro tiene bastantes cosas que no se ven bien, hay que hacer una pasada de correcciones.\n\nEl componente FormSection (el que agrupa los campos en los formularios de edición) no se adapta al tema, los fondos y colores están hardcodeados.\n\nEn general, revisa todas las pantallas en modo oscuro buscando: textos que no se ven por el fondo, inputs con fondo incorrecto, iconos que no cambian de color, bordes que no respetan el tema, modales con fondo blanco en oscuro...\n\nHay un bug: los usuarios que tienen piso (owners) no pueden ver otros owners en sus recomendaciones. Arréglalo en la edge function de recomendaciones.\n\nAñade también un toggle en el perfil para que el usuario pueda \"pausar\" su visibilidad en el swipe. Si lo desactiva no aparece en las recomendaciones de nadie. Cuando esté inactivo muéstrale algún banner avisándole.\n\nLimpia console.logs de debug y código comentado que ya no sirva.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:28:41.524Z",
+      "updatedAt": "2026-02-23T10:50:58.327Z",
+      "id": 46
+    },
+    {
+      "title": "Sprint 23 — Ciudades y Zonas",
+      "content": "Quiero que la app tenga ciudades y barrios/zonas reales de España en lugar de texto libre.\n\nNecesito poblar la base de datos con ciudades españolas y sus barrios. Puedes usar datos de OpenStreetMap o alguna fuente pública similar. Crea los scripts de Python necesarios para extraer, limpiar y generar los SQLs de inserción. Foco en las ciudades grandes: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Bilbao...\n\nLas tablas serían algo como cities (con nombre, provincia, comunidad, coordenadas...) y areas (barrios/distritos de cada ciudad).\n\nUna edge function que permita buscar ciudades por nombre y obtener los barrios de una ciudad concreta.\n\nEn los perfiles, sustituye el campo de texto libre de ciudad por un selector con búsqueda, y dependiendo de la ciudad que elijan un selector de zona. Lo mismo para la creación y edición de pisos.\n\nEn los filtros de búsqueda añade también filtros por ciudad y zona. Las ciudades cercanas a la preferida del usuario que no se excluyan del todo, sino que tengan menos peso.\n\nAñade la opción de borrar cuenta permanentemente en los ajustes del perfil, con confirmación. Que elimine todo lo del usuario de Supabase.\n\nPor último, crea un componente wrapper para gestionar el comportamiento del teclado de forma consistente en todas las pantallas con formularios, que sustituya las soluciones individuales de sprints anteriores.\n\n",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-18T13:29:12.682Z",
+      "updatedAt": "2026-02-23T10:51:15.481Z",
+      "id": 47
+    },
+    {
+      "title": "Ajuste safearea view y status bar",
+      "content": "pon la pantalla de detailprofile entre el safearea view y el staus bar",
+      "category": "feature",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T11:46:48.372Z",
+      "updatedAt": "2026-02-20T11:46:48.372Z",
+      "id": 48
+    },
+    {
+      "title": "no has hecho nada, sigue estando a la altura del status bar la pantalla, sin respetar su espacio",
+      "content": "no has hecho nada, sigue estando a la altura del status bar la pantalla, sin respetar su espacio",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T11:54:43.455Z",
+      "updatedAt": "2026-02-20T12:15:13.358Z",
+      "id": 49
+    },
+    {
+      "title": "Subida de fotos arreglando",
+      "content": "026-02-20 13:25:17.008   748-885   ImeTracker              system_server                        I  com.homimatchapp:b16118aa: onRequestHide at ORIGIN_SERVER reason HIDE_SAME_WINDOW_FOCUSED_WITHOUT_EDITOR fromUser false\n2026-02-20 13:25:17.009 11653-11653 InsetsController        com.homimatchapp                     D  hide(ime(), fromIme=false)\n2026-02-20 13:25:17.009 11653-11653 ImeTracker              com.homimatchapp                     I  com.homimatchapp:b16118aa: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN\n2026-02-20 13:25:17.030  2357-2357  GoogleInpu...hodService com...gle.android.inputmethod.latin  I  GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.homimatchapp, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)\n2026-02-20 13:25:17.033   748-1897  PackageConfigPersister  system_server                        W  App-specific configuration not found for packageName: com.homimatchapp and userId: 0\n2026-02-20 13:29:09.840  1107-1174  WindowManagerShell      com.android.systemui                 V  Transition requested (#70): android.os.BinderProxy@5d8bc65 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=67 effectiveUid=10222 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.homimatchapp/.MainActivity } baseActivity=ComponentInfo{com.homimatchapp/com.homimatchapp.MainActivity} topActivity=ComponentInfo{com.google.android.photopicker/com.android.photopicker.MainActivity} origActivity=null realActivity=ComponentInfo{com.homimatchapp/com.homimatchapp.MainActivity} numActivities=2 lastActiveTime=14277144 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@1cd2d3a} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 0 - 0, 0) topActivityInfo=ActivityInfo{d001deb com.android.photopicker.MainActivity} launchCookies=[android.os.BinderProxy@f99946c] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=true isActivityStackTransparent=false lastNonFullscreenBounds=Rect(329, 830 - 952, 2110) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1280, 2856) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 70 }\n2026-02-20 13:29:10.085  3885-3885  Photopicke...ureManager com.google.android.photopicker       D  Beginning feature initialization with config: PhotopickerConfiguration(runtimeEnv=ACTIVITY, action=android.provider.action.PICK_IMAGES, callingPackage=com.homimatchapp, callingPackageUid=10222, callingPackageLabel=HomiMatchApp, callingPackageMediaCapabilities=null, accentColor=null, mimeTypes=[image/*], pickImagesInOrder=false, selectionLimit=1, startDestination=DEFAULT, preSelectedUris=null, deviceIsDebuggable=false, flags=PhotopickerFlags(CLOUD_ALLOWED_PROVIDERS=[com.google.android.apps.photos], CLOUD_ENFORCE_PROVIDER_ALLOWLIST=true, CLOUD_MEDIA_ENABLED=true, PRIVATE_SPACE_ENABLED=true, MANAGED_SELECTION_ENABLED=true, PICKER_SEARCH_ENABLED=false, PICKER_DATESCRUBBER_ENABLED=false, PICKER_TRANSCODING_ENABLED=true, OWNED_PHOTOS_ENABLED=true, EXPRESSIVE_THEME_ENABLED=false), sessionId=139626, intent=Intent { act=android.provider.action.PICK_IMAGES typ=image/* flg=0x800000 xflg=0x4 cmp=com.google.android.photopicker/com.android.photopicker.MainActivity })\n2026-02-20 13:29:10.693   748-779   WindowManager           system_server                        V  Sent Transition (#70) createdAt=02-20 12:29:09.824 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=67 effectiveUid=10222 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.homimatchapp/.MainActivity } baseActivity=ComponentInfo{com.homimatchapp/com.homimatchapp.MainActivity} topActivity=ComponentInfo{com.google.android.photopicker/com.android.photopicker.MainActivity} origActivity=null realActivity=ComponentInfo{com.homimatchapp/com.homimatchapp.MainActivity} numActivities=2 lastActiveTime=14277144 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{77073d4 Task{2c71309 #67 type=standard A=10222:com.homimatchapp}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 0 - 0, 0) topActivityInfo=ActivityInfo{f9b9e1 com.android.photopicker.MainActivity} launchCookies=[android.os.BinderProxy@ad12072] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=true isActivityStackTransparent=false lastNonFullscreenBounds=Rect(329, 830 - 952, 2110) capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=-9 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1280, 2856) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { freeformCameraCompatMode=inactive}} topActivityMainWindowFrame=null}, pipChange = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 70 }\n2026-02-20 13:29:12.796   748-885   ImeTracker              system_server                        I  com.homimatchapp:c6f49559: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false\n2026-02-20 13:29:12.812 11653-11653 InsetsController        com.homimatchapp                     D  hide(ime(), fromIme=false)\n2026-02-20 13:29:12.812 11653-11653 ImeTracker              com.homimatchapp                     I  com.homimatchapp:c6f49559: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN\n2026-02-20 13:29:12.870  2357-2357  GoogleInpu...hodService com...gle.android.inputmethod.latin  I  GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.homimatchapp, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)\n2026-02-20 13:29:12.876   748-2400  PackageConfigPersister  system_server                        W  App-specific configuration not found for packageName: com.homimatchapp and userId: 0\n2026-02-20 13:29:13.528 11653-13023 HWUI                    com.homimatchapp                     W  Image decoding logging dropped!\n2026-02-20 13:29:14.012 11653-11985 ReactNativeJS           com.homimatchapp                     I  '[ProfilePhotoService.uploadPhoto] Token diagnostics:', { iss: 'https://hqfkboqmdaafyjtqjxre.supabase.co/auth/v1',\n                                                                                                      aud: 'authenticated',\n                                                                                                      exp: 1771593130,\n                                                                                                      ref: 'hqfkboqmdaafyjtqjxre',\n                                                                                                      now: 1771590554 }\n2026-02-20 13:29:21.074 11653-11985 ReactNativeJS           com.homimatchapp                     E  'Error subiendo foto:', [Error: {\"error\":\"Error uploading file\",\"details\":\"Bucket not found\"}]\n2026-02-20 13:29:21.252   748-994   CoreBackPreview         system_server                        D  Window{bf52b9c u0 com.homimatchapp/com.homimatchapp.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@3788b46, mPriority=-1, mIsAnimationCallback=false, mOverrideBehavior=0}\n2026-02-20 13:29:23.189 11653-11653 WindowOnBackDispatcher  com.homimatchapp                     W  sendCancelIfRunning: isInProgress=false callback=android.app.Dialog$$ExternalSyntheticLambda2@808f4e6\n2026-02-20 13:29:23.192   748-1892  CoreBackPreview         system_server                        D  Window{bf52b9c u0 com.homimatchapp/com.homimatchapp.MainActivity}: Setting back callback null\n2026-02-20 13:29:23.241 11653-11668 HWUI                    com.homimatchapp                     D  endAllActiveAnimators on 0x6ffd5cb65f80 (RippleDrawable) with handle 0x6ffbcc9e9fd0\n2026-02-20 13:29:23.331   748-885   ImeTracker              system_server                        I  com.homimatchapp:f190aab3: onRequestHide at ORIGIN_SERVER reason HIDE_SAME_WINDOW_FOCUSED_WITHOUT_EDITOR fromUser false\n2026-02-20 13:29:23.404 11653-11653 InsetsController        com.homimatchapp                     D  hide(ime(), fromIme=false)\n2026-02-20 13:29:23.404 11653-11653 ImeTracker              com.homimatchapp                     I  com.homimatchapp:f190aab3: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN\n2026-02-20 13:29:23.408  2357-2357  GoogleInpu...hodService com...gle.android.inputmethod.latin  I  GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.homimatchapp, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)\n2026-02-20 13:29:23.413   748-1897  PackageConfigPersister  system_server                        W  App-specific configuration not found for packageName: com.homimatchapp and userId: 0",
+      "category": "debug",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T12:30:42.583Z",
+      "updatedAt": "2026-02-20T12:30:42.583Z",
+      "id": 50
+    },
+    {
+      "title": "Subida de habitacion arreglando",
+      "content": "Subida de habitacion arreglando",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T12:40:30.157Z",
+      "updatedAt": "2026-02-20T12:40:30.157Z",
+      "id": 51
+    },
+    {
+      "title": "añademe la pestaña de gestion de gastos al mainnavigation",
+      "content": "añademe la pestaña de gestion de gastos al mainnavigation",
+      "category": "feature",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T12:54:08.753Z",
+      "updatedAt": "2026-02-20T12:54:08.753Z",
+      "id": 52
+    },
+    {
+      "title": "si ya estamos en un piso por qué no me deja añadir gastos??",
+      "content": "si ya estamos en un piso por qué no me deja añadir gastos??",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T13:00:01.024Z",
+      "updatedAt": "2026-02-20T13:00:01.024Z",
+      "id": 53
+    },
+    {
+      "title": "corrigiendo flat expenses",
+      "content": "corrigiendo flat expenses",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T13:03:47.792Z",
+      "updatedAt": "2026-02-20T13:04:30.676Z",
+      "id": 54
+    },
+    {
+      "title": "corrigiendo flat expenses 2",
+      "content": "corrigiendo flat expenses 2",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T13:10:57.367Z",
+      "updatedAt": "2026-02-20T13:10:57.367Z",
+      "id": 55
+    },
+    {
+      "title": "ponme un boton para viajar a flatsettlement screen",
+      "content": "ponme un boton para viajar a flatsettlement screen",
+      "category": "feature",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T13:15:28.486Z",
+      "updatedAt": "2026-02-20T13:15:28.486Z",
+      "id": 56
+    },
+    {
+      "title": "cualquier miembro de un piso puede gestionar las liquidaciones",
+      "content": "cualquier miembro de un piso puede gestionar las liquidaciones",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T13:17:48.105Z",
+      "updatedAt": "2026-02-20T13:17:48.105Z",
+      "id": 57
+    },
+    {
+      "title": "que se quede el historial de cuentas saldadas",
+      "content": "que se quede el historial de cuentas saldadas",
+      "category": "feature",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T13:19:07.045Z",
+      "updatedAt": "2026-02-20T13:19:07.045Z",
+      "id": 58
+    },
+    {
+      "title": "ChatScreen",
+      "content": "ChatScreen",
+      "category": "refactor",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T13:33:12.692Z",
+      "updatedAt": "2026-02-20T13:33:12.692Z",
+      "id": 59
+    },
+    {
+      "title": "haz que se respete el safeaarea view en todas la pantallas, seguimos ocupando su espacio",
+      "content": "haz que se respete el safeaarea view en todas la pantallas, seguimos ocupando su espacio",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T15:39:55.483Z",
+      "updatedAt": "2026-02-20T15:39:55.483Z",
+      "id": 60
+    },
+    {
+      "title": "Keyboard Activity padding",
+      "content": "en las pantallas con TextInput Revisa el padding inferior y usa KeyboardAvoidingView si es necesario",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T15:48:31.534Z",
+      "updatedAt": "2026-02-20T15:48:31.534Z",
+      "id": 61
+    },
+    {
+      "title": "en chatscreen sigue sin hacerse padding para subir el input text por encima de keyboardactivity",
+      "content": "en chatscreen sigue sin hacerse padding para subir el input text por encima de keyboardactivity",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T15:52:15.937Z",
+      "updatedAt": "2026-02-20T15:52:15.937Z",
+      "id": 62
+    },
+    {
+      "title": "sigue sin subir",
+      "content": "sigue sin subir",
+      "category": "corrective",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T15:53:55.015Z",
+      "updatedAt": "2026-02-20T15:53:55.015Z",
+      "id": 63
+    },
+    {
+      "title": "Linting",
+      "content": ">> \n\n> HomiMatchApp@0.0.1 lint\n> eslint .\n\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\components\\Input.tsx\n  44:11  warning  Inline style: { paddingVertical: 12 }  react-native/no-inline-styles\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\context\\SwipeFiltersContext.tsx\n  53:5  warning  Expected 'undefined' and instead saw 'void'  no-void\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\screens\\ChatScreen.tsx\n  600:11  warning  Inline style: { bottom: \"Platform.OS === 'android' ? keyboardHeight : 0\" }  react-native/no-inline-styles\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\screens\\RoomEditScreen.tsx\n  151:23  warning  'room' is already declared in the upper scope on line 81 column 10  @typescript-eslint/no-shadow       \n  259:42  warning  'room' is already declared in the upper scope on line 81 column 10  @typescript-eslint/no-shadow       \n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\screens\\SwipeScreen.tsx\n  284:5  error  React Hook useCallback has missing dependencies: 'advanceCard' and 'sendLike'. Either include them or remove the dependency array  react-hooks/exhaustive-deps\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\screens\\register\\Phase1Email.tsx\n  107:19  warning  Inline style: { backgroundColor: \"isActive ? theme.colors.primary : '#E5E7EB'\" }  react-native/no-inline-styles\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\screens\\register\\Phase2Name.tsx\n  58:19  warning  Inline style: { backgroundColor: \"isActive ? theme.colors.primary : '#E5E7EB'\" }  react-native/no-inline-styles\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\screens\\register\\Phase3BirthDate.tsx\n  64:19  warning  Inline style: { backgroundColor: \"isActive ? theme.colors.primary : '#E5E7EB'\" }  react-native/no-inline-styles\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\screens\\register\\Phase3Gender.tsx\n  50:19  warning  Inline style: { backgroundColor: \"isActive ? theme.colors.primary : '#E5E7EB'\" }  react-native/no-inline-styles\n  84:33  warning  Inline style: { color: '#FFFFFF' }                                                react-native/no-inline-styles\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\services\\authService.ts\n  7:3  error  'Phase2Data' is defined but never used  @typescript-eslint/no-unused-vars\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\src\\services\\profileService.ts\n  149:9  error  'errorMessage' is assigned a value but never used  @typescript-eslint/no-unused-vars\n\nC:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A\\supabase\\functions\\profiles-recommendations\\index.ts\n  215:22  error  'label' is assigned a value but never used. Allowed unused elements of array destructuring must match /^_/u  @typescript-eslint/no-unused-vars\n\n✖ 14 problems (4 errors, 10 warnings)\n\nPS C:\\Users\\peorr\\Desktop\\HomiTFG\\Escenario-A>",
+      "category": "refactor",
+      "targetScenarios": [
+        "A"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-20T16:01:17.109Z",
+      "updatedAt": "2026-02-20T16:01:17.109Z",
+      "id": 64
+    },
+    {
+      "title": "Sprint 7 — Sistema de Gestión de Gastos",
+      "content": "Quiero añadir a la app una sección para gestionar los gastos compartidos del piso. La idea es que los compañeros puedan apuntar quién pagó qué, cuánto, y que la app calcule sola quién le debe dinero a quién para que sea fácil saldar las cuentas.\n\nNecesitaría básicamente dos pantallas: una donde se listen y creen los gastos del piso, y otra donde se vea el resumen de quién debe qué a quién y se pueda marcar como saldado. Cada gasto debería tener una descripción, el importe, quién lo pagó, y entre quién se reparte.\n\nPara el cálculo de las deudas, busca algo eficiente, lo típico es que el que más debe le pague al que más se le debe primero, para minimizar el número de transferencias.\n\nNecesitas crear las tablas correspondientes en Supabase y las edge functions para leer y crear gastos y liquidaciones. Todo accesible desde la pantalla de gestión del piso que ya existe.\n\nUsa el mismo estilo visual que el resto de la app. Solo los miembros del piso deberían poder ver y tocar esto.",
+      "category": "feature",
+      "targetScenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-22T22:44:31.989Z",
+      "updatedAt": "2026-02-23T10:45:20.961Z",
+      "id": 65
+    },
+    {
+      "title": "auth debug",
+      "content": "auth debug",
+      "category": "debug",
+      "targetScenarios": [
+        "B"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-22T23:37:32.399Z",
+      "updatedAt": "2026-02-22T23:37:32.399Z",
+      "id": 66
+    },
+    {
+      "title": "auth debug 2",
+      "content": "auth debug 2",
+      "category": "corrective",
+      "targetScenarios": [
+        "B"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-22T23:51:47.936Z",
+      "updatedAt": "2026-02-22T23:51:47.936Z",
+      "id": 67
+    },
+    {
+      "title": "auth debug 3",
+      "content": "auth debug 3",
+      "category": "corrective",
+      "targetScenarios": [
+        "B"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-22T23:53:53.925Z",
+      "updatedAt": "2026-02-22T23:53:53.925Z",
+      "id": 68
+    },
+    {
+      "title": "auth debug 4",
+      "content": "auth debug 4",
+      "category": "debug",
+      "targetScenarios": [
+        "B"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-23T01:28:40.317Z",
+      "updatedAt": "2026-02-23T01:28:40.317Z",
+      "id": 69
+    }
+  ],
+  "promptEvaluations": [
+    {
+      "promptId": 31,
+      "scenarioId": "A",
+      "quality": 3,
+      "wasAccepted": true,
+      "sprintNumber": 7,
+      "notes": "Se ha tenido que hacer una aclaración previa de contexto",
+      "createdAt": "2026-02-19T15:32:30.862Z",
+      "updatedAt": "2026-02-20T08:55:25.725Z",
+      "humanRevisions": 12,
+      "id": 15
+    },
+    {
+      "promptId": 48,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 1,
+      "wasAccepted": true,
+      "humanRevisions": null,
+      "notes": "No hizo nada",
+      "createdAt": "2026-02-20T11:46:48.380Z",
+      "updatedAt": "2026-02-20T12:05:52.318Z",
+      "id": 16
+    },
+    {
+      "promptId": 49,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 5,
+      "wasAccepted": true,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-20T11:54:43.462Z",
+      "updatedAt": "2026-02-20T12:15:22.691Z",
+      "id": 17
+    },
+    {
+      "promptId": 50,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 5,
+      "wasAccepted": true,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-20T12:30:42.590Z",
+      "updatedAt": "2026-02-20T12:33:34.149Z",
+      "id": 18
+    },
+    {
+      "promptId": 51,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 2,
+      "wasAccepted": false,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-20T12:40:30.162Z",
+      "updatedAt": "2026-02-20T12:42:29.692Z",
+      "id": 19
+    },
+    {
+      "promptId": 52,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 3,
+      "wasAccepted": true,
+      "humanRevisions": 1,
+      "notes": "Se ha añadido pero falla la lógica de la arquitectura",
+      "createdAt": "2026-02-20T12:54:08.759Z",
+      "updatedAt": "2026-02-20T12:55:35.474Z",
+      "id": 20
+    },
+    {
+      "promptId": 53,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 2,
+      "wasAccepted": false,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-20T13:00:01.031Z",
+      "updatedAt": "2026-02-20T13:02:40.907Z",
+      "id": 21
+    },
+    {
+      "promptId": 54,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 3,
+      "wasAccepted": false,
+      "humanRevisions": 25,
+      "notes": "",
+      "createdAt": "2026-02-20T13:03:47.800Z",
+      "updatedAt": "2026-02-20T13:08:44.078Z",
+      "id": 22
+    },
+    {
+      "promptId": 55,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 5,
+      "wasAccepted": true,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-20T13:10:57.373Z",
+      "updatedAt": "2026-02-20T13:15:15.741Z",
+      "id": 23
+    },
+    {
+      "promptId": 56,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 4,
+      "wasAccepted": true,
+      "humanRevisions": 29,
+      "notes": "",
+      "createdAt": "2026-02-20T13:15:28.492Z",
+      "updatedAt": "2026-02-20T13:17:21.407Z",
+      "id": 24
+    },
+    {
+      "promptId": 57,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 5,
+      "wasAccepted": true,
+      "humanRevisions": 9,
+      "notes": "",
+      "createdAt": "2026-02-20T13:17:48.111Z",
+      "updatedAt": "2026-02-20T13:18:53.741Z",
+      "id": 25
+    },
+    {
+      "promptId": 58,
+      "scenarioId": "A",
+      "sprintNumber": 7,
+      "quality": 5,
+      "wasAccepted": true,
+      "humanRevisions": 42,
+      "notes": "",
+      "createdAt": "2026-02-20T13:19:07.051Z",
+      "updatedAt": "2026-02-20T13:19:55.440Z",
+      "id": 26
+    },
+    {
+      "promptId": 59,
+      "scenarioId": "A",
+      "quality": 5,
+      "wasAccepted": true,
+      "sprintNumber": 7,
+      "humanRevisions": null,
+      "notes": "refactor general para lint",
+      "createdAt": "2026-02-20T14:21:11.144Z",
+      "updatedAt": "2026-02-20T14:21:11.144Z",
+      "id": 28
+    },
+    {
+      "promptId": 32,
+      "scenarioId": "A",
+      "quality": 4,
+      "wasAccepted": true,
+      "sprintNumber": 8,
+      "humanRevisions": 306,
+      "notes": "",
+      "createdAt": "2026-02-20T14:35:14.193Z",
+      "updatedAt": "2026-02-20T15:39:39.572Z",
+      "id": 29
+    },
+    {
+      "promptId": 60,
+      "scenarioId": "A",
+      "sprintNumber": 8,
+      "quality": 5,
+      "wasAccepted": true,
+      "humanRevisions": 43,
+      "notes": "",
+      "createdAt": "2026-02-20T15:39:55.491Z",
+      "updatedAt": "2026-02-20T15:45:16.064Z",
+      "id": 30
+    },
+    {
+      "promptId": 61,
+      "scenarioId": "A",
+      "quality": 3,
+      "wasAccepted": false,
+      "sprintNumber": 8,
+      "humanRevisions": 91,
+      "notes": "",
+      "createdAt": "2026-02-20T15:48:44.417Z",
+      "updatedAt": "2026-02-20T15:51:17.156Z",
+      "id": 31
+    },
+    {
+      "promptId": 61,
+      "scenarioId": "B",
+      "quality": null,
+      "wasAccepted": null,
+      "sprintNumber": 8,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-20T15:48:45.185Z",
+      "updatedAt": "2026-02-20T15:48:45.185Z",
+      "id": 32
+    },
+    {
+      "promptId": 62,
+      "scenarioId": "A",
+      "sprintNumber": 8,
+      "quality": 1,
+      "wasAccepted": false,
+      "humanRevisions": 91,
+      "notes": "",
+      "createdAt": "2026-02-20T15:52:15.942Z",
+      "updatedAt": "2026-02-20T15:56:30.052Z",
+      "id": 33
+    },
+    {
+      "promptId": 63,
+      "scenarioId": "A",
+      "sprintNumber": 8,
+      "quality": 4,
+      "wasAccepted": true,
+      "humanRevisions": 25,
+      "notes": "",
+      "createdAt": "2026-02-20T15:53:55.025Z",
+      "updatedAt": "2026-02-20T15:56:48.363Z",
+      "id": 34
+    },
+    {
+      "promptId": 64,
+      "scenarioId": "A",
+      "sprintNumber": 8,
+      "quality": 5,
+      "wasAccepted": true,
+      "humanRevisions": 124,
+      "notes": "",
+      "createdAt": "2026-02-20T16:01:17.119Z",
+      "updatedAt": "2026-02-20T16:08:29.320Z",
+      "id": 35
+    },
+    {
+      "promptId": 65,
+      "scenarioId": "A",
+      "quality": 3,
+      "wasAccepted": true,
+      "sprintNumber": 7,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-22T22:44:58.133Z",
+      "updatedAt": "2026-02-22T22:44:58.133Z",
+      "id": 36
+    },
+    {
+      "promptId": 65,
+      "scenarioId": "C",
+      "quality": null,
+      "wasAccepted": null,
+      "sprintNumber": 7,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-22T22:45:16.225Z",
+      "updatedAt": "2026-02-22T22:45:16.225Z",
+      "id": 37
+    },
+    {
+      "promptId": 65,
+      "scenarioId": "B",
+      "quality": 2,
+      "wasAccepted": true,
+      "sprintNumber": 7,
+      "humanRevisions": 2508,
+      "notes": "",
+      "createdAt": "2026-02-22T22:45:16.788Z",
+      "updatedAt": "2026-02-22T23:36:57.485Z",
+      "id": 38
+    },
+    {
+      "promptId": 65,
+      "scenarioId": "D",
+      "quality": null,
+      "wasAccepted": null,
+      "sprintNumber": 7,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-22T22:45:17.581Z",
+      "updatedAt": "2026-02-22T22:45:17.581Z",
+      "id": 39
+    },
+    {
+      "promptId": 66,
+      "scenarioId": "B",
+      "sprintNumber": 7,
+      "quality": 2,
+      "wasAccepted": true,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-22T23:37:32.408Z",
+      "updatedAt": "2026-02-22T23:51:24.485Z",
+      "id": 40
+    },
+    {
+      "promptId": 67,
+      "scenarioId": "B",
+      "sprintNumber": 7,
+      "quality": 2,
+      "wasAccepted": false,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-22T23:51:47.942Z",
+      "updatedAt": "2026-02-23T01:41:45.033Z",
+      "id": 41
+    },
+    {
+      "promptId": 68,
+      "scenarioId": "B",
+      "sprintNumber": 7,
+      "quality": 3,
+      "wasAccepted": false,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-22T23:53:53.933Z",
+      "updatedAt": "2026-02-23T01:41:53.771Z",
+      "id": 42
+    },
+    {
+      "promptId": 69,
+      "scenarioId": "B",
+      "sprintNumber": 7,
+      "quality": 2,
+      "wasAccepted": false,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-23T01:28:40.328Z",
+      "updatedAt": "2026-02-23T01:42:03.674Z",
+      "id": 43
+    },
+    {
+      "promptId": 33,
+      "scenarioId": "A",
+      "quality": null,
+      "wasAccepted": null,
+      "sprintNumber": 9,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-23T10:53:43.027Z",
+      "updatedAt": "2026-02-23T10:53:43.027Z",
+      "id": 44
+    },
+    {
+      "promptId": 33,
+      "scenarioId": "B",
+      "quality": null,
+      "wasAccepted": null,
+      "sprintNumber": 9,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-23T10:53:44.517Z",
+      "updatedAt": "2026-02-23T10:53:44.517Z",
+      "id": 45
+    },
+    {
+      "promptId": 33,
+      "scenarioId": "C",
+      "quality": null,
+      "wasAccepted": null,
+      "sprintNumber": 9,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-23T10:53:45.190Z",
+      "updatedAt": "2026-02-23T10:53:45.190Z",
+      "id": 46
+    },
+    {
+      "promptId": 33,
+      "scenarioId": "D",
+      "quality": null,
+      "wasAccepted": null,
+      "sprintNumber": 9,
+      "humanRevisions": null,
+      "notes": "",
+      "createdAt": "2026-02-23T10:53:45.754Z",
+      "updatedAt": "2026-02-23T10:53:45.754Z",
+      "id": 47
+    }
+  ],
+  "exportedAt": "2026-02-23T11:09:16.313Z"
+}

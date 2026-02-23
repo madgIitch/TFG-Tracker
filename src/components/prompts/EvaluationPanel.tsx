@@ -5,6 +5,7 @@ import { Select } from '../ui/Select'
 import { Textarea } from '../ui/Textarea'
 import { Button } from '../ui/Button'
 import { NumericInput } from '../ui/Input'
+import { ImagePasteZone } from '../ui/ImagePasteZone'
 import { usePromptEval, upsertEvaluation, deleteEvaluation } from '../../db/hooks/usePrompts'
 import { SCENARIO_MAP } from '../../constants/scenarios'
 import { SPRINT_NAMES, SPRINT_NUMBERS } from '../../constants/sprints'
@@ -150,6 +151,11 @@ function EvalCard({ promptId, scenarioId }: EvalCardProps) {
           </Button>
         </div>
       )}
+
+      <ImagePasteZone
+        entityType="prompt_eval"
+        entityKey={`${promptId}_${scenarioId}`}
+      />
 
       {editing && (
         <div className="flex flex-col gap-3">

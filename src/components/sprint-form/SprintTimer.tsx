@@ -53,7 +53,7 @@ export function SprintTimer({ timerKey, initialFeatureSeconds, initialFixSeconds
           <button
             key={m.value}
             type="button"
-            onClick={() => setMode(mode === m.value ? null : m.value)}
+            onClick={() => setMode(m.value)}
             className={`flex-1 py-1.5 rounded-md border text-xs font-semibold transition-colors ${mode === m.value ? m.active : m.idle}`}
           >
             {m.label}
