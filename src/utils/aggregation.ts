@@ -5,6 +5,7 @@ import {
   computeBuildSuccessRate,
   computeTestPassRate,
 } from './metrics'
+import { getSprintTTS } from '../components/compare/BudgetPanel'
 
 export interface AggregatedScenarioMetrics {
   scenarioId: ScenarioId
@@ -101,7 +102,7 @@ export function aggregateScenario(
     totalSprints: sprints.length,
 
     // D5
-    totalTTS: sumNullable(sprints.map((s) => s.tts)),
+    totalTTS: sumNullable(sprints.map((s) => getSprintTTS(s))),
     totalCommits: sumNullable(sprints.map((s) => s.commits)),
     totalManualEdits: sumNullable(sprints.map((s) => s.manualEdits)),
     totalCorrectivePrompts: sumNullable(sprints.map((s) => s.correctivePrompts)),
