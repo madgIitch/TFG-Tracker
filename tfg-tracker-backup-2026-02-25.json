@@ -144,12 +144,12 @@
       "envFailures": null,
       "tsWarnings": 4,
       "linterWarnings": 10,
-      "styleConsistency": 5,
+      "styleConsistency": 4,
       "uiUxQuality": 4,
       "incidences": [],
-      "observations": "",
+      "observations": "D3 — Coherencia Arquitectural\nEscenario A → 5 / 5 — Excelente\nMejora clara respecto al S7. Las desviaciones que tenía (supabaseClient importado desde authService en ChatScreen, tipos mezclados) están corregidas.\n\nEvidencias positivas:\n\nSwipeFiltersContext sigue el patrón canónico del proyecto: type del valor, createContext, custom hook con guard (useSwipeFilters), persistencia en AsyncStorage\nauthService y profileService: singleton de clase, métodos privados getAuthHeaders() / decodeJwtPayload(), flujo de refresh de token correctamente encapsulado\nAppNavigator / MainNavigator: composición stack+tabs correcta, SafeAreaView integrado, TabBarIconWrapper extraído como componente memo para evitar definición inline\nServicesManagementScreen: nueva pantalla colocada correctamente en src/screens/, tipada con FlatService de ../types/room\nDesviaciones:\n\nany en props del TabBarIconWrapper en MainNavigator (trivial)\nHeadersInit_ como alias de tipo en authService en lugar de Record<string, string> (trivial)\n\n\nD6 — Consistencia de Estilos\nEscenario A → 4 / 5 — Consistente\nEvidencias positivas:\n\nLoginScreen usa theme.colors para todos los colores: theme.colors.background, theme.colors.border, theme.colors.surface, theme.colors.text — correctamente integrado\nHandlers con prefijo handle: handleLogin, handleGoogleSignIn, handleSave, handleSwipe\nStyleSheet.create() al final en todos los módulos sin excepción\nHooks correctamente usados: useCallback en loadServices, useMemo en serviceByName\nDesviaciones:\n\nServicesManagementScreen tiene backgroundColor: '#F8FAFC' y chips activos con '#7C3AED' hardcodeados en lugar de theme.colors → inconsistente con LoginScreen del mismo sprint\n\n\nuiUxQuality — Calidad UI/UX\nEscenario A → 4 / 5 — Buena\nLoginScreen: KeyboardAvoidingView + ScrollView con keyboardShouldPersistTaps, logo centrado, jerarquía tipográfica clara, Button + GoogleSignInButton del sistema de componentes\nServicesManagementScreen (nueva): organización por categorías con chips morados en activo, input de precio inline por servicio, opción \"Otros\" con campo personalizado, header con Cancelar/Guardar → diseño completo y usable\nCoherencia visual con el design system morado del proyecto",
       "createdAt": "2026-02-20T14:33:19.705Z",
-      "updatedAt": "2026-02-25T16:56:13.364Z",
+      "updatedAt": "2026-02-25T17:13:02.644Z",
       "id": 15,
       "gitFromCommit": "1bcc7f7",
       "gitToCommit": "4302861"
@@ -195,10 +195,12 @@
       "styleConsistency": 4,
       "uiUxQuality": 4,
       "incidences": [],
-      "observations": "",
+      "observations": "D3 — Coherencia Arquitectural\nEscenario A → 5 / 5 — Excelente\nMejora clara respecto al S7. Las desviaciones que tenía (supabaseClient importado desde authService en ChatScreen, tipos mezclados) están corregidas.\n\nEvidencias positivas:\n\nSwipeFiltersContext sigue el patrón canónico del proyecto: type del valor, createContext, custom hook con guard (useSwipeFilters), persistencia en AsyncStorage\nauthService y profileService: singleton de clase, métodos privados getAuthHeaders() / decodeJwtPayload(), flujo de refresh de token correctamente encapsulado\nAppNavigator / MainNavigator: composición stack+tabs correcta, SafeAreaView integrado, TabBarIconWrapper extraído como componente memo para evitar definición inline\nServicesManagementScreen: nueva pantalla colocada correctamente en src/screens/, tipada con FlatService de ../types/room\nDesviaciones:\n\nany en props del TabBarIconWrapper en MainNavigator (trivial)\nHeadersInit_ como alias de tipo en authService en lugar de Record<string, string> (trivial)\n\n\nD6 — Consistencia de Estilos\nEscenario A → 4 / 5 — Consistente\nEvidencias positivas:\n\nLoginScreen usa theme.colors para todos los colores: theme.colors.background, theme.colors.border, theme.colors.surface, theme.colors.text — correctamente integrado\nHandlers con prefijo handle: handleLogin, handleGoogleSignIn, handleSave, handleSwipe\nStyleSheet.create() al final en todos los módulos sin excepción\nHooks correctamente usados: useCallback en loadServices, useMemo en serviceByName\nDesviaciones:\n\nServicesManagementScreen tiene backgroundColor: '#F8FAFC' y chips activos con '#7C3AED' hardcodeados en lugar de theme.colors → inconsistente con LoginScreen del mismo sprint\n\n\nuiUxQuality — Calidad UI/UX\nEscenario A → 4 / 5 — Buena\nLoginScreen: KeyboardAvoidingView + ScrollView con keyboardShouldPersistTaps, logo centrado, jerarquía tipográfica clara, Button + GoogleSignInButton del sistema de componentes\nServicesManagementScreen (nueva): organización por categorías con chips morados en activo, input de precio inline por servicio, opción \"Otros\" con campo personalizado, header con Cancelar/Guardar → diseño completo y usable\nCoherencia visual con el design system morado del proyecto",
       "createdAt": "2026-02-23T10:42:33.519Z",
-      "updatedAt": "2026-02-25T16:20:06.389Z",
-      "id": 16
+      "updatedAt": "2026-02-25T17:12:08.235Z",
+      "id": 16,
+      "gitFromCommit": "e046c72",
+      "gitToCommit": "feef3a4"
     },
     {
       "scenarioId": "A",
@@ -369,19 +371,19 @@
       "controlCheckpoints": 2,
       "linesAdded": 403,
       "linesRemoved": 228,
-      "architecturalCoherence": null,
+      "architecturalCoherence": 4,
       "buildsOk": 2,
       "buildsFailed": null,
       "buildsTotal": 2,
       "envFailures": 1,
       "tsWarnings": 0,
       "linterWarnings": null,
-      "styleConsistency": null,
-      "uiUxQuality": null,
+      "styleConsistency": 4,
+      "uiUxQuality": 4,
       "incidences": [],
-      "observations": "",
+      "observations": "D3 — Coherencia Arquitectural\n\nEscenario C → 4 / 5 — Bueno\nEvidencias positivas:\n\nSubfolder register/ con las fases: correcta decisión de modularidad\nTests en __tests__/services/ siguiendo la convención del proyecto\nflatExpenseService añade unwrapPayload<T>() genérico y extractErrorMessage() — mejores patrones que en S7\nDesviaciones:\n\nauthService elimina métodos presentes en el contrato anterior (getAccessToken(), simplificación de refreshToken()) — cambio potencialmente breaking para los consumidores\nuseEffect de logging en Phase1Email con todas las props como dependencias → se ejecuta en cada render, patrón ajeno al resto del proyecto\n\n\nD6 — Consistencia de Estilos\n\nEscenario C → 4 / 5 — Consistente\nEvidencias positivas:\n\nFases de registro: naming muy consistente — handleNext, handleEmailChange, handlePasswordChange, handleGoToLogin, handleGoogleSignIn\nflatExpenseService: TypeScript avanzado con interface ApiResponse<T>, unwrapPayload<T>(), patrones de tipo coherentes\nStyleSheet.create() al final en todas las fases\nDesviaciones:\n\nPhase1Email tiene console.log en literalmente cada función (handleEmailChange, handlePasswordChange, handleNext, handleGoToLogin, handleGoogleSignIn) + en el useEffect de montaje — ningún otro archivo del proyecto hace esto, y los emojis de log están con encoding roto (ÐY\"?, ƒ?O)\n\nuiUxQuality — Calidad UI/UX\n\nEscenario C → 4 / 5 — Buena\nPhase1Email: tarjeta con sombra (card), stepper de 4 puntos con el paso activo en morado → buena adición de UX para el flujo de registro multifase\nLoginScreen idéntico al de A → misma calidad\nLa descomposición del registro en fases mejora la experiencia de onboarding respecto a una pantalla monolítica\nLimitación: fondo de la card hardcodeado en #FFFFFF (no respeta tema oscuro si se implementara)\n\n",
       "createdAt": "2026-02-25T14:25:10.233Z",
-      "updatedAt": "2026-02-25T16:55:46.611Z",
+      "updatedAt": "2026-02-25T17:14:13.184Z",
       "id": 20,
       "gitFromCommit": "071738b",
       "gitToCommit": "913ada3"
@@ -397,8 +399,8 @@
       "ttsFix": 0.23,
       "description": "",
       "commits": 4,
-      "filesCreated": 10,
-      "filesModified": 10,
+      "filesCreated": 32,
+      "filesModified": 22,
       "testsTotal": 23,
       "testsPass": 23,
       "testsFail": null,
@@ -415,8 +417,8 @@
       "retrievalMechanism": "mixto",
       "autonomousActions": 58,
       "controlCheckpoints": 11,
-      "linesAdded": 2064,
-      "linesRemoved": 2044,
+      "linesAdded": 3789,
+      "linesRemoved": 3671,
       "architecturalCoherence": null,
       "buildsOk": 3,
       "buildsFailed": null,
@@ -429,8 +431,10 @@
       "incidences": [],
       "observations": "",
       "createdAt": "2026-02-25T15:23:16.320Z",
-      "updatedAt": "2026-02-25T16:51:35.231Z",
-      "id": 21
+      "updatedAt": "2026-02-25T17:09:40.327Z",
+      "id": 21,
+      "gitFromCommit": "913ada3",
+      "gitToCommit": "d25e3f6"
     },
     {
       "scenarioId": "B",
@@ -553,7 +557,7 @@
         "weaknesses": "",
         "generalExperience": ""
       },
-      "updatedAt": "2026-02-25T16:56:11.801Z",
+      "updatedAt": "2026-02-25T17:12:18.595Z",
       "id": 17
     },
     {
@@ -613,7 +617,7 @@
         "weaknesses": "",
         "generalExperience": ""
       },
-      "updatedAt": "2026-02-25T16:55:25.287Z",
+      "updatedAt": "2026-02-25T17:13:05.360Z",
       "id": 19
     },
     {
@@ -2106,5 +2110,5 @@
       "id": 11
     }
   ],
-  "exportedAt": "2026-02-25T16:56:17.812Z"
+  "exportedAt": "2026-02-25T17:14:15.418Z"
 }
