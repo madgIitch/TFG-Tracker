@@ -1,15 +1,29 @@
-import { useRef, type ChangeEvent } from 'react'
+import { useRef, useState, type ChangeEvent } from 'react'
 import { db } from '../../db/database'
+import { downloadAllImages } from '../../utils/imageDownload'
 
 export function ExportImportButtons() {
   const importRef = useRef<HTMLInputElement>(null)
+  const [downloadingImgs, setDownloadingImgs] = useState(false)
+
+  async function handleDownloadAllImages() {
+    setDownloadingImgs(true)
+    try {
+      await downloadAllImages()
+    } catch (err) {
+      alert('Error al descargar imágenes: ' + String(err))
+    } finally {
+      setDownloadingImgs(false)
+    }
+  }
 
   async function handleExport() {
     const sprints = await db.sprints.toArray()
     const scenarios = await db.scenarios.toArray()
     const prompts = await db.prompts.toArray()
     const promptEvaluations = await db.promptEvaluations.toArray()
-    const data = { sprints, scenarios, prompts, promptEvaluations, exportedAt: new Date().toISOString() }
+    const images = await db.images.toArray()
+    const data = { sprints, scenarios, prompts, promptEvaluations, images, exportedAt: new Date().toISOString() }
     const filename = `tfg-tracker-backup-${new Date().toISOString().slice(0, 10)}.json`
     const content = JSON.stringify(data, null, 2)
     try {
@@ -42,17 +56,20 @@ export function ExportImportButtons() {
       }
       const prompts = Array.isArray(data.prompts) ? data.prompts : []
       const promptEvaluations = Array.isArray(data.promptEvaluations) ? data.promptEvaluations : []
-      await db.transaction('rw', db.sprints, db.scenarios, db.prompts, db.promptEvaluations, async () => {
+      const images = Array.isArray(data.images) ? data.images : []
+      await db.transaction('rw', [db.sprints, db.scenarios, db.prompts, db.promptEvaluations, db.images], async () => {
         await db.sprints.clear()
         await db.scenarios.clear()
         await db.prompts.clear()
         await db.promptEvaluations.clear()
+        await db.images.clear()
         await db.sprints.bulkAdd(data.sprints.map(({ id: _id, ...rest }: any) => rest))
         await db.scenarios.bulkAdd(data.scenarios.map(({ id: _id, ...rest }: any) => rest))
         // Prompts y evaluaciones deben preservar sus IDs originales para que
         // la referencia promptId en promptEvaluations siga siendo válida.
         await db.prompts.bulkPut(prompts)
         await db.promptEvaluations.bulkPut(promptEvaluations)
+        await db.images.bulkAdd(images.map(({ id: _id, ...rest }: any) => rest))
       })
       alert('Datos importados correctamente.')
     } catch (err) {
@@ -77,6 +94,15 @@ export function ExportImportButtons() {
         className="w-full flex items-center gap-2 px-3 py-2 rounded-md text-sm text-slate-400 hover:text-slate-200 hover:bg-[#252b3b] transition-colors"
       >
         <span className="text-base leading-none">↑</span> Importar JSON
+      </button>
+      <button
+        type="button"
+        onClick={handleDownloadAllImages}
+        disabled={downloadingImgs}
+        className="w-full flex items-center gap-2 px-3 py-2 rounded-md text-sm text-slate-400 hover:text-slate-200 hover:bg-[#252b3b] disabled:opacity-40 transition-colors"
+      >
+        <span className="text-base leading-none">↓</span>
+        {downloadingImgs ? 'Descargando…' : 'Descargar imágenes'}
       </button>
       <input ref={importRef} type="file" accept=".json" className="hidden" onChange={handleImport} />
     </div>

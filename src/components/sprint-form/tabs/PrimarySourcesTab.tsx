@@ -53,8 +53,8 @@ export function PrimarySourcesTab({ data, onChange }: Props) {
 
   // ── Git diff state ────────────────────────────────────────────────────────
   const [repoPath,    setRepoPath]    = useState(loadRepoPath)
-  const [fromCommit,  setFromCommit]  = useState('')
-  const [toCommit,    setToCommit]    = useState('')
+  const [fromCommit,  setFromCommit]  = useState(data.gitFromCommit ?? '')
+  const [toCommit,    setToCommit]    = useState(data.gitToCommit ?? '')
   const [gitLoading,  setGitLoading]  = useState(false)
   const [gitResult,   setGitResult]   = useState<GitDiffResult | null>(null)
   const [gitError,    setGitError]    = useState<string | null>(null)
@@ -82,6 +82,8 @@ export function PrimarySourcesTab({ data, onChange }: Props) {
         onChange('filesModified', result.modified)
         onChange('linesAdded',    result.linesAdded)
         onChange('linesRemoved',  result.linesRemoved)
+        onChange('gitFromCommit', fromCommit)
+        onChange('gitToCommit',   toCommit)
       }
     } catch (e) {
       setGitError(String(e))

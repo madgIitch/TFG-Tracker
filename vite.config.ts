@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { execSync } from 'child_process'
-import { writeFileSync } from 'fs'
-import { join } from 'path'
+import { writeFileSync, mkdirSync } from 'fs'
+import { join, dirname } from 'path'
 import type { Plugin } from 'vite'
 
 function gitDiffPlugin(): Plugin {
@@ -51,6 +51,37 @@ function gitDiffPlugin(): Plugin {
             writeFileSync(filePath, content, 'utf-8')
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify({ ok: true, path: filePath }))
+          } catch (e: unknown) {
+            res.statusCode = 500
+            res.setHeader('Content-Type', 'application/json')
+            res.end(JSON.stringify({ error: e instanceof Error ? e.message : String(e) }))
+          }
+        })
+      })
+
+      // ── /api/save-images : write image files to exported-images/ folder ──
+      server.middlewares.use('/api/save-images', (req, res) => {
+        if (req.method !== 'POST') { res.statusCode = 405; res.end('Method not allowed'); return }
+        let body = ''
+        req.on('data', (chunk: Buffer) => { body += chunk.toString() })
+        req.on('end', () => {
+          try {
+            const { images } = JSON.parse(body) as {
+              images: Array<{ path: string; data: string }>
+            }
+            if (!Array.isArray(images)) { res.statusCode = 400; res.end(JSON.stringify({ error: 'images debe ser un array' })); return }
+            const baseDir = join(process.cwd(), 'exported-images')
+            let count = 0
+            for (const img of images) {
+              const fullPath = join(baseDir, img.path)
+              mkdirSync(dirname(fullPath), { recursive: true })
+              const match = img.data.match(/^data:[^;]+;base64,(.+)$/)
+              if (!match) continue
+              writeFileSync(fullPath, Buffer.from(match[1], 'base64'))
+              count++
+            }
+            res.setHeader('Content-Type', 'application/json')
+            res.end(JSON.stringify({ ok: true, count, folder: baseDir }))
           } catch (e: unknown) {
             res.statusCode = 500
             res.setHeader('Content-Type', 'application/json')

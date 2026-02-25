@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useParams, Navigate } from 'react-router-dom'
 import { TopBar } from '../components/layout/TopBar'
 import { SprintTable } from '../components/scenario/SprintTable'
@@ -10,12 +11,14 @@ import { useSprints } from '../db/hooks/useSprints'
 import { useScenario } from '../db/hooks/useScenarios'
 import { SCENARIO_MAP } from '../constants/scenarios'
 import { getSprintCompletionCount } from '../utils/metrics'
+import { downloadScenarioImages } from '../utils/imageDownload'
 import type { ScenarioId } from '../types'
 
 const VALID_IDS: ScenarioId[] = ['A', 'B', 'C', 'D']
 
 export default function ScenarioPage() {
   const { id } = useParams<{ id: string }>()
+  const [downloadingImgs, setDownloadingImgs] = useState(false)
 
   if (!id || !VALID_IDS.includes(id as ScenarioId)) {
     return <Navigate to="/" replace />
@@ -29,6 +32,17 @@ export default function ScenarioPage() {
   if (sprints === undefined || scenarioRecord === undefined) return <LoadingScreen />
 
   const completed = getSprintCompletionCount(sprints)
+
+  async function handleDownloadScenarioImages() {
+    setDownloadingImgs(true)
+    try {
+      await downloadScenarioImages(scenarioId)
+    } catch (err) {
+      alert('Error al descargar imágenes: ' + String(err))
+    } finally {
+      setDownloadingImgs(false)
+    }
+  }
 
   return (
     <div className="flex flex-col flex-1">
@@ -50,12 +64,23 @@ export default function ScenarioPage() {
               {def.model} · {def.environment} · {def.role}
             </p>
           </div>
-          <div className="w-full md:w-64">
-            <ProgressBar
-              value={completed / 17}
-              color={def.accentColor}
-              label={`${completed} / 17 sprints completados`}
-            />
+          <div className="flex flex-col items-end gap-2">
+            <div className="w-full md:w-64">
+              <ProgressBar
+                value={completed / 17}
+                color={def.accentColor}
+                label={`${completed} / 17 sprints completados`}
+              />
+            </div>
+            <button
+              type="button"
+              onClick={handleDownloadScenarioImages}
+              disabled={downloadingImgs}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs text-slate-400 hover:text-slate-200 hover:bg-[#252b3b] border border-[#2e3650] disabled:opacity-40 transition-colors"
+            >
+              <span className="text-sm leading-none">↓</span>
+              {downloadingImgs ? 'Descargando…' : 'Descargar imágenes del escenario'}
+            </button>
           </div>
         </div>
 

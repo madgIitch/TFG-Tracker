@@ -45,8 +45,26 @@ export function ImagePasteZone({ entityType, entityKey }: ImagePasteZoneProps) {
     e.preventDefault()
   }
 
+  function downloadImage(dataUrl: string, index: number) {
+    const ext = dataUrl.split(';')[0].split('/')[1] || 'png'
+    const a = document.createElement('a')
+    a.href = dataUrl
+    a.download = `imagen-${index + 1}.${ext}`
+    a.click()
+  }
+
   function openImage(dataUrl: string) {
-    window.open(dataUrl, '_blank')
+    const [header, base64] = dataUrl.split(',')
+    const mimeMatch = header.match(/:(.*?);/)
+    if (!mimeMatch) return
+    const mime = mimeMatch[1]
+    const bytes = atob(base64)
+    const arr = new Uint8Array(bytes.length)
+    for (let i = 0; i < bytes.length; i++) arr[i] = bytes.charCodeAt(i)
+    const blob = new Blob([arr], { type: mime })
+    const url = URL.createObjectURL(blob)
+    window.open(url, '_blank')
+    setTimeout(() => URL.revokeObjectURL(url), 60_000)
   }
 
   return (
@@ -75,7 +93,7 @@ export function ImagePasteZone({ entityType, entityKey }: ImagePasteZoneProps) {
       {/* Thumbnail gallery */}
       {images.length > 0 && (
         <div className="flex flex-wrap gap-2">
-          {images.map((img) => (
+          {images.map((img, i) => (
             <div key={img.id} className="relative group">
               <img
                 src={img.data}
@@ -84,6 +102,22 @@ export function ImagePasteZone({ entityType, entityKey }: ImagePasteZoneProps) {
                 onClick={() => openImage(img.data)}
                 title="Click para ver a tamaño completo"
               />
+              {/* Botón descargar */}
+              <button
+                type="button"
+                onClick={() => downloadImage(img.data, i)}
+                className="
+                  absolute -top-1.5 -left-1.5
+                  w-4 h-4 flex items-center justify-center
+                  bg-blue-700 hover:bg-blue-500 text-white rounded-full
+                  text-[9px] leading-none
+                  opacity-0 group-hover:opacity-100 transition-opacity
+                "
+                title="Descargar imagen"
+              >
+                ↓
+              </button>
+              {/* Botón eliminar */}
               <button
                 type="button"
                 onClick={() => deleteImage(img.id!)}

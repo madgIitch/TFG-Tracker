@@ -4,6 +4,8 @@ import { CompareTable } from '../components/compare/CompareTable'
 import { CompareCharts } from '../components/compare/CompareCharts'
 import { BudgetPanel } from '../components/compare/BudgetPanel'
 import { SprintTimelineChart } from '../components/compare/SprintTimelineChart'
+import { ScatterQualityChart } from '../components/compare/ScatterQualityChart'
+import { ScenarioEvolutionCharts } from '../components/compare/ScenarioEvolutionCharts'
 import { LoadingScreen } from '../components/ui/Spinner'
 import { useAllSprints } from '../db/hooks/useSprints'
 import { useAllScenarios } from '../db/hooks/useScenarios'
@@ -62,6 +64,18 @@ export default function ComparePage() {
         {/* Budget + timeline — siempre visibles */}
         <BudgetPanel allSprints={allSprints} />
         <SprintTimelineChart allSprints={allSprints} />
+        <ScatterQualityChart allSprints={allSprints} />
+
+        {/* Evolución sprint a sprint — siempre visible */}
+        <section className="bg-[#1a1f2e] border border-[#2e3650] rounded-xl p-5 flex flex-col gap-4">
+          <div>
+            <h3 className="text-sm font-semibold text-slate-200">Evolución sprint a sprint — A vs B vs C vs D</h3>
+            <p className="text-xs text-slate-500 mt-0.5">
+              TTS, calidad media y ratio de autonomía por sprint para los 4 escenarios.
+            </p>
+          </div>
+          <ScenarioEvolutionCharts allSprints={allSprints} />
+        </section>
 
         {/* Metrics: charts or table */}
         {view === 'charts' ? (

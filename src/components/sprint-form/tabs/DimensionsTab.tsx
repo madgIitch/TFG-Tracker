@@ -344,15 +344,13 @@ export function DimensionsTab({ data, onChange }: Props) {
           </p>
           <p className="text-xs text-slate-500">Derivado del campo Commits en General</p>
         </div>
-        <NumericInput
-          label="Tiempo de verificación (h)"
-          value={data.verificationTime}
-          onChange={(v) => onChange('verificationTime', v)}
-          step={0.1}
-          min={0}
-          placeholder="ej. 1.5"
-          hint="Horas dedicadas a ejecutar tests y depurar fallos"
-        />
+        <div className="flex flex-col gap-1">
+          <span className="text-xs font-medium text-slate-400 uppercase tracking-wide">Tiempo de verificación (h)</span>
+          <p className="bg-[#252b3b] border border-[#2e3650] rounded-md px-3 py-2 text-sm font-mono text-slate-300">
+            {data.ttsFix != null ? `${data.ttsFix.toFixed(2)}h` : '—'}
+          </p>
+          <p className="text-xs text-slate-500">Derivado del tiempo ⚠ Corrección del cronómetro</p>
+        </div>
       </DimCard>
 
       {/* D4 — Operacional */}

@@ -76,7 +76,7 @@ export function SprintTimer({ timerKey, initialFeatureSeconds, initialFixSeconds
       {/* Controles */}
       <div className="flex gap-2">
         {!running ? (
-          <Button variant="primary" size="sm" onClick={start}>
+          <Button variant="primary" size="sm" onClick={() => { if (mode === null) setMode('feature'); start() }}>
             ▶ Iniciar
           </Button>
         ) : (

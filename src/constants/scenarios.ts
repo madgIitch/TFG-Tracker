@@ -13,8 +13,8 @@ export interface ScenarioDefinition {
 export const SCENARIO_DEFINITIONS: ScenarioDefinition[] = [
   {
     id: 'A',
-    label: 'Codex + Claude Code',
-    model: 'GPT-4 / Claude Sonnet',
+    label: 'Codex en VS',
+    model: 'GPT 5.3',
     environment: 'VS Code',
     role: 'Baseline',
     colorClass: 'blue',
@@ -31,9 +31,9 @@ export const SCENARIO_DEFINITIONS: ScenarioDefinition[] = [
   },
   {
     id: 'C',
-    label: 'Codex en Cursor',
-    model: 'GPT-4o',
-    environment: 'Cursor',
+    label: 'Codex en Windsurf',
+    model: 'GPT 5.3',
+    environment: 'Windsurf',
     role: 'Replicación',
     colorClass: 'purple',
     accentColor: '#a855f7',

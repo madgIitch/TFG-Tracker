@@ -52,6 +52,8 @@ export interface SprintRecord {
   linesAdded: number | null   // git diff --shortstat: insertions
   linesRemoved: number | null // git diff --shortstat: deletions
   architecturalCoherence: number | null // 1–5
+  gitFromCommit: string | null // rango de commits usado en el cálculo
+  gitToCommit: string | null
 
   // D4 Éxito operacional
   buildsOk: number | null

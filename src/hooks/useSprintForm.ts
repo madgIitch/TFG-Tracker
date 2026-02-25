@@ -36,6 +36,8 @@ function defaultRecord(scenarioId: ScenarioId, sprintNumber: number): SprintReco
     linesAdded: null,
     linesRemoved: null,
     architecturalCoherence: null,
+    gitFromCommit: null,
+    gitToCommit: null,
     buildsOk: null,
     buildsFailed: null,
     buildsTotal: null,
