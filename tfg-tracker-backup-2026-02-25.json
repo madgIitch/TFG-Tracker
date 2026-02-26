@@ -262,7 +262,7 @@
       "description": "",
       "commits": 7,
       "filesCreated": 2,
-      "filesModified": 45,
+      "filesModified": 43,
       "testsTotal": 8,
       "testsPass": 8,
       "testsFail": null,
@@ -279,9 +279,9 @@
       "retrievalMechanism": "mixto",
       "autonomousActions": 45,
       "controlCheckpoints": 84,
-      "linesAdded": 1532,
-      "linesRemoved": 960,
-      "architecturalCoherence": 2,
+      "linesAdded": 1058,
+      "linesRemoved": 786,
+      "architecturalCoherence": 4,
       "buildsOk": 3,
       "buildsFailed": 1,
       "buildsTotal": 4,
@@ -291,10 +291,12 @@
       "styleConsistency": 3,
       "uiUxQuality": 4,
       "incidences": [],
-      "observations": "El código presenta varias desviaciones claras respecto a la arquitectura del proyecto. Se creó un componente centralizado GlassBackground que nunca se utiliza, mientras que cada pantalla define su propio GlassCard localmente, rompiendo el patrón de componentes reutilizables. Los tokens de diseño definidos en colors.ts son completamente ignorados, usando valores hardcodeados en su lugar, lo que contradice la arquitectura de tokens establecida.\n\nEl naming sigue convenciones correctas (camelCase para props como selectedIds, onSelect , PascalCase para componentes), pero hay inconsistencias notables en la aplicación de estilos. Los componentes reutilizables usan theme.colors y theme.spacing correctamente , mientras que los archivos .styles.ts de las pantallas usan valores hardcodeados como rgba(255, 255, 255, 0.45) , creando un patrón dual inconsistente en el mismo sprint.",
+      "observations": "Escenario A\nD3 — Coherencia arquitectural: 4/5\n\nGlassBackground.tsx correctamente colocado en components/\nTodos los archivos .styles.ts se mantienen en src/styles/screens/ — estructura correcta\nexport default en style files — consistente con el patrón establecido en A desde S9\nMainNavigator integra useSafeAreaInsets correctamente con height: 56 + insets.bottom\nPenalización: El componente Input cambia radicalmente su borderRadius a theme.borderRadius.full (forma pill), impactando todos los formularios del app sin justificación arquitectural explícita. Los style files usan colores hardcodeados (#F2F2F7, #1C1C1E, rgba(...)) en lugar de consumir los tokens del tema establecidos en S9 — el sistema de tokens sigue sin aplicarse\nD6 — Consistencia de estilos: 3/5\n\nNaming del glass UI consistente en todos los archivos: glassFill, glassCard, glassButton, glassChip\nPenalización 1: Input con borderRadius: full (pill) rompe la consistencia visual de todos los formularios del app respecto a sprints anteriores\nPenalización 2: TouchableOpacity + Text para \"Olvidaste tu contraseña\" persiste sin corregir desde S10\nPenalización 3: Los screen files usan theme.colors.xxx pero los style files tienen colores hardcodeados — sistema desdoblado sin unificación\nuiUxQuality: 4/5\n\nRediseño glass ambicioso aplicado a las 22 pantallas\nSwipeScreen: photo indicators, glass overlay en BlurView, action dock flotante, counter chip pill\nLa superposición de perfil usa texto #1C1C1E (oscuro) sobre glass con foto de fondo — legibilidad dependiente de la foto\nInput pill en formularios es un cambio visual notable y no necesariamente positivo en contextos de formulario",
       "createdAt": "2026-02-23T17:51:30.986Z",
-      "updatedAt": "2026-02-25T21:23:02.026Z",
-      "id": 18
+      "updatedAt": "2026-02-25T22:37:40.457Z",
+      "id": 18,
+      "gitFromCommit": "ce31f7f",
+      "gitToCommit": "78897c1"
     },
     {
       "scenarioId": "C",
@@ -527,7 +529,7 @@
       "incidences": [],
       "observations": "D3 — Coherencia arquitectural: 5/5\n\nDeep link handling centralizado en AppNavigator con función normalizeRecoveryUrl() dedicada — responsabilidad única y bien ubicada\nPrefijo auth/ en rutas (auth/forgot-password, auth/reset-password) — convención escalable y coherente\nNamed exports en todos los ficheros nuevos, consistente con el resto del proyecto\nButton integrado de forma uniforme en todas las nuevas pantallas y en los cambios sobre pantallas existentes\nD6 — Consistencia de estilos: 4/5\n\nNamed exports consistentes en todo el sprint\nLoginScreen usa <Button variant=\"tertiary\"> para el enlace de forgot password — perfectamente consistente con los patrones del proyecto\nNaming functions coherente (handleSendResetEmail)\nPenalización menor: diferencia de fontSize en subtitle (14px en nuevas screens vs 16px en el resto) — desviación puntual\nuiUxQuality: 4/5\n\nMisma calidad estructural que A, con el detalle extra de showsVerticalScrollIndicator={false} en los nuevos ScrollViews\nFlujo completo y bien integrado visualmente",
       "createdAt": "2026-02-25T16:26:18.174Z",
-      "updatedAt": "2026-02-25T22:19:06.187Z",
+      "updatedAt": "2026-02-25T22:39:24.580Z",
       "id": 23,
       "gitFromCommit": "d25e3f6",
       "gitToCommit": "980b2c0"
@@ -540,11 +542,11 @@
       "dateEnd": null,
       "tts": null,
       "ttsFeature": 0.47,
-      "ttsFix": 0.91,
+      "ttsFix": 0.96,
       "description": "",
-      "commits": null,
-      "filesCreated": null,
-      "filesModified": null,
+      "commits": 4,
+      "filesCreated": 0,
+      "filesModified": 16,
       "testsTotal": null,
       "testsPass": null,
       "testsFail": null,
@@ -561,23 +563,23 @@
       "retrievalMechanism": "context window",
       "autonomousActions": 70,
       "controlCheckpoints": 15,
-      "linesAdded": null,
-      "linesRemoved": null,
-      "architecturalCoherence": null,
-      "gitFromCommit": null,
-      "gitToCommit": null,
+      "linesAdded": 424,
+      "linesRemoved": 156,
+      "architecturalCoherence": 4,
+      "gitFromCommit": "d97b300",
+      "gitToCommit": "f31342c",
       "buildsOk": null,
       "buildsFailed": null,
       "buildsTotal": null,
       "envFailures": null,
       "tsWarnings": null,
       "linterWarnings": null,
-      "styleConsistency": null,
-      "uiUxQuality": null,
+      "styleConsistency": 4,
+      "uiUxQuality": 4,
       "incidences": [],
-      "observations": "",
+      "observations": "Escenario C\nD3 — Coherencia arquitectural: 4/5\n\nScope muy contenido y coherente: 3 screens + 9 style files + 2 funciones backend\nMainNavigator usa tabBarBackground (API correcta de React Navigation) con BlurView real — integración técnica correcta\nUsa theme.colors.glassSurfaceStrong y theme.colors.glassStroke — extiende el sistema de tokens de forma coherente\nexport const styles — consistente con el patrón de C\nPenalización: Las funciones profile-photos y profile-photos-public duplican normalizeStoragePath() y signedUrlForPath() — lógica compartida que debería estar en un módulo común de Supabase\nD6 — Consistencia de estilos: 4/5\n\nexport const styles en todos los archivos de estilos — consistente con C\nNaming glass sistemático y coherente con A: glassFill, glassCard, glassButton, glassBar\nSwipeScreen: texto de perfil en #FFFFFF sobre overlay oscuro rgba(15,23,42,0.28) — decisión deliberada y consistente con buena legibilidad\nProfileDetailScreen: 1044 líneas en un único componente — estructura válida pero densa; los mapeos de emoji y tabs podrían haberse extraído\nPenalización menor: duplicación de helpers en Supabase (afecta también a D6 desde la perspectiva de DRY)\nuiUxQuality: 4/5\n\nTab bar con BlurView real — efecto glass más auténtico que A (que mantiene fondo sólido)\nProfileDetailScreen: pestañas perfil/piso, carrusel de fotos paginado con FlatList, modal lightbox a pantalla completa — UX considerablemente más rica\nTexto blanco sobre overlay oscuro en SwipeScreen — mejor contraste y legibilidad en fotos\nCounter chip con borde + fondo explícitos (más legible que glassFill de A)",
       "createdAt": "2026-02-25T18:57:01.560Z",
-      "updatedAt": "2026-02-25T22:19:08.538Z",
+      "updatedAt": "2026-02-25T22:41:42.631Z",
       "id": 24
     }
   ],
@@ -609,7 +611,7 @@
         "weaknesses": "",
         "generalExperience": ""
       },
-      "updatedAt": "2026-02-25T21:23:00.479Z",
+      "updatedAt": "2026-02-25T22:30:24.067Z",
       "id": 17
     },
     {
@@ -669,7 +671,7 @@
         "weaknesses": "",
         "generalExperience": ""
       },
-      "updatedAt": "2026-02-25T22:19:07.021Z",
+      "updatedAt": "2026-02-25T22:39:25.311Z",
       "id": 19
     },
     {
@@ -2262,5 +2264,5 @@
       "id": 15
     }
   ],
-  "exportedAt": "2026-02-25T22:19:51.054Z"
+  "exportedAt": "2026-02-25T23:29:10.244Z"
 }
