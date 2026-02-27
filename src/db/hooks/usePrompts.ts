@@ -156,6 +156,10 @@ export function useAllPrompts() {
   return useLiveQuery(() => db.prompts.orderBy('updatedAt').reverse().toArray(), [])
 }
 
+export function useAllPromptEvaluations() {
+  return useLiveQuery(() => db.promptEvaluations.toArray(), [])
+}
+
 export function usePrompt(id: number) {
   return useLiveQuery(
     async () => {

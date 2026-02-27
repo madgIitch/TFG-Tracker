@@ -8,11 +8,16 @@ import type { PromptRecord, ScenarioId, PromptCategory } from '../../types'
 import { SCENARIO_DEFINITIONS } from '../../constants/scenarios'
 
 const CATEGORY_OPTIONS = [
-  { value: 'feature',    label: 'Feature — Pedir implementar una funcionalidad' },
-  { value: 'corrective', label: 'Corrective — Corregir una respuesta incorrecta' },
-  { value: 'debug',      label: 'Debug — Pedir ayuda con un bug' },
-  { value: 'refactor',   label: 'Refactor — Pedir refactorización de código' },
-  { value: 'context',    label: 'Context — Proporcionar contexto a la IA' },
+  { value: 'feature',             label: 'Feature — Pedir implementar una funcionalidad' },
+  { value: 'corrective',          label: 'Corrective — Corregir una respuesta incorrecta' },
+  { value: 'debug',               label: 'Debug — Pedir ayuda con un bug' },
+  { value: 'refactor',            label: 'Refactor — Pedir refactorización de código' },
+  { value: 'context',             label: 'Context — Proporcionar contexto a la IA' },
+  { value: 'context+feature',     label: 'Context + Feature — Contexto previo + solicitud de funcionalidad' },
+  { value: 'context+debug',       label: 'Context + Debug — Contexto del estado del sistema + ayuda con bug' },
+  { value: 'corrective+feature',  label: 'Corrective + Feature — Corregir respuesta anterior y ampliar funcionalidad' },
+  { value: 'debug+refactor',      label: 'Debug + Refactor — Corregir bug con cambio estructural' },
+  { value: 'context+refactor',    label: 'Context + Refactor — Contexto de arquitectura + refactorización' },
 ]
 
 const ALL_SCENARIOS: ScenarioId[] = ['A', 'B', 'C', 'D']

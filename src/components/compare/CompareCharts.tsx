@@ -155,11 +155,20 @@ function BarCard({
 // ─── Radar chart for a normalized overview ───────────────────────────────────
 
 function OverviewRadar({ metrics }: { metrics: AggregatedScenarioMetrics[] }) {
-  // 5 key normalized dimensions (0–1)
+  // Dimensions normalized to 0–1
   const dimensions = [
     {
-      key: 'Contexto',
-      getValue: (m: AggregatedScenarioMetrics) => m.avgContextRatio,
+      key: 'Ctx D1a',
+      getValue: (m: AggregatedScenarioMetrics) => m.avgContextRatio != null
+        ? Math.min(m.avgContextRatio, 1)
+        : null,
+      higherIsBetter: null,
+    },
+    {
+      key: 'Ctx D1b',
+      getValue: (m: AggregatedScenarioMetrics) => m.avgContextCoherence != null
+        ? m.avgContextCoherence / 5
+        : null,
       higherIsBetter: true,
     },
     {
@@ -195,6 +204,13 @@ function OverviewRadar({ metrics }: { metrics: AggregatedScenarioMetrics[] }) {
       key: 'UI/UX',
       getValue: (m: AggregatedScenarioMetrics) => m.avgUiUxQuality != null
         ? m.avgUiUxQuality / 5
+        : null,
+      higherIsBetter: true,
+    },
+    {
+      key: 'Cal. Prompts',
+      getValue: (m: AggregatedScenarioMetrics) => m.avgPromptQuality != null
+        ? m.avgPromptQuality / 5
         : null,
       higherIsBetter: true,
     },
@@ -406,13 +422,21 @@ export function CompareCharts({ metrics }: CompareChartsProps) {
       heading: 'D1 — Contexto efectivo',
       cards: [
         {
-          title: 'Ratio contexto (avg)',
+          title: 'D1a — Ratio acceso (avg)',
           subtitle: 'filesReadByAI / filesTotalRepo',
           values: vals(metrics, (m) => m.avgContextRatio),
           formatValue: pct,
           higherIsBetter: null,
-          yDomain: [0, 1],
+          yDomain: [0, 2],
           yTickFormatter: (v) => `${(v * 100).toFixed(0)}%`,
+        },
+        {
+          title: 'D1b — Coherencia contextual (avg)',
+          subtitle: '1 = nula · 5 = total sin contexto explícito',
+          values: vals(metrics, (m) => m.avgContextCoherence),
+          formatValue: (v) => v != null ? v.toFixed(2) : '—',
+          higherIsBetter: true,
+          yDomain: [1, 5],
         },
       ],
     },

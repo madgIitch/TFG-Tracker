@@ -37,6 +37,13 @@ const RETRIEVAL_HINTS: Record<string, string> = {
 const COHERENCE_LABELS: Record<number, string> = {
   1: 'Incoherente', 2: 'Bajo', 3: 'Aceptable', 4: 'Bueno', 5: 'Excelente',
 }
+const CONTEXT_COHERENCE_LABELS: Record<number, string> = {
+  1: 'Nula — necesitó todo el contexto explícito',
+  2: 'Baja — guía frecuente necesaria',
+  3: 'Parcial — inferencia correcta en algunos casos',
+  4: 'Alta — infirió bien en la mayoría de casos',
+  5: 'Total — coherente sin contexto explícito',
+}
 const CONSISTENCY_LABELS: Record<number, string> = {
   1: 'Muy inconsistente', 2: 'Inconsistente', 3: 'Aceptable', 4: 'Consistente', 5: 'Muy consistente',
 }
@@ -216,6 +223,12 @@ export function DimensionsTab({ data, onChange }: Props) {
           hint={data.retrievalMechanism ? RETRIEVAL_HINTS[data.retrievalMechanism] : undefined}
         />
         {contextRatio != null && <MiniBar value={contextRatio} color="bg-blue-500" />}
+        <p className="text-[11px] text-slate-500">D1b — ¿La IA demostró entender el contexto sin que se lo indicaras?</p>
+        <ScaleButtons
+          value={data.contextCoherence ?? null}
+          onChange={(v) => onChange('contextCoherence', v)}
+          labels={CONTEXT_COHERENCE_LABELS}
+        />
       </DimCard>
 
       {/* D2 — Autonomía */}

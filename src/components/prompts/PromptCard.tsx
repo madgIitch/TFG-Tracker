@@ -4,11 +4,16 @@ import { Button } from '../ui/Button'
 import type { PromptRecord, PromptEvaluation } from '../../types'
 
 const CATEGORY_LABELS: Record<string, { label: string; cls: string }> = {
-  feature:    { label: 'Feature',     cls: 'bg-blue-900/40 text-blue-300' },
-  corrective: { label: 'Corrective',  cls: 'bg-yellow-900/40 text-yellow-300' },
-  debug:      { label: 'Debug',       cls: 'bg-red-900/40 text-red-300' },
-  refactor:   { label: 'Refactor',    cls: 'bg-purple-900/40 text-purple-300' },
-  context:    { label: 'Context',     cls: 'bg-slate-700 text-slate-300' },
+  feature:            { label: 'Feature',              cls: 'bg-blue-900/40 text-blue-300' },
+  corrective:         { label: 'Corrective',           cls: 'bg-yellow-900/40 text-yellow-300' },
+  debug:              { label: 'Debug',                cls: 'bg-red-900/40 text-red-300' },
+  refactor:           { label: 'Refactor',             cls: 'bg-purple-900/40 text-purple-300' },
+  context:            { label: 'Context',              cls: 'bg-slate-700 text-slate-300' },
+  'context+feature':  { label: 'Context + Feature',   cls: 'bg-cyan-900/40 text-cyan-300' },
+  'context+debug':    { label: 'Context + Debug',     cls: 'bg-orange-900/40 text-orange-300' },
+  'corrective+feature': { label: 'Corrective + Feature', cls: 'bg-indigo-900/40 text-indigo-300' },
+  'debug+refactor':   { label: 'Debug + Refactor',    cls: 'bg-rose-900/40 text-rose-300' },
+  'context+refactor': { label: 'Context + Refactor',  cls: 'bg-teal-900/40 text-teal-300' },
 }
 
 interface PromptCardProps {

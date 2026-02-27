@@ -43,6 +43,7 @@ export interface SprintRecord {
   filesReadByAI: number | null
   filesTotalRepo: number | null
   retrievalMechanism: RetrievalMechanism | null
+  contextCoherence: number | null // D1b — Escala 1–5: coherencia contextual percibida
 
   // D2 Autonomía vs control
   autonomousActions: number | null

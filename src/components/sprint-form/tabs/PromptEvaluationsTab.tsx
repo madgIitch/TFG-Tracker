@@ -13,19 +13,29 @@ interface PromptEvaluationsTabProps {
 }
 
 const CATEGORIES: { value: PromptCategory; label: string; active: string; idle: string }[] = [
-  { value: 'feature',    label: 'Feature',    active: 'bg-blue-900/60 border-blue-500 text-blue-300',   idle: 'bg-[#252b3b] border-[#2e3650] text-slate-500 hover:border-blue-700 hover:text-blue-400' },
-  { value: 'corrective', label: 'Corrective', active: 'bg-red-900/60 border-red-500 text-red-300',     idle: 'bg-[#252b3b] border-[#2e3650] text-slate-500 hover:border-red-700 hover:text-red-400' },
-  { value: 'debug',      label: 'Debug',      active: 'bg-yellow-900/60 border-yellow-500 text-yellow-300', idle: 'bg-[#252b3b] border-[#2e3650] text-slate-500 hover:border-yellow-700 hover:text-yellow-400' },
-  { value: 'refactor',   label: 'Refactor',   active: 'bg-purple-900/60 border-purple-500 text-purple-300', idle: 'bg-[#252b3b] border-[#2e3650] text-slate-500 hover:border-purple-700 hover:text-purple-400' },
-  { value: 'context',    label: 'Context',    active: 'bg-green-900/60 border-green-500 text-green-300', idle: 'bg-[#252b3b] border-[#2e3650] text-slate-500 hover:border-green-700 hover:text-green-400' },
+  { value: 'feature',             label: 'Feature',            active: 'bg-blue-900/60 border-blue-500 text-blue-300',     idle: 'bg-[#252b3b] border-[#2e3650] text-slate-500 hover:border-blue-700 hover:text-blue-400' },
+  { value: 'corrective',          label: 'Corrective',         active: 'bg-red-900/60 border-red-500 text-red-300',        idle: 'bg-[#252b3b] border-[#2e3650] text-slate-500 hover:border-red-700 hover:text-red-400' },
+  { value: 'debug',               label: 'Debug',              active: 'bg-yellow-900/60 border-yellow-500 text-yellow-300', idle: 'bg-[#252b3b] border-[#2e3650] text-slate-500 hover:border-yellow-700 hover:text-yellow-400' },
+  { value: 'refactor',            label: 'Refactor',           active: 'bg-purple-900/60 border-purple-500 text-purple-300', idle: 'bg-[#252b3b] border-[#2e3650] text-slate-500 hover:border-purple-700 hover:text-purple-400' },
+  { value: 'context',             label: 'Context',            active: 'bg-green-900/60 border-green-500 text-green-300',  idle: 'bg-[#252b3b] border-[#2e3650] text-slate-500 hover:border-green-700 hover:text-green-400' },
+  { value: 'context+feature',     label: 'Ctx + Feature',      active: 'bg-cyan-900/60 border-cyan-500 text-cyan-300',     idle: 'bg-[#252b3b] border-[#2e3650] text-slate-500 hover:border-cyan-700 hover:text-cyan-400' },
+  { value: 'context+debug',       label: 'Ctx + Debug',        active: 'bg-orange-900/60 border-orange-500 text-orange-300', idle: 'bg-[#252b3b] border-[#2e3650] text-slate-500 hover:border-orange-700 hover:text-orange-400' },
+  { value: 'corrective+feature',  label: 'Corr + Feature',     active: 'bg-indigo-900/60 border-indigo-500 text-indigo-300', idle: 'bg-[#252b3b] border-[#2e3650] text-slate-500 hover:border-indigo-700 hover:text-indigo-400' },
+  { value: 'debug+refactor',      label: 'Debug + Refactor',   active: 'bg-rose-900/60 border-rose-500 text-rose-300',     idle: 'bg-[#252b3b] border-[#2e3650] text-slate-500 hover:border-rose-700 hover:text-rose-400' },
+  { value: 'context+refactor',    label: 'Ctx + Refactor',     active: 'bg-teal-900/60 border-teal-500 text-teal-300',     idle: 'bg-[#252b3b] border-[#2e3650] text-slate-500 hover:border-teal-700 hover:text-teal-400' },
 ]
 
 const CATEGORY_BADGE: Record<PromptCategory, string> = {
-  feature:    'text-blue-400',
-  corrective: 'text-red-400',
-  debug:      'text-yellow-400',
-  refactor:   'text-purple-400',
-  context:    'text-green-400',
+  feature:             'text-blue-400',
+  corrective:          'text-red-400',
+  debug:               'text-yellow-400',
+  refactor:            'text-purple-400',
+  context:             'text-green-400',
+  'context+feature':   'text-cyan-400',
+  'context+debug':     'text-orange-400',
+  'corrective+feature': 'text-indigo-400',
+  'debug+refactor':    'text-rose-400',
+  'context+refactor':  'text-teal-400',
 }
 
 function acceptedLabel(value: boolean | null): string {

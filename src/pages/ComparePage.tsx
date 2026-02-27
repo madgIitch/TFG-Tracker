@@ -9,6 +9,7 @@ import { ScenarioEvolutionCharts } from '../components/compare/ScenarioEvolution
 import { LoadingScreen } from '../components/ui/Spinner'
 import { useAllSprints } from '../db/hooks/useSprints'
 import { useAllScenarios } from '../db/hooks/useScenarios'
+import { useAllPromptEvaluations } from '../db/hooks/usePrompts'
 import { aggregateScenario } from '../utils/aggregation'
 import type { ScenarioId } from '../types'
 
@@ -19,13 +20,20 @@ type ViewMode = 'table' | 'charts'
 export default function ComparePage() {
   const allSprints = useAllSprints()
   const allScenarios = useAllScenarios()
+  const allEvaluations = useAllPromptEvaluations()
   const [view, setView] = useState<ViewMode>('charts')
 
   if (allSprints === undefined || allScenarios === undefined) return <LoadingScreen />
 
   const metrics = SCENARIO_IDS.map((id) => {
     const sprints = allSprints.filter((s) => s.scenarioId === id)
-    return aggregateScenario(id, sprints)
+    const base = aggregateScenario(id, sprints)
+    const evals = (allEvaluations ?? []).filter((e) => e.scenarioId === id)
+    const qualityVals = evals.map((e) => e.quality).filter((v): v is number => v != null)
+    const avgPromptQuality = qualityVals.length > 0
+      ? qualityVals.reduce((a, b) => a + b, 0) / qualityVals.length
+      : null
+    return { ...base, avgPromptQuality }
   })
 
   return (

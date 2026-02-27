@@ -22,3 +22,8 @@ export type PromptCategory =
   | 'debug'
   | 'refactor'
   | 'context'
+  | 'context+feature'
+  | 'context+debug'
+  | 'corrective+feature'
+  | 'debug+refactor'
+  | 'context+refactor'

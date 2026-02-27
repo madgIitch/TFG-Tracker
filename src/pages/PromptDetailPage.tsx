@@ -9,11 +9,16 @@ import { LoadingScreen } from '../components/ui/Spinner'
 import { usePrompt, deletePrompt } from '../db/hooks/usePrompts'
 
 const CATEGORY_LABELS: Record<string, string> = {
-  feature: 'Feature',
-  corrective: 'Corrective',
-  debug: 'Debug',
-  refactor: 'Refactor',
-  context: 'Context',
+  feature:             'Feature',
+  corrective:          'Corrective',
+  debug:               'Debug',
+  refactor:            'Refactor',
+  context:             'Context',
+  'context+feature':   'Context + Feature',
+  'context+debug':     'Context + Debug',
+  'corrective+feature': 'Corrective + Feature',
+  'debug+refactor':    'Debug + Refactor',
+  'context+refactor':  'Context + Refactor',
 }
 
 export default function PromptDetailPage() {

@@ -33,6 +33,10 @@ export interface AggregatedScenarioMetrics {
 
   // D1 Contexto
   avgContextRatio: number | null
+  avgContextCoherence: number | null
+
+  // Prompts
+  avgPromptQuality: number | null
 
   // D2 Autonomía
   avgAutonomyRatio: number | null
@@ -122,6 +126,10 @@ export function aggregateScenario(
 
     // D1
     avgContextRatio,
+    avgContextCoherence: avgNullable(sprints.map((s) => s.contextCoherence ?? null)),
+
+    // Prompts — se rellena externamente en ComparePage
+    avgPromptQuality: null,
 
     // D2
     avgAutonomyRatio,

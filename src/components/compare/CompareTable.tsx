@@ -108,9 +108,15 @@ const ROWS: { section: string; rows: MetricRow[] }[] = [
     section: 'D1 — Contexto efectivo',
     rows: [
       {
-        label: 'Ratio contexto (avg)',
+        label: 'D1a — Ratio acceso (avg)',
         getValue: (m) => m.avgContextRatio,
         format: formatPercent,
+        higherIsBetter: null as unknown as boolean,
+      },
+      {
+        label: 'D1b — Coherencia contextual (avg)',
+        getValue: (m) => m.avgContextCoherence,
+        format: formatScore,
         higherIsBetter: true,
       },
     ],
