@@ -1,0 +1,112 @@
+import { theme } from '../../theme';
+import { StyleSheet } from 'react-native';
+
+export const phaseStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+    },
+    card: {
+        borderRadius: 20,
+        padding: 20,
+        backgroundColor: theme.colors.background,
+        borderWidth: 1,
+        borderColor: theme.colors.border,
+        shadowColor: theme.colors.text,
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.08,
+        shadowRadius: 16,
+        elevation: 4,
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: 8,
+    },
+    subtitle: {
+        fontSize: 16,
+        textAlign: 'center',
+        marginBottom: 16,
+    },
+    helper: {
+        fontSize: 13,
+        textAlign: 'center',
+        marginBottom: 18,
+    },
+    stepper: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        gap: theme.spacing.sm,
+        marginBottom: 24,
+    },
+    stepDot: {
+        width: 8,
+        height: 8,
+        borderRadius: 4,
+    },
+    input: {
+        borderWidth: 1,
+        padding: theme.spacing.md,
+        marginBottom: 16,
+        fontSize: 16,
+        borderRadius: theme.borderRadius.sm,
+        shadowColor: theme.colors.text,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.06,
+        shadowRadius: 8,
+        elevation: 2,
+    },
+    authButtons: {
+        marginBottom: 8,
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20,
+    },
+    segmentRow: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 10,
+        justifyContent: 'center',
+    },
+    segmentButton: {
+        paddingVertical: 12,
+        paddingHorizontal: theme.spacing.md,
+        borderRadius: 14,
+        borderWidth: 1,
+        backgroundColor: theme.colors.background,
+        overflow: 'hidden',
+        shadowColor: theme.colors.text,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.08,
+        shadowRadius: 10,
+        elevation: 3,
+    },
+    segmentButtonText: {
+        fontSize: 12,
+        fontWeight: '600',
+        color: theme.colors.text,
+    },
+    segmentButtonTextActive: {
+        color: theme.colors.background,
+    },
+    dateInput: {
+        borderWidth: 1,
+        padding: theme.spacing.md,
+        marginBottom: 16,
+        borderRadius: theme.borderRadius.sm,
+        height: 54,
+        justifyContent: 'center',
+        shadowColor: theme.colors.text,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.06,
+        shadowRadius: 8,
+        elevation: 2,
+    },
+    dateText: {
+        fontSize: 16,
+    },
+});

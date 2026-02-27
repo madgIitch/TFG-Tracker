@@ -140,7 +140,7 @@
       "controlCheckpoints": 32,
       "linesAdded": 679,
       "linesRemoved": 421,
-      "architecturalCoherence": 5,
+      "architecturalCoherence": 4,
       "buildsOk": 3,
       "buildsFailed": 1,
       "buildsTotal": 4,
@@ -150,12 +150,13 @@
       "styleConsistency": 4,
       "uiUxQuality": 4,
       "incidences": [],
-      "observations": "D3 — Coherencia Arquitectural\nEscenario A → 5 / 5 — Excelente\nMejora clara respecto al S7. Las desviaciones que tenía (supabaseClient importado desde authService en ChatScreen, tipos mezclados) están corregidas.\n\nEvidencias positivas:\n\nSwipeFiltersContext sigue el patrón canónico del proyecto: type del valor, createContext, custom hook con guard (useSwipeFilters), persistencia en AsyncStorage\nauthService y profileService: singleton de clase, métodos privados getAuthHeaders() / decodeJwtPayload(), flujo de refresh de token correctamente encapsulado\nAppNavigator / MainNavigator: composición stack+tabs correcta, SafeAreaView integrado, TabBarIconWrapper extraído como componente memo para evitar definición inline\nServicesManagementScreen: nueva pantalla colocada correctamente en src/screens/, tipada con FlatService de ../types/room\nDesviaciones:\n\nany en props del TabBarIconWrapper en MainNavigator (trivial)\nHeadersInit_ como alias de tipo en authService en lugar de Record<string, string> (trivial)\n\n\nD6 — Consistencia de Estilos\nEscenario A → 4 / 5 — Consistente\nEvidencias positivas:\n\nLoginScreen usa theme.colors para todos los colores: theme.colors.background, theme.colors.border, theme.colors.surface, theme.colors.text — correctamente integrado\nHandlers con prefijo handle: handleLogin, handleGoogleSignIn, handleSave, handleSwipe\nStyleSheet.create() al final en todos los módulos sin excepción\nHooks correctamente usados: useCallback en loadServices, useMemo en serviceByName\nDesviaciones:\n\nServicesManagementScreen tiene backgroundColor: '#F8FAFC' y chips activos con '#7C3AED' hardcodeados en lugar de theme.colors → inconsistente con LoginScreen del mismo sprint\n\n\nuiUxQuality — Calidad UI/UX\nEscenario A → 4 / 5 — Buena\nLoginScreen: KeyboardAvoidingView + ScrollView con keyboardShouldPersistTaps, logo centrado, jerarquía tipográfica clara, Button + GoogleSignInButton del sistema de componentes\nServicesManagementScreen (nueva): organización por categorías con chips morados en activo, input de precio inline por servicio, opción \"Otros\" con campo personalizado, header con Cancelar/Guardar → diseño completo y usable\nCoherencia visual con el design system morado del proyecto",
+      "observations": "D3 — Coherencia arquitectural: 4/5\n\nSwipeFiltersContext.tsx: implementación idéntica al patrón de C en S7 — createContext, STORAGE_KEY, DEFAULT_SWIPE_FILTERS, persistFilters, hook useSwipeFilters — integrado correctamente\nServicesManagementScreen (nuevo): chip-based selection por categoría con precio inline — correctamente colocado en screens/\nprofiles-recommendations actualizada manteniendo coherencia con la Edge Function existente\nRegistro multifase (Phase1–Phase3) actualizado consistentemente\nPenalización menor: A adopta el SwipeFiltersContext de C con un sprint de retraso — funciona bien pero no fue A quien lo originó\nD6 — Consistencia de estilos: 4/5\n\nNaming consistente con A: handleChipPress, getActiveFilterCount, import type\nHardcoded #F8FAFC y #7C3AED en ServicesManagementScreen — patrón establecido en A, internamente consistente\nRegister phases siguen las mismas convenciones que el resto de A\nuiUxQuality: 4/5\n\nServicesManagementScreen: selección de servicios por categoría con chips, input de precio inline, opción \"Otros\" personalizable — UI rica y funcional\nCapturas disponibles (flat1.jpg) muestran la ProfileDetailScreen de prueba, no el nuevo screen. Evaluado desde código",
       "createdAt": "2026-02-20T14:33:19.705Z",
-      "updatedAt": "2026-02-27T13:33:30.812Z",
+      "updatedAt": "2026-02-27T13:48:26.913Z",
       "id": 15,
       "gitFromCommit": "1bcc7f7",
-      "gitToCommit": "4302861"
+      "gitToCommit": "4302861",
+      "contextCoherence": 5
     },
     {
       "scenarioId": "A",
@@ -200,7 +201,7 @@
       "incidences": [],
       "observations": "D3 — Coherencia Arquitectural\nEscenario A → 3 / 5 — Aceptable\nLa estructura se plantea bien pero la ejecución queda incompleta.\n\nPositivo:\n\nNueva carpeta src/styles/tokens/ con archivos separados por categoría: colors.ts, spacing.ts, typography.ts, radius.ts\nNomenclatura *.styles.ts consistente para los archivos de estilos de screens\ntheme/index.ts integra los tokens\nDesviaciones claras:\n\nLos tokens están definidos pero no se usan en ningún archivo de estilos — screen styles siguen hardcodeando #7C3AED, #E5E7EB, borderRadius: 16 en vez de referenciar colors.primary, colors.border, radius.lg\ncommon.ts también hardcodea valores en lugar de importar de tokens (derrota su propio propósito)\nImports inconsistentes entre screens: algunas usan default export, otras named export del mismo módulo\nAlgunas screens importan commonStyles, otras ignoran el archivo por completo — sin patrón uniforme\nShadows no tiene token propio: definidas inline en theme/index.ts en lugar de en src/styles/tokens/\n\nD6 — Consistencia de Estilos\nEscenario A → 3 / 5 — Aceptable\nPositivo:\n\nTokens con nombres semánticos bien elegidos (primary, textSecondary, border, xs/sm/md...)\nDesviaciones:\n\nLa promesa del sistema de tokens no se cumple: ningún archivo de estilos los consume\ncommon.ts hardcodea los mismos valores que eliminó de las screens → inconsistencia circular\nPattern de export mezclado (default en unos, named en otros) entre archivos del mismo sprint\nQué screens usan commonStyles y cuáles no queda sin documentar ni estandarizar\n\nuiUxQuality — Sprint de refactorización\nAmbos → 4 / 5\nSprint de extracción de estilos puro — sin cambios visuales en la app. Las capturas son pixel-idénticas a las del S8. La nota se hereda del sprint anterior. Si durante la extracción se hubiera introducido alguna regresión visual, bajaría; no hay evidencia de ello.",
       "createdAt": "2026-02-23T10:42:33.519Z",
-      "updatedAt": "2026-02-25T18:34:59.987Z",
+      "updatedAt": "2026-02-27T14:05:40.807Z",
       "id": 16,
       "gitFromCommit": "e046c72",
       "gitToCommit": "feef3a4"
@@ -388,15 +389,16 @@
       "envFailures": 1,
       "tsWarnings": 0,
       "linterWarnings": null,
-      "styleConsistency": 4,
+      "styleConsistency": 3,
       "uiUxQuality": 4,
       "incidences": [],
-      "observations": "D3 — Coherencia Arquitectural\n\nEscenario C → 4 / 5 — Bueno\nEvidencias positivas:\n\nSubfolder register/ con las fases: correcta decisión de modularidad\nTests en __tests__/services/ siguiendo la convención del proyecto\nflatExpenseService añade unwrapPayload<T>() genérico y extractErrorMessage() — mejores patrones que en S7\nDesviaciones:\n\nauthService elimina métodos presentes en el contrato anterior (getAccessToken(), simplificación de refreshToken()) — cambio potencialmente breaking para los consumidores\nuseEffect de logging en Phase1Email con todas las props como dependencias → se ejecuta en cada render, patrón ajeno al resto del proyecto\n\n\nD6 — Consistencia de Estilos\n\nEscenario C → 4 / 5 — Consistente\nEvidencias positivas:\n\nFases de registro: naming muy consistente — handleNext, handleEmailChange, handlePasswordChange, handleGoToLogin, handleGoogleSignIn\nflatExpenseService: TypeScript avanzado con interface ApiResponse<T>, unwrapPayload<T>(), patrones de tipo coherentes\nStyleSheet.create() al final en todas las fases\nDesviaciones:\n\nPhase1Email tiene console.log en literalmente cada función (handleEmailChange, handlePasswordChange, handleNext, handleGoToLogin, handleGoogleSignIn) + en el useEffect de montaje — ningún otro archivo del proyecto hace esto, y los emojis de log están con encoding roto (ÐY\"?, ƒ?O)\n\nuiUxQuality — Calidad UI/UX\n\nEscenario C → 4 / 5 — Buena\nPhase1Email: tarjeta con sombra (card), stepper de 4 puntos con el paso activo en morado → buena adición de UX para el flujo de registro multifase\nLoginScreen idéntico al de A → misma calidad\nLa descomposición del registro en fases mejora la experiencia de onboarding respecto a una pantalla monolítica\nLimitación: fondo de la card hardcodeado en #FFFFFF (no respeta tema oscuro si se implementara)\n\n",
+      "observations": "D3 — Coherencia arquitectural: 4/5\n\nTests unitarios para authService y profileService — destacable: único escenario que añade tests en todo el proyecto. Jest mocks bien estructurados, beforeEach con jest.clearAllMocks(), require() dentro del test para reset de módulos\nflatExpenseService.ts: diseño sólido con ApiResponse<T> interface, helpers privados unwrapPayload<T> y extractErrorMessage, backward-compatible aliases (getFlatExpenses → getExpenses) para no romper tests/callers existentes\nPenalización: Phase1Email.tsx tiene console.log en cada handler — código de debug que no debería estar en un commit del sprint\nD6 — Consistencia de estilos: 3/5\n\nflatExpenseService: naming limpio — getExpenses, createExpense, unwrapPayload, extractErrorMessage — convenciones claras y consistentes\nTests: patrón de mocking uniforme entre authService.test.ts y profileService.test.ts\nPenalización notable: Phase1Email (y presumiblemente Phase2–4) tiene logs extensivos con emojis mal codificados (ÐY\"? en lugar del emoji real) en cada handler: handleNext, onChange, montaje del componente. Código de debug comprometido en producción, inconsistente con el cuidado puesto en el servicio y los tests\nuiUxQuality: 4/5\n\nobs-1: Flujo de registro \"Paso 4 de 4\" — stepper con 4 puntos (el activo en morado), input de fecha 25/02/1998, botón Anterior + spinner de carga. Diseño limpio y bien proporcionado\nobs-2: SwipeScreen con tarjeta de perfil — foto a pantalla completa con overlay glass en la zona inferior (nombre, zona, presupuesto, descripción), counter \"20 libres\", botón de filtros, acciones X/♥. Visualmente polido y funcional",
       "createdAt": "2026-02-25T14:25:10.233Z",
-      "updatedAt": "2026-02-27T13:34:09.698Z",
+      "updatedAt": "2026-02-27T13:48:36.002Z",
       "id": 20,
       "gitFromCommit": "071738b",
-      "gitToCommit": "913ada3"
+      "gitToCommit": "913ada3",
+      "contextCoherence": 5
     },
     {
       "scenarioId": "C",
@@ -441,7 +443,7 @@
       "incidences": [],
       "observations": "D3 — Coherencia Arquitectural\nEscenario C → 4 / 5 — Bueno\nMisma limitación fundamental que A (tokens sin integrar), pero la organización y ejecución son notablemente mejores.\n\nPositivo:\n\nsrc/styles/common/ como carpeta con 4 archivos temáticos: buttons.ts, cards.ts, forms.ts, layout.ts — separación de responsabilidades clara\nToken dedicado shadows.ts correctamente separado\nImports consistentes en todas las screens: todas usan import { styles } from '...' (named export)\nNomenclatura {type}Styles en common/: buttonStyles, cardStyles, formStyles, layoutStyles — patrón predecible\nColores en tokens con comentarios semánticos agrupados (primary, neutral, text, borders, states)\nDesviaciones:\n\nIgual que A: tokens no referenciados en los archivos de estilos de screens (85-97% de valores hardcodeados)\nCommon styles tampoco referencian los tokens (padding: 16 en vez de spacing.md, '#7C3AED' en vez de colors.primary)\n\n\nD6 — Consistencia de Estilos\n\nEscenario C → 4 / 5 — Consistente\nPositivo:\n\nTodas las screens usan el mismo patrón export const styles = StyleSheet.create(...) — consistencia total\nNomenclatura {type}Styles clara y predecible en todos los archivos de common/\nTokens de colores con comentarios de agrupación semántica\nDesviaciones:\n\nMisma desconexión que A: los tokens no se referencian en los archivos de estilos (colors.primary nunca aparece en ningún .styles.ts)\ncardStyles.elevated hardcodea los valores de sombra en vez de importar de shadows.ts\n\nuiUxQuality — Sprint de refactorización\nAmbos → 4 / 5\nSprint de extracción de estilos puro — sin cambios visuales en la app. Las capturas son pixel-idénticas a las del S8. La nota se hereda del sprint anterior. Si durante la extracción se hubiera introducido alguna regresión visual, bajaría; no hay evidencia de ello.",
       "createdAt": "2026-02-25T15:23:16.320Z",
-      "updatedAt": "2026-02-25T17:26:09.744Z",
+      "updatedAt": "2026-02-27T14:16:49.804Z",
       "id": 21,
       "gitFromCommit": "913ada3",
       "gitToCommit": "d25e3f6"
@@ -668,7 +670,7 @@
       "controlCheckpoints": 30,
       "linesAdded": 1371,
       "linesRemoved": 1182,
-      "architecturalCoherence": null,
+      "architecturalCoherence": 3,
       "gitFromCommit": "be5f30c",
       "gitToCommit": "6655cde",
       "buildsOk": 1,
@@ -677,13 +679,63 @@
       "envFailures": 1,
       "tsWarnings": 1,
       "linterWarnings": 26,
+      "styleConsistency": 2,
+      "uiUxQuality": 3,
+      "incidences": [],
+      "observations": "El agente se interrumpe en algunas ocasiones, aunque recupera rápido la tarea, pero sigue siendo molesto.\n\n\nD3 — Coherencia arquitectural: 3/5\n\nD ejecuta linting (positivo) y modifica 30 ficheros — alcance muy amplio\nSwipeFiltersContext.tsx: limpio, mismo patrón que A y C\nEdge Functions flat-expenses y flat-settlements actualizadas\nPenalización significativa: lint.txt muestra 4 errores reales en ProfileDetailScreen — variables declaradas y nunca usadas (convivenciaItems, getLifestyleIcon, birthDateValue, aboutBadges) — dead code no eliminado tras el análisis de linting\nLos ficheros lint.txt, lint2.txt y lint_output.txt se commitean como artefactos — no son parte del código fuente\nD6 — Consistencia de estilos: 2/5\n\n47 problemas de linting tras las modificaciones: 4 errores + 43 warnings\nBug en Phase1Email–Phase3Gender: el stepper usa backgroundColor: \"isActive ? theme.colors.primary : '#E5E7EB'\" — un string literal en lugar de una expresión ternaria real; el color nunca se evaluará dinámicamente\nno-void warnings en prácticamente todas las pantallas modificadas (funciones async llamadas sin void)\nInline styles dispersos en 15+ ficheros (paddingBottom: 16, marginTop: 12, flex: 1, etc.)\n4-space indentation persiste, inconsistente con el proyecto\nuiUxQuality: 3/5\n\nCapturas disponibles (flat1.jpg) idénticas a sprints anteriores — sin evidencia visual del resultado de las 30 modificaciones\nEl bug de string-ternario en el stepper del registro implica que el indicador de paso activo probablemente no funciona visualmente\nFlatExpensesScreen y FlatSettlementScreen mejoradas en código, pero con inline styles react-native/no-inline-styles sin mover a StyleSheet",
+      "createdAt": "2026-02-27T11:42:42.155Z",
+      "updatedAt": "2026-02-27T13:48:52.164Z",
+      "id": 26,
+      "contextCoherence": 5
+    },
+    {
+      "scenarioId": "D",
+      "sprintNumber": 9,
+      "status": "completed",
+      "dateStart": "2026-02-27",
+      "dateEnd": "2026-02-27",
+      "tts": null,
+      "ttsFeature": 1.18,
+      "ttsFix": 0.1,
+      "description": "",
+      "commits": 1,
+      "filesCreated": 0,
+      "filesModified": 17,
+      "testsTotal": null,
+      "testsPass": null,
+      "testsFail": null,
+      "verificationTime": null,
+      "manualEdits": null,
+      "correctivePrompts": null,
+      "rejectedProposals": null,
+      "humanRevisions": 29,
+      "autoCorrectivePrompts": null,
+      "autoRejectedProposals": null,
+      "autoHumanRevisions": 29,
+      "filesReadByAI": 61,
+      "filesTotalRepo": 112,
+      "retrievalMechanism": "mixto",
+      "autonomousActions": 74,
+      "controlCheckpoints": 29,
+      "linesAdded": 557,
+      "linesRemoved": 536,
+      "architecturalCoherence": null,
+      "gitFromCommit": "d764658",
+      "gitToCommit": "7420a4a",
+      "buildsOk": null,
+      "buildsFailed": null,
+      "buildsTotal": null,
+      "envFailures": null,
+      "tsWarnings": null,
+      "linterWarnings": null,
       "styleConsistency": null,
       "uiUxQuality": null,
       "incidences": [],
-      "observations": "El agente se interrumpe en algunas ocasiones, aunque recupera rápido la tarea, pero sigue siendo molesto.",
-      "createdAt": "2026-02-27T11:42:42.155Z",
-      "updatedAt": "2026-02-27T13:34:21.550Z",
-      "id": 26
+      "observations": "",
+      "createdAt": "2026-02-27T13:45:57.588Z",
+      "updatedAt": "2026-02-27T18:47:30.664Z",
+      "id": 27,
+      "contextCoherence": 5
     }
   ],
   "scenarios": [
@@ -714,7 +766,7 @@
         "weaknesses": "",
         "generalExperience": ""
       },
-      "updatedAt": "2026-02-27T13:33:29.295Z",
+      "updatedAt": "2026-02-27T14:05:39.275Z",
       "id": 17
     },
     {
@@ -744,7 +796,7 @@
         "weaknesses": "",
         "generalExperience": ""
       },
-      "updatedAt": "2026-02-27T13:34:05.389Z",
+      "updatedAt": "2026-02-27T14:05:49.248Z",
       "id": 18
     },
     {
@@ -774,15 +826,15 @@
         "weaknesses": "",
         "generalExperience": ""
       },
-      "updatedAt": "2026-02-27T13:34:06.652Z",
+      "updatedAt": "2026-02-27T14:05:51.141Z",
       "id": 19
     },
     {
       "scenarioId": "D",
       "acceptanceChecklist": {
         "sprint7": true,
-        "sprint8": false,
-        "sprint9": false,
+        "sprint8": true,
+        "sprint9": true,
         "sprint10": false,
         "sprint11": false,
         "sprint12": false,
@@ -804,7 +856,7 @@
         "weaknesses": "",
         "generalExperience": ""
       },
-      "updatedAt": "2026-02-27T13:34:20.033Z",
+      "updatedAt": "2026-02-27T18:46:24.880Z",
       "id": 20
     }
   ],
@@ -842,7 +894,7 @@
     {
       "title": "Sprint 9 — Refactorización v1: Separación de Estilos",
       "content": "El código tiene los estilos mezclados con la lógica en cada pantalla y empieza a ser difícil de mantener. Quiero separarlo.\n\nLa idea es mover los StyleSheet.create de cada pantalla a su propio archivo de estilos (algo como LoginScreen.styles.ts), y crear una carpeta src/styles/ con eso ordenado. Además, unificar los colores, espaciados y tamaños de fuente en archivos de tokens para poder cambiarlos desde un sitio central.\n\nLos estilos que se repiten en muchas pantallas (el contenedor base, el botón principal, los inputs...) sería ideal moverlos a un archivo común y reutilizarlos.\n\nImportante: esto es una refactorización pura, no debe cambiar nada visualmente ni en la lógica. Solo reorganizar el código para que sea más mantenible.",
-      "category": "feature",
+      "category": "context+refactor",
       "targetScenarios": [
         "A",
         "B",
@@ -851,7 +903,7 @@
       ],
       "notes": "",
       "createdAt": "2026-02-18T13:24:13.153Z",
-      "updatedAt": "2026-02-23T10:45:56.528Z",
+      "updatedAt": "2026-02-27T13:50:46.416Z",
       "id": 33
     },
     {
@@ -916,7 +968,7 @@
     },
     {
       "title": "Sprint 14 — Chats en Tiempo Real",
-      "content": "El chat funciona pero no es en tiempo real, hay que recargar para ver mensajes nuevos. Quiero arreglarlo con Supabase Realtime.\n\nCuando llega un mensaje nuevo, debería aparecer solo sin recargar nada. Si estás al final del scroll que baje automático, si no, muestra algún indicador de que hay mensajes nuevos. Al desmontar la pantalla cancela la suscripción.\n\nEn la lista de chats (MatchesScreen), que se ordene por el último mensaje y que se actualice solo también. Pon algún indicador de mensajes no leídos.\n\nAprovecha para rediseñar un poco el chat con el estilo glassmorphism: burbujas diferenciadas para tus mensajes y los del otro, timestamps agrupados por día, y que el input de texto no quede tapado por el teclado.\n\nDe paso actualiza también la UI de EditProfileScreen, CreateFlatScreen, y las pantallas de gastos para que sigan el mismo lenguaje visual.",
+      "content": "El chat funciona pero no es en tiempo real, hay que recargar para ver mensajes nuevos. Quiero arreglarlo con Supabase Realtime.\n\nCuando llega un mensaje nuevo, debería aparecer solo sin recargar nada. Si estás al final del scroll que baje automático, si no, muestra algún indicador de que hay mensajes nuevos. Al desmontar la pantalla cancela la suscripción.\n\nEn la lista de chats (MatchesScreen), que se ordene por el último mensaje y que se actualice solo también. Pon algún indicador de mensajes no leídos.\n\nAprovecha para rediseñar un poco el chat con el estilo glassmorphism: burbujas diferenciadas para tus mensajes y los del otro, timestamps agrupados por d��a, y que el input de texto no quede tapado por el teclado.\n\nDe paso actualiza también la UI de EditProfileScreen, CreateFlatScreen, y las pantallas de gastos para que sigan el mismo lenguaje visual.",
       "category": "feature",
       "targetScenarios": [
         "A",
@@ -1591,6 +1643,18 @@
       "createdAt": "2026-02-27T13:09:03.715Z",
       "updatedAt": "2026-02-27T13:09:03.715Z",
       "id": 94
+    },
+    {
+      "title": "Implementation plan antigravity",
+      "content": "Implementation plan antigravity",
+      "category": "context+refactor",
+      "targetScenarios": [
+        "D"
+      ],
+      "notes": "",
+      "createdAt": "2026-02-27T18:33:42.646Z",
+      "updatedAt": "2026-02-27T18:33:42.646Z",
+      "id": 95
     }
   ],
   "promptEvaluations": [
@@ -1909,13 +1973,13 @@
     {
       "promptId": 33,
       "scenarioId": "D",
-      "quality": null,
-      "wasAccepted": null,
+      "quality": 3,
+      "wasAccepted": true,
       "sprintNumber": 9,
-      "humanRevisions": null,
+      "humanRevisions": 20,
       "notes": "",
       "createdAt": "2026-02-23T10:53:45.754Z",
-      "updatedAt": "2026-02-23T10:53:45.754Z",
+      "updatedAt": "2026-02-27T18:34:19.444Z",
       "id": 47
     },
     {
@@ -2445,6 +2509,18 @@
       "createdAt": "2026-02-27T13:09:03.720Z",
       "updatedAt": "2026-02-27T13:09:03.720Z",
       "id": 91
+    },
+    {
+      "promptId": 95,
+      "scenarioId": "D",
+      "sprintNumber": 9,
+      "quality": 4,
+      "wasAccepted": true,
+      "humanRevisions": 9,
+      "notes": "",
+      "createdAt": "2026-02-27T18:33:42.689Z",
+      "updatedAt": "2026-02-27T18:40:18.591Z",
+      "id": 92
     }
   ],
   "images": [
@@ -2582,5 +2658,5 @@
       "id": 21
     }
   ],
-  "exportedAt": "2026-02-27T13:35:56.154Z"
+  "exportedAt": "2026-02-27T18:47:32.296Z"
 }
