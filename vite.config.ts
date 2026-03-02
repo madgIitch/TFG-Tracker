@@ -114,12 +114,29 @@ function gitDiffPlugin(): Plugin {
               return
             }
 
+            const fromRef = fromCommit.trim()
+            const toRef = toCommit.trim()
+            const EMPTY_TREE = '4b825dc642cb6eb9a060e54bf8d69288fbee4904'
+
+            // Inclusive range: include changes introduced by fromRef itself.
+            // We diff from parent(fromRef) to toRef. If fromRef is the root commit,
+            // use the empty tree as base.
+            let fromBase = EMPTY_TREE
+            try {
+              fromBase = execSync(
+                `git rev-parse --verify "${fromRef}^"`,
+                { cwd: repoPath, encoding: 'utf-8', timeout: 10000 }
+              ).trim()
+            } catch {
+              fromBase = EMPTY_TREE
+            }
+
             const nameStatus = execSync(
-              `git diff --name-status "${fromCommit}" "${toCommit}"`,
+              `git diff --name-status "${fromBase}" "${toRef}"`,
               { cwd: repoPath, encoding: 'utf-8', timeout: 10000 }
             )
             const shortStat = execSync(
-              `git diff --shortstat "${fromCommit}" "${toCommit}"`,
+              `git diff --shortstat "${fromBase}" "${toRef}"`,
               { cwd: repoPath, encoding: 'utf-8', timeout: 10000 }
             )
 
@@ -150,7 +167,17 @@ function gitDiffPlugin(): Plugin {
             const linesRemoved = removedMatch ? parseInt(removedMatch[1], 10) : 0
 
             res.setHeader('Content-Type', 'application/json')
-            res.end(JSON.stringify({ created, modified, total: lines.length, linesAdded, linesRemoved, files }))
+            res.end(JSON.stringify({
+              created,
+              modified,
+              total: lines.length,
+              linesAdded,
+              linesRemoved,
+              files,
+              fromCommit: fromRef,
+              toCommit: toRef,
+              resolvedFromBase: fromBase,
+            }))
           } catch (e: unknown) {
             res.statusCode = 500
             res.setHeader('Content-Type', 'application/json')

@@ -161,7 +161,7 @@ export function PrimarySourcesTab({ data, onChange }: Props) {
           {/* Commit range */}
           <div className="grid grid-cols-2 gap-3">
             <div className="flex flex-col gap-1">
-              <span className="text-xs text-slate-500">Commit inicio (desde)</span>
+              <span className="text-xs text-slate-500">Commit inicio (incluido)</span>
               <input
                 type="text"
                 value={fromCommit}
@@ -171,7 +171,7 @@ export function PrimarySourcesTab({ data, onChange }: Props) {
               />
             </div>
             <div className="flex flex-col gap-1">
-              <span className="text-xs text-slate-500">Commit fin (hasta)</span>
+              <span className="text-xs text-slate-500">Commit fin (incluido)</span>
               <input
                 type="text"
                 value={toCommit}
@@ -240,7 +240,7 @@ export function PrimarySourcesTab({ data, onChange }: Props) {
 
           <p className="text-[10px] text-slate-600 leading-relaxed">
             Usa <code className="text-slate-500">git diff --name-status</code> (ficheros) y <code className="text-slate-500">--shortstat</code> (líneas).
-            Para incluir el commit de inicio usa <code className="text-slate-500">&lt;sha&gt;~1</code> como inicio.
+            El cálculo incluye automáticamente tanto el commit de inicio como el commit final.
             La ruta del repo se guarda en el navegador.
           </p>
         </div>
