@@ -199,9 +199,9 @@
       "styleConsistency": 3,
       "uiUxQuality": 4,
       "incidences": [],
-      "observations": "D3 — Coherencia Arquitectural\nEscenario A → 3 / 5 — Aceptable\nLa estructura se plantea bien pero la ejecución queda incompleta.\n\nPositivo:\n\nNueva carpeta src/styles/tokens/ con archivos separados por categoría: colors.ts, spacing.ts, typography.ts, radius.ts\nNomenclatura *.styles.ts consistente para los archivos de estilos de screens\ntheme/index.ts integra los tokens\nDesviaciones claras:\n\nLos tokens están definidos pero no se usan en ningún archivo de estilos — screen styles siguen hardcodeando #7C3AED, #E5E7EB, borderRadius: 16 en vez de referenciar colors.primary, colors.border, radius.lg\ncommon.ts también hardcodea valores en lugar de importar de tokens (derrota su propio propósito)\nImports inconsistentes entre screens: algunas usan default export, otras named export del mismo módulo\nAlgunas screens importan commonStyles, otras ignoran el archivo por completo — sin patrón uniforme\nShadows no tiene token propio: definidas inline en theme/index.ts en lugar de en src/styles/tokens/\n\nD6 — Consistencia de Estilos\nEscenario A → 3 / 5 — Aceptable\nPositivo:\n\nTokens con nombres semánticos bien elegidos (primary, textSecondary, border, xs/sm/md...)\nDesviaciones:\n\nLa promesa del sistema de tokens no se cumple: ningún archivo de estilos los consume\ncommon.ts hardcodea los mismos valores que eliminó de las screens → inconsistencia circular\nPattern de export mezclado (default en unos, named en otros) entre archivos del mismo sprint\nQué screens usan commonStyles y cuáles no queda sin documentar ni estandarizar\n\nuiUxQuality — Sprint de refactorización\nAmbos → 4 / 5\nSprint de extracción de estilos puro — sin cambios visuales en la app. Las capturas son pixel-idénticas a las del S8. La nota se hereda del sprint anterior. Si durante la extracción se hubiera introducido alguna regresión visual, bajaría; no hay evidencia de ello.",
+      "observations": "D3 — Coherencia arquitectural: 3/5\n\nEstructura creada: src/styles/screens/*.styles.ts (21 ficheros) + src/styles/tokens/ (colors, spacing, typography, radius + index) + src/styles/common.ts\nLa separación de pantallas en ficheros individuales es correcta y consistente\nProblema central: los tokens están definidos (colors.primary = '#7C3AED') pero los ficheros de estilos NO los consumen — LoginScreen.styles.ts usa valores hardcodeados directamente (paddingHorizontal: 24, fontSize: 32), sin importar nada de tokens/\ncommon.ts define primaryButton.backgroundColor: '#7C3AED' duplicando colors.primary — el sistema de tokens existe pero no está integrado\nexport default styles — consistente\nD6 — Consistencia de estilos: 3/5\n\nPatrón export default styles uniforme en todos los ficheros — consistente con A\nNaming correcto: LoginScreen.styles.ts, SwipeScreen.styles.ts, etc.\nPenalización: common.ts duplica los valores que están en colors.ts con strings hardcodeados — incoherencia interna al propio sprint\nuiUxQuality: 4/5\n\nSprint de refactoring — sin cambios visuales esperados. La extracción de estilos no introduce ni elimina funcionalidad visual. Calidad UI mantenida respecto a S8.",
       "createdAt": "2026-02-23T10:42:33.519Z",
-      "updatedAt": "2026-02-27T14:05:40.807Z",
+      "updatedAt": "2026-02-27T18:52:55.587Z",
       "id": 16,
       "gitFromCommit": "e046c72",
       "gitToCommit": "feef3a4"
@@ -247,12 +247,13 @@
       "styleConsistency": 4,
       "uiUxQuality": 4,
       "incidences": [],
-      "observations": "D3 — Coherencia arquitectural: 4/5\n\nEstructura de carpetas correcta (screens/, navigation/, services/)\nPatrón singleton respetado en authService\nForgotPasswordScreen y ResetPasswordScreen siguen el patrón KeyboardAvoidingView + ScrollView + Button\nPenalización menor: la lógica de deep links queda repartida entre AppNavigator (configuración del linking) y el propio componente ResetPasswordScreen (extracción del token de la URL), lo que fragmenta ligeramente la responsabilidad\nD6 — Consistencia de estilos: 4/5\n\nTheme tokens (theme.colors, theme.borderRadius) usados en las nuevas pantallas\nPatrón de layout consistente con el resto de screens\nComponente Button usado para las acciones principales\nPenalización: en LoginScreen, el enlace de \"¿Olvidaste tu contraseña?\" se implementa con TouchableOpacity + Text en lugar de <Button variant=\"tertiary\">, rompiendo la consistencia con el resto de CTAs secundarios del proyecto\nuiUxQuality: 4/5\n\nPantallas bien estructuradas con feedback de carga y estados de error\nIntegradas con el design system del proyecto\nFlujo de recuperación completo (email → deep link → reset)\nSin pulido extra (microinteracciones, validación en tiempo real)",
+      "observations": "D3 — 4/5\n\nuseMemo para el config de linking — evita re-creaciones innecesarias\nauthService.establishRecoverySessionFromParams() — la sesión se establece a través del servicio, no directamente desde el screen\nResetPasswordScreen extrae tokens de route.params y los delega al servicio\nTambién modifica MainActivity.kt y AppDelegate.swift — tratamiento completo del deep link en capa nativa\nPenalización: la lógica de deep link queda distribuida entre AppNavigator (linking config) y el componente ResetPasswordScreen (extracción y establecimiento de sesión)\nD6 — 4/5\n\nexport default styles en los nuevos ficheros — consistente con A\nNuevas pantallas siguen el patrón KeyboardAvoidingView + ScrollView + Button establecido en el proyecto\nPenalización: LoginScreen añade el link de \"Olvidaste tu contraseña\" con TouchableOpacity + Text en lugar del componente Button — inconsistencia con el sistema de componentes\nuiUxQuality — 4/5\n\nPantallas nuevas bien estructuradas con estados de carga y error. Sin capturas específicas de S10 disponibles.",
       "createdAt": "2026-02-23T14:26:02.694Z",
-      "updatedAt": "2026-02-25T18:55:25.905Z",
+      "updatedAt": "2026-02-27T19:34:20.265Z",
       "id": 17,
       "gitFromCommit": "feef3a4",
-      "gitToCommit": "ba04c3f"
+      "gitToCommit": "ba04c3f",
+      "contextCoherence": 5
     },
     {
       "scenarioId": "A",
@@ -441,9 +442,9 @@
       "styleConsistency": 4,
       "uiUxQuality": 4,
       "incidences": [],
-      "observations": "D3 — Coherencia Arquitectural\nEscenario C → 4 / 5 — Bueno\nMisma limitación fundamental que A (tokens sin integrar), pero la organización y ejecución son notablemente mejores.\n\nPositivo:\n\nsrc/styles/common/ como carpeta con 4 archivos temáticos: buttons.ts, cards.ts, forms.ts, layout.ts — separación de responsabilidades clara\nToken dedicado shadows.ts correctamente separado\nImports consistentes en todas las screens: todas usan import { styles } from '...' (named export)\nNomenclatura {type}Styles en common/: buttonStyles, cardStyles, formStyles, layoutStyles — patrón predecible\nColores en tokens con comentarios semánticos agrupados (primary, neutral, text, borders, states)\nDesviaciones:\n\nIgual que A: tokens no referenciados en los archivos de estilos de screens (85-97% de valores hardcodeados)\nCommon styles tampoco referencian los tokens (padding: 16 en vez de spacing.md, '#7C3AED' en vez de colors.primary)\n\n\nD6 — Consistencia de Estilos\n\nEscenario C → 4 / 5 — Consistente\nPositivo:\n\nTodas las screens usan el mismo patrón export const styles = StyleSheet.create(...) — consistencia total\nNomenclatura {type}Styles clara y predecible en todos los archivos de common/\nTokens de colores con comentarios de agrupación semántica\nDesviaciones:\n\nMisma desconexión que A: los tokens no se referencian en los archivos de estilos (colors.primary nunca aparece en ningún .styles.ts)\ncardStyles.elevated hardcodea los valores de sombra en vez de importar de shadows.ts\n\nuiUxQuality — Sprint de refactorización\nAmbos → 4 / 5\nSprint de extracción de estilos puro — sin cambios visuales en la app. Las capturas son pixel-idénticas a las del S8. La nota se hereda del sprint anterior. Si durante la extracción se hubiera introducido alguna regresión visual, bajaría; no hay evidencia de ello.",
+      "observations": "D3 — Coherencia arquitectural: 4/5\n\nEstructura: src/styles/screens/*.styles.ts (21 ficheros) + src/styles/tokens/ (incluye shadows.ts extra) + src/styles/common/ con 4 ficheros temáticos: buttons.ts (buttonStyles), cards.ts (cardStyles), forms.ts (formStyles), layout.ts (layoutStyles) + barrel index.ts\nLa separación en common/ por dominio (buttons, cards, forms, layout) es más escalable que el common.ts monolítico de A\nshadows.ts como token independiente refleja pensamiento de sistema\nPenalización menor: los tokens también se definen sin consumirse en las screen styles (LoginScreen.styles.ts tiene valores hardcodeados sin importar tokens). buttons.ts es muy escueto — solo una regla (pill: { borderRadius: 999 })\nexport const styles — consistente con C\nD6 — Consistencia de estilos: 4/5\n\nNamed exports (export const buttonStyles, export const cardStyles, etc.) en todos los ficheros — consistente con el patrón de C\nBarrel common/index.ts re-exporta correctamente los 4 módulos\nLoginScreen.styles.ts sigue el patrón de named export del resto del proyecto\nValores de spacing con porcentajes (marginTop: '12%') — coherente con el resto de C\nuiUxQuality: 4/5\n\nSprint de refactoring — sin cambios visuales. Calidad UI mantenida.\n",
       "createdAt": "2026-02-25T15:23:16.320Z",
-      "updatedAt": "2026-02-27T14:16:49.804Z",
+      "updatedAt": "2026-02-27T18:53:19.092Z",
       "id": 21,
       "gitFromCommit": "913ada3",
       "gitToCommit": "d25e3f6"
@@ -535,9 +536,9 @@
       "styleConsistency": 4,
       "uiUxQuality": 4,
       "incidences": [],
-      "observations": "D3 — Coherencia arquitectural: 5/5\n\nDeep link handling centralizado en AppNavigator con función normalizeRecoveryUrl() dedicada — responsabilidad única y bien ubicada\nPrefijo auth/ en rutas (auth/forgot-password, auth/reset-password) — convención escalable y coherente\nNamed exports en todos los ficheros nuevos, consistente con el resto del proyecto\nButton integrado de forma uniforme en todas las nuevas pantallas y en los cambios sobre pantallas existentes\nD6 — Consistencia de estilos: 4/5\n\nNamed exports consistentes en todo el sprint\nLoginScreen usa <Button variant=\"tertiary\"> para el enlace de forgot password — perfectamente consistente con los patrones del proyecto\nNaming functions coherente (handleSendResetEmail)\nPenalización menor: diferencia de fontSize en subtitle (14px en nuevas screens vs 16px en el resto) — desviación puntual\nuiUxQuality: 4/5\n\nMisma calidad estructural que A, con el detalle extra de showsVerticalScrollIndicator={false} en los nuevos ScrollViews\nFlujo completo y bien integrado visualmente",
+      "observations": "D3 — 5/5\n\nnormalizeRecoveryUrl() centraliza la conversión del fragmento # de Supabase a query params ? — necesario para que React Navigation pueda parsear los tokens\nCustom getInitialURL + subscribe en el linking config — gestión completa del ciclo de vida de deep links\nRutas con prefijo auth/: auth/forgot-password, auth/reset-password — namespace escalable\nButton variant=\"tertiary\" en LoginScreen para forgot password — consistente con el sistema de componentes\nD6 — 4/5\n\nexport const styles en todos los nuevos ficheros — consistente con C\nPenalización menor: diferencia de fontSize en subtítulos nuevas pantallas (14px vs 16px en el resto)\nuiUxQuality — 4/5\n\nFlujo completo y bien integrado. Sin capturas específicas.",
       "createdAt": "2026-02-25T16:26:18.174Z",
-      "updatedAt": "2026-02-25T22:39:24.580Z",
+      "updatedAt": "2026-02-27T19:34:44.353Z",
       "id": 23,
       "gitFromCommit": "d25e3f6",
       "gitToCommit": "980b2c0"
@@ -696,9 +697,9 @@
       "dateEnd": "2026-02-27",
       "tts": null,
       "ttsFeature": 1.18,
-      "ttsFix": 0.1,
+      "ttsFix": 0.24,
       "description": "",
-      "commits": 1,
+      "commits": 3,
       "filesCreated": 0,
       "filesModified": 17,
       "testsTotal": null,
@@ -719,7 +720,7 @@
       "controlCheckpoints": 29,
       "linesAdded": 557,
       "linesRemoved": 536,
-      "architecturalCoherence": null,
+      "architecturalCoherence": 3,
       "gitFromCommit": "d764658",
       "gitToCommit": "7420a4a",
       "buildsOk": null,
@@ -728,13 +729,62 @@
       "envFailures": null,
       "tsWarnings": null,
       "linterWarnings": null,
-      "styleConsistency": null,
-      "uiUxQuality": null,
+      "styleConsistency": 3,
+      "uiUxQuality": 4,
       "incidences": [],
-      "observations": "",
+      "observations": "D3 — Coherencia arquitectural: 3/5\n\nD ya tenía los ficheros .styles.ts desde S8 — en S9 solo los modifica\nPunto positivo destacable: common.styles.ts SÍ consume el theme object (theme.spacing.lg, theme.colors.background, theme.typography.body.fontSize, theme.borderRadius.sm) — único escenario que integra realmente el sistema de tokens en los estilos comunes\nRegisterPhases.styles.ts también consume theme.spacing.sm, theme.colors.text, etc.\nPenalización: RegisterPhases.styles.ts consolida los estilos de los 4 screens de registro en un único fichero — rompe la convención de un fichero por pantalla establecida en A y C, mezclando responsabilidades\nSin token layer propio (no crea colors.ts, spacing.ts, etc.) — reutiliza el theme ya existente\nD6 — Consistencia de estilos: 3/5\n\ncommon.styles.ts consume theme correctamente y de forma consistente\nLoginScreen.styles.ts y otros ficheros usan export const styles — consistente\nPenalización: RegisterPhases.styles.ts rompe la convención — los 4 screens de registro deberían tener ficheros individuales. Esto hace que el nombre del fichero no prediga su contenido.\n4-space indentation persiste\nuiUxQuality: 4/5\n\nSprint de refactoring — sin cambios visuales. Calidad UI mantenida.\n",
       "createdAt": "2026-02-27T13:45:57.588Z",
-      "updatedAt": "2026-02-27T18:47:30.664Z",
+      "updatedAt": "2026-02-27T18:57:22.304Z",
       "id": 27,
+      "contextCoherence": 5
+    },
+    {
+      "scenarioId": "D",
+      "sprintNumber": 10,
+      "status": "completed",
+      "dateStart": "2026-02-27",
+      "dateEnd": "2026-02-27",
+      "tts": null,
+      "ttsFeature": 0.12,
+      "ttsFix": 0.87,
+      "description": "",
+      "commits": 2,
+      "filesCreated": 4,
+      "filesModified": 5,
+      "testsTotal": 23,
+      "testsPass": 23,
+      "testsFail": null,
+      "verificationTime": null,
+      "manualEdits": null,
+      "correctivePrompts": null,
+      "rejectedProposals": null,
+      "humanRevisions": null,
+      "autoCorrectivePrompts": null,
+      "autoRejectedProposals": null,
+      "autoHumanRevisions": null,
+      "filesReadByAI": 19,
+      "filesTotalRepo": 116,
+      "retrievalMechanism": "mixto",
+      "autonomousActions": 15,
+      "controlCheckpoints": 6,
+      "linesAdded": 317,
+      "linesRemoved": 3,
+      "architecturalCoherence": 3,
+      "gitFromCommit": "7420a4a",
+      "gitToCommit": "e00a5bf",
+      "buildsOk": null,
+      "buildsFailed": null,
+      "buildsTotal": null,
+      "envFailures": null,
+      "tsWarnings": null,
+      "linterWarnings": null,
+      "styleConsistency": 3,
+      "uiUxQuality": 3,
+      "incidences": [],
+      "observations": "D3 — Coherencia arquitectural: 3/5\n\nForgotPasswordScreen y ResetPasswordScreen correctamente colocados en screens/\nAmbos screens registrados en AppNavigator ✓\nLinking config presente con homimatch:// prefix — distinto de A y C (homimatchapp://), aunque internamente consistente con su AndroidManifest.xml\nProblema 1 — bypass del servicio: ForgotPasswordScreen y ResetPasswordScreen importan supabaseClient directamente (import { supabaseClient } from '../services/authService') — acceso directo a la capa de datos desde los screens, saltándose la abstracción del servicio. Debería ir a través de authService\nProblema 2 — sin URL normalization: Supabase envía el token de recuperación como fragmento homimatch://reset-password#access_token=.... Sin conversión # → ?, React Navigation no parsea los parámetros, lo que puede romper el flujo de reset\nProblema 3: ForgotPassword no está en el linking config — solo ResetPassword: 'reset-password' — no permite deep links directos a la pantalla de forgot password\nroomService.ts modificado — cambio no relacionado con el feature del sprint\nD6 — Consistencia de estilos: 3/5\n\nPunto positivo: los nuevos screens usan commonStyles de common.styles.ts (el sistema creado en S9) — commonStyles.keyboardAvoiding, commonStyles.container, commonStyles.input — buena integración con el trabajo anterior\nexport const styles en los nuevos ficheros — consistente con D\nButton variant=\"tertiary\" para \"Volver al Login\" — coherente con el sistema de componentes\nPenalización: import { supabaseClient } en los screens rompe la capa de abstracción — inconsistente con el patrón de servicio del resto del proyecto\n4-space indentation persiste\nuiUxQuality: 3/5\n\nForgotPasswordScreen tiene estado de éxito tras enviar el email (muestra mensaje sin navegar) — buen patrón UX\nResetPasswordScreen valida confirmación de contraseña y longitud mínima (6 chars) — validaciones correctas\nPenalización funcional: el flujo de deep link probablemente no funciona correctamente (sin URL normalization, los tokens de Supabase no se parsean), lo que impacta directamente la UX de la feature principal del sprint",
+      "createdAt": "2026-02-27T18:54:57.938Z",
+      "updatedAt": "2026-02-27T19:35:30.510Z",
+      "id": 28,
       "contextCoherence": 5
     }
   ],
@@ -766,7 +816,7 @@
         "weaknesses": "",
         "generalExperience": ""
       },
-      "updatedAt": "2026-02-27T14:05:39.275Z",
+      "updatedAt": "2026-02-27T19:34:05.732Z",
       "id": 17
     },
     {
@@ -826,7 +876,7 @@
         "weaknesses": "",
         "generalExperience": ""
       },
-      "updatedAt": "2026-02-27T14:05:51.141Z",
+      "updatedAt": "2026-02-27T19:34:22.627Z",
       "id": 19
     },
     {
@@ -856,7 +906,7 @@
         "weaknesses": "",
         "generalExperience": ""
       },
-      "updatedAt": "2026-02-27T18:46:24.880Z",
+      "updatedAt": "2026-02-27T19:37:44.550Z",
       "id": 20
     }
   ],
@@ -968,7 +1018,7 @@
     },
     {
       "title": "Sprint 14 — Chats en Tiempo Real",
-      "content": "El chat funciona pero no es en tiempo real, hay que recargar para ver mensajes nuevos. Quiero arreglarlo con Supabase Realtime.\n\nCuando llega un mensaje nuevo, debería aparecer solo sin recargar nada. Si estás al final del scroll que baje automático, si no, muestra algún indicador de que hay mensajes nuevos. Al desmontar la pantalla cancela la suscripción.\n\nEn la lista de chats (MatchesScreen), que se ordene por el último mensaje y que se actualice solo también. Pon algún indicador de mensajes no leídos.\n\nAprovecha para rediseñar un poco el chat con el estilo glassmorphism: burbujas diferenciadas para tus mensajes y los del otro, timestamps agrupados por d��a, y que el input de texto no quede tapado por el teclado.\n\nDe paso actualiza también la UI de EditProfileScreen, CreateFlatScreen, y las pantallas de gastos para que sigan el mismo lenguaje visual.",
+      "content": "El chat funciona pero no es en tiempo real, hay que recargar para ver mensajes nuevos. Quiero arreglarlo con Supabase Realtime.\n\nCuando llega un mensaje nuevo, debería aparecer solo sin recargar nada. Si estás al final del scroll que baje automático, si no, muestra algún indicador de que hay mensajes nuevos. Al desmontar la pantalla cancela la suscripción.\n\nEn la lista de chats (MatchesScreen), que se ordene por el último mensaje y que se actualice solo también. Pon algún indicador de mensajes no leídos.\n\nAprovecha para rediseñar un poco el chat con el estilo glassmorphism: burbujas diferenciadas para tus mensajes y los del otro, timestamps agrupados por día, y que el input de texto no quede tapado por el teclado.\n\nDe paso actualiza también la UI de EditProfileScreen, CreateFlatScreen, y las pantallas de gastos para que sigan el mismo lenguaje visual.",
       "category": "feature",
       "targetScenarios": [
         "A",
@@ -2057,25 +2107,25 @@
     {
       "promptId": 34,
       "scenarioId": "C",
-      "quality": null,
+      "quality": 5,
       "wasAccepted": true,
       "sprintNumber": 10,
       "humanRevisions": 3,
       "notes": "",
       "createdAt": "2026-02-23T14:26:29.396Z",
-      "updatedAt": "2026-02-25T17:36:25.037Z",
+      "updatedAt": "2026-02-27T19:25:58.982Z",
       "id": 54
     },
     {
       "promptId": 34,
       "scenarioId": "D",
-      "quality": null,
+      "quality": 4,
       "wasAccepted": null,
       "sprintNumber": 10,
       "humanRevisions": null,
       "notes": "",
       "createdAt": "2026-02-23T14:26:35.227Z",
-      "updatedAt": "2026-02-23T14:26:35.227Z",
+      "updatedAt": "2026-02-27T19:26:00.681Z",
       "id": 55
     },
     {
@@ -2658,5 +2708,5 @@
       "id": 21
     }
   ],
-  "exportedAt": "2026-02-27T18:47:32.296Z"
+  "exportedAt": "2026-02-27T19:37:45.946Z"
 }

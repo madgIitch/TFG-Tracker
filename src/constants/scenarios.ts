@@ -47,6 +47,15 @@ export const SCENARIO_DEFINITIONS: ScenarioDefinition[] = [
     colorClass: 'orange',
     accentColor: '#f97316',
   },
+  {
+    id: 'E',
+    label: 'Claude Code en VS',
+    model: 'Claude Sonnet',
+    environment: 'VS Code',
+    role: 'Replicación',
+    colorClass: 'teal',
+    accentColor: '#14b8a6',
+  },
 ]
 
 export const SCENARIO_MAP: Record<ScenarioId, ScenarioDefinition> = Object.fromEntries(

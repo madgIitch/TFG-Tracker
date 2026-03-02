@@ -1,4 +1,4 @@
-export type ScenarioId = 'A' | 'B' | 'C' | 'D'
+export type ScenarioId = 'A' | 'B' | 'C' | 'D' | 'E'
 
 export type SprintStatus = 'pending' | 'in_progress' | 'completed'
 

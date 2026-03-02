@@ -345,6 +345,7 @@ export function SprintTimelineChart({ allSprints }: SprintTimelineChartProps) {
                 axisLine={false}
                 tickLine={false}
                 tickFormatter={formatHours}
+                domain={[0, BUDGET_PER_SCENARIO]}
               />
               <Tooltip
                 {...TOOLTIP_STYLE}

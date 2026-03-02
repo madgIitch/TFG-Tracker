@@ -11,6 +11,7 @@ const ACCENT: Record<string, string> = {
   green:  'text-green-400',
   purple: 'text-purple-400',
   orange: 'text-orange-400',
+  teal:   'text-teal-400',
 }
 
 const BADGE_BG: Record<string, string> = {
@@ -18,6 +19,7 @@ const BADGE_BG: Record<string, string> = {
   green:  'bg-green-900/50 text-green-300',
   purple: 'bg-purple-900/50 text-purple-300',
   orange: 'bg-orange-900/50 text-orange-300',
+  teal:   'bg-teal-900/50 text-teal-300',
 }
 
 export function Sidebar() {

@@ -1,7 +1,7 @@
 import { SCENARIO_DEFINITIONS } from '../../constants/scenarios'
 import type { SprintRecord } from '../../types'
 
-export const BUDGET_PER_SCENARIO = 57.5
+export const BUDGET_PER_SCENARIO = 46
 export const TOTAL_BUDGET = 230
 
 export function getSprintTTS(s: SprintRecord): number | null {

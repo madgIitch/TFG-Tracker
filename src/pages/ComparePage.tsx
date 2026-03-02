@@ -13,7 +13,7 @@ import { useAllPromptEvaluations } from '../db/hooks/usePrompts'
 import { aggregateScenario } from '../utils/aggregation'
 import type { ScenarioId } from '../types'
 
-const SCENARIO_IDS: ScenarioId[] = ['A', 'B', 'C', 'D']
+const SCENARIO_IDS: ScenarioId[] = ['A', 'B', 'C', 'D', 'E']
 
 type ViewMode = 'table' | 'charts'
 

@@ -1,33 +1,45 @@
-# Protocolo del Experimento Comparativo — Escenarios A–D
+# Protocolo del Experimento Comparativo — Escenarios A–E
 
 **Proyecto:** Análisis comparativo de duplas IA–IDE en desarrollo móvil
 **Caso práctico:** Replicación de las características avanzadas post-v0 de HomiMatchApp (Sprints 7–23)
 **Fecha de creación:** 5 febrero 2026
-**Última actualización:** 18 febrero 2026
+**Última actualización:** 2 marzo 2026
 
 ---
 
 ## 1. Objetivo
 
-Comparar cuatro duplas modelo–entorno (Escenarios A–D) replicando el tramo funcional de los Sprints 7–23 del proyecto (características avanzadas post-v0, commits #32–#155), manteniendo constantes requisitos, arquitectura y desarrollador. Cada escenario parte del mismo punto de partida (v0 completado) y debe implementar las 17 funcionalidades descritas en los sprints. La evaluación se rige por las seis dimensiones del marco definido en el capítulo de materias relacionadas.
+Comparar cinco duplas modelo–entorno (Escenarios A–E) replicando el tramo funcional de los Sprints 7–23 del proyecto (características avanzadas post-v0, commits #32–#155), manteniendo constantes requisitos, arquitectura y desarrollador. Cada escenario parte del mismo punto de partida (v0 completado) y debe implementar las 17 funcionalidades descritas en los sprints. La evaluación se rige por las seis dimensiones del marco definido en el capítulo de materias relacionadas.
 
 ---
 
 ## 2. Escenarios evaluados
 
-| ID | Dupla IA–IDE | Modelo | Entorno | Rol |
-|----|-------------|--------|---------|-----|
-| **A** | Codex (+Claude Code) en VS Code | GPT-4 / Claude Sonnet | Visual Studio Code | Baseline |
-| **B** | Gemini Code Assist en VS Code | Gemini 1.5 Pro | Visual Studio Code | Replicación |
-| **C** | Codex en Cursor | GPT-4o (Codex) | Cursor | Replicación |
-| **D** | Gemini en Antigravity | Gemini 1.5 Pro | Antigravity | Replicación |
+| ID | Dupla IA–IDE | Modelo | Entorno | Rol | Prioridad |
+|----|-------------|--------|---------|-----|-----------|
+| **A** | Codex (+Claude Code) en VS Code | GPT-4 / Claude Sonnet | Visual Studio Code | Baseline | Alta |
+| **B** | Gemini Code Assist en VS Code | Gemini 2.0 Pro | Visual Studio Code | Replicación (best-effort) | Baja |
+| **C** | Codex en Windsurf | GPT-4o (Codex) | Windsurf | Replicación | Alta |
+| **D** | Gemini en Antigravity | Gemini 2.0 Pro | Antigravity | Replicación | Alta |
+| **E** | Claude Code en VS Code | Claude Sonnet | Visual Studio Code | Replicación prioritaria | Alta |
+
+### Notas sobre cambios respecto a la versión inicial del protocolo
+
+**Escenario C — Cursor → Windsurf:**
+Cursor fue sustituido por Windsurf. Ambos son forks de Visual Studio Code orientados a programación mediante agentes de IA, comparten la misma arquitectura de indexación de repositorio y el mismo flujo de trabajo (prompt de feature/contexto → plan de implementación propuesto por la IA → aprobación humana → implementación). Las diferencias relevantes son la política de modelos disponibles (Windsurf no impone restricciones en la elección de modelo, Cursor sí) y el precio/cuota de tokens. A efectos experimentales ambos representan la misma categoría de dupla.
+
+**Escenario B — Best-effort:**
+Debido a las limitaciones intrínsecas de Gemini como modelo (gestión de la ventana de contexto, tendencia a la alucinación en tareas largas), el escenario B en VS Code nativo resulta el más difícil de avanzar. Se mantiene en el experimento con prioridad baja: su valor principal es documentar empíricamente las debilidades del modelo sin asistencia de un IDE agentico, que sirven de contraste con el Escenario D (mismo modelo, con Antigravity).
+
+**Escenario E — Incorporación:**
+Se añade Claude Code en VS Code como quinto escenario. La justificación es doble: (1) es la opción más cercana a un IDE agentico dentro del ecosistema VS Code nativo —mayor autonomía que Codex, propone planes de implementación en tareas complejas y accede al contexto de forma más eficiente—; (2) permite comparar directamente el efecto del IDE (VS Code nativo vs. Windsurf/Antigravity) manteniendo como referencia un modelo de alto rendimiento (Claude Sonnet). Los Escenarios A, C, D y E tienen prioridad alta; B avanza en paralelo en la medida en que el tiempo lo permite.
 
 ---
 
 ## 3. Condiciones controladas
 
 ### 3.1 Factores constantes
-- **Desarrollador**: Pepe Ortiz Roldán (mismo para los 4 escenarios).
+- **Desarrollador**: Pepe Ortiz Roldán (mismo para los 5 escenarios).
 - **Punto de partida**: v0 del proyecto ya completada (Sprints 0–6: autenticación, navegación, perfiles, matching, habitaciones, filtros, UI glassmorphism). Todos los escenarios arrancan desde el mismo código base v0.
 - **Requisitos funcionales**: Sprints 7–23 — características avanzadas post-v0 (gastos compartidos, correcciones UI/UX, refactorización, recuperación de contraseñas, mejoras UI detalle, invitaciones, push notifications, chats en tiempo real, UI fix global, swipe porcentual, hotfixes, filtros mejorados + Google Auth, realtime + estilos de vida, dark mode, premium features, dark mode refinamiento, ciudades y zonas).
 - **Stack**: React Native + Expo + TypeScript + Supabase (PostgreSQL, Auth, Storage).
@@ -66,13 +78,15 @@ Las seis dimensiones del marco se operativizan mediante las fuentes de datos pri
 ### 4.3 Operativización por dimensión
 
 #### D1 — Contexto efectivo
-Qué parte del repositorio usa realmente la herramienta.
+Qué parte del repositorio usa realmente la herramienta. Se desglosa en dos sub-métricas complementarias:
 
 | Indicador | Cómo se mide |
 |-----------|-------------|
-| Archivos leídos por la IA durante el sprint | Logs de la herramienta / observación directa |
-| Mecanismo de retrieval usado | Documentar: indexado, RAG, adjuntos manuales, context window |
-| Proporción del repo accesible vs. repo total | Ficheros accedidos / ficheros totales (script Git) |
+| **D1a** — Operaciones de lectura de ficheros | Logs de la herramienta / observación directa. Ratio = lecturas / total ficheros repo. Nota: puede ser >1 en IDEs con recuperación activa (relecturas). |
+| **D1b** — Coherencia contextual percibida | Escala 1–5: ¿la IA demostró entender el contexto del proyecto sin que se le indicara explícitamente? (1 = nula, 3 = parcial, 5 = total). Permite comparación homogénea entre escenarios independientemente del mecanismo de retrieval. |
+| Mecanismo de retrieval | Documentar: indexado, RAG, adjuntos manuales, context window, mixto |
+
+**Nota metodológica:** El ratio D1a no es directamente comparable entre escenarios porque depende del mecanismo de retrieval: los IDEs con indexación vectorial (Windsurf, Antigravity) no generan lecturas explícitas rastreables, mientras que VS Code nativo sí. D1b es la métrica principal de comparación cruzada.
 
 #### D2 — Autonomía vs. control
 Grado de agencia del modelo y frecuencia de puntos de control.
@@ -155,7 +169,7 @@ Se mantiene una **suite mínima de tests unitarios** (Jest / React Testing Libra
 Archivo `log-[escenario]-sprint-[N].md`:
 
 ```markdown
-# Sprint [N] — Escenario [A/B/C/D]
+# Sprint [N] — Escenario [A/B/C/D/E]
 
 ## Datos generales
 - Fecha inicio: YYYY-MM-DD HH:MM
@@ -179,8 +193,9 @@ Archivo `log-[escenario]-sprint-[N].md`:
 
 ## Dimensiones observadas
 ### Contexto efectivo
-- Archivos leídos por la IA: N / N total
-- Mecanismo de retrieval: [indexado / RAG / manual / context window]
+- D1a — Archivos leídos por la IA: N / N total (ratio puede ser >1 en VS Code nativo)
+- D1b — Coherencia contextual percibida: X/5
+- Mecanismo de retrieval: [indexado / RAG / manual / context window / mixto]
 
 ### Autonomía vs control
 - Acciones autónomas: N
@@ -208,7 +223,7 @@ Archivo `log-[escenario]-sprint-[N].md`:
 
 ### 6.2 Al cierre de cada escenario
 
-Archivo `resumen-escenario-[A/B/C/D].md`:
+Archivo `resumen-escenario-[A/B/C/D/E].md`:
 
 ```markdown
 # Resumen — Escenario [X]: [Dupla]
@@ -239,7 +254,8 @@ Archivo `resumen-escenario-[A/B/C/D].md`:
 ### Contexto efectivo (D1)
 | Métrica | Valor |
 |---------|-------|
-| Archivos accedidos / total repo | N/N (X%) |
+| D1a — Operaciones de lectura / total repo | N/N (X%) |
+| D1b — Coherencia contextual percibida (avg) | X/5 |
 | Mecanismo principal | [descripción] |
 
 ### Autonomía vs control (D2)
@@ -321,7 +337,7 @@ npx jest --ci --json 2>/dev/null | jq '{total: .numTotalTests, passed: .numPasse
 ### Manuales
 - Cronómetro de trabajo efectivo (TTS)
 - Clasificación de incidencias (tipo + tiempo de resolución)
-- Valoraciones 1–5 de coherencia y consistencia
+- Valoraciones 1–5 de coherencia, consistencia y coherencia contextual (D1b)
 - Conteo de acciones autónomas / puntos de control
 
 ---
@@ -381,34 +397,39 @@ npx jest --ci --json 2>/dev/null | jq '{total: .numTotalTests, passed: .numPasse
 **Fallido:**
 - Menos de 13 sprints completados, o métricas no registradas, o reglas violadas
 
+**Escenario B — criterio especial (best-effort):**
+- Se documenta lo avanzado sin exigencia de completar los 17 sprints
+- El valor es empírico: registrar las limitaciones del modelo en condiciones VS Code nativo
+
 ---
 
 ## 10. Tabla comparativa final
 
-Al completar los 4 escenarios, consolidar:
+Al completar los escenarios prioritarios (A, C, D, E), consolidar:
 
-| Dimensión | Indicador clave | A (Baseline) | B | C | D |
-|-----------|----------------|---|---|---|---|
-| **D5 Eficiencia** | TTS total (h) | ? | ? | ? | ? |
-| | Iteraciones (commits) | ? | ? | ? | ? |
-| | Retrabajo (commits) | ? | ? | ? | ? |
-| **D4 Éxito operac.** | Builds ok (%) | ? | ? | ? | ? |
-| | Tests pass (%) | ? | ? | ? | ? |
-| **D6 Calidad** | TS warnings | ? | ? | ? | ? |
-| | Linter warnings | ? | ? | ? | ? |
-| | Consistencia estilos (1–5) | ? | ? | ? | ? |
-| **D1 Contexto** | Archivos accedidos (%) | ? | ? | ? | ? |
-| **D2 Autonomía** | Ratio autonomía (%) | ? | ? | ? | ? |
-| **D3 Multiarchivo** | Archivos modificados | ? | ? | ? | ? |
-| | Coherencia arquitect. (1–5) | ? | ? | ? | ? |
-| **Interv. humana** | Ediciones manuales | ? | ? | ? | ? |
-| | Prompts correctivos | ? | ? | ? | ? |
-| | Propuestas rechazadas | ? | ? | ? | ? |
-| | Verificación (h) | ? | ? | ? | ? |
-| **Aceptación** | Sprints completados | ?/17 | ?/17 | ?/17 | ?/17 |
+| Dimensión | Indicador clave | A (Baseline) | B | C | D | E |
+|-----------|----------------|---|---|---|---|---|
+| **D5 Eficiencia** | TTS total (h) | ? | ? | ? | ? | ? |
+| | Iteraciones (commits) | ? | ? | ? | ? | ? |
+| | Retrabajo (commits) | ? | ? | ? | ? | ? |
+| **D4 Éxito operac.** | Builds ok (%) | ? | ? | ? | ? | ? |
+| | Tests pass (%) | ? | ? | ? | ? | ? |
+| **D6 Calidad** | TS warnings | ? | ? | ? | ? | ? |
+| | Linter warnings | ? | ? | ? | ? | ? |
+| | Consistencia estilos (1–5) | ? | ? | ? | ? | ? |
+| **D1 Contexto** | D1a — Ratio acceso | ? | ? | ? | ? | ? |
+| | D1b — Coherencia contextual (1–5) | ? | ? | ? | ? | ? |
+| **D2 Autonomía** | Ratio autonomía (%) | ? | ? | ? | ? | ? |
+| **D3 Multiarchivo** | Archivos modificados | ? | ? | ? | ? | ? |
+| | Coherencia arquitect. (1–5) | ? | ? | ? | ? | ? |
+| **Interv. humana** | Ediciones manuales | ? | ? | ? | ? | ? |
+| | Prompts correctivos | ? | ? | ? | ? | ? |
+| | Propuestas rechazadas | ? | ? | ? | ? | ? |
+| | Verificación (h) | ? | ? | ? | ? | ? |
+| **Aceptación** | Sprints completados | ?/17 | ?/17 | ?/17 | ?/17 | ?/17 |
 
 ---
 
 *Documento creado: 5 febrero 2026*
-*Última actualización: 18 febrero 2026*
+*Última actualización: 2 marzo 2026*
 *Autor: Pepe Ortiz Roldán*
