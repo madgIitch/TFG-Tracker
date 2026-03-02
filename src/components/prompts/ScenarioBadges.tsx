@@ -6,6 +6,7 @@ const BG: Record<string, string> = {
   green:  'bg-green-900/50 text-green-300 border border-green-700/40',
   purple: 'bg-purple-900/50 text-purple-300 border border-purple-700/40',
   orange: 'bg-orange-900/50 text-orange-300 border border-orange-700/40',
+  teal:   'bg-teal-900/50 text-teal-300 border border-teal-700/40',
 }
 
 interface ScenarioBadgesProps {

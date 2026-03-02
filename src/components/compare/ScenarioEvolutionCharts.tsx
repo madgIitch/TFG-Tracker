@@ -6,7 +6,6 @@ import {
 import { SPRINT_NUMBERS, SPRINT_NAMES } from '../../constants/sprints'
 import { SCENARIO_DEFINITIONS } from '../../constants/scenarios'
 import { computeAutonomyRatio } from '../../utils/metrics'
-import { getSprintTTS } from './BudgetPanel'
 import type { SprintRecord } from '../../types'
 
 interface ScenarioEvolutionChartsProps {
@@ -121,10 +120,7 @@ export function ScenarioEvolutionCharts({ allSprints }: ScenarioEvolutionChartsP
     SCENARIO_DEFINITIONS.map((def) => [def.id, allSprints.filter((s) => s.scenarioId === def.id)])
   ) as Record<string, SprintRecord[]>
 
-  // Chart 1 — TTS
-  const ttsData = buildPerSprintData(lookup, (s) => getSprintTTS(s))
-
-  // Charts 2, 3, 4 — quality metrics (one chart per metric, mirroring ScenarioCharts)
+  // Charts 1, 2, 3 — quality metrics (one chart per metric, mirroring ScenarioCharts)
   const uiuxData = buildPerSprintData(lookup, (s) => s.uiUxQuality ?? null)
   const coherenciaData = buildPerSprintData(lookup, (s) => s.architecturalCoherence ?? null)
   const consistenciaData = buildPerSprintData(lookup, (s) => s.styleConsistency ?? null)
@@ -143,19 +139,10 @@ export function ScenarioEvolutionCharts({ allSprints }: ScenarioEvolutionChartsP
   return (
     <div className="flex flex-col gap-4">
 
-      {/* ── 1. TTS ── */}
-      <LineCard
-        title="Evolución del TTS por sprint"
-        subtitle="Tiempo de tarea (horas) sprint a sprint · menor = más eficiente"
-        data={ttsData}
-        formatValue={(v) => `${v.toFixed(1)}h`}
-        yTickFormatter={(v) => `${v}h`}
-      />
-
-      {/* ── 2–4. Calidad: tres gráficas independientes en grid ── */}
+      {/* ── 1–3. Calidad: tres gráficas independientes en grid ── */}
       <div>
         <p className="text-[10px] text-slate-500 mb-2 pl-1">
-          Calidad (1–5) — cada métrica en su propia gráfica, con los 4 escenarios superpuestos
+          Calidad (1–5) — cada métrica en su propia gráfica, con los 5 escenarios superpuestos
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <LineCard
@@ -185,7 +172,7 @@ export function ScenarioEvolutionCharts({ allSprints }: ScenarioEvolutionChartsP
         </div>
       </div>
 
-      {/* ── 5. Autonomy ratio ── */}
+      {/* ── 4. Autonomy ratio ── */}
       <div className="bg-[#0f1117] border border-[#2e3650] rounded-xl p-4 flex flex-col gap-2">
         <div>
           <p className="text-xs font-semibold text-slate-200">Ratio de autonomía por sprint</p>

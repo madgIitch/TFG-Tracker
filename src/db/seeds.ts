@@ -1,7 +1,7 @@
 import { db } from './database'
 import type { ScenarioId, AcceptanceKey, AcceptanceChecklist } from '../types'
 
-const SCENARIO_IDS: ScenarioId[] = ['A', 'B', 'C', 'D']
+const SCENARIO_IDS: ScenarioId[] = ['A', 'B', 'C', 'D', 'E']
 
 const ACCEPTANCE_KEYS: AcceptanceKey[] = [
   'sprint7', 'sprint8', 'sprint9', 'sprint10', 'sprint11', 'sprint12',
@@ -14,16 +14,16 @@ function emptyChecklist(): AcceptanceChecklist {
 }
 
 export async function seedIfEmpty() {
-  const count = await db.scenarios.count()
-  if (count > 0) return
-
   const now = new Date().toISOString()
-  await db.scenarios.bulkAdd(
-    SCENARIO_IDS.map((id) => ({
-      scenarioId: id,
-      acceptanceChecklist: emptyChecklist(),
-      narrative: { strengths: '', weaknesses: '', generalExperience: '' },
-      updatedAt: now,
-    }))
-  )
+  for (const id of SCENARIO_IDS) {
+    const existing = await db.scenarios.where('scenarioId').equals(id).first()
+    if (!existing) {
+      await db.scenarios.add({
+        scenarioId: id,
+        acceptanceChecklist: emptyChecklist(),
+        narrative: { strengths: '', weaknesses: '', generalExperience: '' },
+        updatedAt: now,
+      })
+    }
+  }
 }

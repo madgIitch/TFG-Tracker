@@ -30,10 +30,11 @@ interface SprintTimelineChartProps {
 
 export function SprintTimelineChart({ allSprints }: SprintTimelineChartProps) {
   const [view, setView] = useState<ChartView>('per-sprint')
+  const scenarioDefs = SCENARIO_DEFINITIONS
 
   // Build TTS lookup: scenarioId → sprintNumber → tts
   const lookup: Record<string, Record<number, number | null>> = {}
-  for (const def of SCENARIO_DEFINITIONS) {
+  for (const def of scenarioDefs) {
     lookup[def.id] = {}
     for (const n of SPRINT_NUMBERS) {
       const s = allSprints.find((x) => x.scenarioId === def.id && x.sprintNumber === n)
@@ -42,26 +43,28 @@ export function SprintTimelineChart({ allSprints }: SprintTimelineChartProps) {
   }
 
   // Per-sprint data
-  const perSprintData = SPRINT_NUMBERS.map((n) => ({
-    sprint: n,
-    label: `S${n}`,
-    name: SPRINT_NAMES[n],
-    A: lookup['A'][n],
-    B: lookup['B'][n],
-    C: lookup['C'][n],
-    D: lookup['D'][n],
-  }))
+  const perSprintData = SPRINT_NUMBERS.map((n) => {
+    const point: Record<string, number | string | null> = {
+      sprint: n,
+      label: `S${n}`,
+      name: SPRINT_NAMES[n],
+    }
+    for (const def of scenarioDefs) {
+      point[def.id] = lookup[def.id][n]
+    }
+    return point
+  })
 
   // Cumulative data — only extend when sprint has data
-  const cum = { A: 0, B: 0, C: 0, D: 0 } as Record<string, number>
-  const hasData = { A: false, B: false, C: false, D: false } as Record<string, boolean>
+  const cum = Object.fromEntries(scenarioDefs.map((def) => [def.id, 0])) as Record<string, number>
+  const hasData = Object.fromEntries(scenarioDefs.map((def) => [def.id, false])) as Record<string, boolean>
   const cumulativeData = SPRINT_NUMBERS.map((n) => {
     const point: Record<string, number | string | null> = {
       sprint: n,
       label: `S${n}`,
       name: SPRINT_NAMES[n],
     }
-    for (const def of SCENARIO_DEFINITIONS) {
+    for (const def of scenarioDefs) {
       const v = lookup[def.id][n]
       if (v != null) {
         cum[def.id] += v
@@ -80,7 +83,7 @@ export function SprintTimelineChart({ allSprints }: SprintTimelineChartProps) {
       name: SPRINT_NAMES[n],
       ideal: +(BUDGET_PER_SCENARIO - AVG_BUDGET_PER_SPRINT * (i + 1)).toFixed(2),
     }
-    for (const def of SCENARIO_DEFINITIONS) {
+    for (const def of scenarioDefs) {
       const cumVal = cumulativeData[i][def.id] as number | null
       point[def.id] = cumVal != null ? +(BUDGET_PER_SCENARIO - cumVal).toFixed(2) : null
     }
@@ -88,19 +91,20 @@ export function SprintTimelineChart({ allSprints }: SprintTimelineChartProps) {
   })
 
   // Delta vs A — only when both A and the other scenario have a value
+  const nonBaselineDefs = scenarioDefs.filter((def) => def.id !== 'A')
   const deltaData = SPRINT_NUMBERS.map((n) => {
     const base = lookup['A'][n]
-    return {
+    const point: Record<string, number | string | null> = {
       sprint: n,
       label: `S${n}`,
       name: SPRINT_NAMES[n],
-      B: base != null && lookup['B'][n] != null ? +(lookup['B'][n]! - base).toFixed(2) : null,
-      C: base != null && lookup['C'][n] != null ? +(lookup['C'][n]! - base).toFixed(2) : null,
-      D: base != null && lookup['D'][n] != null ? +(lookup['D'][n]! - base).toFixed(2) : null,
     }
+    for (const def of nonBaselineDefs) {
+      const v = lookup[def.id][n]
+      point[def.id] = base != null && v != null ? +(v - base).toFixed(2) : null
+    }
+    return point
   })
-
-  const scenarioDefs = SCENARIO_DEFINITIONS
 
   function formatHours(v: number) {
     return `${v.toFixed(1)}h`
@@ -306,8 +310,8 @@ export function SprintTimelineChart({ allSprints }: SprintTimelineChartProps) {
                 formatter={(v) => `Escenario ${v}`}
               />
               <ReferenceLine y={0} stroke="#64748b" strokeWidth={1.5} />
-              {(['B', 'C', 'D'] as const).map((id) => {
-                const def = scenarioDefs.find((d) => d.id === id)!
+              {nonBaselineDefs.map((def) => {
+                const id = def.id
                 return (
                   <Bar
                     key={id}

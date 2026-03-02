@@ -8,7 +8,7 @@ import { SCENARIO_MAP } from '../constants/scenarios'
 import { SPRINT_NAMES } from '../constants/sprints'
 import type { ScenarioId } from '../types'
 
-const VALID_IDS: ScenarioId[] = ['A', 'B', 'C', 'D']
+const VALID_IDS: ScenarioId[] = ['A', 'B', 'C', 'D', 'E']
 const VALID_SPRINTS = Array.from({ length: 17 }, (_, i) => i + 7)
 
 export default function SprintFormPage() {

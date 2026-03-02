@@ -20,14 +20,14 @@ const CATEGORY_OPTIONS = [
   { value: 'context+refactor',    label: 'Context + Refactor — Contexto de arquitectura + refactorización' },
 ]
 
-const ALL_SCENARIOS: ScenarioId[] = ['A', 'B', 'C', 'D']
+const ALL_SCENARIOS: ScenarioId[] = ['A', 'B', 'C', 'D', 'E']
 
 function emptyForm(): Omit<PromptRecord, 'createdAt' | 'updatedAt'> {
   return {
     title: '',
     content: '',
     category: 'feature',
-    targetScenarios: ['A', 'B', 'C', 'D'],
+    targetScenarios: ['A', 'B', 'C', 'D', 'E'],
     notes: '',
   }
 }
@@ -55,7 +55,7 @@ export function PromptForm({ initial, onSaved, onCancel }: PromptFormProps) {
       const next = has
         ? f.targetScenarios.filter((s) => s !== id)
         : [...f.targetScenarios, id]
-      // Ordenar siempre A→D
+      // Ordenar siempre A→E
       return { ...f, targetScenarios: ALL_SCENARIOS.filter((s) => next.includes(s)) }
     })
   }
@@ -84,6 +84,7 @@ export function PromptForm({ initial, onSaved, onCancel }: PromptFormProps) {
     green:  'bg-green-900/50 border-green-700/50 text-green-300',
     purple: 'bg-purple-900/50 border-purple-700/50 text-purple-300',
     orange: 'bg-orange-900/50 border-orange-700/50 text-orange-300',
+    teal:   'bg-teal-900/50 border-teal-700/50 text-teal-300',
   }
 
   return (

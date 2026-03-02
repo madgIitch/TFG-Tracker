@@ -49,7 +49,7 @@ export function BudgetPanel({ allSprints }: BudgetPanelProps) {
       </div>
 
       {/* Per-scenario cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
         {SCENARIO_DEFINITIONS.map((def) => {
           const used = scenarioTTS[def.id]
           const remaining = Math.max(0, BUDGET_PER_SCENARIO - used)

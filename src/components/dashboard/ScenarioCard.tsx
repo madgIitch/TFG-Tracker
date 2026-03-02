@@ -12,6 +12,7 @@ const ACCENT_BORDER: Record<string, string> = {
   green:  'border-t-green-500',
   purple: 'border-t-purple-500',
   orange: 'border-t-orange-500',
+  teal:   'border-t-teal-500',
 }
 
 const ACCENT_TEXT: Record<string, string> = {
@@ -19,6 +20,7 @@ const ACCENT_TEXT: Record<string, string> = {
   green:  'text-green-400',
   purple: 'text-purple-400',
   orange: 'text-orange-400',
+  teal:   'text-teal-400',
 }
 
 interface ScenarioCardProps {

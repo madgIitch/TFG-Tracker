@@ -45,7 +45,7 @@ export default function ComparePage() {
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div>
             <h2 className="text-xl font-bold text-slate-100 mb-1">
-              Comparativa — Escenarios A–D
+              Comparativa — Escenarios A–E
             </h2>
             <p className="text-sm text-slate-400">
               Métricas agregadas de las 6 dimensiones del marco de evaluación.
@@ -77,9 +77,9 @@ export default function ComparePage() {
         {/* Evolución sprint a sprint — siempre visible */}
         <section className="bg-[#1a1f2e] border border-[#2e3650] rounded-xl p-5 flex flex-col gap-4">
           <div>
-            <h3 className="text-sm font-semibold text-slate-200">Evolución sprint a sprint — A vs B vs C vs D</h3>
+            <h3 className="text-sm font-semibold text-slate-200">Evolución sprint a sprint — A vs B vs C vs D vs E</h3>
             <p className="text-xs text-slate-500 mt-0.5">
-              TTS, calidad media y ratio de autonomía por sprint para los 4 escenarios.
+              Calidad media y ratio de autonomía por sprint para los 5 escenarios.
             </p>
           </div>
           <ScenarioEvolutionCharts allSprints={allSprints} />

@@ -14,7 +14,7 @@ import { getSprintCompletionCount } from '../utils/metrics'
 import { downloadScenarioImages } from '../utils/imageDownload'
 import type { ScenarioId } from '../types'
 
-const VALID_IDS: ScenarioId[] = ['A', 'B', 'C', 'D']
+const VALID_IDS: ScenarioId[] = ['A', 'B', 'C', 'D', 'E']
 
 export default function ScenarioPage() {
   const { id } = useParams<{ id: string }>()
@@ -29,7 +29,7 @@ export default function ScenarioPage() {
   const sprints = useSprints(scenarioId)
   const scenarioRecord = useScenario(scenarioId)
 
-  if (sprints === undefined || scenarioRecord === undefined) return <LoadingScreen />
+  if (sprints === undefined) return <LoadingScreen />
 
   const completed = getSprintCompletionCount(sprints)
 

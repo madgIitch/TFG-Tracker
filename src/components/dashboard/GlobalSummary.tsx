@@ -8,7 +8,7 @@ interface GlobalSummaryProps {
 
 export function GlobalSummary({ sprints }: GlobalSummaryProps) {
   const completed = getSprintCompletionCount(sprints)
-  const total = 68 // 4 × 17
+  const total = 85 // 5 × 17
   const inProgress = sprints.filter((s) => s.status === 'in_progress').length
   const totalTTS = getTotalTTS(sprints)
   const totalIncidences = sprints.reduce((a, s) => a + (s.incidences?.length ?? 0), 0)

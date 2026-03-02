@@ -5,7 +5,7 @@ export interface PromptRecord {
   title: string
   content: string
   category: PromptCategory
-  targetScenarios: ScenarioId[]  // subconjunto de ['A','B','C','D']
+  targetScenarios: ScenarioId[]  // subconjunto de ['A','B','C','D','E']
   notes: string
   createdAt: string
   updatedAt: string

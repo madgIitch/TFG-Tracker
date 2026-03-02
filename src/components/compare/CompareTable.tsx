@@ -238,7 +238,7 @@ export function CompareTable({ metrics }: CompareTableProps) {
             <>
               <tr key={section} className="bg-[#0f1117] border-b border-[#2e3650]">
                 <td
-                  colSpan={5}
+                  colSpan={SCENARIO_DEFINITIONS.length + 1}
                   className="px-4 py-2 text-xs font-bold text-slate-400 uppercase tracking-widest"
                 >
                   {section}

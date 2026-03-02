@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Cell, RadarChart, Radar,
@@ -155,15 +156,16 @@ function BarCard({
 // ─── Radar chart for a normalized overview ───────────────────────────────────
 
 function OverviewRadar({ metrics }: { metrics: AggregatedScenarioMetrics[] }) {
+  const allScenarioIds = SCENARIO_DEFINITIONS.map((def) => def.id)
+  const [activeScenarioIds, setActiveScenarioIds] = useState<string[]>(allScenarioIds)
+
+  function toggleScenario(id: string) {
+    setActiveScenarioIds((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    )
+  }
   // Dimensions normalized to 0–1
   const dimensions = [
-    {
-      key: 'Ctx D1a',
-      getValue: (m: AggregatedScenarioMetrics) => m.avgContextRatio != null
-        ? Math.min(m.avgContextRatio, 1)
-        : null,
-      higherIsBetter: null,
-    },
     {
       key: 'Ctx D1b',
       getValue: (m: AggregatedScenarioMetrics) => m.avgContextCoherence != null
@@ -227,6 +229,7 @@ function OverviewRadar({ metrics }: { metrics: AggregatedScenarioMetrics[] }) {
   })
 
   const anyData = metrics.some((m) =>
+    activeScenarioIds.includes(m.scenarioId) &&
     dimensions.some(({ getValue }) => getValue(m) != null)
   )
 
@@ -239,7 +242,33 @@ function OverviewRadar({ metrics }: { metrics: AggregatedScenarioMetrics[] }) {
         </p>
       </div>
 
-      {!anyData ? (
+      <div className="flex flex-wrap gap-2">
+        {SCENARIO_DEFINITIONS.map((def) => {
+          const active = activeScenarioIds.includes(def.id)
+          return (
+            <button
+              key={def.id}
+              type="button"
+              onClick={() => toggleScenario(def.id)}
+              className={`px-2.5 py-1 rounded-md text-[11px] font-semibold border transition-colors ${
+                active
+                  ? 'text-slate-100 border-transparent'
+                  : 'text-slate-500 border-[#2e3650] bg-[#121622] hover:text-slate-300'
+              }`}
+              style={active ? { backgroundColor: def.accentColor } : undefined}
+              title={active ? `Ocultar escenario ${def.id}` : `Mostrar escenario ${def.id}`}
+            >
+              {def.id}
+            </button>
+          )
+        })}
+      </div>
+
+      {activeScenarioIds.length === 0 ? (
+        <div className="h-64 flex items-center justify-center text-xs text-slate-600">
+          Activa al menos un escenario.
+        </div>
+      ) : !anyData ? (
         <div className="h-64 flex items-center justify-center text-xs text-slate-600">
           Sin datos aún
         </div>
@@ -258,7 +287,7 @@ function OverviewRadar({ metrics }: { metrics: AggregatedScenarioMetrics[] }) {
               tickCount={4}
               tickFormatter={(v: number) => `${(v * 100).toFixed(0)}%`}
             />
-            {SCENARIO_DEFINITIONS.map((def) => (
+            {SCENARIO_DEFINITIONS.filter((def) => activeScenarioIds.includes(def.id)).map((def) => (
               <Radar
                 key={def.id}
                 name={`${def.id} — ${def.label}`}
