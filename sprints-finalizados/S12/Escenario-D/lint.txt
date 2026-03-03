@@ -1,0 +1,96 @@
+﻿
+> HomiMatchApp@0.0.1 lint
+> eslint .
+
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\components\Input.tsx
+  44:11  warning  Inline style: { paddingVertical: 12 }  react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\context\SwipeFiltersContext.tsx
+  53:5  warning  Expected 'undefined' and instead saw 'void'  no-void
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\ChatScreen.tsx
+   85:5   warning  Expected 'undefined' and instead saw 'void'  no-void
+  120:5   warning  Expected 'undefined' and instead saw 'void'  no-void
+  147:5   warning  Expected 'undefined' and instead saw 'void'  no-void
+  181:5   warning  Expected 'undefined' and instead saw 'void'  no-void
+  322:15  warning  Expected 'undefined' and instead saw 'void'  no-void
+  331:5   warning  Expected 'undefined' and instead saw 'void'  no-void
+  353:5   warning  Expected 'undefined' and instead saw 'void'  no-void
+  387:44  warning  Inline style: { color: '#111827' }           react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\CreateFlatScreen.tsx
+   50:5   warning  Expected 'undefined' and instead saw 'void'  no-void
+  117:36  warning  Inline style: { paddingBottom: 16 }          react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\EditProfileScreen.tsx
+  386:36  warning  Inline style: { paddingBottom: 16 }  react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\FiltersScreen.tsx
+  130:5   warning  Expected 'undefined' and instead saw 'void'  no-void
+  160:5   warning  Expected 'undefined' and instead saw 'void'  no-void
+  230:36  warning  Inline style: { paddingBottom: 16 }          react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\FlatExpensesScreen.tsx
+  156:30  warning  Inline style: { width: 40 }                      react-native/no-inline-styles
+  216:66  warning  Inline style: { flexWrap: 'wrap' }               react-native/no-inline-styles
+  224:53  warning  Inline style: { minWidth: '48%', margin: '1%' }  react-native/no-inline-styles
+  248:40  warning  Inline style: { marginTop: 24 }                  react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\FlatSettlementScreen.tsx
+  109:61  warning  Inline style: { backgroundColor: 'rgba(124, 58, 237, 0.1)' }  react-native/no-inline-styles
+  153:34  warning  Inline style: { marginTop: 12 }                               react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\LoginScreen.tsx
+  69:14  warning  Inline style: { flex: 1 }  react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\MatchesScreen.tsx
+   47:5   warning  Expected 'undefined' and instead saw 'void'  no-void
+   52:7   warning  Expected 'undefined' and instead saw 'void'  no-void
+   94:5   warning  Expected 'undefined' and instead saw 'void'  no-void
+  123:24  warning  Expected 'undefined' and instead saw 'void'  no-void
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\ProfileDetailScreen.tsx
+  358:9  error  'convivenciaItems' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  398:9  error  'getLifestyleIcon' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  423:9  error  'birthDateValue' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  436:9  error  'aboutBadges' is assigned a value but never used       @typescript-eslint/no-unused-vars
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\RegisterScreen.tsx
+  163:14  warning  Inline style: { flex: 1 }  react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\RoomEditScreen.tsx
+  153:23  warning  'room' is already declared in the upper scope on line 83 column 10  @typescript-eslint/no-shadow
+  261:42  warning  'room' is already declared in the upper scope on line 83 column 10  @typescript-eslint/no-shadow
+  474:38  warning  Inline style: { paddingBottom: 16 }                                 react-native/no-inline-styles
+  521:36  warning  Inline style: { paddingBottom: 16 }                                 react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\RoomInterestsScreen.tsx
+  196:36  warning  Inline style: { paddingBottom: 16 }  react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\RoomManagementScreen.tsx
+  200:5   warning  Expected 'undefined' and instead saw 'void'  no-void
+  557:50  warning  Inline style: { flex: 1, marginRight: 8 }    react-native/no-inline-styles
+  568:50  warning  Inline style: { flex: 1 }                    react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\RulesManagementScreen.tsx
+  214:36  warning  Inline style: { paddingBottom: 16 }  react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\ServicesManagementScreen.tsx
+  149:36  warning  Inline style: { paddingBottom: 16 }  react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\register\Phase1Email.tsx
+  107:19  warning  Inline style: { backgroundColor: "isActive ? theme.colors.primary : '#E5E7EB'" }  react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\register\Phase2Name.tsx
+  58:19  warning  Inline style: { backgroundColor: "isActive ? theme.colors.primary : '#E5E7EB'" }  react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\register\Phase3BirthDate.tsx
+  64:19  warning  Inline style: { backgroundColor: "isActive ? theme.colors.primary : '#E5E7EB'" }  react-native/no-inline-styles
+
+C:\Users\peorr\Desktop\HomiTFG\Escenario-D\src\screens\register\Phase3Gender.tsx
+  50:19  warning  Inline style: { backgroundColor: "isActive ? theme.colors.primary : '#E5E7EB'" }  react-native/no-inline-styles
+  84:33  warning  Inline style: { color: '#FFFFFF' }                                                react-native/no-inline-styles
+
+Ô£û 47 problems (4 errors, 43 warnings)
+

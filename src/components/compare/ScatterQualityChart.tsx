@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import {
   ScatterChart, Scatter,
   XAxis, YAxis, CartesianGrid, Tooltip,
@@ -7,6 +8,8 @@ import { SPRINT_NAMES } from '../../constants/sprints'
 import { SCENARIO_DEFINITIONS } from '../../constants/scenarios'
 import { getSprintTTS } from './BudgetPanel'
 import type { SprintRecord } from '../../types'
+
+type ViewMode = 'ambos' | 'sprints' | 'centroides'
 
 function avgQuality(s: SprintRecord): number | null {
   const vals = [s.uiUxQuality, s.architecturalCoherence, s.styleConsistency].filter(
@@ -76,6 +79,8 @@ function CustomTooltip({
 }
 
 export function ScatterQualityChart({ allSprints }: ScatterQualityChartProps) {
+  const [view, setView] = useState<ViewMode>('ambos')
+
   const series = SCENARIO_DEFINITIONS.map((def) => {
     const sprints = allSprints.filter((s) => s.scenarioId === def.id)
     const data: PointData[] = sprints
@@ -109,13 +114,32 @@ export function ScatterQualityChart({ allSprints }: ScatterQualityChartProps) {
 
   return (
     <div className="bg-[#0f1117] border border-[#2e3650] rounded-xl p-4 flex flex-col gap-2">
-      <div>
-        <p className="text-xs font-semibold text-slate-200">TTS vs Calidad por sprint</p>
-        <p className="text-[10px] text-slate-500 mt-0.5">
-          Cada punto = un sprint. X = tiempo invertido (h), Y = calidad media (UI/UX + coherencia + consistencia).
-          {' '}<span className="text-slate-400">Zona ideal: arriba-izquierda (rápido y con calidad alta).</span>
-          {' '}<span className="text-slate-400">La cruz indica el centroide de cada escenario.</span>
-        </p>
+      <div className="flex items-start justify-between gap-3 flex-wrap">
+        <div>
+          <p className="text-xs font-semibold text-slate-200">TTS vs Calidad por sprint</p>
+          <p className="text-[10px] text-slate-500 mt-0.5">
+            Cada punto = un sprint. X = tiempo invertido (h), Y = calidad media (UI/UX + coherencia + consistencia).
+            {' '}<span className="text-slate-400">Zona ideal: arriba-izquierda (rápido y con calidad alta).</span>
+            {view !== 'sprints' && (
+              <>{' '}<span className="text-slate-400">La cruz indica el centroide de cada escenario.</span></>
+            )}
+          </p>
+        </div>
+        <div className="flex rounded-md overflow-hidden border border-[#2e3650] shrink-0">
+          {(['ambos', 'sprints', 'centroides'] as ViewMode[]).map((v) => (
+            <button
+              key={v}
+              onClick={() => setView(v)}
+              className={`px-2.5 py-1 text-[10px] font-medium transition-colors capitalize ${
+                view === v
+                  ? 'bg-[#2e3650] text-slate-100'
+                  : 'bg-transparent text-slate-500 hover:text-slate-300'
+              }`}
+            >
+              {v}
+            </button>
+          ))}
+        </div>
       </div>
 
       {!hasData ? (
@@ -168,23 +192,27 @@ export function ScatterQualityChart({ allSprints }: ScatterQualityChartProps) {
               wrapperStyle={{ fontSize: 10, color: '#94a3b8', paddingTop: 8 }}
             />
             {series.flatMap(({ def, data, centroid }) => {
-              const items = [
-                <Scatter
-                  key={def.id}
-                  name={`${def.id} — ${def.label}`}
-                  data={data}
-                  fill={def.accentColor}
-                  fillOpacity={0.75}
-                  r={5}
-                />,
-              ]
-              if (centroid) {
+              const items: React.ReactElement[] = []
+              if (view !== 'centroides') {
+                items.push(
+                  <Scatter
+                    key={def.id}
+                    name={`${def.id} — ${def.label}`}
+                    data={data}
+                    fill={def.accentColor}
+                    fillOpacity={0.75}
+                    r={5}
+                  />
+                )
+              }
+              if (view !== 'sprints' && centroid) {
                 items.push(
                   <Scatter
                     key={`${def.id}-centroid`}
+                    name={view === 'centroides' ? `${def.id} — ${def.label}` : undefined}
                     data={[centroid]}
                     fill={def.accentColor}
-                    legendType="none"
+                    legendType={view === 'centroides' ? 'circle' : 'none'}
                     shape={CentroidShape}
                   />
                 )
