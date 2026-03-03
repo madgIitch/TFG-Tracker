@@ -38,6 +38,11 @@ export function getSprintCompletionCount(sprints: SprintRecord[]): number {
   return sprints.filter((s) => s.status === 'completed').length
 }
 
+function resolveSprintTTS(s: SprintRecord): number {
+  if (s.tts != null) return s.tts
+  return (s.ttsFeature ?? 0) + (s.ttsFix ?? 0)
+}
+
 export function getTotalTTS(sprints: SprintRecord[]): number {
-  return sprints.reduce((acc, s) => acc + (s.tts ?? 0), 0)
+  return sprints.reduce((acc, s) => acc + resolveSprintTTS(s), 0)
 }

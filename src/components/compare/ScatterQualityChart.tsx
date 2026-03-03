@@ -16,14 +16,33 @@ function avgQuality(s: SprintRecord): number | null {
   return vals.reduce((a, b) => a + b, 0) / vals.length
 }
 
-interface ScatterQualityChartProps {
-  allSprints: SprintRecord[]
+interface PointData {
+  tts: number
+  quality: number
+  sprint?: number
+  scenarioLabel: string
+  isCentroid?: boolean
 }
 
 interface TooltipPayload {
   name: string
   value: number
-  payload: { tts: number; quality: number; sprint: number; scenarioLabel: string }
+  payload: PointData
+}
+
+function CentroidShape({ cx = 0, cy = 0, fill = '#fff' }: { cx?: number; cy?: number; fill?: string }) {
+  const arm = 8
+  return (
+    <g>
+      <line x1={cx - arm} y1={cy} x2={cx + arm} y2={cy} stroke={fill} strokeWidth={2.5} />
+      <line x1={cx} y1={cy - arm} x2={cx} y2={cy + arm} stroke={fill} strokeWidth={2.5} />
+      <circle cx={cx} cy={cy} r={4} fill={fill} stroke="#0f1117" strokeWidth={1.5} />
+    </g>
+  )
+}
+
+interface ScatterQualityChartProps {
+  allSprints: SprintRecord[]
 }
 
 function CustomTooltip({
@@ -35,10 +54,19 @@ function CustomTooltip({
 }) {
   if (!active || !payload?.length) return null
   const d = payload[0].payload
+  if (d.isCentroid) {
+    return (
+      <div className="bg-[#1a1f2e] border border-[#2e3650] rounded-md px-3 py-2 text-xs shadow-xl">
+        <p className="text-slate-300 font-semibold mb-1">Centroide — {d.scenarioLabel}</p>
+        <p className="text-slate-200 font-mono mt-1">TTS medio: {d.tts.toFixed(1)}h</p>
+        <p className="text-slate-200 font-mono">Calidad media: {d.quality.toFixed(2)} / 5</p>
+      </div>
+    )
+  }
   return (
     <div className="bg-[#1a1f2e] border border-[#2e3650] rounded-md px-3 py-2 text-xs shadow-xl">
       <p className="text-slate-300 font-semibold mb-1">
-        S{d.sprint} — {SPRINT_NAMES[d.sprint]}
+        S{d.sprint} — {SPRINT_NAMES[d.sprint!]}
       </p>
       <p className="text-slate-400">{d.scenarioLabel}</p>
       <p className="text-slate-200 font-mono mt-1">TTS: {d.tts.toFixed(1)}h</p>
@@ -50,7 +78,7 @@ function CustomTooltip({
 export function ScatterQualityChart({ allSprints }: ScatterQualityChartProps) {
   const series = SCENARIO_DEFINITIONS.map((def) => {
     const sprints = allSprints.filter((s) => s.scenarioId === def.id)
-    const data = sprints
+    const data: PointData[] = sprints
       .map((s) => {
         const tts = getSprintTTS(s)
         const quality = avgQuality(s)
@@ -63,7 +91,18 @@ export function ScatterQualityChart({ allSprints }: ScatterQualityChartProps) {
         }
       })
       .filter((d): d is NonNullable<typeof d> => d != null)
-    return { def, data }
+
+    const centroid: PointData | null =
+      data.length > 0
+        ? {
+            tts: data.reduce((a, d) => a + d.tts, 0) / data.length,
+            quality: data.reduce((a, d) => a + d.quality, 0) / data.length,
+            scenarioLabel: `${def.id} — ${def.label}`,
+            isCentroid: true,
+          }
+        : null
+
+    return { def, data, centroid }
   })
 
   const hasData = series.some((s) => s.data.length > 0)
@@ -74,7 +113,8 @@ export function ScatterQualityChart({ allSprints }: ScatterQualityChartProps) {
         <p className="text-xs font-semibold text-slate-200">TTS vs Calidad por sprint</p>
         <p className="text-[10px] text-slate-500 mt-0.5">
           Cada punto = un sprint. X = tiempo invertido (h), Y = calidad media (UI/UX + coherencia + consistencia).
-          {' '}<span className="text-slate-400">Zona ideal: abajo-derecha (rápido y con calidad alta).</span>
+          {' '}<span className="text-slate-400">Zona ideal: arriba-izquierda (rápido y con calidad alta).</span>
+          {' '}<span className="text-slate-400">La cruz indica el centroide de cada escenario.</span>
         </p>
       </div>
 
@@ -127,16 +167,30 @@ export function ScatterQualityChart({ allSprints }: ScatterQualityChartProps) {
               iconSize={8}
               wrapperStyle={{ fontSize: 10, color: '#94a3b8', paddingTop: 8 }}
             />
-            {series.map(({ def, data }) => (
-              <Scatter
-                key={def.id}
-                name={`${def.id} — ${def.label}`}
-                data={data}
-                fill={def.accentColor}
-                fillOpacity={0.75}
-                r={5}
-              />
-            ))}
+            {series.flatMap(({ def, data, centroid }) => {
+              const items = [
+                <Scatter
+                  key={def.id}
+                  name={`${def.id} — ${def.label}`}
+                  data={data}
+                  fill={def.accentColor}
+                  fillOpacity={0.75}
+                  r={5}
+                />,
+              ]
+              if (centroid) {
+                items.push(
+                  <Scatter
+                    key={`${def.id}-centroid`}
+                    data={[centroid]}
+                    fill={def.accentColor}
+                    legendType="none"
+                    shape={CentroidShape}
+                  />
+                )
+              }
+              return items
+            })}
           </ScatterChart>
         </ResponsiveContainer>
       )}
