@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   ScatterChart, Scatter,
   XAxis, YAxis, CartesianGrid, Tooltip,
-  ResponsiveContainer, Legend,
+  ResponsiveContainer, Legend, ReferenceLine,
 } from 'recharts'
 import { SPRINT_NAMES } from '../../constants/sprints'
 import { SCENARIO_DEFINITIONS } from '../../constants/scenarios'
@@ -112,6 +112,11 @@ export function ScatterQualityChart({ allSprints }: ScatterQualityChartProps) {
 
   const hasData = series.some((s) => s.data.length > 0)
 
+  const allPoints = series.flatMap((s) => s.data)
+  const avgTTS = allPoints.length > 0
+    ? allPoints.reduce((a, d) => a + d.tts, 0) / allPoints.length
+    : null
+
   return (
     <div className="bg-[#0f1117] border border-[#2e3650] rounded-xl p-4 flex flex-col gap-2">
       <div className="flex items-start justify-between gap-3 flex-wrap">
@@ -123,6 +128,7 @@ export function ScatterQualityChart({ allSprints }: ScatterQualityChartProps) {
             {view !== 'sprints' && (
               <>{' '}<span className="text-slate-400">La cruz indica el centroide de cada escenario.</span></>
             )}
+            {' '}<span className="text-slate-400">Las líneas de referencia marcan calidad = 3 y TTS medio global.</span>
           </p>
         </div>
         <div className="flex rounded-md overflow-hidden border border-[#2e3650] shrink-0">
@@ -147,21 +153,26 @@ export function ScatterQualityChart({ allSprints }: ScatterQualityChartProps) {
           Sin datos aún
         </div>
       ) : (
-        <ResponsiveContainer width="100%" height={300}>
-          <ScatterChart margin={{ top: 8, right: 24, left: 0, bottom: 20 }}>
+        <ResponsiveContainer width="100%" height={380}>
+          <ScatterChart margin={{ top: 12, right: 32, left: 4, bottom: 24 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#2e3650" />
             <XAxis
               dataKey="tts"
               type="number"
               name="TTS"
+              domain={([dataMin, dataMax]: readonly [number, number]) => {
+                const pad = (dataMax - dataMin) * 0.12 || 0.5
+                return [Math.max(0, dataMin - pad), dataMax + pad]
+              }}
               tick={{ fill: '#94a3b8', fontSize: 10 }}
               axisLine={false}
               tickLine={false}
-              tickFormatter={(v) => `${v}h`}
+              tickFormatter={(v) => `${Number(v).toFixed(1)}h`}
+              tickCount={8}
               label={{
                 value: 'TTS (h)',
                 position: 'insideBottom',
-                offset: -12,
+                offset: -14,
                 fill: '#475569',
                 fontSize: 10,
               }}
@@ -170,17 +181,17 @@ export function ScatterQualityChart({ allSprints }: ScatterQualityChartProps) {
               dataKey="quality"
               type="number"
               name="Calidad"
-              domain={[1, 5]}
+              domain={[0.8, 5.2]}
               ticks={[1, 2, 3, 4, 5]}
               tick={{ fill: '#94a3b8', fontSize: 10 }}
               axisLine={false}
               tickLine={false}
-              width={28}
+              width={32}
               label={{
                 value: 'Calidad (1–5)',
                 angle: -90,
                 position: 'insideLeft',
-                offset: 12,
+                offset: 14,
                 fill: '#475569',
                 fontSize: 10,
               }}
@@ -191,6 +202,27 @@ export function ScatterQualityChart({ allSprints }: ScatterQualityChartProps) {
               iconSize={8}
               wrapperStyle={{ fontSize: 10, color: '#94a3b8', paddingTop: 8 }}
             />
+
+            {/* Línea horizontal: calidad = 3 (umbral medio) */}
+            <ReferenceLine
+              y={3}
+              stroke="#64748b"
+              strokeDasharray="5 4"
+              strokeWidth={1.5}
+              label={{ value: 'Cal. 3', position: 'insideTopRight', fill: '#64748b', fontSize: 9 }}
+            />
+
+            {/* Línea vertical: TTS medio global */}
+            {avgTTS != null && (
+              <ReferenceLine
+                x={avgTTS}
+                stroke="#64748b"
+                strokeDasharray="5 4"
+                strokeWidth={1.5}
+                label={{ value: `${avgTTS.toFixed(1)}h`, position: 'insideTopRight', fill: '#64748b', fontSize: 9 }}
+              />
+            )}
+
             {series.flatMap(({ def, data, centroid }) => {
               const items: React.ReactElement[] = []
               if (view !== 'centroides') {
