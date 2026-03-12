@@ -1,6 +1,10 @@
+import { useState } from 'react'
 import { CounterInput } from '../../ui/Input'
 import { RangeSlider } from '../../ui/RangeSlider'
 import type { SprintRecord } from '../../../types'
+
+const REPO_PATH_KEY = 'tfg-git-repo-path'
+const DEFAULT_REPO_PATH = 'C:\\Users\\peorr\\Desktop\\HomiTFG'
 
 interface Props {
   data: SprintRecord
@@ -24,6 +28,40 @@ const UIUX_LABELS: Record<number, string> = {
 }
 
 export function D6QualityTab({ data, onChange }: Props) {
+  const [repoPath, setRepoPath] = useState(
+    () => localStorage.getItem(REPO_PATH_KEY) ?? DEFAULT_REPO_PATH
+  )
+  const [lintLoading, setLintLoading] = useState(false)
+  const [lintResult, setLintResult] = useState<{ warnings: number; errors: number; total: number } | null>(null)
+  const [lintError, setLintError] = useState<string | null>(null)
+
+  async function handleRunLint() {
+    setLintLoading(true)
+    setLintError(null)
+    setLintResult(null)
+    localStorage.setItem(REPO_PATH_KEY, repoPath)
+
+    try {
+      const res = await fetch('/api/run-lint', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ repoPath }),
+      })
+      const json = await res.json() as { error?: string; warnings?: number; errors?: number; total?: number }
+      if (!res.ok || json.error) {
+        setLintError(json.error ?? 'Error desconocido')
+      } else {
+        const result = { warnings: json.warnings ?? 0, errors: json.errors ?? 0, total: json.total ?? 0 }
+        setLintResult(result)
+        onChange('linterWarnings', result.total)
+      }
+    } catch (e) {
+      setLintError(String(e))
+    } finally {
+      setLintLoading(false)
+    }
+  }
+
   return (
     <div className="flex flex-col gap-6 p-5">
       <div className="p-3 bg-slate-700/40 border border-slate-600/40 rounded-md text-xs text-slate-300">
@@ -50,6 +88,50 @@ export function D6QualityTab({ data, onChange }: Props) {
             onChange={(v) => onChange('linterWarnings', v)}
             hint="eslint src/ --format json | jq '[.[].messages | length] | add'"
           />
+        </div>
+
+        {/* Lint runner */}
+        <div className="mt-4 p-4 bg-[#0f1117] border border-[#2e3650] rounded-lg flex flex-col gap-3">
+          <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide">
+            Ejecutar lint en el repositorio del escenario
+          </p>
+
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-slate-500">Ruta del repositorio</span>
+            <input
+              type="text"
+              value={repoPath}
+              onChange={(e) => setRepoPath(e.target.value)}
+              placeholder="C:\Users\peorr\Desktop\HomiTFG"
+              className="w-full bg-[#252b3b] border border-[#2e3650] rounded-md px-3 py-2 text-xs text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-blue-500 font-mono"
+            />
+          </div>
+
+          <div className="flex items-center gap-3 flex-wrap">
+            <button
+              type="button"
+              onClick={handleRunLint}
+              disabled={!repoPath.trim() || lintLoading}
+              className="px-4 py-1.5 rounded-md bg-blue-600 hover:bg-blue-500 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-semibold transition-colors"
+            >
+              {lintLoading ? 'Ejecutando…' : '⚡ npm run lint'}
+            </button>
+
+            {lintResult && (
+              <span className="text-xs font-mono text-green-400">
+                ✓ Warnings: {lintResult.warnings} · Errors: {lintResult.errors} · Total: {lintResult.total} → rellenado automáticamente
+              </span>
+            )}
+            {lintError && (
+              <span className="text-xs text-red-400 truncate max-w-xs" title={lintError}>
+                ✗ {lintError}
+              </span>
+            )}
+          </div>
+
+          <p className="text-[10px] text-slate-600">
+            Ejecuta <code className="text-slate-500">npm run lint --format json</code> en la ruta indicada y rellena el contador de linter warnings. La ruta se comparte con el widget de Git.
+          </p>
         </div>
       </section>
 

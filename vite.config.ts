@@ -90,6 +90,51 @@ function gitDiffPlugin(): Plugin {
         })
       })
 
+      // ── /api/run-lint : run eslint on a given repo path ──────────────────
+      server.middlewares.use('/api/run-lint', (req, res) => {
+        if (req.method !== 'POST') { res.statusCode = 405; res.end('Method not allowed'); return }
+        let body = ''
+        req.on('data', (chunk: Buffer) => { body += chunk.toString() })
+        req.on('end', () => {
+          try {
+            const { repoPath } = JSON.parse(body) as { repoPath: string }
+            if (!repoPath) { res.statusCode = 400; res.end(JSON.stringify({ error: 'repoPath es obligatorio' })); return }
+
+            let output = ''
+            let exitCode = 0
+            try {
+              output = execSync('npm run lint -- --format json', {
+                cwd: repoPath, encoding: 'utf-8', timeout: 30000,
+              })
+            } catch (e: unknown) {
+              // eslint exits with code 1 when there are lint errors — capture stdout anyway
+              const err = e as { stdout?: string; stderr?: string; status?: number }
+              output = err.stdout ?? ''
+              exitCode = err.status ?? 1
+            }
+
+            // Extract the JSON part (npm run lint adds extra lines before the JSON)
+            const jsonStart = output.indexOf('[')
+            const jsonStr = jsonStart >= 0 ? output.slice(jsonStart) : '[]'
+            let results: Array<{ messages: unknown[] }> = []
+            try { results = JSON.parse(jsonStr) } catch { results = [] }
+
+            const warnings = results.reduce((sum, f) =>
+              sum + f.messages.filter((m: unknown) => (m as { severity: number }).severity === 1).length, 0)
+            const errors = results.reduce((sum, f) =>
+              sum + f.messages.filter((m: unknown) => (m as { severity: number }).severity === 2).length, 0)
+            const total = warnings + errors
+
+            res.setHeader('Content-Type', 'application/json')
+            res.end(JSON.stringify({ warnings, errors, total, exitCode }))
+          } catch (e: unknown) {
+            res.statusCode = 500
+            res.setHeader('Content-Type', 'application/json')
+            res.end(JSON.stringify({ error: e instanceof Error ? e.message : String(e) }))
+          }
+        })
+      })
+
       // ── /api/git-diff : diff between two commits ─────────────────────────
       server.middlewares.use('/api/git-diff', (req, res) => {
         if (req.method !== 'POST') {

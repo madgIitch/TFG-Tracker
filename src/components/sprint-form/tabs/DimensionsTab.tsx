@@ -121,6 +121,9 @@ function ScaleButtons({ value, onChange, labels }: {
 export function DimensionsTab({ data, onChange }: Props) {
   const [repoFilesLoading, setRepoFilesLoading] = useState(false)
   const [repoFilesError,   setRepoFilesError]   = useState<string | null>(null)
+  const [lintLoading,      setLintLoading]      = useState(false)
+  const [lintResult,       setLintResult]       = useState<{ warnings: number; errors: number; total: number } | null>(null)
+  const [lintError,        setLintError]        = useState<string | null>(null)
 
   async function handleFetchRepoFiles() {
     setRepoFilesLoading(true)
@@ -148,6 +151,32 @@ export function DimensionsTab({ data, onChange }: Props) {
       ? (data.buildsOk ?? 0) + (data.buildsFailed ?? 0)
       : null
   const buildRate = computeBuildSuccessRate(data.buildsOk, buildsTotal)
+
+  async function handleRunLint() {
+    setLintLoading(true)
+    setLintError(null)
+    setLintResult(null)
+    try {
+      const repoPath = getScenarioRepoPath(data.scenarioId)
+      const res = await fetch('/api/run-lint', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ repoPath }),
+      })
+      const json = await res.json() as { error?: string; warnings?: number; errors?: number; total?: number }
+      if (!res.ok || json.error) {
+        setLintError(json.error ?? 'Error desconocido')
+      } else {
+        const result = { warnings: json.warnings ?? 0, errors: json.errors ?? 0, total: json.total ?? 0 }
+        setLintResult(result)
+        onChange('linterWarnings', result.total)
+      }
+    } catch (e) {
+      setLintError(String(e))
+    } finally {
+      setLintLoading(false)
+    }
+  }
 
   function handleBuildsOkChange(v: number | null) {
     onChange('buildsOk', v)
@@ -287,12 +316,30 @@ export function DimensionsTab({ data, onChange }: Props) {
             onChange={(v) => onChange('tsWarnings', v)}
             hint="tsc --noEmit 2>&1 | grep -c 'error TS'"
           />
-          <CounterInput
-            label="Linter warnings"
-            value={data.linterWarnings}
-            onChange={(v) => onChange('linterWarnings', v)}
-            hint="eslint src/ --format json | jq '[.[].messages|length]|add'"
-          />
+          <div className="flex flex-col gap-1.5">
+            <CounterInput
+              label="Linter warnings"
+              value={data.linterWarnings}
+              onChange={(v) => onChange('linterWarnings', v)}
+              hint="eslint src/ --format json | jq '[.[].messages|length]|add'"
+            />
+            <button
+              type="button"
+              onClick={handleRunLint}
+              disabled={lintLoading}
+              className="w-full py-1 rounded text-[10px] font-semibold bg-[#1a1f2e] border border-[#2e3650] text-slate-400 hover:border-blue-700 hover:text-blue-400 disabled:opacity-40 transition-colors"
+            >
+              {lintLoading ? 'Ejecutando…' : '⚡ npm run lint'}
+            </button>
+            {lintResult && (
+              <p className="text-[10px] font-mono text-green-400">
+                ✓ W:{lintResult.warnings} E:{lintResult.errors} T:{lintResult.total}
+              </p>
+            )}
+            {lintError && (
+              <p className="text-[10px] text-red-400 truncate" title={lintError}>✗ {lintError}</p>
+            )}
+          </div>
         </div>
         <p className="text-[11px] text-slate-500">Naming, estructura de archivos y patrones de código uniformes</p>
         <ScaleButtons
