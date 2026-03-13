@@ -1,0 +1,117 @@
+// src/screens/FlatSettlementScreen.styles.ts
+import { StyleSheet } from 'react-native';
+
+export const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#F2F2F7' },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 24,
+    paddingVertical: 16,
+    backgroundColor: 'rgba(255, 255, 255, 0.80)',
+  },
+  headerCenter: { flex: 1, marginHorizontal: 12 },
+  headerTitle: { fontSize: 18, fontWeight: '600' },
+  headerSubtitle: { fontSize: 12, color: '#6B7280', marginTop: 2 },
+  loadingContainer: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  loadingText: { marginTop: 10, fontSize: 14, color: '#6B7280' },
+  content: { padding: 20, gap: 4 },
+
+  section: { marginBottom: 24 },
+  sectionTitle: { fontSize: 13, fontWeight: '700', color: '#6B7280', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 12 },
+  sectionBadge: { color: '#7C3AED' },
+
+  // Balance summary
+  balanceRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0, 0, 0, 0.06)',
+    gap: 12,
+  },
+  balanceAvatarWrap: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(124, 58, 237, 0.12)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  balanceAvatarText: { fontSize: 15, fontWeight: '700', color: '#7C3AED' },
+  balanceName: { flex: 1, fontSize: 14, fontWeight: '500', color: '#111827' },
+  balanceAmount: { fontSize: 15, fontWeight: '700', color: '#6B7280' },
+  balancePositive: { color: '#10B981' },
+  balanceNegative: { color: '#EF4444' },
+
+  // Pending settlements
+  settlementCard: {
+    backgroundColor: 'rgba(255, 255, 255, 0.72)',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.55)',
+    padding: 16,
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 8,
+    elevation: 1,
+  },
+  settlementCardMyDebt: { borderColor: 'rgba(239, 68, 68, 0.30)', backgroundColor: 'rgba(254, 245, 245, 0.80)' },
+  settlementCardMyCash: { borderColor: 'rgba(16, 185, 129, 0.30)', backgroundColor: 'rgba(240, 253, 248, 0.80)' },
+  settlementRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  settlementNames: { flexDirection: 'row', alignItems: 'center', gap: 6, flex: 1 },
+  settlementArrowWrap: {
+    width: 22,
+    height: 22,
+    borderRadius: 11,
+    backgroundColor: 'rgba(242, 242, 247, 0.80)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  settlementFrom: { fontSize: 14, fontWeight: '600', color: '#111827' },
+  settlementTo: { fontSize: 14, fontWeight: '600', color: '#111827' },
+  settlementAmount: { fontSize: 17, fontWeight: '700', color: '#111827' },
+  settlementHint: { fontSize: 12, color: '#EF4444', marginTop: 4 },
+  hintGreen: { color: '#10B981' },
+  settleButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    marginTop: 12,
+    paddingVertical: 8,
+    borderRadius: 10,
+    backgroundColor: 'rgba(124, 58, 237, 0.10)',
+  },
+  settleButtonDisabled: { opacity: 0.5 },
+  settleButtonText: { fontSize: 13, fontWeight: '600', color: '#7C3AED' },
+
+  // Empty state
+  emptyState: { alignItems: 'center', paddingVertical: 28 },
+  emptyTitle: { fontSize: 16, fontWeight: '600', color: '#111827', marginTop: 12 },
+  emptySubtitle: { fontSize: 13, color: '#6B7280', marginTop: 6, textAlign: 'center' },
+
+  // Settled history
+  settledCard: {
+    backgroundColor: 'rgba(255, 255, 255, 0.55)',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.40)',
+    padding: 14,
+    marginBottom: 8,
+  },
+  settledName: { fontSize: 13, color: '#6B7280' },
+  settledRight: { alignItems: 'flex-end' },
+  settledAmount: { fontSize: 14, fontWeight: '600', color: '#374151' },
+  settledDate: { fontSize: 11, color: '#9CA3AF', marginTop: 2 },
+  settledBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    marginTop: 8,
+  },
+  settledBadgeText: { fontSize: 11, color: '#10B981', fontWeight: '600' },
+});
