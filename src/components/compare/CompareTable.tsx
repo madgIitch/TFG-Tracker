@@ -24,7 +24,7 @@ const ROWS: { section: string; rows: MetricRow[] }[] = [
       {
         label: 'Sprints completados',
         getValue: (m) => m.completedSprints,
-        format: (v) => v != null ? `${v} / 17` : '—',
+        format: (v) => v != null ? `${v} / 18` : '—',
         higherIsBetter: true,
       },
     ],

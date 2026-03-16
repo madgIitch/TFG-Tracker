@@ -24,7 +24,7 @@ export default function DashboardPage() {
             Experimento Comparativo IA–IDE
           </h2>
           <p className="text-sm text-slate-400">
-            Sprints 7–23 · 5 escenarios · 17 funcionalidades
+            Sprints 7–24 · 5 escenarios · 18 funcionalidades
           </p>
         </div>
 

@@ -65,13 +65,13 @@ export function ScenarioCard({ definition, sprints }: ScenarioCardProps) {
           </div>
           <div className="text-right">
             <p className={`text-2xl font-bold font-mono ${textClass}`}>{completed}</p>
-            <p className="text-xs text-slate-500">de 17 sprints</p>
+            <p className="text-xs text-slate-500">de 18 sprints</p>
           </div>
         </div>
 
         {/* Progress */}
         <ProgressBar
-          value={completed / 17}
+          value={completed / 18}
           color={definition.accentColor}
           showPercent={true}
           label={inProgress > 0 ? `${inProgress} en curso` : undefined}
@@ -86,7 +86,7 @@ export function ScenarioCard({ definition, sprints }: ScenarioCardProps) {
 
         {/* Estado de sprints */}
         <div className="flex flex-wrap gap-1">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].map((i) => {
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((i) => {
             const sprint = sprints.find((s) => s.sprintNumber === i + 6)
             const status = sprint?.status ?? 'pending'
             const color =

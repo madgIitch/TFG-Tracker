@@ -1,4 +1,4 @@
-export const SPRINT_NUMBERS = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+export const SPRINT_NUMBERS = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
 
 export const SPRINT_NAMES: Record<number, string> = {
   7: 'Gastos compartidos',
@@ -18,6 +18,7 @@ export const SPRINT_NAMES: Record<number, string> = {
   21: 'Premium features',
   22: 'Dark mode refinamiento',
   23: 'Ciudades y zonas',
+  24: 'Hotfixes final',
 }
 
 export const SPRINT_SUMMARIES: Record<number, string> = {
@@ -38,4 +39,5 @@ export const SPRINT_SUMMARIES: Record<number, string> = {
   21: 'Implementar lógica inicial de características premium: PremiumContext con lógica de suscripción, limitaciones para usuarios free, validación de email mejorada (auth-check-email) y UI para mostrar features premium.',
   22: 'Refinar el modo oscuro: mejoras en FormSection para ambos modos, correcciones en múltiples pantallas, permitir que owner pueda buscar owner e implementar sistema de perfil activo/inactivo.',
   23: 'Implementar sistema completo de ubicaciones: poblar BBDD con ciudades españolas mediante scripts de extracción geográfica, backend locationService, filtros por ciudad y zona, proximidad de ciudades y sistema de zonas para pisos. Añadir función de borrar perfil y capacidad del piso.',
+  24: 'Corrección de fallos, errores y hotfixes finales: resolución de bugs críticos detectados a lo largo del experimento, parches de estabilidad y cierre de incidencias pendientes.',
 }

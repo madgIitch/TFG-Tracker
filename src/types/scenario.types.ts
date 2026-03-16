@@ -18,6 +18,7 @@ export type AcceptanceKey =
   | 'sprint21'
   | 'sprint22'
   | 'sprint23'
+  | 'sprint24'
   | 'functionalParity'
 
 export type AcceptanceChecklist = Record<AcceptanceKey, boolean>
