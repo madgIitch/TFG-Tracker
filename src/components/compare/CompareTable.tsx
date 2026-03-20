@@ -102,6 +102,20 @@ const ROWS: { section: string; rows: MetricRow[] }[] = [
         format: formatScore,
         higherIsBetter: true,
       },
+      {
+        label: 'Calidad media / TTS media',
+        getValue: (m) => {
+          const scores = [m.avgStyleConsistency, m.avgUiUxQuality, m.avgArchitecturalCoherence].filter((v): v is number => v != null)
+          if (scores.length === 0) return null
+          const calidad = scores.reduce((a, b) => a + b, 0) / scores.length
+          const ttsMedia = m.totalTTS != null && m.completedSprints > 0
+            ? m.totalTTS / m.completedSprints
+            : null
+          return ttsMedia != null ? calidad / ttsMedia : null
+        },
+        format: (v) => v != null ? `${v.toFixed(3)} pt/h` : '—',
+        higherIsBetter: true,
+      },
     ],
   },
   {

@@ -1,0 +1,504 @@
+﻿
+> HomiMatchApp@0.0.1 test
+> jest
+
+npm : PASS __tests__/services/roomService.test.ts
+En línea: 1 Carácter: 1
++ npm test > test_output2.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (PASS __tests__/...Service.test.ts:String) [], RemoteExceptio 
+   n
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+PASS __tests__/services/chatService.test.ts
+PASS __tests__/services/flatExpenseService.test.ts
+  ÔùÅ Console
+
+    console.error
+      Error creating flat expense: { error: 'invalid split sum' }
+
+    [0m [90m  96 |[39m         [36mif[39m ([33m![39mresponse[33m.[39mok) {
+     [90m  97 |[39m             [36mconst[39m error [33m=[39m [36mawait[39m 
+response[33m.[39mjson()[33m.[39m[36mcatch[39m(() [33m=>[39m ({}))[33m;[39m
+    [31m[1m>[22m[39m[90m  98 |[39m             console[33m.[39merror([32m'Error creating flat 
+expense:'[39m[33m,[39m error)[33m;[39m
+     [90m     |[39m                     [31m[1m^[22m[39m
+     [90m  99 |[39m             [36mthrow[39m [36mnew[39m [33mError[39m(error[33m.[39merror 
+[33m||[39m [32m'Error al crear gasto'[39m)[33m;[39m
+     [90m 100 |[39m         }
+     [90m 101 |[39m[0m
+
+      at FlatExpenseService.error (src/services/flatExpenseService.ts:98:21)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+PASS __tests__/services/profileService.test.ts
+  ÔùÅ Console
+
+    console.log
+      [ProfileService.getProfile] Fetching profile...
+
+      at ProfileService.log (src/services/profileService.ts:38:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token exists: false
+
+      at ProfileService.log (src/services/profileService.ts:25:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token first 20 chars: undefined
+
+      at ProfileService.log (src/services/profileService.ts:26:13)
+
+    console.log
+      [ProfileService.getProfile] Initial response: { status: 404, ok: false }
+
+      at ProfileService.log (src/services/profileService.ts:46:13)
+
+    console.log
+      [ProfileService.getProfile] Perfil no encontrado (404)
+
+      at ProfileService.log (src/services/profileService.ts:75:17)
+
+    console.log
+      [ProfileService.getProfile] Fetching profile...
+
+      at ProfileService.log (src/services/profileService.ts:38:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token exists: false
+
+      at ProfileService.log (src/services/profileService.ts:25:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token first 20 chars: undefined
+
+      at ProfileService.log (src/services/profileService.ts:26:13)
+
+    console.log
+      [ProfileService.getProfile] Initial response: { status: 401, ok: false }
+
+      at ProfileService.log (src/services/profileService.ts:46:13)
+
+    console.log
+      [ProfileService.getProfile] 401 received. Attempting token refresh...
+
+      at ProfileService.log (src/services/profileService.ts:53:15)
+
+    console.log
+      [ProfileService.getProfile] Refresh result: success
+
+      at ProfileService.log (src/services/profileService.ts:55:15)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token exists: false
+
+      at ProfileService.log (src/services/profileService.ts:25:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token first 20 chars: undefined
+
+      at ProfileService.log (src/services/profileService.ts:26:13)
+
+    console.log
+      [ProfileService.getProfile] Retried response: { status: 200, ok: true }
+
+      at ProfileService.log (src/services/profileService.ts:66:17)
+
+    console.log
+      [ProfileService.getProfile] Perfil cargado correctamente
+
+      at ProfileService.log (src/services/profileService.ts:86:13)
+
+    console.log
+      [ProfileService.getProfile] Fetching profile...
+
+      at ProfileService.log (src/services/profileService.ts:38:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token exists: false
+
+      at ProfileService.log (src/services/profileService.ts:25:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token first 20 chars: undefined
+
+      at ProfileService.log (src/services/profileService.ts:26:13)
+
+    console.log
+      [ProfileService.getProfile] Initial response: { status: 200, ok: true }
+
+      at ProfileService.log (src/services/profileService.ts:46:13)
+
+    console.log
+      [ProfileService.getProfile] Perfil cargado correctamente
+
+      at ProfileService.log (src/services/profileService.ts:86:13)
+
+    console.log
+      [ProfileService.updateProfile] Updating profile...
+
+      at ProfileService.log (src/services/profileService.ts:197:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token exists: false
+
+      at ProfileService.log (src/services/profileService.ts:25:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token first 20 chars: undefined
+
+      at ProfileService.log (src/services/profileService.ts:26:13)
+
+    console.log
+      [ProfileService.updateProfile] Response: { status: 200, ok: true }
+
+      at ProfileService.log (src/services/profileService.ts:206:13)
+
+PASS __tests__/services/roomAssignmentService.test.ts
+PASS __tests__/services/authService.test.ts
+  ÔùÅ Console
+
+    console.log
+      [Supabase][init] URL: https://hqfkboqmdaafyjtqjxre.supabase.co
+
+      at Object.log (src/services/authService.ts:30:9)
+
+    console.log
+      [Supabase][init] ANON key length: 46
+
+      at Object.log (src/services/authService.ts:31:9)
+
+    console.log
+      [Supabase][init] Internal rest URL: undefined
+
+      at Object.log (src/services/authService.ts:42:11)
+
+    console.log
+      [Supabase][init] Internal storage URL: undefined
+
+      at Object.log (src/services/authService.ts:43:11)
+
+    console.log
+      ­ƒöº registerPhase1 called with: { email: 'user@test.com', hasPassword: false, isGoogleUser: true }
+
+      at AuthService.log (src/services/authService.ts:315:13)
+
+    console.log
+      ­ƒîÉ Fetch URL: https://hqfkboqmdaafyjtqjxre.supabase.co/functions/v1/auth-register-phase1
+
+      at AuthService.log (src/services/authService.ts:322:13)
+
+    console.log
+      ­ƒöº API_CONFIG.FUNCTIONS_URL: https://hqfkboqmdaafyjtqjxre.supabase.co/functions/v1
+
+      at AuthService.log (src/services/authService.ts:323:13)
+
+    console.log
+      ­ƒôÑ Response received: { status: 200, statusText: 'OK', ok: true, url: 'http://test' }
+
+      at AuthService.log (src/services/authService.ts:336:15)
+
+    console.log
+      Ô£à Phase1 response: { temp_token: 'tmp-123', email: 'user@test.com' }
+
+      at AuthService.log (src/services/authService.ts:350:15)
+
+    console.error
+      ÔØî Error en fase 2 del registro: expired token
+
+    [0m [90m 389 |[39m     [36mif[39m ([33m![39mresponse[33m.[39mok) {
+     [90m 390 |[39m       [36mconst[39m errorText [33m=[39m [36mawait[39m 
+response[33m.[39mtext()[33m;[39m
+    [31m[1m>[22m[39m[90m 391 |[39m       console[33m.[39merror([32m'ÔØî Error en fase 2 del 
+registro:'[39m[33m,[39m errorText)[33m;[39m
+     [90m     |[39m               [31m[1m^[22m[39m
+     [90m 392 |[39m       [36mthrow[39m [36mnew[39m [33mError[39m([32m'Error en fase 2 del 
+registro'[39m)[33m;[39m
+     [90m 393 |[39m     }
+     [90m 394 |[39m   }[0m
+
+      at AuthService.error (src/services/authService.ts:391:15)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+    console.log
+      [AuthService.login] called with email: bad@test.com
+
+      at AuthService.log (src/services/authService.ts:146:13)
+
+    console.log
+      [AuthService.login] response: { status: 401, ok: false, url: undefined }
+
+      at AuthService.log (src/services/authService.ts:154:13)
+
+    console.error
+      ÔØî Error login API: invalid
+
+    [0m [90m 160 |[39m     [36mif[39m ([33m![39mresponse[33m.[39mok) {
+     [90m 161 |[39m       [36mconst[39m errorText [33m=[39m [36mawait[39m 
+response[33m.[39mtext()[33m;[39m
+    [31m[1m>[22m[39m[90m 162 |[39m       console[33m.[39merror([32m'ÔØî Error login 
+API:'[39m[33m,[39m errorText)[33m;[39m
+     [90m     |[39m               [31m[1m^[22m[39m
+     [90m 163 |[39m       [36mthrow[39m [36mnew[39m [33mError[39m([32m'Credenciales 
+inv├ílidas'[39m)[33m;[39m
+     [90m 164 |[39m     }
+     [90m 165 |[39m[0m
+
+      at AuthService.error (src/services/authService.ts:162:15)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+PASS src/services/chatService.test.ts
+  ÔùÅ Console
+
+    console.log
+      [Supabase][init] URL: https://hqfkboqmdaafyjtqjxre.supabase.co
+
+      at Object.log (src/services/authService.ts:30:9)
+
+    console.log
+      [Supabase][init] ANON key length: 46
+
+      at Object.log (src/services/authService.ts:31:9)
+
+    console.log
+      [Supabase][init] Internal rest URL: https://hqfkboqmdaafyjtqjxre.supabase.co/rest/v1
+
+      at Object.log (src/services/authService.ts:42:11)
+
+    console.log
+      [Supabase][init] Internal storage URL: https://hqfkboqmdaafyjtqjxre.supabase.co/storage/v1
+
+      at Object.log (src/services/authService.ts:43:11)
+
+FAIL __tests__/context/SwipeFiltersContext.test.tsx
+  ÔùÅ Test suite failed to run
+
+    [@RNC/AsyncStorage]: NativeModule: AsyncStorage is null.
+
+    To fix this issue try these steps:
+
+      ÔÇó Uninstall, rebuild and restart the app.
+
+      ÔÇó Run the packager with `--reset-cache` flag.
+
+      ÔÇó If you are using CocoaPods on iOS, run `pod install` in the `ios` directory, then rebuild and 
+re-run the app.
+
+      ÔÇó Make sure your project's `package.json` depends on `@react-native-async-storage/async-storage`, 
+even if you only depend on it indirectly through other dependencies. CLI only autolinks native modules 
+found in your `package.json`.
+
+      ÔÇó If this happens while testing with Jest, check out how to integrate AsyncStorage here: 
+https://react-native-async-storage.github.io/async-storage/docs/advanced/jest
+
+    If none of these fix the issue, please open an issue on the GitHub repository: 
+https://github.com/react-native-async-storage/async-storage/issues
+
+    [0m [90m 1 |[39m [36mimport[39m [33mReact[39m[33m,[39m { useEffect } [36mfrom[39m 
+[32m'react'[39m[33m;[39m
+     [90m 2 |[39m [36mimport[39m { render[33m,[39m waitFor[33m,[39m act } [36mfrom[39m 
+[32m'@testing-library/react-native'[39m[33m;[39m
+    [31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m [33mAsyncStorage[39m [36mfrom[39m 
+[32m'@react-native-async-storage/async-storage'[39m[33m;[39m
+     [90m   |[39m [31m[1m^[22m[39m
+     [90m 4 |[39m [36mimport[39m { [33mSwipeFiltersProvider[39m[33m,[39m 
+useSwipeFilters[33m,[39m [33mDEFAULT_SWIPE_FILTERS[39m } [36mfrom[39m 
+[32m'../../src/context/SwipeFiltersContext'[39m[33m;[39m
+     [90m 5 |[39m [36mimport[39m { [33mText[39m } [36mfrom[39m [32m'react-native'[39m[33m;[39m
+     [90m 6 |[39m[0m
+
+      at Object.<anonymous> 
+(node_modules/@react-native-async-storage/async-storage/src/AsyncStorage.native.ts:23:9)
+      at Object.require (node_modules/@react-native-async-storage/async-storage/src/index.ts:1:1)
+      at Object.require (__tests__/context/SwipeFiltersContext.test.tsx:3:1)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+FAIL __tests__/context/PremiumContext.test.tsx
+  ÔùÅ Test suite failed to run
+
+    [@RNC/AsyncStorage]: NativeModule: AsyncStorage is null.
+
+    To fix this issue try these steps:
+
+      ÔÇó Uninstall, rebuild and restart the app.
+
+      ÔÇó Run the packager with `--reset-cache` flag.
+
+      ÔÇó If you are using CocoaPods on iOS, run `pod install` in the `ios` directory, then rebuild and 
+re-run the app.
+
+      ÔÇó Make sure your project's `package.json` depends on `@react-native-async-storage/async-storage`, 
+even if you only depend on it indirectly through other dependencies. CLI only autolinks native modules 
+found in your `package.json`.
+
+      ÔÇó If this happens while testing with Jest, check out how to integrate AsyncStorage here: 
+https://react-native-async-storage.github.io/async-storage/docs/advanced/jest
+
+    If none of these fix the issue, please open an issue on the GitHub repository: 
+https://github.com/react-native-async-storage/async-storage/issues
+
+    [0m [90m 1 |[39m [90m// src/context/AuthContext.tsx  [39m
+     [90m 2 |[39m [36mimport[39m [33mReact[39m[33m,[39m { createContext[33m,[39m 
+useState[33m,[39m useEffect[33m,[39m [33mReactNode[39m } [36mfrom[39m [32m'react'[39m[33m;[39m
+    [31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m [33mAsyncStorage[39m [36mfrom[39m 
+[32m'@react-native-async-storage/async-storage'[39m[33m;[39m
+     [90m   |[39m [31m[1m^[22m[39m
+     [90m 4 |[39m [36mimport[39m { [33mUser[39m } [36mfrom[39m 
+[32m'../types/auth'[39m[33m;[39m
+     [90m 5 |[39m [36mimport[39m { authService } [36mfrom[39m 
+[32m'../services/authService'[39m[33m;[39m
+     [90m 6 |[39m [36mimport[39m { pushTokenService } [36mfrom[39m 
+[32m'../services/pushTokenService'[39m[33m;[39m[0m
+
+      at Object.<anonymous> 
+(node_modules/@react-native-async-storage/async-storage/src/AsyncStorage.native.ts:23:9)
+      at Object.require (node_modules/@react-native-async-storage/async-storage/src/index.ts:1:1)
+      at Object.require (src/context/AuthContext.tsx:3:1)
+      at Object.require (src/context/PremiumContext.tsx:3:1)
+      at Object.require (__tests__/context/PremiumContext.test.tsx:3:1)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+FAIL __tests__/screens/LoginScreen.test.tsx
+  ÔùÅ Test suite failed to run
+
+    Native module RNFBAppModule not found. Re-check module install, linking, configuration, build and 
+install steps.
+
+    [0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m messaging [36mfrom[39m 
+[32m'@react-native-firebase/messaging'[39m[33m;[39m
+     [90m   |[39m [31m[1m^[22m[39m
+     [90m 2 |[39m [36mimport[39m { [33mPlatform[39m[33m,[39m [33mPermissionsAndroid[39m } 
+[36mfrom[39m [32m'react-native'[39m[33m;[39m
+     [90m 3 |[39m [36mimport[39m [33mAsyncStorage[39m [36mfrom[39m 
+[32m'@react-native-async-storage/async-storage'[39m[33m;[39m
+     [90m 4 |[39m [36mimport[39m { [33mAPI_CONFIG[39m } [36mfrom[39m 
+[32m'../config/api'[39m[33m;[39m[0m
+
+      at new RNFBNativeEventEmitter 
+(node_modules/@react-native-firebase/app/lib/internal/RNFBNativeEventEmitter.ts:43:13)
+      at Object.<anonymous> 
+(node_modules/@react-native-firebase/app/lib/internal/RNFBNativeEventEmitter.ts:139:16)
+      at Object.require 
+(node_modules/@react-native-firebase/app/lib/internal/registry/nativeModule.ts:20:1)
+      at Object.require (node_modules/@react-native-firebase/app/lib/internal/FirebaseModule.ts:18:1)
+      at Object.require (node_modules/@react-native-firebase/app/lib/internal/registry/namespace.ts:22:1)
+      at Object.require (node_modules/@react-native-firebase/app/lib/namespaced.ts:18:1)
+      at Object.require (node_modules/@react-native-firebase/app/lib/index.ts:18:1)
+      at Object.require (node_modules/@react-native-firebase/messaging/lib/modular.ts:18:1)
+      at Object.require (node_modules/@react-native-firebase/messaging/lib/index.ts:40:1)
+      at Object.require (src/services/pushTokenService.ts:1:1)
+      at Object.require (src/context/AuthContext.tsx:6:1)
+      at Object.require (src/screens/LoginScreen.tsx:7:1)
+      at Object.require (__tests__/screens/LoginScreen.test.tsx:3:1)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+FAIL __tests__/App.test.tsx
+  ÔùÅ Console
+
+    console.log
+      [Supabase][init] URL: https://hqfkboqmdaafyjtqjxre.supabase.co
+
+      at Object.log (src/services/authService.ts:30:9)
+
+    console.log
+      [Supabase][init] ANON key length: 46
+
+      at Object.log (src/services/authService.ts:31:9)
+
+    console.log
+      [Supabase][init] Internal rest URL: https://hqfkboqmdaafyjtqjxre.supabase.co/rest/v1
+
+      at Object.log (src/services/authService.ts:42:11)
+
+    console.log
+      [Supabase][init] Internal storage URL: https://hqfkboqmdaafyjtqjxre.supabase.co/storage/v1
+
+      at Object.log (src/services/authService.ts:43:11)
+
+  ÔùÅ renders correctly
+
+    TypeError: (0 , _messaging.default) is not a function
+
+    [0m [90m 29 |[39m
+     [90m 30 |[39m   useEffect(() [33m=>[39m {
+    [31m[1m>[22m[39m[90m 31 |[39m     [36mconst[39m unsubscribe [33m=[39m 
+messaging()[33m.[39monMessage([36masync[39m remoteMessage [33m=>[39m {
+     [90m    |[39m                                  [31m[1m^[22m[39m
+     [90m 32 |[39m       [36mconst[39m { data[33m,[39m notification } [33m=[39m 
+remoteMessage[33m;[39m
+     [90m 33 |[39m
+     [90m 34 |[39m       [90m// Suprimir notificacion si es del chat activo[39m[0m
+
+      at App.tsx:31:34
+      at Object.create [as react-stack-bottom-frame] 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:14062:20)
+      at callback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1574:13)
+      at runWithFiberInDEV 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8376:29)
+      at commitHookEffectListMount 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8465:11)
+      at commitHookPassiveMountEffects 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9782:13)
+      at commitPassiveMountOnFiber 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9756:11)
+      at recursivelyTraversePassiveMountEffects 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9794:11)
+      at commitPassiveMountOnFiber 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11528:11)
+      at flushPendingEffects 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2082:11)
+      at callback (node_modules/react/cjs/react.development.js:566:34)
+      at Object.flushActQueue [as act] (node_modules/react/cjs/react.development.js:859:10)
+      at Object.act (__tests__/App.test.tsx:44:27)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7)
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+FAIL __tests__/screens/FiltersScreen.test.tsx
+  ÔùÅ Test suite failed to run
+
+    Invariant Violation: TurboModuleRegistry.getEnforcing(...): 'RNGestureHandlerModule' could not be 
+found. Verify that a module by this name is registered in the native binary.
+
+    [0m [90m  5 |[39m [36mimport[39m { usePremium } [36mfrom[39m 
+[32m'../../src/context/PremiumContext'[39m[33m;[39m
+     [90m  6 |[39m [36mimport[39m { [33mNavigationContainer[39m } [36mfrom[39m 
+[32m'@react-navigation/native'[39m[33m;[39m
+    [31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { createStackNavigator } [36mfrom[39m 
+[32m'@react-navigation/stack'[39m[33m;[39m
+     [90m    |[39m [31m[1m^[22m[39m
+     [90m  8 |[39m
+     [90m  9 |[39m [90m// Mock contexts[39m
+     [90m 10 |[39m jest[33m.[39mmock([32m'../../src/context/SwipeFiltersContext'[39m[33m,[39m () 
+[33m=>[39m ({[0m
+
+      at invariant (node_modules/invariant/invariant.js:40:15)
+      at Object.getEnforcing 
+(node_modules/react-native/Libraries/TurboModule/TurboModuleRegistry.js:47:12)
+      at Object.getEnforcing 
+(node_modules/react-native-gesture-handler/lib/commonjs/specs/NativeRNGestureHandlerModule.ts:26:36)
+      at Object.require (node_modules/react-native-gesture-handler/src/RNGestureHandlerModule.ts:4:1)
+      at Object.require (node_modules/react-native-gesture-handler/src/init.ts:2:1)
+      at Object.require (node_modules/react-native-gesture-handler/src/index.ts:1:1)
+      at Object.require (node_modules/@react-navigation/stack/src/views/GestureHandlerNative.tsx:2:1)
+      at Object.require (node_modules/@react-navigation/stack/src/views/GestureHandler.ios.tsx:1:1)
+      at Object.require (node_modules/@react-navigation/stack/src/views/Stack/StackView.tsx:25:1)
+      at Object.require 
+(node_modules/@react-navigation/stack/src/navigators/createStackNavigator.tsx:24:1)
+      at Object.require (node_modules/@react-navigation/stack/src/index.tsx:9:1)
+      at Object.require (__tests__/screens/FiltersScreen.test.tsx:7:1)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 5 failed, 7 passed, 12 total
+Tests:       1 failed, 22 passed, 23 total
+Snapshots:   0 total
+Time:        4.918 s, estimated 14 s
+Ran all test suites.

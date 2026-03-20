@@ -1,0 +1,24 @@
+﻿
+> HomiMatchApp@0.0.1 test
+> jest __tests__/App.test.tsx
+
+  console.log
+    [Supabase][init] URL: https://hqfkboqmdaafyjtqjxre.supabase.co
+
+      at Object.log (src/services/authService.ts:30:9)
+
+  console.log
+    [Supabase][init] ANON key length: 46
+
+      at Object.log (src/services/authService.ts:31:9)
+
+  console.log
+    [Supabase][init] Internal rest URL: https://hqfkboqmdaafyjtqjxre.supabase.co/rest/v1
+
+      at Object.log (src/services/authService.ts:42:11)
+
+  console.log
+    [Supabase][init] Internal storage URL: https://hqfkboqmdaafyjtqjxre.supabase.co/storage/v1
+
+      at Object.log (src/services/authService.ts:43:11)
+

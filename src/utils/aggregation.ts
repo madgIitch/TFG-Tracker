@@ -109,7 +109,7 @@ export function aggregateScenario(
     totalTTS: sumNullable(sprints.map((s) => getSprintTTS(s))),
     totalCommits: sumNullable(sprints.map((s) => s.commits)),
     totalManualEdits: sumNullable(sprints.map((s) => s.manualEdits)),
-    totalCorrectivePrompts: sumNullable(sprints.map((s) => s.correctivePrompts)),
+    totalCorrectivePrompts: sumNullable(sprints.map((s) => (s.correctivePrompts ?? 0) + (s.buildsFailed ?? 0) || null)),
     totalRejectedProposals: sumNullable(sprints.map((s) => s.rejectedProposals)),
     totalVerificationTime: sumNullable(sprints.map((s) => s.ttsFix)),
 

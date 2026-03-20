@@ -1,0 +1,720 @@
+﻿
+> HomiMatchApp@0.0.1 test
+> jest
+
+npm : PASS __tests__/services/chatService.test.ts
+En línea: 1 Carácter: 1
++ npm test > test_output3.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (PASS __tests__/...Service.test.ts:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+PASS __tests__/services/flatExpenseService.test.ts
+  ÔùÅ Console
+
+    console.error
+      Error creating flat expense: { error: 'invalid split sum' }
+
+    [0m [90m  96 |[39m         [36mif[39m ([33m![39mresponse[33m.[39mok) {
+     [90m  97 |[39m             [36mconst[39m error [33m=[39m [36mawait[39m 
+response[33m.[39mjson()[33m.[39m[36mcatch[39m(() [33m=>[39m ({}))[33m;[39m
+    [31m[1m>[22m[39m[90m  98 |[39m             console[33m.[39merror([32m'Error creating flat 
+expense:'[39m[33m,[39m error)[33m;[39m
+     [90m     |[39m                     [31m[1m^[22m[39m
+     [90m  99 |[39m             [36mthrow[39m [36mnew[39m [33mError[39m(error[33m.[39merror 
+[33m||[39m [32m'Error al crear gasto'[39m)[33m;[39m
+     [90m 100 |[39m         }
+     [90m 101 |[39m[0m
+
+      at FlatExpenseService.error (src/services/flatExpenseService.ts:98:21)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+PASS __tests__/services/roomAssignmentService.test.ts
+PASS __tests__/services/profileService.test.ts
+  ÔùÅ Console
+
+    console.log
+      [ProfileService.getProfile] Fetching profile...
+
+      at ProfileService.log (src/services/profileService.ts:38:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token exists: false
+
+      at ProfileService.log (src/services/profileService.ts:25:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token first 20 chars: undefined
+
+      at ProfileService.log (src/services/profileService.ts:26:13)
+
+    console.log
+      [ProfileService.getProfile] Initial response: { status: 404, ok: false }
+
+      at ProfileService.log (src/services/profileService.ts:46:13)
+
+    console.log
+      [ProfileService.getProfile] Perfil no encontrado (404)
+
+      at ProfileService.log (src/services/profileService.ts:75:17)
+
+    console.log
+      [ProfileService.getProfile] Fetching profile...
+
+      at ProfileService.log (src/services/profileService.ts:38:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token exists: false
+
+      at ProfileService.log (src/services/profileService.ts:25:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token first 20 chars: undefined
+
+      at ProfileService.log (src/services/profileService.ts:26:13)
+
+    console.log
+      [ProfileService.getProfile] Initial response: { status: 401, ok: false }
+
+      at ProfileService.log (src/services/profileService.ts:46:13)
+
+    console.log
+      [ProfileService.getProfile] 401 received. Attempting token refresh...
+
+      at ProfileService.log (src/services/profileService.ts:53:15)
+
+    console.log
+      [ProfileService.getProfile] Refresh result: success
+
+      at ProfileService.log (src/services/profileService.ts:55:15)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token exists: false
+
+      at ProfileService.log (src/services/profileService.ts:25:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token first 20 chars: undefined
+
+      at ProfileService.log (src/services/profileService.ts:26:13)
+
+    console.log
+      [ProfileService.getProfile] Retried response: { status: 200, ok: true }
+
+      at ProfileService.log (src/services/profileService.ts:66:17)
+
+    console.log
+      [ProfileService.getProfile] Perfil cargado correctamente
+
+      at ProfileService.log (src/services/profileService.ts:86:13)
+
+    console.log
+      [ProfileService.getProfile] Fetching profile...
+
+      at ProfileService.log (src/services/profileService.ts:38:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token exists: false
+
+      at ProfileService.log (src/services/profileService.ts:25:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token first 20 chars: undefined
+
+      at ProfileService.log (src/services/profileService.ts:26:13)
+
+    console.log
+      [ProfileService.getProfile] Initial response: { status: 200, ok: true }
+
+      at ProfileService.log (src/services/profileService.ts:46:13)
+
+    console.log
+      [ProfileService.getProfile] Perfil cargado correctamente
+
+      at ProfileService.log (src/services/profileService.ts:86:13)
+
+    console.log
+      [ProfileService.updateProfile] Updating profile...
+
+      at ProfileService.log (src/services/profileService.ts:197:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token exists: false
+
+      at ProfileService.log (src/services/profileService.ts:25:13)
+
+    console.log
+      [ProfileService.getAuthHeaders] Token first 20 chars: undefined
+
+      at ProfileService.log (src/services/profileService.ts:26:13)
+
+    console.log
+      [ProfileService.updateProfile] Response: { status: 200, ok: true }
+
+      at ProfileService.log (src/services/profileService.ts:206:13)
+
+PASS __tests__/services/roomService.test.ts
+PASS __tests__/services/authService.test.ts
+  ÔùÅ Console
+
+    console.log
+      [Supabase][init] URL: https://hqfkboqmdaafyjtqjxre.supabase.co
+
+      at Object.log (src/services/authService.ts:30:9)
+
+    console.log
+      [Supabase][init] ANON key length: 46
+
+      at Object.log (src/services/authService.ts:31:9)
+
+    console.log
+      [Supabase][init] Internal rest URL: undefined
+
+      at Object.log (src/services/authService.ts:42:11)
+
+    console.log
+      [Supabase][init] Internal storage URL: undefined
+
+      at Object.log (src/services/authService.ts:43:11)
+
+    console.log
+      ­ƒöº registerPhase1 called with: { email: 'user@test.com', hasPassword: false, isGoogleUser: true }
+
+      at AuthService.log (src/services/authService.ts:315:13)
+
+    console.log
+      ­ƒîÉ Fetch URL: https://hqfkboqmdaafyjtqjxre.supabase.co/functions/v1/auth-register-phase1
+
+      at AuthService.log (src/services/authService.ts:322:13)
+
+    console.log
+      ­ƒöº API_CONFIG.FUNCTIONS_URL: https://hqfkboqmdaafyjtqjxre.supabase.co/functions/v1
+
+      at AuthService.log (src/services/authService.ts:323:13)
+
+    console.log
+      ­ƒôÑ Response received: { status: 200, statusText: 'OK', ok: true, url: 'http://test' }
+
+      at AuthService.log (src/services/authService.ts:336:15)
+
+    console.log
+      Ô£à Phase1 response: { temp_token: 'tmp-123', email: 'user@test.com' }
+
+      at AuthService.log (src/services/authService.ts:350:15)
+
+    console.error
+      ÔØî Error en fase 2 del registro: expired token
+
+    [0m [90m 389 |[39m     [36mif[39m ([33m![39mresponse[33m.[39mok) {
+     [90m 390 |[39m       [36mconst[39m errorText [33m=[39m [36mawait[39m 
+response[33m.[39mtext()[33m;[39m
+    [31m[1m>[22m[39m[90m 391 |[39m       console[33m.[39merror([32m'ÔØî Error en fase 2 del 
+registro:'[39m[33m,[39m errorText)[33m;[39m
+     [90m     |[39m               [31m[1m^[22m[39m
+     [90m 392 |[39m       [36mthrow[39m [36mnew[39m [33mError[39m([32m'Error en fase 2 del 
+registro'[39m)[33m;[39m
+     [90m 393 |[39m     }
+     [90m 394 |[39m   }[0m
+
+      at AuthService.error (src/services/authService.ts:391:15)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+    console.log
+      [AuthService.login] called with email: bad@test.com
+
+      at AuthService.log (src/services/authService.ts:146:13)
+
+    console.log
+      [AuthService.login] response: { status: 401, ok: false, url: undefined }
+
+      at AuthService.log (src/services/authService.ts:154:13)
+
+    console.error
+      ÔØî Error login API: invalid
+
+    [0m [90m 160 |[39m     [36mif[39m ([33m![39mresponse[33m.[39mok) {
+     [90m 161 |[39m       [36mconst[39m errorText [33m=[39m [36mawait[39m 
+response[33m.[39mtext()[33m;[39m
+    [31m[1m>[22m[39m[90m 162 |[39m       console[33m.[39merror([32m'ÔØî Error login 
+API:'[39m[33m,[39m errorText)[33m;[39m
+     [90m     |[39m               [31m[1m^[22m[39m
+     [90m 163 |[39m       [36mthrow[39m [36mnew[39m [33mError[39m([32m'Credenciales 
+inv├ílidas'[39m)[33m;[39m
+     [90m 164 |[39m     }
+     [90m 165 |[39m[0m
+
+      at AuthService.error (src/services/authService.ts:162:15)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+PASS src/services/chatService.test.ts
+  ÔùÅ Console
+
+    console.log
+      [Supabase][init] URL: https://hqfkboqmdaafyjtqjxre.supabase.co
+
+      at Object.log (src/services/authService.ts:30:9)
+
+    console.log
+      [Supabase][init] ANON key length: 46
+
+      at Object.log (src/services/authService.ts:31:9)
+
+    console.log
+      [Supabase][init] Internal rest URL: https://hqfkboqmdaafyjtqjxre.supabase.co/rest/v1
+
+      at Object.log (src/services/authService.ts:42:11)
+
+    console.log
+      [Supabase][init] Internal storage URL: https://hqfkboqmdaafyjtqjxre.supabase.co/storage/v1
+
+      at Object.log (src/services/authService.ts:43:11)
+
+FAIL __tests__/context/PremiumContext.test.tsx
+  ÔùÅ Test suite failed to run
+
+    Invariant Violation: TurboModuleRegistry.getEnforcing(...): 'RNGoogleSignin' could not be found. 
+Verify that a module by this name is registered in the native binary.
+
+    [0m [90m 11 |[39m [36mimport[39m { [33mAPI_CONFIG[39m } [36mfrom[39m 
+[32m'../config/api'[39m[33m;[39m
+     [90m 12 |[39m [36mimport[39m [33mAsyncStorage[39m [36mfrom[39m 
+[32m'@react-native-async-storage/async-storage'[39m[33m;[39m
+    [31m[1m>[22m[39m[90m 13 |[39m [36mimport[39m { [33mGoogleSignin[39m } [36mfrom[39m 
+[32m'@react-native-google-signin/google-signin'[39m[33m;[39m
+     [90m    |[39m [31m[1m^[22m[39m
+     [90m 14 |[39m [36mimport[39m { createClient } [36mfrom[39m 
+[32m'@supabase/supabase-js'[39m[33m;[39m
+     [90m 15 |[39m
+     [90m 16 |[39m [36mexport[39m [36mconst[39m supabaseClient [33m=[39m createClient([0m
+
+      at invariant (node_modules/invariant/invariant.js:40:15)
+      at Object.getEnforcing 
+(node_modules/react-native/Libraries/TurboModule/TurboModuleRegistry.js:47:12)
+      at Object.getEnforcing 
+(node_modules/@react-native-google-signin/google-signin/src/spec/NativeGoogleSignin.ts:36:23)
+      at Object.require 
+(node_modules/@react-native-google-signin/google-signin/src/signIn/GoogleSignin.ts:12:1)
+      at Object.require (node_modules/@react-native-google-signin/google-signin/src/index.ts:1:1)
+      at Object.require (src/services/authService.ts:13:1)
+      at Object.require (src/context/AuthContext.tsx:5:1)
+      at Object.require (src/context/PremiumContext.tsx:3:1)
+      at Object.require (__tests__/context/PremiumContext.test.tsx:3:1)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+PASS __tests__/context/SwipeFiltersContext.test.tsx
+FAIL __tests__/App.test.tsx
+  ÔùÅ Console
+
+    console.log
+      [Supabase][init] URL: https://hqfkboqmdaafyjtqjxre.supabase.co
+
+      at Object.log (src/services/authService.ts:30:9)
+
+    console.log
+      [Supabase][init] ANON key length: 46
+
+      at Object.log (src/services/authService.ts:31:9)
+
+    console.log
+      [Supabase][init] Internal rest URL: https://hqfkboqmdaafyjtqjxre.supabase.co/rest/v1
+
+      at Object.log (src/services/authService.ts:42:11)
+
+    console.log
+      [Supabase][init] Internal storage URL: https://hqfkboqmdaafyjtqjxre.supabase.co/storage/v1
+
+      at Object.log (src/services/authService.ts:43:11)
+
+  ÔùÅ renders correctly
+
+    TypeError: (0 , _messaging.default) is not a function
+
+    [0m [90m 29 |[39m
+     [90m 30 |[39m   useEffect(() [33m=>[39m {
+    [31m[1m>[22m[39m[90m 31 |[39m     [36mconst[39m unsubscribe [33m=[39m 
+messaging()[33m.[39monMessage([36masync[39m remoteMessage [33m=>[39m {
+     [90m    |[39m                                  [31m[1m^[22m[39m
+     [90m 32 |[39m       [36mconst[39m { data[33m,[39m notification } [33m=[39m 
+remoteMessage[33m;[39m
+     [90m 33 |[39m
+     [90m 34 |[39m       [90m// Suprimir notificacion si es del chat activo[39m[0m
+
+      at App.tsx:31:34
+      at Object.create [as react-stack-bottom-frame] 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:14062:20)
+      at callback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1574:13)
+      at runWithFiberInDEV 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8376:29)
+      at commitHookEffectListMount 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8465:11)
+      at commitHookPassiveMountEffects 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9782:13)
+      at commitPassiveMountOnFiber 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9756:11)
+      at recursivelyTraversePassiveMountEffects 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9794:11)
+      at commitPassiveMountOnFiber 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11528:11)
+      at flushPendingEffects 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2082:11)
+      at callback (node_modules/react/cjs/react.development.js:566:34)
+      at Object.flushActQueue [as act] (node_modules/react/cjs/react.development.js:859:10)
+      at Object.act (__tests__/App.test.tsx:44:27)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7)
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+FAIL __tests__/screens/LoginScreen.test.tsx
+  ÔùÅ Console
+
+    console.log
+      El usuario de Google no tiene perfil: Error: 404 Not Found
+          at Object.<anonymous> 
+(C:\Users\peorr\Desktop\HomiTFG\Escenario-D\__tests__\screens\LoginScreen.test.tsx:87:64)
+          at Generator.next (<anonymous>)
+          at asyncGeneratorStep 
+(C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\@babel\runtime\helpers\asyncToGenerator.js:3:17)
+          at asyncGeneratorStep 
+(C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\@babel\runtime\helpers\asyncToGenerator.js:17:9)
+          at _next 
+(C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\@babel\runtime\helpers\asyncToGenerator.js:22:7)
+          at new Promise (<anonymous>)
+          at Object.<anonymous> 
+(C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\@babel\runtime\helpers\asyncToGenerator.js:14:12)
+          at Promise.then.completed 
+(C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\jest-circus\build\utils.js:298:28)
+          at new Promise (<anonymous>)
+          at callAsyncCircusFn 
+(C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\jest-circus\build\utils.js:231:10)
+          at _callCircusTest 
+(C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\jest-circus\build\run.js:316:40)
+          at processTicksAndRejections (node:internal/process/task_queues:95:5)
+          at _runTest 
+(C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\jest-circus\build\run.js:252:3)
+          at _runTestsForDescribeBlock 
+(C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\jest-circus\build\run.js:126:9)
+          at _runTestsForDescribeBlock 
+(C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\jest-circus\build\run.js:121:9)
+          at run (C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\jest-circus\build\run.js:71:3)
+          at runAndTransformResultsToJestFormat (C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\j
+est-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+
+      at log (src/screens/LoginScreen.tsx:68:17)
+          at Generator.throw (<anonymous>)
+
+    console.error
+      The 'navigation' object hasn't been initialized yet. This might happen if you don't have a 
+navigator mounted, or if the navigator hasn't finished mounting. See 
+https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more 
+details.
+
+    [0m [90m 73 |[39m       } [36melse[39m {
+     [90m 74 |[39m         [36mawait[39m 
+[33mAsyncStorage[39m[33m.[39mremoveItem([32m'authToken'[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 75 |[39m         
+navigation[33m.[39mnavigate([32m'Register'[39m[33m,[39m { prefilledGoogleUser[33m:[39m 
+result[33m.[39muser })[33m;[39m
+     [90m    |[39m                    [31m[1m^[22m[39m
+     [90m 76 |[39m       }
+     [90m 77 |[39m     } [36mcatch[39m (error) {
+     [90m 78 |[39m       console[33m.[39merror([32m'ÔØî Error en login con Google:'[39m[33m,[39m 
+error)[33m;[39m[0m
+
+      at error (node_modules/@react-navigation/core/src/BaseNavigationContainer.tsx:132:19)
+      at apply (node_modules/use-latest-callback/lib/src/index.js:21:28)
+      at Object.dispatch (node_modules/@react-navigation/core/src/BaseNavigationContainer.tsx:199:13)
+      at navigate (src/screens/LoginScreen.tsx:75:20)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ÔùÅ LoginScreen Google SignIn Flow ÔÇ║ redirects to Register if profile does not exist
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "Register", {"prefilledGoogleUser": {"email": "test@google.com", "id": "123"}}
+
+    Number of calls: 0
+
+    [0m [90m 93 |[39m
+     [90m 94 |[39m     [90m// Assert[39m
+    [31m[1m>[22m[39m[90m 95 |[39m     [36mawait[39m waitFor(() [33m=>[39m {
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 96 |[39m       expect([33mAsyncStorage[39m[33m.[39msetItem)[33m.[39mtoHaveBeenCalledWith
+([32m'authToken'[39m[33m,[39m [32m'token123'[39m)[33m;[39m
+     [90m 97 |[39m       expect([33mAsyncStorage[39m[33m.[39mremoveItem)[33m.[39mtoHaveBeenCalledW
+ith([32m'authToken'[39m)[33m;[39m
+     [90m 98 |[39m       
+expect(mockNavigate)[33m.[39mtoHaveBeenCalledWith([32m'Register'[39m[33m,[39m { 
+prefilledGoogleUser[33m:[39m mockUser })[33m;[39m[0m
+
+      at Object.<anonymous> (__tests__/screens/LoginScreen.test.tsx:95:18)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7)
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+FAIL __tests__/screens/FiltersScreen.test.tsx
+  ÔùÅ Console
+
+    console.error
+      An update to FiltersScreen inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at 
+https://react.dev/link/wrap-tests-with-act
+
+    [0m [90m 144 |[39m         [36mconst[39m profile [33m=[39m [36mawait[39m 
+profileService[33m.[39mgetProfile()[33m;[39m
+     [90m 145 |[39m         [36mif[39m (isMounted) {
+    [31m[1m>[22m[39m[90m 146 |[39m           
+setProfileHousing(profile[33m?[39m[33m.[39mhousing_situation [33m?[39m[33m?[39m 
+[36mnull[39m)[33m;[39m
+     [90m     |[39m           [31m[1m^[22m[39m
+     [90m 147 |[39m           setProfileGender(profile[33m?[39m[33m.[39mgender 
+[33m?[39m[33m?[39m [36mnull[39m)[33m;[39m
+     [90m 148 |[39m         }
+     [90m 149 |[39m       } [36mcatch[39m (error) {[0m
+
+      at error (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11801:19)
+      at callback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1574:13)
+      at runWithFiberInDEV 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11800:9)
+      at warnIfUpdatesNotWrappedWithActDEV 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10326:9)
+      at scheduleUpdateOnFiber 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4148:13)
+      at dispatchSetStateInternal 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4107:7)
+      at setProfileHousing (src/screens/FiltersScreen.tsx:146:11)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+    console.error
+      An update to FiltersScreen inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at 
+https://react.dev/link/wrap-tests-with-act
+
+    [0m [90m 145 |[39m         [36mif[39m (isMounted) {
+     [90m 146 |[39m           setProfileHousing(profile[33m?[39m[33m.[39mhousing_situation 
+[33m?[39m[33m?[39m [36mnull[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 147 |[39m           setProfileGender(profile[33m?[39m[33m.[39mgender 
+[33m?[39m[33m?[39m [36mnull[39m)[33m;[39m
+     [90m     |[39m           [31m[1m^[22m[39m
+     [90m 148 |[39m         }
+     [90m 149 |[39m       } [36mcatch[39m (error) {
+     [90m 150 |[39m         console[33m.[39merror([32m'[FiltersScreen] Error cargando 
+perfil:'[39m[33m,[39m error)[33m;[39m[0m
+
+      at error (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11801:19)
+      at callback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1574:13)
+      at runWithFiberInDEV 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11800:9)
+      at warnIfUpdatesNotWrappedWithActDEV 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10326:9)
+      at scheduleUpdateOnFiber 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4148:13)
+      at dispatchSetStateInternal 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4107:7)
+      at setProfileGender (src/screens/FiltersScreen.tsx:147:11)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+    console.error
+      An update to FiltersScreen inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at 
+https://react.dev/link/wrap-tests-with-act
+
+    [0m [90m 144 |[39m         [36mconst[39m profile [33m=[39m [36mawait[39m 
+profileService[33m.[39mgetProfile()[33m;[39m
+     [90m 145 |[39m         [36mif[39m (isMounted) {
+    [31m[1m>[22m[39m[90m 146 |[39m           
+setProfileHousing(profile[33m?[39m[33m.[39mhousing_situation [33m?[39m[33m?[39m 
+[36mnull[39m)[33m;[39m
+     [90m     |[39m           [31m[1m^[22m[39m
+     [90m 147 |[39m           setProfileGender(profile[33m?[39m[33m.[39mgender 
+[33m?[39m[33m?[39m [36mnull[39m)[33m;[39m
+     [90m 148 |[39m         }
+     [90m 149 |[39m       } [36mcatch[39m (error) {[0m
+
+      at error (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11801:19)
+      at callback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1574:13)
+      at runWithFiberInDEV 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11800:9)
+      at warnIfUpdatesNotWrappedWithActDEV 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10326:9)
+      at scheduleUpdateOnFiber 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4148:13)
+      at dispatchSetStateInternal 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4107:7)
+      at setProfileHousing (src/screens/FiltersScreen.tsx:146:11)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+    console.error
+      An update to FiltersScreen inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at 
+https://react.dev/link/wrap-tests-with-act
+
+    [0m [90m 145 |[39m         [36mif[39m (isMounted) {
+     [90m 146 |[39m           setProfileHousing(profile[33m?[39m[33m.[39mhousing_situation 
+[33m?[39m[33m?[39m [36mnull[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 147 |[39m           setProfileGender(profile[33m?[39m[33m.[39mgender 
+[33m?[39m[33m?[39m [36mnull[39m)[33m;[39m
+     [90m     |[39m           [31m[1m^[22m[39m
+     [90m 148 |[39m         }
+     [90m 149 |[39m       } [36mcatch[39m (error) {
+     [90m 150 |[39m         console[33m.[39merror([32m'[FiltersScreen] Error cargando 
+perfil:'[39m[33m,[39m error)[33m;[39m[0m
+
+      at error (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11801:19)
+      at callback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1574:13)
+      at runWithFiberInDEV 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11800:9)
+      at warnIfUpdatesNotWrappedWithActDEV 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10326:9)
+      at scheduleUpdateOnFiber 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4148:13)
+      at dispatchSetStateInternal 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4107:7)
+      at setProfileGender (src/screens/FiltersScreen.tsx:147:11)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+    console.error
+      An update to FiltersScreen inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at 
+https://react.dev/link/wrap-tests-with-act
+
+    [0m [90m 144 |[39m         [36mconst[39m profile [33m=[39m [36mawait[39m 
+profileService[33m.[39mgetProfile()[33m;[39m
+     [90m 145 |[39m         [36mif[39m (isMounted) {
+    [31m[1m>[22m[39m[90m 146 |[39m           
+setProfileHousing(profile[33m?[39m[33m.[39mhousing_situation [33m?[39m[33m?[39m 
+[36mnull[39m)[33m;[39m
+     [90m     |[39m           [31m[1m^[22m[39m
+     [90m 147 |[39m           setProfileGender(profile[33m?[39m[33m.[39mgender 
+[33m?[39m[33m?[39m [36mnull[39m)[33m;[39m
+     [90m 148 |[39m         }
+     [90m 149 |[39m       } [36mcatch[39m (error) {[0m
+
+      at error (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11801:19)
+      at callback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1574:13)
+      at runWithFiberInDEV 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11800:9)
+      at warnIfUpdatesNotWrappedWithActDEV 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10326:9)
+      at scheduleUpdateOnFiber 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4148:13)
+      at dispatchSetStateInternal 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4107:7)
+      at setProfileHousing (src/screens/FiltersScreen.tsx:146:11)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+    console.error
+      An update to FiltersScreen inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at 
+https://react.dev/link/wrap-tests-with-act
+
+    [0m [90m 145 |[39m         [36mif[39m (isMounted) {
+     [90m 146 |[39m           setProfileHousing(profile[33m?[39m[33m.[39mhousing_situation 
+[33m?[39m[33m?[39m [36mnull[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 147 |[39m           setProfileGender(profile[33m?[39m[33m.[39mgender 
+[33m?[39m[33m?[39m [36mnull[39m)[33m;[39m
+     [90m     |[39m           [31m[1m^[22m[39m
+     [90m 148 |[39m         }
+     [90m 149 |[39m       } [36mcatch[39m (error) {
+     [90m 150 |[39m         console[33m.[39merror([32m'[FiltersScreen] Error cargando 
+perfil:'[39m[33m,[39m error)[33m;[39m[0m
+
+      at error (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11801:19)
+      at callback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:1574:13)
+      at runWithFiberInDEV 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11800:9)
+      at warnIfUpdatesNotWrappedWithActDEV 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10326:9)
+      at scheduleUpdateOnFiber 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4148:13)
+      at dispatchSetStateInternal 
+(node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4107:7)
+      at setProfileGender (src/screens/FiltersScreen.tsx:147:11)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ÔùÅ FiltersScreen ÔÇ║ calls resetFilters and resets draft to defaults
+
+    expect(jest.fn()).toHaveBeenCalled()
+
+    Expected number of calls: >= 1
+    Received number of calls:    0
+
+    [0m [90m 100 |[39m     fireEvent[33m.[39mpress(resetBtn)[33m;[39m
+     [90m 101 |[39m
+    [31m[1m>[22m[39m[90m 102 |[39m     [36mawait[39m waitFor(() [33m=>[39m {
+     [90m     |[39m                  [31m[1m^[22m[39m
+     [90m 103 |[39m       expect(mockResetFilters)[33m.[39mtoHaveBeenCalled()[33m;[39m
+     [90m 104 |[39m     })[33m;[39m
+     [90m 105 |[39m   })[33m;[39m[0m
+
+      at Object.<anonymous> (__tests__/screens/FiltersScreen.test.tsx:102:18)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7)
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+Test Suites: 4 failed, 8 passed, 12 total
+Tests:       3 failed, 30 passed, 33 total
+Snapshots:   0 total
+Time:        6.152 s, estimated 10 s
+Ran all test suites.

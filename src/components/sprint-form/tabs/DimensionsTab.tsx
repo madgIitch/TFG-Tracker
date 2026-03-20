@@ -190,16 +190,15 @@ export function DimensionsTab({ data, onChange }: Props) {
   }
 
   // Derivadas
-  const autoCorrective     = data.autoCorrectivePrompts ?? 0
+  const autoCorrective     = data.buildsFailed ?? 0
   const autoRejected       = data.autoRejectedProposals ?? 0
   const autoHumanRevisions = data.autoHumanRevisions ?? 0
-  const manualCorrective     = Math.max((data.correctivePrompts ?? 0) - autoCorrective, 0)
+  const manualCorrective     = data.correctivePrompts ?? 0
   const manualRejected       = Math.max((data.rejectedProposals ?? 0) - autoRejected, 0)
   const manualHumanRevisions = Math.max((data.humanRevisions ?? 0) - autoHumanRevisions, 0)
 
   function handleCorrectiveChange(v: number | null) {
-    const next = v == null ? (autoCorrective > 0 ? autoCorrective : null) : Math.max(v, autoCorrective)
-    onChange('correctivePrompts', next)
+    onChange('correctivePrompts', v)
   }
   function handleRejectedChange(v: number | null) {
     const next = v == null ? (autoRejected > 0 ? autoRejected : null) : Math.max(v, autoRejected)

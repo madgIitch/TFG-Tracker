@@ -36,6 +36,16 @@ export function ScenarioCard({ definition, sprints }: ScenarioCardProps) {
   const totalCommits = sprints.reduce((a, s) => a + (s.commits ?? 0), 0)
   const totalIncidences = sprints.reduce((a, s) => a + (s.incidences?.length ?? 0), 0)
 
+  const qualityPerTTS = (() => {
+    const scores = sprints.flatMap((s) =>
+      [s.styleConsistency, s.uiUxQuality, s.architecturalCoherence].filter((v): v is number => v != null)
+    )
+    if (scores.length === 0 || totalTTS == null || completed === 0) return null
+    const avgQuality = scores.reduce((a, b) => a + b, 0) / scores.length
+    const ttsMedia = totalTTS / completed
+    return avgQuality / ttsMedia
+  })()
+
   const borderClass = ACCENT_BORDER[definition.colorClass] ?? 'border-t-slate-600'
   const textClass = ACCENT_TEXT[definition.colorClass] ?? 'text-slate-400'
 
@@ -78,10 +88,11 @@ export function ScenarioCard({ definition, sprints }: ScenarioCardProps) {
         />
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-3 pt-1">
+        <div className="grid grid-cols-4 gap-3 pt-1">
           <Stat label="TTS Total" value={formatHours(totalTTS)} />
           <Stat label="Commits" value={totalCommits > 0 ? String(totalCommits) : '—'} />
           <Stat label="Incidencias" value={totalIncidences > 0 ? String(totalIncidences) : '—'} />
+          <Stat label="Cal/TTS" value={qualityPerTTS != null ? `${qualityPerTTS.toFixed(3)}` : '—'} />
         </div>
 
         {/* Estado de sprints */}
