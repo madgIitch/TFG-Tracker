@@ -1,0 +1,133 @@
+// src/navigation/MainNavigator.tsx    
+import React, { useCallback } from 'react';    
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';    
+import { StyleSheet, View } from 'react-native';    
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { BlurView } from '@react-native-community/blur';
+import { useTheme, useThemeState } from '../theme/ThemeContext';    
+import { HomeScreen } from '../screens/HomeScreen';    
+import { ProfileDetailScreen } from '../screens/ProfileDetailScreen';    
+import { MatchesScreen } from '../screens/MatchesScreen';    
+import { FlatExpensesScreen } from '../screens/FlatExpensesScreen';
+import { TabBarIcon } from '../components/TabBarIcon';    
+    
+const Tab = createBottomTabNavigator();    
+    
+const getIconName = (routeName: string): string => {    
+  switch (routeName) {    
+    case 'Home':    
+      return 'home';    
+    case 'Profile':    
+      return 'person';    
+    case 'Matches':    
+      return 'chatbubbles';    
+    case 'Expenses':
+      return 'wallet';
+    default:    
+      return 'help';    
+  }    
+};    
+    
+// Extracted component to avoid nested component definition    
+const TabBarIconWrapper = ({ route, focused, color, size }: {    
+  route: any;    
+  focused: boolean;    
+  color: string;    
+  size: number;    
+}) => (    
+  <TabBarIcon     
+    name={getIconName(route.name)}    
+    focused={focused}    
+    color={color}    
+    size={size}    
+  />    
+);    
+    
+export const MainNavigator: React.FC = () => {    
+  const theme = useTheme();
+  const { isDark } = useThemeState();
+  const insets = useSafeAreaInsets();
+    
+  const screenOptions = useCallback(({ route }: { route: any }) => ({    
+    tabBarIcon: ({ focused, color, size }: { focused: boolean; color: string; size: number }) => (    
+      <TabBarIconWrapper     
+        route={route}    
+        focused={focused}    
+        color={color}    
+        size={size}    
+      />    
+    ),    
+    tabBarActiveTintColor: theme.colors.primary,    
+    tabBarInactiveTintColor: theme.colors.textSecondary,    
+    tabBarStyle: [
+      styles.tabBar,
+      {
+        backgroundColor: 'transparent',
+        borderTopColor: theme.colors.glassBorder,
+        minHeight: 56 + insets.bottom,
+        height: 60 + insets.bottom,
+        paddingBottom: insets.bottom > 0 ? insets.bottom + 4 : 8,
+      },
+    ],
+    tabBarBackground: () => (
+      <View style={styles.tabBarBackground}>
+        <BlurView
+          style={StyleSheet.absoluteFillObject}
+          blurType={isDark ? 'dark' : 'light'}
+          blurAmount={16}
+          reducedTransparencyFallbackColor={theme.colors.glassBgStrong}
+        />
+        <View
+          style={[
+            styles.tabBarTint,
+            { backgroundColor: isDark ? 'rgba(17,24,39,0.24)' : 'rgba(255,255,255,0.2)' },
+          ]}
+        />
+      </View>
+    ),
+    headerShown: false,    
+  }), [insets.bottom, isDark, theme]);    
+    
+  return (    
+    <Tab.Navigator screenOptions={screenOptions}>    
+      <Tab.Screen     
+        name="Home"     
+        component={HomeScreen}    
+        options={{ title: 'Explorar' }}    
+      />    
+      <Tab.Screen     
+        name="Profile"     
+        component={ProfileDetailScreen}    
+        options={{ title: 'Perfil' }}    
+      />    
+      <Tab.Screen     
+        name="Matches"     
+        component={MatchesScreen}    
+        options={{ title: 'Matches' }}    
+      />    
+      <Tab.Screen
+        name="Expenses"
+        component={FlatExpensesScreen}
+        options={{ title: 'Gastos' }}
+      />
+    </Tab.Navigator>    
+  );    
+};    
+    
+const styles = StyleSheet.create({    
+  tabBar: {    
+    position: 'absolute',
+    borderTopWidth: 1,    
+    paddingTop: 8,    
+    height: 56,
+    elevation: 0,
+  },
+  tabBarBackground: {
+    ...StyleSheet.absoluteFillObject,
+    overflow: 'hidden',
+  },
+  tabBarTint: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+  },    
+});

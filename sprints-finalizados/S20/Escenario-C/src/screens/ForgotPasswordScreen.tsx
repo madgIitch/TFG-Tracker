@@ -1,0 +1,121 @@
+import React, { useRef, useState, useMemo } from 'react';
+import {
+  Platform,
+  View,
+  Text,
+  Alert,
+  TextInput,
+} from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useTheme } from '../theme/ThemeContext';
+import { Button } from '../components/Button';
+import { authService } from '../services/authService';
+import { createStyles } from '../styles/screens/ForgotPasswordScreen.styles';
+import { useKeyboardAutoScroll } from '../hooks/useKeyboardAutoScroll';
+
+type RootStackParamList = {
+  Login: undefined;
+  ForgotPassword: undefined;
+};
+
+type ForgotPasswordScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'ForgotPassword'
+>;
+
+const PASSWORD_RESET_REDIRECT_URL = 'homimatchapp://auth/reset-password';
+
+export const ForgotPasswordScreen: React.FC = () => {
+  const navigation = useNavigation<ForgotPasswordScreenNavigationProp>();
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
+  const scrollRef = useRef<KeyboardAwareScrollView | null>(null);
+  useKeyboardAutoScroll(scrollRef, Platform.OS === 'ios' ? 12 : 96);
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSendResetEmail = async () => {
+    const trimmedEmail = email.trim().toLowerCase();
+    if (!trimmedEmail) {
+      Alert.alert('Error', 'Introduce tu email');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await authService.requestPasswordReset(
+        trimmedEmail,
+        PASSWORD_RESET_REDIRECT_URL
+      );
+      Alert.alert(
+        'Correo enviado',
+        'Si existe una cuenta con ese email, recibirás un enlace para restablecer tu contraseña.'
+      );
+      navigation.navigate('Login');
+    } catch (error) {
+      Alert.alert(
+        'Error',
+        error instanceof Error
+          ? error.message
+          : 'No se pudo enviar el correo de recuperación'
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+      <KeyboardAwareScrollView
+        ref={scrollRef}
+        contentContainerStyle={styles.scrollContent}
+        keyboardShouldPersistTaps="handled"
+        enableOnAndroid={true}
+        extraScrollHeight={Platform.OS === 'ios' ? 12 : 0}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.header}>
+          <Text style={[styles.title, { color: theme.colors.text }]}>Recuperar contraseña</Text>
+          <Text style={[styles.subtitle, { color: theme.colors.textSecondary }]}>Ingresa tu email y te enviaremos un enlace para restablecerla.</Text>
+        </View>
+
+        <View style={styles.form}>
+          <TextInput
+            style={[
+              styles.input,
+              {
+                borderColor: theme.colors.border,
+                borderRadius: theme.borderRadius.md,
+                backgroundColor: theme.colors.surface,
+                color: theme.colors.text,
+              },
+            ]}
+            placeholder="Email"
+            placeholderTextColor={theme.colors.textTertiary}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            value={email}
+            onChangeText={setEmail}
+          />
+
+          <Button
+            title="Enviar enlace"
+            onPress={handleSendResetEmail}
+            loading={loading}
+          />
+
+          <Button
+            title="Volver a iniciar sesión"
+            onPress={() => navigation.navigate('Login')}
+            variant="tertiary"
+          />
+        </View>
+      </KeyboardAwareScrollView>
+    </View>
+  );
+};
+
+
+
