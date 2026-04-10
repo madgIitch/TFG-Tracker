@@ -27,7 +27,7 @@ export function Sidebar() {
 
   function sprintCount(id: ScenarioId) {
     const s = allSprints.filter((sp) => sp.scenarioId === id)
-    return `${getSprintCompletionCount(s)}/17`
+    return `${getSprintCompletionCount(s)}/18`
   }
 
   const navBase =

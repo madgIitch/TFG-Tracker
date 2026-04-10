@@ -67,9 +67,9 @@ export default function ScenarioPage() {
           <div className="flex flex-col items-end gap-2">
             <div className="w-full md:w-64">
               <ProgressBar
-                value={completed / 17}
+                value={completed / 18}
                 color={def.accentColor}
-                label={`${completed} / 17 sprints completados`}
+                label={`${completed} / 18 sprints completados`}
               />
             </div>
             <button

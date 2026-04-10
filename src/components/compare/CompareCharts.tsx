@@ -573,11 +573,11 @@ export function CompareCharts({ metrics }: CompareChartsProps) {
           <OverviewRadar metrics={metrics} />
           <BarCard
             title="Sprints completados"
-            subtitle="De 17 planificados por escenario"
+            subtitle="De 18 planificados por escenario"
             values={vals(metrics, (m) => m.completedSprints)}
-            formatValue={(v) => `${Math.round(v)} / 17`}
+            formatValue={(v) => `${Math.round(v)} / 18`}
             higherIsBetter={true}
-            yDomain={[0, 17]}
+            yDomain={[0, 18]}
           />
         </div>
       </section>

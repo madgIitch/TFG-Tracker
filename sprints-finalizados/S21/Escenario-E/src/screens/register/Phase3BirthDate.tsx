@@ -1,0 +1,120 @@
+// src/screens/register/Phase3BirthDate.tsx  
+import React, { useState, useMemo } from 'react';
+import { View, Text, TouchableOpacity, Alert, Platform, KeyboardAvoidingView, ScrollView } from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { Button } from '../../components/Button';
+import { useTheme } from '../../theme/ThemeContext';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Phase3Data } from '../../types/auth';
+import { makeStyles } from './Phase3BirthDate.styles';  
+  
+interface Phase3BirthDateProps {  
+  onComplete: (data: Phase3Data) => void;  
+  onBack: () => void;  
+  loading: boolean;  
+}  
+  
+export const Phase3BirthDate: React.FC<Phase3BirthDateProps> = ({  
+  onComplete,  
+  onBack,  
+  loading,  
+}) => {
+  const theme = useTheme();
+  const styles = useMemo(() => makeStyles(theme), [theme]);
+  const insets = useSafeAreaInsets();
+  const [birthDate, setBirthDate] = useState<Date | null>(null);  
+  const [showPicker, setShowPicker] = useState(false);  
+  
+  const formatDate = (date: Date) => {  
+    return date.toLocaleDateString('es-ES', {  
+      day: '2-digit',  
+      month: '2-digit',  
+      year: 'numeric',  
+    });  
+  };  
+  
+  const handleComplete = () => {  
+    if (!birthDate) {  
+      Alert.alert('Error', 'Por favor selecciona tu fecha de nacimiento');  
+      return;  
+    }  
+    onComplete({ birthDate: birthDate.toISOString().split('T')[0] });  
+  };  
+  
+  const onChange = (event: any, selectedDate?: Date) => {  
+    setShowPicker(Platform.OS === 'ios');  
+    if (selectedDate) {  
+      setBirthDate(selectedDate);  
+    }  
+  };  
+  
+  return (
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <ScrollView contentContainerStyle={[styles.scrollContent, { paddingTop: insets.top + 24 }]} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
+      <View style={styles.card}>
+        <Text style={[styles.title, { color: theme.colors.text }]}>  
+          Fecha de nacimiento  
+        </Text>  
+        <Text style={[styles.subtitle, { color: theme.colors.textSecondary }]}>  
+          Paso 5 de 5
+        </Text>
+        <View style={styles.stepper}>
+          {[1, 2, 3, 4, 5].map((step) => {
+            const isActive = step === 5;
+            return (
+              <View
+                key={step}
+                style={[
+                  styles.stepDot,
+                  {
+                    backgroundColor: isActive ? theme.colors.primary : '#E5E7EB',
+                  },
+                ]}
+              />
+            );
+          })}
+        </View>
+  
+        <TouchableOpacity  
+          style={[  
+            styles.dateInput,  
+            {  
+              borderColor: theme.colors.border,  
+              backgroundColor: theme.colors.surface,  
+            },  
+          ]}  
+          onPress={() => setShowPicker(true)}  
+        >  
+          <Text  
+            style={[  
+              styles.dateText,  
+              { color: birthDate ? theme.colors.text : theme.colors.textTertiary },  
+            ]}  
+          >  
+            {birthDate ? formatDate(birthDate) : 'Selecciona tu fecha de nacimiento'}  
+          </Text>  
+        </TouchableOpacity>  
+  
+        {showPicker && (  
+          <DateTimePicker  
+            value={birthDate || new Date()}  
+            mode="date"  
+            display="default"  
+            onChange={onChange}  
+            maximumDate={new Date()}  
+          />  
+        )}  
+  
+        <View style={styles.buttonContainer}>  
+          <Button title="Anterior" onPress={onBack} variant="tertiary" />  
+          <Button title="Completar registro" onPress={handleComplete} loading={loading} />  
+        </View>  
+      </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
+  );  
+};  
+  

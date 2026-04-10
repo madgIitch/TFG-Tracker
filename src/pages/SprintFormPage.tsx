@@ -9,7 +9,7 @@ import { SPRINT_NAMES } from '../constants/sprints'
 import type { ScenarioId } from '../types'
 
 const VALID_IDS: ScenarioId[] = ['A', 'B', 'C', 'D', 'E']
-const VALID_SPRINTS = Array.from({ length: 17 }, (_, i) => i + 7)
+const VALID_SPRINTS = Array.from({ length: 18 }, (_, i) => i + 7)
 
 export default function SprintFormPage() {
   const { id, sprintNumber: sprintParam } = useParams<{
