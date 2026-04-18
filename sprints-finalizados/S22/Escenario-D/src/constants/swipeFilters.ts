@@ -1,0 +1,84 @@
+export const INTERESES_OPTIONS = [
+  { id: 'deportes', label: 'Deportes' },
+  { id: 'musica', label: 'Musica' },
+  { id: 'cine', label: 'Cine' },
+  { id: 'arte', label: 'Arte' },
+  { id: 'videojuegos', label: 'Videojuegos' },
+  { id: 'gastronomia', label: 'Gastronomia' },
+  { id: 'viajes', label: 'Viajes' },
+  { id: 'literatura', label: 'Literatura' },
+  { id: 'tecnologia', label: 'Tecnologia' },
+  { id: 'moda', label: 'Moda' },
+  { id: 'fotografia', label: 'Fotografia' },
+  { id: 'naturaleza', label: 'Naturaleza' },
+  { id: 'fiesta', label: 'Fiesta' },
+  { id: 'series', label: 'Series' },
+  { id: 'cocina', label: 'Cocina' },
+  { id: 'teatro', label: 'Teatro' },
+  { id: 'politica', label: 'Politica' },
+  { id: 'activismo', label: 'Activismo' },
+  { id: 'emprendimiento', label: 'Emprendimiento' },
+];
+
+export const ZONAS_OPTIONS = [
+  { id: 'casco_antiguo', label: 'Casco Antiguo' },
+  { id: 'triana', label: 'Triana' },
+  { id: 'los_remedios', label: 'Los Remedios' },
+  { id: 'nervion', label: 'Nervion' },
+  { id: 'san_pablo', label: 'San Pablo - Santa Justa' },
+  { id: 'este_alcosa', label: 'Este - Alcosa - Torreblanca' },
+  { id: 'cerro_amate', label: 'Cerro - Amate' },
+  { id: 'sur', label: 'Sur' },
+  { id: 'bellavista', label: 'Bellavista - La Palmera' },
+  { id: 'macarena', label: 'Macarena' },
+  { id: 'norte', label: 'Norte' },
+  { id: 'viapol', label: 'Viapol' },
+  { id: 'plantinar', label: 'El Plantinar' },
+  { id: 'juncal', label: 'El Juncal' },
+  { id: 'gran_plaza', label: 'Gran Plaza' },
+  { id: 'otros', label: 'Otro/Alrededores' },
+];
+
+export const ESTILO_VIDA_OPTIONS = [
+  { id: 'madrugador', label: 'Madrugador' },
+  { id: 'noctambulo', label: 'Noctambulo' },
+  { id: 'no_fumador', label: 'No fumador' },
+  { id: 'deportista', label: 'Deportista' },
+  { id: 'mascotas', label: 'Tiene mascota' },
+  { id: 'vegano_vegetariano', label: 'Vegano/Vegetariano' },
+  { id: 'ordenado', label: 'Ordenado' },
+];
+
+export const lifestyleLabelById = new Map(
+  ESTILO_VIDA_OPTIONS.map((option) => [option.id, option.label])
+);
+
+export const BUDGET_MIN = 0;
+export const BUDGET_MAX = 1200;
+export const BUDGET_STEP = 25;
+export const DEFAULT_BUDGET_MIN = 0;
+export const DEFAULT_BUDGET_MAX = 1200;
+
+export const AGE_MIN = 18;
+export const AGE_MAX = 99;
+export const DEFAULT_AGE_MIN = 18;
+export const DEFAULT_AGE_MAX = 99;
+
+export const ROOMS_MIN = 1;
+export const ROOMS_MAX = 10;
+export const DEFAULT_ROOMS_MIN = 1;
+export const DEFAULT_ROOMS_MAX = 10;
+
+export const USER_TYPE_OPTIONS = [
+  { id: 'estudiante', label: 'Estudiante' },
+  { id: 'trabajador', label: 'Trabajador' },
+  { id: 'nomada_digital', label: 'Nomada Digital' },
+];
+
+export const CITIES_OPTIONS = [
+  { id: 'sevilla', label: 'Sevilla' },
+  { id: 'madrid', label: 'Madrid' },
+  { id: 'barcelona', label: 'Barcelona' },
+  { id: 'valencia', label: 'Valencia' },
+  { id: 'malaga', label: 'Malaga' },
+];

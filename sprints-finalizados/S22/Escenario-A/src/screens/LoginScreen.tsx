@@ -1,0 +1,187 @@
+import React, { useContext, useState } from 'react';
+import {
+  Alert,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { AuthContext } from '../context/AuthContext';
+import { Button } from '../components/Button';
+import { useTheme } from '../theme/ThemeContext';
+import { authService } from '../services/authService';
+import { GoogleSignInButton } from '../components/GoogleSignInButton';
+import { createLoginScreenStyles } from '../styles/screens/LoginScreen.styles';
+import { GlassBackground } from '../components/GlassBackground';
+
+type RootStackParamList = {
+  Login: undefined;
+  Register:
+    | {
+        googleUser?: {
+          email: string;
+          firstName: string;
+          lastName: string;
+          token: string;
+          refreshToken?: string | null;
+          tempToken?: string | null;
+          googleUserId?: string;
+        };
+      }
+    | undefined;
+  ForgotPassword: undefined;
+  ResetPassword: undefined;
+  Main: undefined;
+};
+
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
+
+export const LoginScreen: React.FC = () => {
+  const navigation = useNavigation<LoginScreenNavigationProp>();
+  const authContext = useContext(AuthContext);
+
+  if (!authContext) {
+    throw new Error('LoginScreen must be used within AuthProvider');
+  }
+
+  const { login, loginWithSession } = authContext;
+  const theme = useTheme();
+  const styles = React.useMemo(() => createLoginScreenStyles(theme), [theme]);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert('Error', 'Por favor completa todos los campos');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await login(email, password);
+    } catch (error) {
+      Alert.alert('Error', error instanceof Error ? error.message : 'Error desconocido');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setLoading(true);
+    try {
+      const result = await authService.loginWithGoogle();
+      if (result.isNewUser) {
+        navigation.navigate('Register', {
+          googleUser: {
+            email: result.user.email,
+            firstName: result.user.first_name,
+            lastName: result.user.last_name,
+            token: result.token,
+            refreshToken: result.refreshToken,
+            tempToken: result.tempToken,
+            googleUserId: result.googleUserId,
+          },
+        });
+      } else {
+        await loginWithSession(result.user, result.token, result.refreshToken);
+      }
+    } catch (error) {
+      console.error('Error en login con Google:', error);
+      Alert.alert('Error', error instanceof Error ? error.message : 'Error desconocido');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <KeyboardAvoidingView
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 20 : 0}
+    >
+      <GlassBackground />
+      <ScrollView
+        style={styles.scroll}
+        contentContainerStyle={styles.scrollContent}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.header}>
+          <Image
+            source={require('../assets/homiLogo.png')}
+            style={styles.logoImage}
+            resizeMode="contain"
+          />
+
+          <Text style={[styles.logo, { color: theme.colors.primary }]}>HomiMatch</Text>
+          <Text style={[styles.subtitle, { color: theme.colors.textSecondary }]}>
+            Encuentra tu companero ideal
+          </Text>
+        </View>
+
+        <View style={styles.form}>
+          <TextInput
+            style={[
+              styles.input,
+              {
+                borderColor: theme.colors.border,
+                borderRadius: theme.borderRadius.md,
+                backgroundColor: theme.colors.surface,
+                color: theme.colors.text,
+              },
+            ]}
+            placeholder="Email"
+            placeholderTextColor={theme.colors.textTertiary}
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+          />
+
+          <TextInput
+            style={[
+              styles.input,
+              {
+                borderColor: theme.colors.border,
+                borderRadius: theme.borderRadius.md,
+                backgroundColor: theme.colors.surface,
+                color: theme.colors.text,
+              },
+            ]}
+            placeholder="Contrasena"
+            placeholderTextColor={theme.colors.textTertiary}
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
+
+          <TouchableOpacity
+            style={styles.forgotPasswordButton}
+            onPress={() => navigation.navigate('ForgotPassword')}
+          >
+            <Text style={[styles.forgotPasswordText, { color: theme.colors.primary }]}>
+              Olvidaste tu contrasena?
+            </Text>
+          </TouchableOpacity>
+
+          <Button title="Iniciar Sesion" onPress={handleLogin} loading={loading} />
+
+          <GoogleSignInButton onPress={handleGoogleSignIn} loading={loading} />
+
+          <Button
+            title="No tienes cuenta? Registrate"
+            onPress={() => navigation.navigate('Register')}
+            variant="tertiary"
+          />
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
+  );
+};

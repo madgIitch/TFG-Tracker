@@ -43,7 +43,7 @@ export function ScenarioCard({ definition, sprints }: ScenarioCardProps) {
     if (scores.length === 0 || totalTTS == null || completed === 0) return null
     const avgQuality = scores.reduce((a, b) => a + b, 0) / scores.length
     const ttsMedia = totalTTS / completed
-    return avgQuality / ttsMedia
+    return (avgQuality / ttsMedia) * (completed / 18)
   })()
 
   const borderClass = ACCENT_BORDER[definition.colorClass] ?? 'border-t-slate-600'

@@ -103,7 +103,7 @@ const ROWS: { section: string; rows: MetricRow[] }[] = [
         higherIsBetter: true,
       },
       {
-        label: 'Calidad media / TTS media',
+        label: 'Calidad media / TTS media (×n/18)',
         getValue: (m) => {
           const scores = [m.avgStyleConsistency, m.avgUiUxQuality, m.avgArchitecturalCoherence].filter((v): v is number => v != null)
           if (scores.length === 0) return null
@@ -111,7 +111,8 @@ const ROWS: { section: string; rows: MetricRow[] }[] = [
           const ttsMedia = m.totalTTS != null && m.completedSprints > 0
             ? m.totalTTS / m.completedSprints
             : null
-          return ttsMedia != null ? calidad / ttsMedia : null
+          if (ttsMedia == null) return null
+          return (calidad / ttsMedia) * (m.completedSprints / 18)
         },
         format: (v) => v != null ? `${v.toFixed(3)} pt/h` : '—',
         higherIsBetter: true,
