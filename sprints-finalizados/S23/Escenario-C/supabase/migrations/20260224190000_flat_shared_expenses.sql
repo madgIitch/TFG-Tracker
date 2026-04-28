@@ -1,0 +1,8 @@
+-- No-op marker migration.
+--
+-- The user confirmed that the production schema is fixed and must not be modified.
+-- The shared-expenses feature implemented in this branch assumes the following tables
+-- already exist and match the provided schema:
+--   - public.flat_expenses
+--   - public.flat_expense_splits
+--   - public.flat_settlements

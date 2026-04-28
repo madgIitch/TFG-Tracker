@@ -1,0 +1,26 @@
+﻿
+> HomiMatchApp@0.0.1 test
+> jest __tests__/screens/LoginScreen.test.tsx
+
+  console.log
+    El usuario de Google no tiene perfil: Error: 404 Not Found
+        at Object.<anonymous> (C:\Users\peorr\Desktop\HomiTFG\Escenario-D\__tests__\screens\LoginScreen.test.tsx:83:64)
+        at Generator.next (<anonymous>)
+        at asyncGeneratorStep (C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\@babel\runtime\helpers\asyncToGenerator.js:3:17)
+        at asyncGeneratorStep (C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\@babel\runtime\helpers\asyncToGenerator.js:17:9)
+        at _next (C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\@babel\runtime\helpers\asyncToGenerator.js:22:7)
+        at new Promise (<anonymous>)
+        at Object.<anonymous> (C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\@babel\runtime\helpers\asyncToGenerator.js:14:12)
+        at Promise.then.completed (C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\jest-circus\build\utils.js:298:28)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\jest-circus\build\utils.js:231:10)
+        at _callCircusTest (C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\jest-circus\build\run.js:316:40)
+        at _runTest (C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\jest-circus\build\run.js:252:3)
+        at _runTestsForDescribeBlock (C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\jest-circus\build\run.js:126:9)
+        at _runTestsForDescribeBlock (C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\jest-circus\build\run.js:121:9)
+        at run (C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\jest-circus\build\run.js:71:3)
+        at runAndTransformResultsToJestFormat (C:\Users\peorr\Desktop\HomiTFG\Escenario-D\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+
+      at log (src/screens/LoginScreen.tsx:68:17)
+          at Generator.throw (<anonymous>)
+
