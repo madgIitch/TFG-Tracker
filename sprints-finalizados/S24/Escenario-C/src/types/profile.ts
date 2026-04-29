@@ -1,0 +1,89 @@
+// src/types/profile.ts  
+import type { Gender } from './gender';
+export interface LifestylePreferences {  
+  schedule?: string | null;  
+  cleaning?: string | null;  
+  guests?: string | null;  
+}  
+  
+export type HousingSituation = 'seeking' | 'offering';  
+
+export interface ProfileSocialLinks {
+  swipe_visible?: boolean;
+  preferred_city_id?: string;
+  preferred_city_name?: string;
+  preferred_zone_ids?: string[];
+  preferred_zone_names?: string[];
+  [key: string]: unknown;
+}
+  
+export interface Profile {  
+  id: string;  
+  user_id: string;  
+  is_premium?: boolean;
+    
+  // Add these missing fields  
+  last_name?: string;  
+  age?: number;  
+    
+  display_name: string | null;  
+  bio: string | null;  
+  occupation: string | null;  
+  university: string | null;  
+  field_of_study: string | null;  
+  gender?: Gender | null;
+  birth_date?: string | null;
+  
+  interests: string[];  
+  lifestyle_preferences: LifestylePreferences | null;  
+  lifestyle_tags?: string[];
+  housing_situation: HousingSituation | null;  
+  preferred_zones: string[];  
+  preferred_city_id?: string | null;
+  preferred_zone_ids?: string[];
+  
+  budget_min: number | null;  
+  budget_max: number | null;  
+  social_links?: ProfileSocialLinks | null;
+  
+  avatar_url: string | null;  
+  
+  created_at: string;  
+  updated_at: string;  
+}  
+
+export interface ProfilePhoto {
+  id: string;
+  profile_id: string;
+  path: string;
+  position: number;
+  is_primary: boolean;
+  signedUrl: string;
+  created_at: string;
+}
+  
+export interface ProfileCreateRequest {  
+  // Add this missing field  
+  last_name?: string;  
+  age?: number;  
+    
+  display_name?: string;  
+  bio?: string;  
+  occupation?: string;  
+  university?: string;  
+  field_of_study?: string;  
+  
+  interests?: string[];  
+  lifestyle_preferences?: LifestylePreferences;  
+  lifestyle_tags?: string[];
+  housing_situation?: HousingSituation;  
+  preferred_zones?: string[];  
+  preferred_city_id?: string;
+  preferred_zone_ids?: string[];
+  
+  budget_min?: number;  
+  budget_max?: number;  
+  social_links?: ProfileSocialLinks;
+  
+  avatar_url?: string;  
+}

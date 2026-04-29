@@ -1,0 +1,81 @@
+// src/types/profile.ts
+import type { Gender } from './gender';
+export type { Gender };
+export interface LifestylePreferences {  
+  schedule?: string | null;  
+  cleaning?: string | null;  
+  guests?: string | null;  
+}  
+  
+export type HousingSituation = 'seeking' | 'offering';  
+  
+export interface Profile {
+  id: string;
+  user_id: string;
+  display_name: string | null;
+  bio: string | null;
+  occupation: string | null;
+  university: string | null;
+  field_of_study: string | null;
+  gender?: Gender | null;
+  birth_date?: string | null;
+  smoker?: boolean | null;
+  has_pets?: boolean | null;
+  social_links?: Record<string, string> | null;
+
+  interests: string[];
+  lifestyle_preferences: LifestylePreferences | null;
+  housing_situation: HousingSituation | null;
+  preferred_zones: string[];
+  preferred_city_id?: string | null;
+  preferred_zone_ids?: string[];
+
+  budget_min: number | null;
+  budget_max: number | null;
+
+  avatar_url: string | null;
+
+  lifestyle_tags: string[];
+
+  swipe_visibility_active: boolean;
+
+  created_at: string;
+  updated_at: string;
+}  
+
+export interface ProfilePhoto {
+  id: string;
+  profile_id: string;
+  path: string;
+  position: number;
+  is_primary: boolean;
+  signedUrl: string;
+  created_at: string;
+}
+  
+export interface ProfileCreateRequest {
+  display_name?: string;
+  bio?: string;
+  occupation?: string;
+  university?: string;
+  field_of_study?: string;
+  smoker?: boolean;
+  has_pets?: boolean;
+  social_links?: Record<string, string>;
+
+  interests?: string[];
+  lifestyle_preferences?: LifestylePreferences;
+  housing_situation?: HousingSituation;
+  preferred_zones?: string[];
+  preferred_city_id?: string;
+  preferred_zone_ids?: string[];
+
+  budget_min?: number;
+  budget_max?: number;
+
+  avatar_url?: string;
+
+  lifestyle_tags?: string[];
+
+  swipe_visibility_active?: boolean;
+}

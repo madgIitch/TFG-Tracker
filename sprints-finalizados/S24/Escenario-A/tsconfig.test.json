@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["jest", "node"],
+    "moduleDetection": "force"
+  },
+  "include": ["__tests__/**/*.ts", "__tests__/**/*.tsx"],
+  "exclude": ["**/node_modules", "**/Pods", "supabase"]
+}

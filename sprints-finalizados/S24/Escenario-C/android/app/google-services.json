@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "575238695957",
+    "project_id": "homitfg",
+    "storage_bucket": "homitfg.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575238695957:android:8da11e7617a74e81f0f21c",
+        "android_client_info": {
+          "package_name": "com.homimatchapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWw9GzRZhTLYy6EkLJtyKm3-PpIjFGKAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

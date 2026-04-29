@@ -1,0 +1,91 @@
+import { StyleSheet } from 'react-native';
+
+export const styles = StyleSheet.create({
+  backdrop: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  backdropOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.45)',
+  },
+  card: {
+    width: '88%',
+    backgroundColor: 'rgba(255,255,255,0.96)',
+    borderRadius: 24,
+    paddingHorizontal: 28,
+    paddingTop: 32,
+    paddingBottom: 24,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.18,
+    shadowRadius: 32,
+    shadowOffset: { width: 0, height: 12 },
+    elevation: 16,
+  },
+  iconCircle: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: 'rgba(124,58,237,0.12)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: '800',
+    color: '#1F2937',
+    marginBottom: 6,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#6B7280',
+    textAlign: 'center',
+    marginBottom: 24,
+  },
+  benefitsList: {
+    width: '100%',
+    gap: 12,
+    marginBottom: 28,
+  },
+  benefitRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  benefitIconBox: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: 'rgba(124,58,237,0.10)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  benefitText: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#374151',
+    flex: 1,
+  },
+  ctaButton: {
+    width: '100%',
+    paddingVertical: 14,
+    borderRadius: 999,
+    backgroundColor: '#7C3AED',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  ctaText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  dismissText: {
+    fontSize: 14,
+    color: '#9CA3AF',
+    paddingVertical: 4,
+  },
+});
