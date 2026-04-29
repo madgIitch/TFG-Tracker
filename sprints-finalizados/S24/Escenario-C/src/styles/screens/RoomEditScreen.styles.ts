@@ -3,6 +3,7 @@ import { lightColors } from '../tokens/colors';
 
 export const createStyles = (theme?: any) => {
   const colors = theme?.colors ?? lightColors;
+  const isDark = theme?.isDark ?? false;
 
   return StyleSheet.create({
   container: {
@@ -56,12 +57,12 @@ export const createStyles = (theme?: any) => {
     width: 22,
     height: 22,
     borderRadius: 11,
-    backgroundColor: 'rgba(17, 24, 39, 0.75)',
+    backgroundColor: colors.overlayMuted,
     alignItems: 'center',
     justifyContent: 'center',
   },
   photoRemoveText: {
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
     fontSize: 11,
     fontWeight: '700',
   },
@@ -73,13 +74,13 @@ export const createStyles = (theme?: any) => {
   addPhotoText: {
     fontSize: 26,
     fontWeight: '700',
-    color: '#7C3AED',
+    color: colors.primary,
   },
   addPhotoLabel: {
     marginTop: 4,
     fontSize: 12,
     fontWeight: '600',
-    color: '#7C3AED',
+    color: colors.primary,
   },
   photoHint: {
     marginTop: 8,
@@ -135,8 +136,8 @@ export const createStyles = (theme?: any) => {
     backgroundColor: colors.cardSurfaceAlt,
   },
   commonAreaChipActive: {
-    borderColor: '#7C3AED',
-    backgroundColor: '#F5F3FF',
+    borderColor: colors.primary,
+    backgroundColor: isDark ? colors.selectionSurface : '#F5F3FF',
   },
   commonAreaChipText: {
     fontSize: 12,
@@ -144,7 +145,7 @@ export const createStyles = (theme?: any) => {
     color: colors.textSecondary,
   },
   commonAreaChipTextActive: {
-    color: '#7C3AED',
+    color: isDark ? colors.textOnPrimary : colors.primary,
   },
   flatList: {
     gap: 12,
@@ -152,21 +153,21 @@ export const createStyles = (theme?: any) => {
   flatOption: {
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.45)',
+    borderColor: colors.border,
     padding: 12,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.cardSurface,
   },
   flatOptionActive: {
-    borderColor: '#7C3AED',
-    backgroundColor: '#F5F3FF',
+    borderColor: colors.primary,
+    backgroundColor: isDark ? colors.selectionSurface : '#F5F3FF',
   },
   flatOptionTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#111827',
+    color: colors.text,
   },
   flatOptionTitleActive: {
-    color: '#7C3AED',
+    color: isDark ? colors.textOnPrimary : colors.primary,
   },
   flatOptionSubtitle: {
     marginTop: 4,
@@ -192,8 +193,8 @@ export const createStyles = (theme?: any) => {
     alignItems: 'center',
   },
   switchButtonActive: {
-    backgroundColor: '#7C3AED',
-    borderColor: '#7C3AED',
+    backgroundColor: colors.primary,
+    borderColor: colors.primary,
   },
   switchButtonText: {
     fontSize: 13,
@@ -201,7 +202,7 @@ export const createStyles = (theme?: any) => {
     color: colors.textSecondary,
   },
   switchButtonTextActive: {
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
   },
   statusRow: {
     flexDirection: 'row',
@@ -212,18 +213,18 @@ export const createStyles = (theme?: any) => {
   statusLabel: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#111827',
+    color: colors.text,
   },
   statusToggle: {
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 999,
-    backgroundColor: '#F3E8FF',
+    backgroundColor: isDark ? colors.selectionSurface : '#F3E8FF',
   },
   statusToggleText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#7C3AED',
+    color: isDark ? colors.textOnPrimary : colors.primary,
   },
   loadingContainer: {
     flex: 1,
@@ -239,5 +240,4 @@ export const createStyles = (theme?: any) => {
 };
 
 export const styles = createStyles();
-
 

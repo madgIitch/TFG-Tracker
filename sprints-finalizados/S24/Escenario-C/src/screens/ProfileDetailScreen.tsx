@@ -730,12 +730,14 @@ export const ProfileDetailScreen: React.FC<ProfileDetailScreenProps> = ({
               )}
             />
             <View style={styles.heroOverlay}>
-              <BlurView
-                style={StyleSheet.absoluteFillObject}
-                blurType={theme.isDark ? 'dark' : 'light'}
-                blurAmount={16}
-                reducedTransparencyFallbackColor="rgba(17, 24, 39, 0.45)"
-              />
+              {!theme.isDark && (
+                <BlurView
+                  style={StyleSheet.absoluteFillObject}
+                  blurType="light"
+                  blurAmount={16}
+                  reducedTransparencyFallbackColor="rgba(255,255,255,0.08)"
+                />
+              )}
               <View style={styles.heroOverlayTint} />
               <View style={styles.heroIdentityRow}>
                 <Text style={styles.heroIdentityName}>
@@ -1096,26 +1098,26 @@ export const ProfileDetailScreen: React.FC<ProfileDetailScreenProps> = ({
       {!isOwnProfile && !isFromMatch && (
         <View style={styles.bottomActions}>
           <TouchableOpacity style={[styles.bottomButton, styles.rejectButton]}>
-            <BlurView
-              style={StyleSheet.absoluteFillObject}
-              blurType={theme.isDark ? 'dark' : 'light'}
-              blurAmount={14}
-              reducedTransparencyFallbackColor={
-                theme.isDark ? 'rgba(2, 6, 23, 0.68)' : 'rgba(255, 255, 255, 0.7)'
-              }
-            />
+            {!theme.isDark && (
+              <BlurView
+                style={StyleSheet.absoluteFillObject}
+                blurType="light"
+                blurAmount={14}
+                reducedTransparencyFallbackColor={theme.colors.navSurface}
+              />
+            )}
             <View style={[styles.glassTint, styles.rejectTint]} />
             <Ionicons name="close" size={24} color={theme.colors.error} />
           </TouchableOpacity>
           <TouchableOpacity style={[styles.bottomButton, styles.likeButton]}>
-            <BlurView
-              style={StyleSheet.absoluteFillObject}
-              blurType={theme.isDark ? 'dark' : 'light'}
-              blurAmount={14}
-              reducedTransparencyFallbackColor={
-                theme.isDark ? 'rgba(2, 6, 23, 0.68)' : 'rgba(255, 255, 255, 0.7)'
-              }
-            />
+            {!theme.isDark && (
+              <BlurView
+                style={StyleSheet.absoluteFillObject}
+                blurType="light"
+                blurAmount={14}
+                reducedTransparencyFallbackColor={theme.colors.navSurface}
+              />
+            )}
             <View style={[styles.glassTint, styles.likeTint]} />
             <Ionicons name="heart" size={24} color={theme.colors.primary} />
           </TouchableOpacity>
@@ -1150,7 +1152,4 @@ export const ProfileDetailScreen: React.FC<ProfileDetailScreenProps> = ({
     </SafeAreaView>
   );
 };
-
-
-
 

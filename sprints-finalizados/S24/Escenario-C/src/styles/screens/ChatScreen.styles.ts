@@ -48,7 +48,7 @@ export const createStyles = (theme?: any) => {
     backgroundColor: colors.cardSurface,
     borderWidth: 1,
     borderColor: colors.glassStroke,
-    shadowColor: '#111827',
+    shadowColor: isDark ? colors.overlayMuted : '#111827',
     shadowOpacity: 0.06,
     shadowOffset: { width: 0, height: 6 },
     shadowRadius: 12,
@@ -74,12 +74,12 @@ export const createStyles = (theme?: any) => {
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 999,
-    backgroundColor: isDark ? 'rgba(79,70,229,0.25)' : '#EEF2FF',
+    backgroundColor: isDark ? colors.selectionSurface : '#EEF2FF',
   },
   assignmentStatusText: {
     fontSize: 12,
     fontWeight: '700',
-    color: colors.primary,
+    color: isDark ? colors.textOnPrimary : colors.primary,
   },
   assignActions: {
     flexDirection: 'row',
@@ -100,7 +100,7 @@ export const createStyles = (theme?: any) => {
   assignButtonText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
   },
   offerCard: {
     borderRadius: 12,
@@ -139,7 +139,7 @@ export const createStyles = (theme?: any) => {
   offerButtonText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
   },
   offerRejectText: {
     fontSize: 12,
@@ -155,7 +155,7 @@ export const createStyles = (theme?: any) => {
     backgroundColor: colors.glassSurfaceStrong,
     borderWidth: 1,
     borderColor: colors.glassStroke,
-    shadowColor: '#111827',
+    shadowColor: isDark ? colors.overlayMuted : '#111827',
     shadowOpacity: 0.06,
     shadowOffset: { width: 0, height: 6 },
     shadowRadius: 12,
@@ -176,7 +176,7 @@ export const createStyles = (theme?: any) => {
     minWidth: 24,
     height: 24,
     borderRadius: 12,
-    backgroundColor: isDark ? 'rgba(124,58,237,0.22)' : '#F3E8FF',
+    backgroundColor: isDark ? colors.selectionSurface : '#F3E8FF',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 6,
@@ -184,7 +184,7 @@ export const createStyles = (theme?: any) => {
   roommatesBadgeText: {
     fontSize: 12,
     fontWeight: '700',
-    color: colors.primary,
+    color: isDark ? colors.textOnPrimary : colors.primary,
   },
   roommatesEmpty: {
     marginTop: 8,
@@ -279,7 +279,7 @@ export const createStyles = (theme?: any) => {
     color: colors.text,
   },
   bubbleTextMine: {
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
   },
   bubbleMeta: {
     marginTop: 6,
@@ -310,7 +310,7 @@ export const createStyles = (theme?: any) => {
     paddingVertical: 8,
     borderRadius: 999,
     backgroundColor: colors.surfaceLight,
-    shadowColor: '#0F172A',
+    shadowColor: isDark ? colors.overlayMuted : '#0F172A',
     shadowOpacity: 0.24,
     shadowOffset: { width: 0, height: 6 },
     shadowRadius: 14,
@@ -389,7 +389,7 @@ export const createStyles = (theme?: any) => {
   },
   modalRoomItemActive: {
     borderColor: colors.primary,
-    backgroundColor: isDark ? 'rgba(124,58,237,0.2)' : '#F5F3FF',
+    backgroundColor: isDark ? colors.selectionSurface : '#F5F3FF',
   },
   modalRoomTitle: {
     fontSize: 13,
@@ -397,7 +397,7 @@ export const createStyles = (theme?: any) => {
     color: colors.text,
   },
   modalRoomTitleActive: {
-    color: colors.primary,
+    color: isDark ? colors.textOnPrimary : colors.primary,
   },
   modalRoomMeta: {
     marginTop: 4,
@@ -426,7 +426,7 @@ export const createStyles = (theme?: any) => {
   modalConfirmText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
   },
   modalConfirm: {
     backgroundColor: colors.primary,

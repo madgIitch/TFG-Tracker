@@ -72,7 +72,7 @@ export const createStyles = (theme?: any) => {
   sectionTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#111827',
+    color: colors.text,
   },
   emptyStateInline: {
     alignItems: 'center',
@@ -83,7 +83,7 @@ export const createStyles = (theme?: any) => {
     marginTop: 8,
     fontSize: 15,
     fontWeight: '600',
-    color: '#111827',
+    color: colors.text,
     textAlign: 'center',
   },
   emptySubtitle: {
@@ -114,7 +114,7 @@ export const createStyles = (theme?: any) => {
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#E0E7FF',
+    backgroundColor: colors.selectionSurface,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 12,
@@ -126,7 +126,7 @@ export const createStyles = (theme?: any) => {
   },
   avatarText: {
     fontWeight: '700',
-    color: '#4338CA',
+    color: colors.textOnPrimary,
   },
   cardContent: {
     flex: 1,
@@ -145,34 +145,34 @@ export const createStyles = (theme?: any) => {
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 999,
-    backgroundColor: '#7C3AED',
+    backgroundColor: colors.primary,
   },
   assignButtonText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
   },
   assignOwnerButton: {
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 999,
-    backgroundColor: '#7C3AED',
+    backgroundColor: colors.primary,
   },
   assignOwnerText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
   },
   removeButton: {
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 999,
-    backgroundColor: '#FEE2E2',
+    backgroundColor: colors.errorLight,
   },
   removeButtonText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#EF4444',
+    color: colors.error,
   },
   buttonDisabled: {
     opacity: 0.5,
@@ -181,5 +181,4 @@ export const createStyles = (theme?: any) => {
 };
 
 export const styles = createStyles();
-
 

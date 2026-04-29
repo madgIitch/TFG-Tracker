@@ -3,6 +3,7 @@ import { lightColors } from '../tokens/colors';
 
 export const createStyles = (theme?: any) => {
   const colors = theme?.colors ?? lightColors;
+  const isDark = theme?.isDark ?? false;
 
   return StyleSheet.create({
   container: {
@@ -63,8 +64,8 @@ export const createStyles = (theme?: any) => {
     alignItems: 'center',
   },
   segmentButtonActive: {
-    backgroundColor: colors.text,
-    borderColor: colors.text,
+    backgroundColor: colors.selectionSurface,
+    borderColor: colors.selectionSurface,
   },
   segmentButtonText: {
     fontSize: 12,
@@ -72,7 +73,7 @@ export const createStyles = (theme?: any) => {
     color: colors.textSecondary,
   },
   segmentButtonTextActive: {
-    color: colors.cardSurface,
+    color: colors.textOnPrimary,
   },
   budgetValues: {
     flexDirection: 'row',
@@ -135,12 +136,12 @@ export const createStyles = (theme?: any) => {
   },
   upgradeButton: {
     borderRadius: 999,
-    backgroundColor: colors.text,
+    backgroundColor: colors.primary,
     paddingHorizontal: 10,
     paddingVertical: 6,
   },
   upgradeButtonText: {
-    color: colors.cardSurface,
+    color: colors.textOnPrimary,
     fontSize: 11,
     fontWeight: '700',
   },
@@ -215,8 +216,8 @@ export const createStyles = (theme?: any) => {
     backgroundColor: colors.cardSurfaceAlt,
   },
   ruleChipActive: {
-    borderColor: colors.text,
-    backgroundColor: colors.text,
+    borderColor: colors.selectionSurface,
+    backgroundColor: colors.selectionSurface,
   },
   ruleChipText: {
     fontSize: 12,
@@ -224,7 +225,7 @@ export const createStyles = (theme?: any) => {
     color: colors.text,
   },
   ruleChipTextActive: {
-    color: colors.cardSurface,
+    color: colors.textOnPrimary,
   },
   sliderTrack: {
     height: 6,
@@ -240,16 +241,16 @@ export const createStyles = (theme?: any) => {
     position: 'absolute',
     height: 6,
     borderRadius: 3,
-    backgroundColor: colors.text,
+    backgroundColor: colors.primary,
   },
   sliderThumb: {
     position: 'absolute',
     width: 20,
     height: 20,
     borderRadius: 10,
-    backgroundColor: colors.text,
+    backgroundColor: colors.primary,
     borderWidth: 2,
-    borderColor: colors.cardSurface,
+    borderColor: isDark ? colors.contentBackgroundMuted : colors.cardSurface,
     top: -7,
   },
   sliderTicks: {
@@ -275,5 +276,4 @@ export const createStyles = (theme?: any) => {
 };
 
 export const styles = createStyles();
-
 

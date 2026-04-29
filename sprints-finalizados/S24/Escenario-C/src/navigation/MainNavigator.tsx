@@ -67,14 +67,14 @@ export const MainNavigator: React.FC = () => {
     ],
     tabBarBackground: () => (
       <View style={StyleSheet.absoluteFillObject}>
-        <BlurView
-          blurType={theme.isDark ? 'dark' : 'light'}
-          blurAmount={16}
-          reducedTransparencyFallbackColor={
-            theme.isDark ? 'rgba(15, 23, 42, 0.78)' : 'rgba(255,255,255,0.9)'
-          }
-          style={StyleSheet.absoluteFillObject}
-        />
+        {!theme.isDark && (
+          <BlurView
+            blurType="light"
+            blurAmount={16}
+            reducedTransparencyFallbackColor={theme.colors.glassSurfaceStrong}
+            style={StyleSheet.absoluteFillObject}
+          />
+        )}
         <View
           style={[
             styles.tabBarTint,

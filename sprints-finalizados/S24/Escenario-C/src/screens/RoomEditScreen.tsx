@@ -493,7 +493,7 @@ export const RoomEditScreen: React.FC = () => {
               style={styles.choiceCard}
               onPress={() => setRoomCategory('habitacion')}
             >
-              <Ionicons name="bed-outline" size={26} color="#7C3AED" />
+              <Ionicons name="bed-outline" size={26} color={theme.colors.primary} />
               <Text style={styles.choiceCardTitle}>Habitacion</Text>
               <Text style={styles.choiceCardText}>
                 Una habitacion privada dentro del piso.
@@ -503,7 +503,7 @@ export const RoomEditScreen: React.FC = () => {
               style={styles.choiceCard}
               onPress={() => setRoomCategory('area_comun')}
             >
-              <Ionicons name="people-outline" size={26} color="#7C3AED" />
+              <Ionicons name="people-outline" size={26} color={theme.colors.primary} />
               <Text style={styles.choiceCardTitle}>Area comun</Text>
               <Text style={styles.choiceCardText}>
                 Zona compartida que quieres mostrar.

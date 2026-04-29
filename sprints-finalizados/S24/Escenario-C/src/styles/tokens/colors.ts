@@ -35,6 +35,12 @@ export const lightColors = {
   disabled: '#D1D5DB',
   chipSelected: '#7C3AED',
   chipUnselected: '#F3F4F6',
+  textOnPrimary: '#FFFFFF',
+  fieldSurface: '#FFFFFF',
+  fieldBorder: '#E5E7EB',
+  navSurface: 'rgba(255, 255, 255, 0.92)',
+  overlayMuted: 'rgba(15, 23, 42, 0.28)',
+  selectionSurface: '#7C3AED',
 
   // Glassmorphism surfaces
   glassSurface: 'rgba(255, 255, 255, 0.12)',
@@ -57,16 +63,16 @@ export const darkColors = {
   secondary: '#22D3EE',
   secondaryLight: '#67E8F9',
 
-  background: '#0B1220',
-  surface: '#111827',
-  surfaceLight: '#1F2937',
+  background: '#252B38',
+  surface: '#30384A',
+  surfaceLight: '#414C63',
 
-  text: '#F9FAFB',
-  textSecondary: '#CBD5E1',
-  textTertiary: '#94A3B8',
+  text: '#F8FAFC',
+  textSecondary: '#E0E6EF',
+  textTertiary: '#B8C2D2',
 
-  border: '#334155',
-  borderLight: '#1E293B',
+  border: 'rgba(203, 213, 225, 0.28)',
+  borderLight: 'rgba(203, 213, 225, 0.18)',
 
   error: '#F87171',
   errorLight: 'rgba(248, 113, 113, 0.18)',
@@ -75,20 +81,26 @@ export const darkColors = {
   warning: '#FBBF24',
   warningLight: 'rgba(251, 191, 36, 0.2)',
 
-  overlay: 'rgba(2, 6, 23, 0.68)',
-  disabled: '#475569',
+  overlay: 'rgba(15, 23, 42, 0.42)',
+  disabled: '#64748B',
   chipSelected: '#A78BFA',
-  chipUnselected: '#1F2937',
+  chipUnselected: '#384257',
+  textOnPrimary: '#FFFFFF',
+  fieldSurface: '#384257',
+  fieldBorder: 'rgba(203, 213, 225, 0.28)',
+  navSurface: 'rgba(56, 66, 87, 0.92)',
+  overlayMuted: 'rgba(15, 23, 42, 0.22)',
+  selectionSurface: '#7C3AED',
 
-  glassSurface: 'rgba(15, 23, 42, 0.44)',
-  glassSurfaceStrong: 'rgba(15, 23, 42, 0.58)',
-  glassStroke: 'rgba(148, 163, 184, 0.32)',
-  glassOverlaySoft: 'rgba(2, 6, 23, 0.32)',
-  glassOverlayStrong: 'rgba(2, 6, 23, 0.62)',
+  glassSurface: 'rgba(48, 56, 74, 0.82)',
+  glassSurfaceStrong: 'rgba(56, 66, 87, 0.92)',
+  glassStroke: 'rgba(203, 213, 225, 0.28)',
+  glassOverlaySoft: 'rgba(15, 23, 42, 0.16)',
+  glassOverlayStrong: 'rgba(15, 23, 42, 0.34)',
 
-  contentBackgroundMuted: '#111827',
-  cardSurface: '#1F2937',
-  cardSurfaceAlt: '#273449',
+  contentBackgroundMuted: '#252B38',
+  cardSurface: '#30384A',
+  cardSurfaceAlt: '#384257',
 };
 
 export const colors = lightColors;

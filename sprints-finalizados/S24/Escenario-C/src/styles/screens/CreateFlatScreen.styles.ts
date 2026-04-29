@@ -79,7 +79,7 @@ export const createStyles = (theme?: any) => {
     color: colors.textSecondary,
   },
   segmentButtonTextActive: {
-    color: colors.cardSurface,
+    color: colors.textOnPrimary,
   },
   segmentButtonTextDisabled: {
     color: colors.textTertiary,

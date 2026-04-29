@@ -46,7 +46,7 @@ export const createStyles = (theme?: any) => {
     backgroundColor: colors.cardSurface,
     padding: 16,
     gap: 12,
-    shadowColor: '#000',
+    shadowColor: isDark ? colors.overlayMuted : '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
     shadowRadius: 4,
@@ -90,7 +90,7 @@ export const createStyles = (theme?: any) => {
   deleteButtonText: {
     fontSize: 12,
     fontWeight: '700',
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
   },
   primaryBadge: {
     position: 'absolute',
@@ -98,13 +98,13 @@ export const createStyles = (theme?: any) => {
     left: 6,
     right: 6,
     paddingVertical: 4,
-    backgroundColor: 'rgba(51, 65, 85, 0.82)',
+    backgroundColor: colors.overlayMuted,
     borderRadius: 8,
   },
   primaryBadgeText: {
     fontSize: 10,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
     textAlign: 'center',
   },
   photoHint: {
@@ -157,7 +157,7 @@ export const createStyles = (theme?: any) => {
     borderColor: colors.border,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#000',
+    shadowColor: isDark ? colors.overlayMuted : '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.08,
     shadowRadius: 2,
@@ -218,7 +218,7 @@ export const createStyles = (theme?: any) => {
   },
   checkItemActive: {
     borderColor: colors.primary,
-    backgroundColor: isDark ? 'rgba(124,58,237,0.18)' : 'rgba(226,232,240,0.9)',
+    backgroundColor: isDark ? colors.selectionSurface : 'rgba(226,232,240,0.9)',
   },
   checkBox: {
     width: 18,
@@ -265,7 +265,7 @@ export const createStyles = (theme?: any) => {
     color: colors.textSecondary,
   },
   switchButtonTextActive: {
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
   },
   budgetContainer: {
     marginTop: 8,
@@ -312,7 +312,7 @@ export const createStyles = (theme?: any) => {
     color: colors.textSecondary,
   },
   situacionButtonTextActive: {
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
     fontWeight: '600',
   },
   selectedZonesWrap: {
@@ -384,5 +384,4 @@ export const createStyles = (theme?: any) => {
 };
 
 export const styles = createStyles();
-
 

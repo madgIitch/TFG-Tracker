@@ -42,7 +42,7 @@ export const Button: React.FC<ButtonProps> = ({
     primary: {
       backgroundColor: theme.colors.primary,
       borderColor: theme.colors.primary,
-      textColor: theme.colors.cardSurface,
+      textColor: theme.colors.textOnPrimary,
     },
     secondary: {
       backgroundColor: theme.colors.surface,

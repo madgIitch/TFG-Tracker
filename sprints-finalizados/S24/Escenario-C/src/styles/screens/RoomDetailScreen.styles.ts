@@ -3,6 +3,7 @@ import { lightColors } from '../tokens/colors';
 
 export const createStyles = (theme?: any) => {
   const colors = theme?.colors ?? lightColors;
+  const isDark = theme?.isDark ?? false;
 
   return StyleSheet.create({
   container: {
@@ -40,7 +41,7 @@ export const createStyles = (theme?: any) => {
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: colors.glassStroke,
-    shadowColor: '#000',
+    shadowColor: isDark ? colors.overlayMuted : '#000',
     shadowOpacity: 0.12,
     shadowOffset: { width: 0, height: 10 },
     shadowRadius: 20,
@@ -59,12 +60,12 @@ export const createStyles = (theme?: any) => {
     borderRadius: 16,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.35)',
+    borderColor: colors.glassStroke,
     padding: 12,
   },
   carouselOverlayTint: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(15, 23, 42, 0.34)',
+    backgroundColor: colors.glassOverlaySoft,
   },
   carouselOverlayRow: {
     flexDirection: 'row',
@@ -76,13 +77,13 @@ export const createStyles = (theme?: any) => {
     paddingVertical: 6,
     borderRadius: 999,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.35)',
-    backgroundColor: 'rgba(255,255,255,0.12)',
+    borderColor: colors.glassStroke,
+    backgroundColor: colors.glassSurface,
   },
   overlayChipText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
   },
   carouselDots: {
     flexDirection: 'row',
@@ -97,7 +98,7 @@ export const createStyles = (theme?: any) => {
     backgroundColor: '#D1D5DB',
   },
   carouselDotActive: {
-    backgroundColor: '#7C3AED',
+    backgroundColor: colors.primary,
   },
   section: {
     marginBottom: 24,
@@ -115,7 +116,7 @@ export const createStyles = (theme?: any) => {
     borderColor: colors.glassStroke,
     padding: 16,
     gap: 12,
-    shadowColor: '#0F172A',
+    shadowColor: isDark ? colors.overlayMuted : '#0F172A',
     shadowOpacity: 0.08,
     shadowOffset: { width: 0, height: 8 },
     shadowRadius: 16,
@@ -149,12 +150,12 @@ export const createStyles = (theme?: any) => {
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 999,
-    backgroundColor: '#EEF2FF',
+    backgroundColor: isDark ? colors.selectionSurface : '#EEF2FF',
   },
   pricePillText: {
     fontSize: 12,
     fontWeight: '700',
-    color: '#4F46E5',
+    color: isDark ? colors.textOnPrimary : '#4F46E5',
   },
   statusPill: {
     paddingHorizontal: 10,
@@ -162,15 +163,15 @@ export const createStyles = (theme?: any) => {
     borderRadius: 999,
   },
   statusPillAvailable: {
-    backgroundColor: '#ECFDF3',
+    backgroundColor: isDark ? colors.successLight : '#ECFDF3',
   },
   statusPillOccupied: {
-    backgroundColor: '#FEF2F2',
+    backgroundColor: isDark ? colors.errorLight : '#FEF2F2',
   },
   statusPillText: {
     fontSize: 12,
     fontWeight: '700',
-    color: '#111827',
+    color: colors.text,
   },
   detailNote: {
     padding: 12,
@@ -212,7 +213,7 @@ export const createStyles = (theme?: any) => {
   roommateName: {
     fontSize: 13,
     fontWeight: '600',
-    color: '#111827',
+    color: colors.text,
   },
   roommateMeta: {
     marginTop: 2,
@@ -230,7 +231,7 @@ export const createStyles = (theme?: any) => {
     borderWidth: 1,
     borderColor: colors.glassStroke,
     backgroundColor: colors.glassSurfaceStrong,
-    shadowColor: '#000',
+    shadowColor: isDark ? colors.overlayMuted : '#000',
     shadowOpacity: 0.14,
     shadowOffset: { width: 0, height: 10 },
     shadowRadius: 18,
@@ -242,14 +243,14 @@ export const createStyles = (theme?: any) => {
     flex: 1,
     paddingVertical: 12,
     borderRadius: 999,
-    backgroundColor: '#7C3AED',
+    backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
   },
   bottomCtaPrimaryText: {
     fontSize: 13,
     fontWeight: '700',
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
   },
   bottomCtaSecondary: {
     flex: 1,
@@ -270,5 +271,3 @@ export const createStyles = (theme?: any) => {
 };
 
 export const styles = createStyles();
-
-

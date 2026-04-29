@@ -136,7 +136,7 @@ export const createStyles = (theme?: any) => {
   },
   tabButtonActive: {
     borderColor: colors.primary,
-    backgroundColor: isDark ? 'rgba(167, 139, 250, 0.22)' : 'rgba(167, 139, 250, 0.28)',
+    backgroundColor: isDark ? colors.selectionSurface : 'rgba(167, 139, 250, 0.28)',
   },
   tabText: {
     fontSize: 13,
@@ -144,7 +144,7 @@ export const createStyles = (theme?: any) => {
     color: colors.textSecondary,
   },
   tabTextActive: {
-    color: colors.primary,
+    color: isDark ? colors.textOnPrimary : colors.primary,
   },
   identityCard: {
     alignItems: 'center',
@@ -155,7 +155,7 @@ export const createStyles = (theme?: any) => {
     borderWidth: 1,
     borderColor: colors.border,
     backgroundColor: colors.cardSurface,
-    shadowColor: '#000',
+    shadowColor: isDark ? colors.overlayMuted : '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.06,
     shadowRadius: 6,
@@ -246,7 +246,7 @@ export const createStyles = (theme?: any) => {
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: colors.glassStroke,
-    shadowColor: '#000',
+    shadowColor: isDark ? colors.overlayMuted : '#000',
     shadowOffset: { width: 0, height: 12 },
     shadowOpacity: 0.12,
     shadowRadius: 24,
@@ -287,7 +287,7 @@ export const createStyles = (theme?: any) => {
     flex: 1,
     fontSize: 24,
     fontWeight: '700',
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
   },
   heroCityChip: {
     flexDirection: 'row',
@@ -298,12 +298,12 @@ export const createStyles = (theme?: any) => {
     borderRadius: 999,
     borderWidth: 1,
     borderColor: colors.glassStroke,
-    backgroundColor: 'rgba(255,255,255,0.12)',
+    backgroundColor: colors.glassSurface,
   },
   heroCityText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
   },
   heroChipsRow: {
     flexDirection: 'row',
@@ -316,12 +316,12 @@ export const createStyles = (theme?: any) => {
     borderRadius: 999,
     borderWidth: 1,
     borderColor: colors.glassStroke,
-    backgroundColor: 'rgba(255,255,255,0.1)',
+    backgroundColor: colors.glassSurface,
   },
   heroChipText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
   },
   heroDots: {
     flexDirection: 'row',
@@ -331,10 +331,10 @@ export const createStyles = (theme?: any) => {
     width: 16,
     height: 4,
     borderRadius: 2,
-    backgroundColor: 'rgba(255,255,255,0.4)',
+    backgroundColor: colors.glassStroke,
   },
   heroDotActive: {
-    backgroundColor: 'rgba(255,255,255,0.95)',
+    backgroundColor: colors.textOnPrimary,
   },
   sectionTitle: {
     fontSize: 18,
@@ -363,7 +363,7 @@ export const createStyles = (theme?: any) => {
     borderWidth: 1,
     borderColor: colors.glassStroke,
     padding: 16,
-    shadowColor: '#0F172A',
+    shadowColor: isDark ? colors.overlayMuted : '#0F172A',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.08,
     shadowRadius: 16,
@@ -385,10 +385,10 @@ export const createStyles = (theme?: any) => {
     marginRight: 12,
   },
   detailIconBlue: {
-    backgroundColor: isDark ? 'rgba(59,130,246,0.18)' : '#DBEAFE',
+    backgroundColor: isDark ? colors.cardSurfaceAlt : '#DBEAFE',
   },
   detailIconGreen: {
-    backgroundColor: isDark ? 'rgba(16,185,129,0.2)' : '#DCFCE7',
+    backgroundColor: isDark ? colors.cardSurfaceAlt : '#DCFCE7',
   },
   detailText: {
     flex: 1,
@@ -514,7 +514,7 @@ export const createStyles = (theme?: any) => {
   manageButtonText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
   },
   chipsContainer: {
     flexDirection: 'row',
@@ -570,7 +570,7 @@ export const createStyles = (theme?: any) => {
   ctaText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: colors.textOnPrimary,
   },
   bottomActions: {
     position: 'absolute',
@@ -586,11 +586,6 @@ export const createStyles = (theme?: any) => {
     backgroundColor: colors.glassSurface,
     borderWidth: 1,
     borderColor: colors.glassStroke,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.12,
-    shadowRadius: 20,
-    elevation: 8,
   },
   bottomButton: {
     width: 58,
@@ -602,11 +597,6 @@ export const createStyles = (theme?: any) => {
     backgroundColor: colors.glassSurface,
     borderColor: colors.glassStroke,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.12,
-    shadowRadius: 16,
-    elevation: 6,
   },
   glassTint: {
     ...StyleSheet.absoluteFillObject,
@@ -637,7 +627,7 @@ export const createStyles = (theme?: any) => {
     width: '100%',
     height: '100%',
     resizeMode: 'contain',
-    backgroundColor: '#000000',
+    backgroundColor: isDark ? colors.background : '#000000',
   },
   lightboxClose: {
     position: 'absolute',

@@ -32,6 +32,7 @@ export const FormSection: React.FC<FormSectionProps> = ({
           {
             borderRadius: theme.borderRadius.lg,
             borderColor: theme.colors.borderLight,
+            backgroundColor: theme.colors.surface,
           },
         ]}
       >
@@ -92,7 +93,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   card: {
-    backgroundColor: '#FFFFFF',
     borderWidth: 1,
     padding: 16,
     shadowColor: '#000',

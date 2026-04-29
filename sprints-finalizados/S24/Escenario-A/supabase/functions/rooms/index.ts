@@ -133,6 +133,26 @@ async function canAccessOwnerInventory(requesterId: string, ownerId: string): Pr
     return true
   }
 
+  const { data: publicOfferingProfile } = await supabaseClient
+    .from('profiles')
+    .select('id')
+    .eq('id', ownerId)
+    .eq('housing_situation', 'offering')
+    .eq('swipe_visibility_active', true)
+    .maybeSingle()
+
+  if (publicOfferingProfile?.id) {
+    const { data: publicFlats } = await supabaseClient
+      .from('flats')
+      .select('id')
+      .eq('owner_id', ownerId)
+      .limit(1)
+
+    if (publicFlats && publicFlats.length > 0) {
+      return true
+    }
+  }
+
   const { data: assignmentRows } = await supabaseClient
     .from('room_assignments')
     .select('id, room:rooms!inner(owner_id)')

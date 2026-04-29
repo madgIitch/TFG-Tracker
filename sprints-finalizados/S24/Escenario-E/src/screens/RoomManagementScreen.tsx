@@ -689,7 +689,7 @@ export const RoomManagementScreen: React.FC = () => {
                       style={styles.actionButton}
                       onPress={() => handleEditRoom(room)}
                     >
-                      <Ionicons name="create-outline" size={16} color="#111827" />
+                      <Ionicons name="create-outline" size={16} color={theme.colors.text} />
                       <Text style={styles.actionText}>Editar</Text>
                     </TouchableOpacity>
                     {!isCommonArea && (
@@ -704,7 +704,7 @@ export const RoomManagementScreen: React.FC = () => {
                         <Ionicons
                           name={room.is_available ? 'pause' : 'play'}
                           size={16}
-                          color="#111827"
+                          color={theme.colors.text}
                         />
                         <Text style={styles.actionText}>
                           {room.is_available ? 'Pausar' : 'Activar'}
@@ -718,9 +718,9 @@ export const RoomManagementScreen: React.FC = () => {
                         disabled={generatingCode === room.id}
                       >
                         {generatingCode === room.id ? (
-                          <ActivityIndicator size="small" color="#111827" />
+                          <ActivityIndicator size="small" color={theme.colors.text} />
                         ) : (
-                          <Ionicons name="key-outline" size={16} color="#111827" />
+                          <Ionicons name="key-outline" size={16} color={theme.colors.text} />
                         )}
                         <Text style={styles.actionText}>Código</Text>
                       </TouchableOpacity>
@@ -730,7 +730,7 @@ export const RoomManagementScreen: React.FC = () => {
                         style={styles.actionButton}
                         onPress={() => handleViewInterests(room)}
                       >
-                        <Ionicons name="heart-outline" size={16} color="#111827" />
+                        <Ionicons name="heart-outline" size={16} color={theme.colors.text} />
                         <Text style={styles.actionText}>Interesados</Text>
                       </TouchableOpacity>
                     )}

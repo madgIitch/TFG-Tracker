@@ -76,6 +76,8 @@ describe('Backend hotfix regression checks', () => {
 
     expect(content).toMatch(/async function canAccessOwnerInventory/);
     expect(content).toMatch(/Forbidden owner_id scope/);
+    expect(content).toMatch(/housing_situation', 'offering'/);
+    expect(content).toMatch(/swipe_visibility_active', true/);
   });
 
   test('rooms delete clears dependent rows before deleting room', () => {

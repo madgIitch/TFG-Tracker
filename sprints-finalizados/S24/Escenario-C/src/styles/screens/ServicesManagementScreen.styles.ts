@@ -3,6 +3,7 @@ import { lightColors } from '../tokens/colors';
 
 export const createStyles = (theme?: any) => {
   const colors = theme?.colors ?? lightColors;
+  const isDark = theme?.isDark ?? false;
 
   return StyleSheet.create({
   container: {
@@ -56,8 +57,8 @@ export const createStyles = (theme?: any) => {
     backgroundColor: colors.cardSurfaceAlt,
   },
   categoryChipActive: {
-    borderColor: '#7C3AED',
-    backgroundColor: '#F5F3FF',
+    borderColor: colors.primary,
+    backgroundColor: isDark ? colors.selectionSurface : '#F5F3FF',
   },
   categoryChipText: {
     fontSize: 12,
@@ -65,7 +66,7 @@ export const createStyles = (theme?: any) => {
     color: colors.textSecondary,
   },
   categoryChipTextActive: {
-    color: '#7C3AED',
+    color: isDark ? colors.textOnPrimary : colors.primary,
   },
   customRow: {
     marginTop: 12,
@@ -109,30 +110,29 @@ export const createStyles = (theme?: any) => {
   },
   priceLabel: {
     fontSize: 12,
-    color: '#6B7280',
+    color: colors.textSecondary,
   },
   priceInput: {
     minWidth: 56,
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.45)',
+    borderColor: colors.fieldBorder,
     borderRadius: 8,
     fontSize: 12,
-    color: '#111827',
+    color: colors.text,
   },
   priceUnit: {
     fontSize: 12,
-    color: '#6B7280',
+    color: colors.textSecondary,
   },
   removeText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#EF4444',
+    color: colors.error,
   },
   });
 };
 
 export const styles = createStyles();
-
 

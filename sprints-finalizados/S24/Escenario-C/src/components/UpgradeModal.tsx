@@ -32,7 +32,10 @@ export const UpgradeModal: React.FC<UpgradeModalProps> = ({
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
-      <Pressable style={styles.overlay} onPress={onClose}>
+      <Pressable
+        style={[styles.overlay, { backgroundColor: theme.colors.overlay }]}
+        onPress={onClose}
+      >
         <Pressable
           style={[
             styles.card,
@@ -70,7 +73,6 @@ export const UpgradeModal: React.FC<UpgradeModalProps> = ({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(2, 6, 23, 0.5)',
     justifyContent: 'center',
     padding: 20,
   },

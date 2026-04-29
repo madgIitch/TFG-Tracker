@@ -23,15 +23,20 @@ export const FormSection: React.FC<FormSectionProps> = ({
 }) => {
   const theme = useTheme();
   const showHeader = Boolean(title || subtitle || iconName || requiredLabel);
+  const cardThemeStyle = {
+    backgroundColor: theme.colors.cardSurface,
+    borderColor: theme.colors.border,
+    borderRadius: theme.borderRadius.lg,
+    shadowOpacity: theme.isDark ? 0 : 0.04,
+    elevation: theme.isDark ? 0 : 1,
+  };
 
   return (
     <View style={styles.container}>
       <View
         style={[
           styles.card,
-          {
-            borderRadius: theme.borderRadius.lg,
-          },
+          cardThemeStyle,
         ]}
       >
         {showHeader && (
@@ -91,9 +96,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   card: {
-    backgroundColor: 'rgba(255,255,255,0.8)',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.58)',
     padding: 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },

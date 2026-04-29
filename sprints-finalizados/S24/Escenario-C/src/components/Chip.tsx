@@ -16,15 +16,15 @@ export const Chip: React.FC<ChipProps> = ({ label, selected = false }) => {
       style={[
         styles.chip,
         {
-          backgroundColor: selected ? theme.colors.text : theme.colors.surfaceLight,
-          borderColor: selected ? theme.colors.text : theme.colors.border,
+          backgroundColor: selected ? theme.colors.selectionSurface : theme.colors.surfaceLight,
+          borderColor: selected ? theme.colors.selectionSurface : theme.colors.border,
         },
       ]}
     >
       <Text
         style={[
           styles.chipText,
-          { color: selected ? theme.colors.background : theme.colors.text },
+          { color: selected ? theme.colors.textOnPrimary : theme.colors.text },
         ]}
       >
         {label}

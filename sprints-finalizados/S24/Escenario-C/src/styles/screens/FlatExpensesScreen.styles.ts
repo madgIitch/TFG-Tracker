@@ -27,6 +27,11 @@ export const createStyles = (theme?: any) => {
     gap: 4,
     minHeight: 44,
   },
+  headerActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
   headerActionText: {
     color: colors.primary,
     fontWeight: '600',
@@ -78,7 +83,7 @@ export const createStyles = (theme?: any) => {
     fontWeight: '500',
   },
   chipTextActive: {
-    color: colors.cardSurface,
+    color: colors.textOnPrimary,
   },
   listContainer: {
     gap: 10,

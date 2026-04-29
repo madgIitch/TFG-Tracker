@@ -140,7 +140,7 @@ export const createStyles = (theme?: any) => {
       backgroundColor: colors.cardSurface,
       borderWidth: 1,
       borderColor: colors.glassStroke,
-      shadowColor: isDark ? '#000000' : '#0F172A',
+      shadowColor: isDark ? colors.overlayMuted : '#0F172A',
       shadowOpacity: 0.12,
       shadowRadius: 20,
       shadowOffset: { width: 0, height: 12 },
@@ -170,7 +170,7 @@ export const createStyles = (theme?: any) => {
     compatibilityBadgeText: {
       fontSize: 12,
       fontWeight: '700',
-      color: '#FFFFFF',
+      color: colors.textOnPrimary,
     },
     photoIndicators: {
       position: 'absolute',
@@ -223,7 +223,7 @@ export const createStyles = (theme?: any) => {
     profileName: {
       fontSize: 22,
       fontWeight: '700',
-      color: '#FFFFFF',
+      color: colors.textOnPrimary,
     },
     chipRow: {
       flexDirection: 'row',
@@ -241,11 +241,11 @@ export const createStyles = (theme?: any) => {
     chipText: {
       fontSize: 12,
       fontWeight: '600',
-      color: '#FFFFFF',
+      color: colors.textOnPrimary,
     },
     profileBio: {
       fontSize: 14.5,
-      color: 'rgba(255,255,255,0.92)',
+      color: isDark ? colors.textSecondary : 'rgba(255,255,255,0.92)',
       lineHeight: 20,
     },
     profileButton: {
@@ -322,7 +322,7 @@ export const createStyles = (theme?: any) => {
       paddingHorizontal: 16,
       paddingVertical: 10,
       borderRadius: 999,
-      backgroundColor: isDark ? 'rgba(15, 23, 42, 0.92)' : 'rgba(255,255,255,0.9)',
+      backgroundColor: isDark ? colors.navSurface : 'rgba(255,255,255,0.9)',
     },
     limitText: {
       fontSize: 12,
@@ -340,7 +340,7 @@ export const createStyles = (theme?: any) => {
     limitUpgradeButtonText: {
       fontSize: 12,
       fontWeight: '700',
-      color: '#FFFFFF',
+      color: colors.textOnPrimary,
     },
   });
 };

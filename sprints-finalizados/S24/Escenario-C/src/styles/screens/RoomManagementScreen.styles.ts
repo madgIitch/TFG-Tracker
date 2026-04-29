@@ -3,6 +3,7 @@ import { lightColors } from '../tokens/colors';
 
 export const createStyles = (theme?: any) => {
   const colors = theme?.colors ?? lightColors;
+  const isDark = theme?.isDark ?? false;
 
   return StyleSheet.create({
   container: {
@@ -113,7 +114,7 @@ export const createStyles = (theme?: any) => {
   createFlatButtonText: {
     fontSize: 13,
     fontWeight: '600',
-    color: colors.cardSurface,
+    color: colors.textOnPrimary,
   },
   emptyStateInline: {
     alignItems: 'center',
@@ -207,7 +208,7 @@ export const createStyles = (theme?: any) => {
     color: colors.textSecondary,
   },
   segmentButtonTextActive: {
-    color: colors.cardSurface,
+    color: colors.textOnPrimary,
   },
   segmentButtonTextDisabled: {
     color: colors.textTertiary,
@@ -219,7 +220,7 @@ export const createStyles = (theme?: any) => {
     borderColor: colors.glassStroke,
     backgroundColor: colors.cardSurface,
     padding: 14,
-    shadowColor: '#111827',
+    shadowColor: isDark ? colors.overlayMuted : '#111827',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.06,
     shadowRadius: 12,
@@ -367,5 +368,4 @@ export const createStyles = (theme?: any) => {
 };
 
 export const styles = createStyles();
-
 

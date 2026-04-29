@@ -721,7 +721,7 @@ export const ChatScreen: React.FC = () => {
             setPendingIncomingCount(0);
           }}
         >
-          <Ionicons name="arrow-down" size={14} color={theme.colors.cardSurface} />
+          <Ionicons name="arrow-down" size={14} color={theme.colors.textOnPrimary} />
           <Text style={styles.newMessagesPillText}>
             {pendingIncomingCount} nuevo{pendingIncomingCount > 1 ? 's' : ''}
           </Text>
@@ -746,7 +746,7 @@ export const ChatScreen: React.FC = () => {
             onPress={sendMessage}
             disabled={!canSendMessage}
           >
-            <Ionicons name="send" size={18} color={theme.colors.cardSurface} />
+            <Ionicons name="send" size={18} color={theme.colors.textOnPrimary} />
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
@@ -921,6 +921,5 @@ const formatChatTime = (iso?: string | null) => {
   if (Number.isNaN(date.getTime())) return '';
   return date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
 };
-
 
 

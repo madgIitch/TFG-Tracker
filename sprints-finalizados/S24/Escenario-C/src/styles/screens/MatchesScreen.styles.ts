@@ -123,7 +123,7 @@ export const createStyles = (theme?: any) => {
   unreadText: {
     fontSize: 11,
     fontWeight: '700',
-    color: colors.cardSurface,
+    color: colors.textOnPrimary,
   },
   emptyState: {
     flex: 1,

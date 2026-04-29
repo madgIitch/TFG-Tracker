@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import type { RealtimeChannel } from '@supabase/supabase-js';
 import { useTheme } from '../theme/ThemeContext';
@@ -43,6 +44,7 @@ const splitEvenly = (totalAmount: number, memberIds: string[]) => {
 export const FlatExpensesScreen: React.FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
+  const insets = useSafeAreaInsets();
   const navigation = useNavigation<StackNavigationProp<any>>();
   const route = useRoute() as { params?: { flatId?: string } };
 
@@ -80,6 +82,7 @@ export const FlatExpensesScreen: React.FC = () => {
     () => expenses.reduce((sum, expense) => sum + expense.amount, 0),
     [expenses]
   );
+  const headerTopPadding = Math.max(insets.top, 16);
 
   const loadFlats = useCallback(async () => {
     const myFlats = await roomService.getMyFlats();
@@ -285,7 +288,7 @@ export const FlatExpensesScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      <View style={[styles.header, { paddingTop: headerTopPadding }]}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           accessibilityRole="button"
@@ -295,20 +298,33 @@ export const FlatExpensesScreen: React.FC = () => {
           <Ionicons name="arrow-back" size={22} color={theme.colors.text} />
         </TouchableOpacity>
         <Text style={[styles.headerTitle, { color: theme.colors.text }]}>Gastos compartidos</Text>
-        <TouchableOpacity
-          onPress={() => {
-            resetForm();
-            setIsModalVisible(true);
-          }}
-          style={styles.headerAction}
-          disabled={!selectedFlatId}
-          accessibilityRole="button"
-          accessibilityLabel="Registrar nuevo gasto"
-          accessibilityState={{ disabled: !selectedFlatId }}
-        >
-          <Ionicons name="add" size={20} color={theme.colors.primary} />
-          <Text style={styles.headerActionText}>Nuevo</Text>
-        </TouchableOpacity>
+        <View style={styles.headerActions}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('FlatSettlements', { flatId: selectedFlatId })}
+            style={styles.headerAction}
+            disabled={!selectedFlatId}
+            accessibilityRole="button"
+            accessibilityLabel="Ver cuentas de gastos"
+            accessibilityState={{ disabled: !selectedFlatId }}
+          >
+            <Ionicons name="calculator-outline" size={20} color={theme.colors.primary} />
+            <Text style={styles.headerActionText}>Cuentas</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              resetForm();
+              setIsModalVisible(true);
+            }}
+            style={styles.headerAction}
+            disabled={!selectedFlatId}
+            accessibilityRole="button"
+            accessibilityLabel="Registrar nuevo gasto"
+            accessibilityState={{ disabled: !selectedFlatId }}
+          >
+            <Ionicons name="add" size={20} color={theme.colors.primary} />
+            <Text style={styles.headerActionText}>Nuevo</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       {loading ? (

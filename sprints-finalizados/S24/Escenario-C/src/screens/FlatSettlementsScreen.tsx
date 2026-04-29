@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import type { RealtimeChannel } from '@supabase/supabase-js';
 import { useTheme } from '../theme/ThemeContext';
@@ -26,6 +27,7 @@ const formatMoney = (amount: number) => `${amount.toFixed(2).replace('.', ',')} 
 export const FlatSettlementsScreen: React.FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
+  const insets = useSafeAreaInsets();
   const navigation = useNavigation<StackNavigationProp<any>>();
   const route = useRoute() as { params?: { flatId?: string } };
 
@@ -49,6 +51,7 @@ export const FlatSettlementsScreen: React.FC = () => {
       ),
     [summary?.members]
   );
+  const headerTopPadding = Math.max(insets.top, 16);
 
   const loadFlats = useCallback(async () => {
     const myFlats = await roomService.getMyFlats();
@@ -229,7 +232,7 @@ export const FlatSettlementsScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      <View style={[styles.header, { paddingTop: headerTopPadding }]}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           accessibilityRole="button"

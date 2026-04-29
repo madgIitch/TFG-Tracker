@@ -80,17 +80,17 @@ const toCompatibilityPercentage = (rawScore: number) => {
   return clamp(Math.round(normalizedScore * 100), 0, 100);
 };
 
-// Blur + very low white fill keeps the glass subtle and system-like.
+// In dark mode, the native blur shifts perceived brightness; use the solid fill only.
 const GlassCard: React.FC<GlassProps> = ({ style, children, styles, blurType = 'light' }) => (
   <View style={[styles.glassCard, style]}>
-    <BlurView
-      blurType={blurType}
-      blurAmount={18}
-      reducedTransparencyFallbackColor={
-        blurType === 'dark' ? 'rgba(2, 6, 23, 0.56)' : 'rgba(255,255,255,0.08)'
-      }
-      style={StyleSheet.absoluteFillObject}
-    />
+    {blurType !== 'dark' && (
+      <BlurView
+        blurType="light"
+        blurAmount={18}
+        reducedTransparencyFallbackColor="rgba(255,255,255,0.08)"
+        style={StyleSheet.absoluteFillObject}
+      />
+    )}
     <View style={styles.glassFill} />
     {children}
   </View>
@@ -98,14 +98,14 @@ const GlassCard: React.FC<GlassProps> = ({ style, children, styles, blurType = '
 
 const GlassBar: React.FC<GlassProps> = ({ style, children, styles, blurType = 'light' }) => (
   <View style={[styles.glassBar, style]}>
-    <BlurView
-      blurType={blurType}
-      blurAmount={16}
-      reducedTransparencyFallbackColor={
-        blurType === 'dark' ? 'rgba(2, 6, 23, 0.72)' : 'rgba(255,255,255,0.82)'
-      }
-      style={StyleSheet.absoluteFillObject}
-    />
+    {blurType !== 'dark' && (
+      <BlurView
+        blurType="light"
+        blurAmount={16}
+        reducedTransparencyFallbackColor="rgba(255,255,255,0.82)"
+        style={StyleSheet.absoluteFillObject}
+      />
+    )}
     <View style={styles.glassBarFill} />
     {children}
   </View>
@@ -113,14 +113,14 @@ const GlassBar: React.FC<GlassProps> = ({ style, children, styles, blurType = 'l
 
 const GlassButton: React.FC<GlassProps> = ({ style, children, styles, blurType = 'light' }) => (
   <View style={[styles.glassButton, style]}>
-    <BlurView
-      blurType={blurType}
-      blurAmount={16}
-      reducedTransparencyFallbackColor={
-        blurType === 'dark' ? 'rgba(2, 6, 23, 0.56)' : 'rgba(255,255,255,0.08)'
-      }
-      style={StyleSheet.absoluteFillObject}
-    />
+    {blurType !== 'dark' && (
+      <BlurView
+        blurType="light"
+        blurAmount={16}
+        reducedTransparencyFallbackColor="rgba(255,255,255,0.08)"
+        style={StyleSheet.absoluteFillObject}
+      />
+    )}
     <View style={styles.glassFill} />
     {children}
   </View>
@@ -768,21 +768,21 @@ export const SwipeScreen: React.FC = () => {
                   },
                 ]}
               >
-                <Ionicons name="flash" size={12} color={theme.colors.cardSurface} />
+                <Ionicons name="flash" size={12} color={theme.colors.textOnPrimary} />
                 <Text style={styles.compatibilityBadgeText}>
                   {profile.compatibilityPercentage}%
                 </Text>
               </View>
             )}
             <View style={styles.profileOverlay}>
-    <BlurView
-      blurType={theme.isDark ? 'dark' : 'light'}
-      blurAmount={12}
-      reducedTransparencyFallbackColor={
-        theme.isDark ? 'rgba(2, 6, 23, 0.62)' : 'rgba(255,255,255,0.04)'
-      }
-      style={styles.profileOverlayBlur}
-    />
+              {!theme.isDark && (
+                <BlurView
+                  blurType="light"
+                  blurAmount={12}
+                  reducedTransparencyFallbackColor="rgba(255,255,255,0.04)"
+                  style={styles.profileOverlayBlur}
+                />
+              )}
               <View style={styles.profileOverlayFill} />
               <View style={styles.overlayContent}>
                 <Text style={styles.profileName}>

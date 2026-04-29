@@ -61,7 +61,7 @@ export const createStyles = (theme?: any) => {
     fontWeight: '500',
   },
   chipTextActive: {
-    color: colors.cardSurface,
+    color: colors.textOnPrimary,
   },
   listContainer: {
     gap: 10,

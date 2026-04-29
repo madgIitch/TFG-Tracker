@@ -423,13 +423,15 @@ export const RoomDetailScreen: React.FC = () => {
                 </View>
               )}
             />
-            <View style={styles.carouselOverlay}> 
-              <BlurView
-                style={StyleSheet.absoluteFillObject}
-                blurType={theme.isDark ? 'dark' : 'light'}
-                blurAmount={16}
-                reducedTransparencyFallbackColor="rgba(15, 23, 42, 0.45)"
-              />
+            <View style={styles.carouselOverlay}>
+              {!theme.isDark && (
+                <BlurView
+                  style={StyleSheet.absoluteFillObject}
+                  blurType="light"
+                  blurAmount={16}
+                  reducedTransparencyFallbackColor={theme.colors.glassSurfaceStrong}
+                />
+              )}
               <View style={styles.carouselOverlayTint} />
               <View style={styles.carouselOverlayRow}>
                 {typeLabel ? (
@@ -628,6 +630,4 @@ export const RoomDetailScreen: React.FC = () => {
     </View>
   );
 };
-
-
 
