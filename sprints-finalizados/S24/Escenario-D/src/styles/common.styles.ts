@@ -1,0 +1,34 @@
+import { StyleSheet } from 'react-native';
+import { Theme } from '../theme';
+
+export const getCommonStyles = (theme: Theme) => StyleSheet.create({
+    keyboardAvoiding: {
+        flex: 1,
+    },
+    container: {
+        flexGrow: 1,
+        padding: theme.spacing.lg,
+        backgroundColor: theme.colors.background,
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: theme.spacing.sm,
+        color: theme.colors.text,
+    },
+    subtitle: {
+        fontSize: 16,
+        marginBottom: theme.spacing.md,
+        color: theme.colors.textSecondary,
+    },
+    input: {
+        borderWidth: 1,
+        borderColor: theme.colors.border,
+        padding: theme.spacing.md,
+        marginBottom: theme.spacing.md,
+        fontSize: theme.typography.body.fontSize,
+        borderRadius: theme.borderRadius.sm,
+        backgroundColor: theme.colors.surface,
+        color: theme.colors.text,
+    },
+});
